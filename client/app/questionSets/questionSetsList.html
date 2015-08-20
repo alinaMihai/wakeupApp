@@ -1,0 +1,13 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="qs in questionSets.questionSets">
+        <strong><a ui-sref="questionList({questionSetId:qs._id})">	{{qs.name}}</a></strong><br>
+
+        
+    </li>
+  </ul>
+</div>
+<div>
+	

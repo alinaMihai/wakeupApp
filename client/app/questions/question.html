@@ -1,0 +1,24 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <h1>{{questionCtrl.questionSetQuestions.name}}</h1> 
+  <my-popup>
+	<h4>Please specify the interval of time ( in hours) you want to be prompted with a question from the selected question set   </h4>
+    <label for="hours">Question Interval in minutes <input id="hours" type="number" ng-model='questionCtrl.questionInterval'></label>
+    
+  </my-popup>
+  <!-- <button ng-click="questionCtrl.setQuestionInterval()">Practice Question Set</button> -->
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="q in questionCtrl.questionSetQuestions.questions">
+        <strong><a ui-sref="answerList({questionId:q._id})">{{q.text}}</a></strong><br>
+
+        
+    </li>
+  </ul>
+  <question-modal  cindex="questionCtrl.questionService.currentQuestionIndex" process-question='questionCtrl.processQuestion()'>
+	<p>{{questionCtrl.currentQuestion.text}}</p>
+ 	<label for="currentAnswer"><input type="text" id="currentAnswer" ng-model=questionCtrl.currentAnswer></label>
+ </question-modal>
+</div>
+<div>
+	

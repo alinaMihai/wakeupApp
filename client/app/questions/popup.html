@@ -1,0 +1,8 @@
+<button ng-click="displayPopup=true" value="">Practice Question Set</button>
+
+<div ng-show="displayPopup" class="white_content">
+	<ng-transclude></ng-transclude>
+	<button ng-click='displayPopup=false; questionCtrl.startQuestionSet()'>OK</button>
+</div>
+<div ng-if='displayPopup' id="fade" class="black_overlay"></div>	
+

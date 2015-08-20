@@ -1,0 +1,13 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+	<h1>{{answerCtrl.questionAnswers.text}}</h1>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="a in answerCtrl.questionAnswers.answers">
+        <strong>{{a.text}}</strong><br>
+        
+    </li>
+  </ul>
+</div>
+<div>
+	
