@@ -1,9 +1,9 @@
-<!doctype html>
+<!doctype html >
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
+  <head >
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
@@ -13,17 +13,18 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
     <link rel="stylesheet" href="app/app.css">
-    <link href="bower_components/angularjs-toaster/toaster.css" rel="stylesheet" />
+  
     
       <!-- injector:css -->
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
-  <body ng-app="wakeupApp">
+  <body ng-app="wakeupApp" refresh-dir>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -56,9 +57,9 @@
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/angular-animate/angular-animate.js"></script>
-      <script src="bower_components/angularjs-toaster/toaster.js"></script>
       <script src="bower_components/ngstorage/ngStorage.js"></script>
       <script src="bower_components/angular-audio/app/angular.audio.js"></script>
+      <script src="bower_components/toastr/toastr.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
@@ -85,9 +86,11 @@
           <script src="app/questions/question.js"></script>
           <script src="app/questions/question.service.js"></script>
           <script src="app/questions/questionModal.directive.js"></script>
+          <script src="app/questions/refresh.directive.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
           <script src="components/caching/cached.factory.js"></script>
+          <script src="components/logger/logger.js"></script>
           <script src="components/mongoose-error/mongoose-error.directive.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>
           <!-- endinjector -->

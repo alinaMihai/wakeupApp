@@ -1,8 +1,10 @@
-<button ng-click="displayPopup=true" value="">Practice Question Set</button>
+<button id="practiceSessionBtn" ng-click="displayPopup=true" class="btn btn-primary" value="">Practice Question Set</button>
 
 <div ng-show="displayPopup" class="white_content">
-	<ng-transclude></ng-transclude>
-	<button ng-click='displayPopup=false; questionCtrl.startQuestionSet()'>OK</button>
+	<form name="popupForm">
+		<ng-transclude></ng-transclude>
+		<button type="submit" class="btn btn-primary" ng-disabled="!popupForm.$valid" ng-click="displayPopup=false; questionCtrl.startQuestionSet()">OK</button>
+	</form>
 </div>
 <div ng-if='displayPopup' id="fade" class="black_overlay"></div>	
 

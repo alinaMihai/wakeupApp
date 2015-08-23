@@ -33,14 +33,16 @@
         function link(scope, element, attrs) {
 
             scope.$watch('cindex', function(newValue, oldValue) {
-                if (newValue >= 0) {
+                if (newValue >= 0 && newValue != oldValue) {
                     $(element).children().first().css('display', 'block');
-                    var sound = ngAudio.load("sounds/mySound.mp3");
+                    var sound = ngAudio.load("assets/sounds/awareness.mp3");
+                    sound.play();
                 }
 
             });
             $(element).find('button').on('click', function() {
                 $(element).find('div').first().css('display', 'none');
+                $(element).find('input').val(undefined);
 
             });
 

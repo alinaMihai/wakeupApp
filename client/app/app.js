@@ -11,6 +11,16 @@
         'ngAudio'
     ]);
 
+    app.constant('toastr', toastr);
+
+    app.config(toastrConfig);
+    toastrConfig.$inject = ['toastr'];
+    /* @ngInject */
+    function toastrConfig(toastr) {
+        toastr.options.timeOut = 4000;
+        toastr.options.positionClass = 'toast-top-right';
+    }
+
     app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
         function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
             $urlRouterProvider
@@ -56,6 +66,8 @@
                 }
             });
         });
+
+
     });
 
 

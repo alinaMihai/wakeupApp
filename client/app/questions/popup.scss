@@ -19,9 +19,52 @@
 	left: 15%;
 	width: inherit;
 	height: inherit;
-	padding: 16px;
+	padding: 2%;
 	/* border: 16px solid orange; */
 	background-color: white;
 	z-index:1002;
 	overflow: auto;
+	border-radius: 1em;
+    background-color: antiquewhite;
+}
+
+.questionModal{
+	display: block;
+	position: absolute;
+	top: 25%;
+	left: 35%;
+	width: inherit;
+	height: inherit;
+	padding: 3%;
+	/* border: 16px solid orange; */
+	background-color: white;
+	z-index:1002;
+	overflow: auto;
+	border-radius: 1em;
+    background-color: antiquewhite;	
+}
+
+#sessionMode{
+	display: block;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-image:url(../../assets/images/pathToHeart.jpg);
+	background-position: center;
+    background-repeat:no-repeat;
+	
+	z-index:1001;
+	/* -moz-opacity: 0.8;
+	opacity:.80; */
+	/* filter: alpha(opacity=80); */
+}
+#practiceSessionBtn{
+	margin-bottom:1em;
+}
+#endQsSessionBtn{
+	margin: 2%;
+    border-radius: 1em;
+    background-color: #5652B1;
 }

@@ -24,7 +24,9 @@
         };
         return directive;
 
-        function link(scope, element, attrs) {}
+        function link(scope, element, attrs) {
+
+        }
     }
 
     /* @ngInject */

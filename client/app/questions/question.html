@@ -1,10 +1,13 @@
+<div ng-if="questionCtrl.questionService.questionSetSession" id="sessionMode">
+  <button id="endQsSessionBtn" ng-click="questionCtrl.endQuestionSet()" class="btn btn-primary">End Question Set Session</button>
+</div>
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
   <h1>{{questionCtrl.questionSetQuestions.name}}</h1> 
-  <my-popup>
+  <my-popup ng-if="questionCtrl.questionSetQuestions.questions.length>0">
 	<h4>Please specify the interval of time ( in hours) you want to be prompted with a question from the selected question set   </h4>
-    <label for="hours">Question Interval in minutes <input id="hours" type="number" ng-model='questionCtrl.questionInterval'></label>
+    <label for="hours">Question Interval in minutes <input id="hours" type="number" class="input input-lg" step="any" min="0" ng-model='questionCtrl.questionInterval' required></label>
     
   </my-popup>
   <!-- <button ng-click="questionCtrl.setQuestionInterval()">Practice Question Set</button> -->
@@ -15,9 +18,9 @@
         
     </li>
   </ul>
-  <question-modal  cindex="questionCtrl.questionService.currentQuestionIndex" process-question='questionCtrl.processQuestion()'>
+  <question-modal ng-show="questionCtrl.questionService.questionSetSession" cindex="questionCtrl.questionService.currentQuestionIndex" process-question='questionCtrl.processQuestion()'>
 	<p>{{questionCtrl.currentQuestion.text}}</p>
- 	<label for="currentAnswer"><input type="text" id="currentAnswer" ng-model=questionCtrl.currentAnswer></label>
+ 	<label for="currentAnswer"><input type="text" class="input input-lg" id="currentAnswer" ng-model=questionCtrl.currentAnswer ></label>
  </question-modal>
 </div>
 <div>
