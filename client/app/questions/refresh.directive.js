@@ -28,6 +28,13 @@
 
                 }
             });
+            window.onpopstate = function() {
+                if (QuestionService.questionSetSession) {
+                    QuestionService.endSessionOnBackBtn = true;
+                    scope.$apply();
+                }
+
+            };
         }
     }
 

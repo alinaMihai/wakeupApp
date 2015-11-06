@@ -1,0 +1,1370 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client\bower_components\toastr\toastr.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">client/bower_components/toastr/</a> toastr.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">22.05% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>43/195</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.13% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/121</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.26% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/39</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">22.75% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>43/189</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
+ * Toastr
+ * Copyright 2012-2015
+ * Authors: John Papa, Hans Fjällemark, and Tim Ferrell.
+ * All Rights Reserved.
+ * Use, reproduction, distribution, and modification of this code is subject to the terms and
+ * conditions of the MIT license, available at http://www.opensource.org/licenses/mit-license.php
+ *
+ * ARIA Support: Greta Krafsig
+ *
+ * Project: https://github.com/CodeSeven/toastr
+ */
+/* global define */
+; (function (define) {
+    define(['jquery'], function ($) {
+        return (function () {
+            var $container;
+            var listener;
+            var toastId = 0;
+            var toastType = {
+                error: 'error',
+                info: 'info',
+                success: 'success',
+                warning: 'warning'
+            };
+&nbsp;
+            var toastr = {
+                clear: clear,
+                remove: remove,
+                error: error,
+                getContainer: getContainer,
+                info: info,
+                options: {},
+                subscribe: subscribe,
+                success: success,
+                version: '2.1.2',
+                warning: warning
+            };
+&nbsp;
+            var previousToast;
+&nbsp;
+            return toastr;
+&nbsp;
+            ////////////////
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function error(message, title, optionsOverride) {</span>
+<span class="cstat-no" title="statement not covered" >                return notify({</span>
+                    type: toastType.error,
+                    iconClass: getOptions().iconClasses.error,
+                    message: message,
+                    optionsOverride: optionsOverride,
+                    title: title
+                });
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function getContainer(options, create) {</span>
+<span class="cstat-no" title="statement not covered" >                if (!options) { <span class="cstat-no" title="statement not covered" >options = getOptions(); </span>}</span>
+<span class="cstat-no" title="statement not covered" >                $container = $('#' + options.containerId);</span>
+<span class="cstat-no" title="statement not covered" >                if ($container.length) {</span>
+<span class="cstat-no" title="statement not covered" >                    return $container;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (create) {</span>
+<span class="cstat-no" title="statement not covered" >                    $container = createContainer(options);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return $container;</span>
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function info(message, title, optionsOverride) {</span>
+<span class="cstat-no" title="statement not covered" >                return notify({</span>
+                    type: toastType.info,
+                    iconClass: getOptions().iconClasses.info,
+                    message: message,
+                    optionsOverride: optionsOverride,
+                    title: title
+                });
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function subscribe(callback) {</span>
+<span class="cstat-no" title="statement not covered" >                listener = callback;</span>
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function success(message, title, optionsOverride) {</span>
+<span class="cstat-no" title="statement not covered" >                return notify({</span>
+                    type: toastType.success,
+                    iconClass: getOptions().iconClasses.success,
+                    message: message,
+                    optionsOverride: optionsOverride,
+                    title: title
+                });
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function warning(message, title, optionsOverride) {</span>
+<span class="cstat-no" title="statement not covered" >                return notify({</span>
+                    type: toastType.warning,
+                    iconClass: getOptions().iconClasses.warning,
+                    message: message,
+                    optionsOverride: optionsOverride,
+                    title: title
+                });
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function clear($toastElement, clearOptions) {</span>
+<span class="cstat-no" title="statement not covered" >                var options = getOptions();</span>
+<span class="cstat-no" title="statement not covered" >                if (!$container) { <span class="cstat-no" title="statement not covered" >getContainer(options); </span>}</span>
+<span class="cstat-no" title="statement not covered" >                if (!clearToast($toastElement, options, clearOptions)) {</span>
+<span class="cstat-no" title="statement not covered" >                    clearContainer(options);</span>
+                }
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function remove($toastElement) {</span>
+<span class="cstat-no" title="statement not covered" >                var options = getOptions();</span>
+<span class="cstat-no" title="statement not covered" >                if (!$container) { <span class="cstat-no" title="statement not covered" >getContainer(options); </span>}</span>
+<span class="cstat-no" title="statement not covered" >                if ($toastElement &amp;&amp; $(':focus', $toastElement).length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    removeToast($toastElement);</span>
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if ($container.children().length) {</span>
+<span class="cstat-no" title="statement not covered" >                    $container.remove();</span>
+                }
+            }
+&nbsp;
+            // internal functions
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function clearContainer (options) {</span>
+<span class="cstat-no" title="statement not covered" >                var toastsToClear = $container.children();</span>
+<span class="cstat-no" title="statement not covered" >                for (var i = toastsToClear.length - 1; i &gt;= 0; i--) {</span>
+<span class="cstat-no" title="statement not covered" >                    clearToast($(toastsToClear[i]), options);</span>
+                }
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function clearToast ($toastElement, options, clearOptions) {</span>
+<span class="cstat-no" title="statement not covered" >                var force = clearOptions &amp;&amp; clearOptions.force ? clearOptions.force : false;</span>
+<span class="cstat-no" title="statement not covered" >                if ($toastElement &amp;&amp; (force || $(':focus', $toastElement).length === 0)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $toastElement[options.hideMethod]({</span>
+                        duration: options.hideDuration,
+                        easing: options.hideEasing,
+                        complete: <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >removeToast($toastElement); </span>}
+                    });
+<span class="cstat-no" title="statement not covered" >                    return true;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function createContainer(options) {</span>
+<span class="cstat-no" title="statement not covered" >                $container = $('&lt;div/&gt;')</span>
+                    .attr('id', options.containerId)
+                    .addClass(options.positionClass)
+                    .attr('aria-live', 'polite')
+                    .attr('role', 'alert');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $container.appendTo($(options.target));</span>
+<span class="cstat-no" title="statement not covered" >                return $container;</span>
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function getDefaults() {</span>
+<span class="cstat-no" title="statement not covered" >                return {</span>
+                    tapToDismiss: true,
+                    toastClass: 'toast',
+                    containerId: 'toast-container',
+                    debug: false,
+&nbsp;
+                    showMethod: 'fadeIn', //fadeIn, slideDown, and show are built into jQuery
+                    showDuration: 300,
+                    showEasing: 'swing', //swing and linear are built into jQuery
+                    onShown: undefined,
+                    hideMethod: 'fadeOut',
+                    hideDuration: 1000,
+                    hideEasing: 'swing',
+                    onHidden: undefined,
+                    closeMethod: false,
+                    closeDuration: false,
+                    closeEasing: false,
+&nbsp;
+                    extendedTimeOut: 1000,
+                    iconClasses: {
+                        error: 'toast-error',
+                        info: 'toast-info',
+                        success: 'toast-success',
+                        warning: 'toast-warning'
+                    },
+                    iconClass: 'toast-info',
+                    positionClass: 'toast-top-right',
+                    timeOut: 5000, // Set timeOut and extendedTimeOut to 0 to make it sticky
+                    titleClass: 'toast-title',
+                    messageClass: 'toast-message',
+                    escapeHtml: false,
+                    target: 'body',
+                    closeHtml: '&lt;button type="button"&gt;&amp;times;&lt;/button&gt;',
+                    newestOnTop: true,
+                    preventDuplicates: false,
+                    progressBar: false
+                };
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function publish(args) {</span>
+<span class="cstat-no" title="statement not covered" >                if (!listener) { <span class="cstat-no" title="statement not covered" >return; </span>}</span>
+<span class="cstat-no" title="statement not covered" >                listener(args);</span>
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function notify(map) {</span>
+<span class="cstat-no" title="statement not covered" >                var options = getOptions();</span>
+<span class="cstat-no" title="statement not covered" >                var iconClass = map.iconClass || options.iconClass;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (typeof (map.optionsOverride) !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >                    options = $.extend(options, map.optionsOverride);</span>
+<span class="cstat-no" title="statement not covered" >                    iconClass = map.optionsOverride.iconClass || iconClass;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (shouldExit(options, map)) { <span class="cstat-no" title="statement not covered" >return; </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                toastId++;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $container = getContainer(options, true);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var intervalId = null;</span>
+<span class="cstat-no" title="statement not covered" >                var $toastElement = $('&lt;div/&gt;');</span>
+<span class="cstat-no" title="statement not covered" >                var $titleElement = $('&lt;div/&gt;');</span>
+<span class="cstat-no" title="statement not covered" >                var $messageElement = $('&lt;div/&gt;');</span>
+<span class="cstat-no" title="statement not covered" >                var $progressElement = $('&lt;div/&gt;');</span>
+<span class="cstat-no" title="statement not covered" >                var $closeElement = $(options.closeHtml);</span>
+<span class="cstat-no" title="statement not covered" >                var progressBar = {</span>
+                    intervalId: null,
+                    hideEta: null,
+                    maxHideTime: null
+                };
+<span class="cstat-no" title="statement not covered" >                var response = {</span>
+                    toastId: toastId,
+                    state: 'visible',
+                    startTime: new Date(),
+                    options: options,
+                    map: map
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                personalizeToast();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                displayToast();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                handleEvents();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                publish(response);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (options.debug &amp;&amp; console) {</span>
+<span class="cstat-no" title="statement not covered" >                    console.log(response);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return $toastElement;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function escapeHtml(source) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (source == null)</span>
+<span class="cstat-no" title="statement not covered" >                        source = "";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    return new String(source)</span>
+                        .replace(/&amp;/g, '&amp;amp;')
+                        .replace(/"/g, '&amp;quot;')
+                        .replace(/'/g, '&amp;#39;')
+                        .replace(/&lt;/g, '&amp;lt;')
+                        .replace(/&gt;/g, '&amp;gt;');
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function personalizeToast() {</span>
+<span class="cstat-no" title="statement not covered" >                    setIcon();</span>
+<span class="cstat-no" title="statement not covered" >                    setTitle();</span>
+<span class="cstat-no" title="statement not covered" >                    setMessage();</span>
+<span class="cstat-no" title="statement not covered" >                    setCloseButton();</span>
+<span class="cstat-no" title="statement not covered" >                    setProgressBar();</span>
+<span class="cstat-no" title="statement not covered" >                    setSequence();</span>
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function handleEvents() {</span>
+<span class="cstat-no" title="statement not covered" >                    $toastElement.hover(stickAround, delayedHideToast);</span>
+<span class="cstat-no" title="statement not covered" >                    if (!options.onclick &amp;&amp; options.tapToDismiss) {</span>
+<span class="cstat-no" title="statement not covered" >                        $toastElement.click(hideToast);</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (options.closeButton &amp;&amp; $closeElement) {</span>
+<span class="cstat-no" title="statement not covered" >                        $closeElement.click(<span class="fstat-no" title="function not covered" >function (event) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            if (event.stopPropagation) {</span>
+<span class="cstat-no" title="statement not covered" >                                event.stopPropagation();</span>
+                            } else <span class="cstat-no" title="statement not covered" >if (event.cancelBubble !== undefined &amp;&amp; event.cancelBubble !== true) {</span>
+<span class="cstat-no" title="statement not covered" >                                event.cancelBubble = true;</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            hideToast(true);</span>
+                        });
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (options.onclick) {</span>
+<span class="cstat-no" title="statement not covered" >                        $toastElement.click(<span class="fstat-no" title="function not covered" >function (event) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            options.onclick(event);</span>
+<span class="cstat-no" title="statement not covered" >                            hideToast();</span>
+                        });
+                    }
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function displayToast() {</span>
+<span class="cstat-no" title="statement not covered" >                    $toastElement.hide();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    $toastElement[options.showMethod](</span>
+                        {duration: options.showDuration, easing: options.showEasing, complete: options.onShown}
+                    );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (options.timeOut &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        intervalId = setTimeout(hideToast, options.timeOut);</span>
+<span class="cstat-no" title="statement not covered" >                        progressBar.maxHideTime = parseFloat(options.timeOut);</span>
+<span class="cstat-no" title="statement not covered" >                        progressBar.hideEta = new Date().getTime() + progressBar.maxHideTime;</span>
+<span class="cstat-no" title="statement not covered" >                        if (options.progressBar) {</span>
+<span class="cstat-no" title="statement not covered" >                            progressBar.intervalId = setInterval(updateProgress, 10);</span>
+                        }
+                    }
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function setIcon() {</span>
+<span class="cstat-no" title="statement not covered" >                    if (map.iconClass) {</span>
+<span class="cstat-no" title="statement not covered" >                        $toastElement.addClass(options.toastClass).addClass(iconClass);</span>
+                    }
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function setSequence() {</span>
+<span class="cstat-no" title="statement not covered" >                    if (options.newestOnTop) {</span>
+<span class="cstat-no" title="statement not covered" >                        $container.prepend($toastElement);</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        $container.append($toastElement);</span>
+                    }
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function setTitle() {</span>
+<span class="cstat-no" title="statement not covered" >                    if (map.title) {</span>
+<span class="cstat-no" title="statement not covered" >                        $titleElement.append(!options.escapeHtml ? map.title : escapeHtml(map.title)).addClass(options.titleClass);</span>
+<span class="cstat-no" title="statement not covered" >                        $toastElement.append($titleElement);</span>
+                    }
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function setMessage() {</span>
+<span class="cstat-no" title="statement not covered" >                    if (map.message) {</span>
+<span class="cstat-no" title="statement not covered" >                        $messageElement.append(!options.escapeHtml ? map.message : escapeHtml(map.message)).addClass(options.messageClass);</span>
+<span class="cstat-no" title="statement not covered" >                        $toastElement.append($messageElement);</span>
+                    }
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function setCloseButton() {</span>
+<span class="cstat-no" title="statement not covered" >                    if (options.closeButton) {</span>
+<span class="cstat-no" title="statement not covered" >                        $closeElement.addClass('toast-close-button').attr('role', 'button');</span>
+<span class="cstat-no" title="statement not covered" >                        $toastElement.prepend($closeElement);</span>
+                    }
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function setProgressBar() {</span>
+<span class="cstat-no" title="statement not covered" >                    if (options.progressBar) {</span>
+<span class="cstat-no" title="statement not covered" >                        $progressElement.addClass('toast-progress');</span>
+<span class="cstat-no" title="statement not covered" >                        $toastElement.prepend($progressElement);</span>
+                    }
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function shouldExit(options, map) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (options.preventDuplicates) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (map.message === previousToast) {</span>
+<span class="cstat-no" title="statement not covered" >                            return true;</span>
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            previousToast = map.message;</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function hideToast(override) {</span>
+<span class="cstat-no" title="statement not covered" >                    var method = override &amp;&amp; options.closeMethod !== false ? options.closeMethod : options.hideMethod;</span>
+<span class="cstat-no" title="statement not covered" >                    var duration = override &amp;&amp; options.closeDuration !== false ?</span>
+                        options.closeDuration : options.hideDuration;
+<span class="cstat-no" title="statement not covered" >                    var easing = override &amp;&amp; options.closeEasing !== false ? options.closeEasing : options.hideEasing;</span>
+<span class="cstat-no" title="statement not covered" >                    if ($(':focus', $toastElement).length &amp;&amp; !override) {</span>
+<span class="cstat-no" title="statement not covered" >                        return;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    clearTimeout(progressBar.intervalId);</span>
+<span class="cstat-no" title="statement not covered" >                    return $toastElement[method]({</span>
+                        duration: duration,
+                        easing: easing,
+                        complete: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                            removeToast($toastElement);</span>
+<span class="cstat-no" title="statement not covered" >                            if (options.onHidden &amp;&amp; response.state !== 'hidden') {</span>
+<span class="cstat-no" title="statement not covered" >                                options.onHidden();</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            response.state = 'hidden';</span>
+<span class="cstat-no" title="statement not covered" >                            response.endTime = new Date();</span>
+<span class="cstat-no" title="statement not covered" >                            publish(response);</span>
+                        }
+                    });
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function delayedHideToast() {</span>
+<span class="cstat-no" title="statement not covered" >                    if (options.timeOut &gt; 0 || options.extendedTimeOut &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        intervalId = setTimeout(hideToast, options.extendedTimeOut);</span>
+<span class="cstat-no" title="statement not covered" >                        progressBar.maxHideTime = parseFloat(options.extendedTimeOut);</span>
+<span class="cstat-no" title="statement not covered" >                        progressBar.hideEta = new Date().getTime() + progressBar.maxHideTime;</span>
+                    }
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function stickAround() {</span>
+<span class="cstat-no" title="statement not covered" >                    clearTimeout(intervalId);</span>
+<span class="cstat-no" title="statement not covered" >                    progressBar.hideEta = 0;</span>
+<span class="cstat-no" title="statement not covered" >                    $toastElement.stop(true, true)[options.showMethod](</span>
+                        {duration: options.showDuration, easing: options.showEasing}
+                    );
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function updateProgress() {</span>
+<span class="cstat-no" title="statement not covered" >                    var percentage = ((progressBar.hideEta - (new Date().getTime())) / progressBar.maxHideTime) * 100;</span>
+<span class="cstat-no" title="statement not covered" >                    $progressElement.width(percentage + '%');</span>
+                }
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function getOptions() {</span>
+<span class="cstat-no" title="statement not covered" >                return $.extend({}, getDefaults(), toastr.options);</span>
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function removeToast($toastElement) {</span>
+<span class="cstat-no" title="statement not covered" >                if (!$container) { <span class="cstat-no" title="statement not covered" >$container = getContainer(); </span>}</span>
+<span class="cstat-no" title="statement not covered" >                if ($toastElement.is(':visible')) {</span>
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                $toastElement.remove();</span>
+<span class="cstat-no" title="statement not covered" >                $toastElement = null;</span>
+<span class="cstat-no" title="statement not covered" >                if ($container.children().length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    $container.remove();</span>
+<span class="cstat-no" title="statement not covered" >                    previousToast = undefined;</span>
+                }
+            }
+&nbsp;
+        })();
+    });
+}(typeof define === 'function' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >define.amd </span>? <span class="branch-0 cbranch-no" title="branch not covered" >define </span>: function (deps, factory) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof module !== 'undefined' &amp;&amp; module.exports) { //Node
+<span class="cstat-no" title="statement not covered" >        module.exports = factory(require('jquery'));</span>
+    } else {
+        window.toastr = factory(window.jQuery);
+    }
+}));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 06 2015 16:36:02 GMT+0200 (GTB Standard Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

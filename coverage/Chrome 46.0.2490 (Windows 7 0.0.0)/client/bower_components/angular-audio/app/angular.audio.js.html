@@ -1,0 +1,1415 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client\bower_components\angular-audio\app\angular.audio.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">client/bower_components/angular-audio/app/</a> angular.audio.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.99% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/201</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/89</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/51</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.99% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/201</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+angular.module('ngAudio', [])
+.directive('ngAudio', ['$compile', '$q', 'ngAudio', <span class="fstat-no" title="function not covered" >function($compile, $q, ngAudio) {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+        restrict: 'AEC',
+        scope: {
+            volume: '=',
+            start: '=',
+            currentTime: '=',
+            loop: '=',
+            clickPlay: '=',
+            disablePreload:'='
+            //ngAudio:'='
+        },
+        controller: <span class="fstat-no" title="function not covered" >function($scope, $attrs, $element, $timeout) {</span>
+            
+            /* Loads the sound from destination */
+<span class="cstat-no" title="statement not covered" >            var audio;</span>
+<span class="fstat-no" title="function not covered" >            function initSound(){</span>
+<span class="cstat-no" title="statement not covered" >                audio = ngAudio.load($attrs.ngAudio);</span>
+                /* Add audio to local scope for modification with nested inputs */
+<span class="cstat-no" title="statement not covered" >                $scope.$audio = audio;</span>
+&nbsp;
+                /* Remove watching features for improved performance */
+<span class="cstat-no" title="statement not covered" >                audio.unbind();</span>
+            }            
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!$scope.disablePreload){</span>
+<span class="cstat-no" title="statement not covered" >                initSound();</span>
+            }        
+            
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $element.on('click', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.clickPlay === false) {</span>
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+                }
+                
+<span class="cstat-no" title="statement not covered" >                if ($scope.disablePreload){</span>
+<span class="cstat-no" title="statement not covered" >                    initSound();</span>
+                }        
+&nbsp;
+                /* iOS workaround: Call the play method directly in listener function */
+<span class="cstat-no" title="statement not covered" >                audio.audio.play();</span>
+                
+                /* Set volume to $scope volume if it exists, or default to audio's current value */
+<span class="cstat-no" title="statement not covered" >                audio.volume = $scope.volume || audio.volume;</span>
+<span class="cstat-no" title="statement not covered" >                audio.loop = $scope.loop;</span>
+<span class="cstat-no" title="statement not covered" >                audio.currentTime = $scope.start || 0;</span>
+&nbsp;
+                /* Fixes a bug with Firefox (???) */
+<span class="cstat-no" title="statement not covered" >                $timeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    audio.play();</span>
+                }, 5);
+            });
+        }
+    };
+}])
+&nbsp;
+.directive('ngAudioHover', ['$compile', '$q', 'ngAudio', <span class="fstat-no" title="function not covered" >function($compile, $q, ngAudio) {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+        restrict: 'AEC',
+        controller: <span class="fstat-no" title="function not covered" >function($scope, $attrs, $element, $timeout) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var audio = ngAudio.load($attrs.ngAudioHover);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $element.on('mouseover rollover hover', <span class="fstat-no" title="function not covered" >function() {</span></span>
+                
+                /* iOS workaround: Call the play method directly in listener function */
+<span class="cstat-no" title="statement not covered" >                audio.audio.play();</span>
+                
+<span class="cstat-no" title="statement not covered" >                audio.volume = $attrs.volumeHover || audio.volume;</span>
+<span class="cstat-no" title="statement not covered" >                audio.loop = $attrs.loop;</span>
+<span class="cstat-no" title="statement not covered" >                audio.currentTime = $attrs.startHover || 0;</span>
+&nbsp;
+            });
+        }
+    };
+}])
+&nbsp;
+.service('localAudioFindingService', ['$q', <span class="fstat-no" title="function not covered" >function($q) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.find = <span class="fstat-no" title="function not covered" >function(id) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >        var $sound = document.getElementById(id);</span>
+<span class="cstat-no" title="statement not covered" >        if ($sound) {</span>
+<span class="cstat-no" title="statement not covered" >            deferred.resolve($sound);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            deferred.reject(id);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return deferred.promise;</span>
+    };
+}])
+&nbsp;
+.service('remoteAudioFindingService', ['$q', <span class="fstat-no" title="function not covered" >function($q) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.find = <span class="fstat-no" title="function not covered" >function(url) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >        var audio = new Audio();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        audio.addEventListener('error', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            deferred.reject();</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        audio.addEventListener('loadstart', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            deferred.resolve(audio);</span>
+        });
+&nbsp;
+        // bugfix for chrome...
+<span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            audio.src = url;</span>
+        }, 1);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return deferred.promise;</span>
+&nbsp;
+    };
+}])
+&nbsp;
+.service('cleverAudioFindingService', ['$q', 'localAudioFindingService', 'remoteAudioFindingService', <span class="fstat-no" title="function not covered" >function($q, localAudioFindingService, remoteAudioFindingService) {</span>
+<span class="cstat-no" title="statement not covered" >    this.find = <span class="fstat-no" title="function not covered" >function(id) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var deferred = $q.defer();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        id = id.replace('|', '/');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        localAudioFindingService.find(id)</span>
+            .then(deferred.resolve, <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                return remoteAudioFindingService.find(id);</span>
+            })
+            .then(deferred.resolve, deferred.reject);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return deferred.promise;</span>
+    };
+}])
+&nbsp;
+.value('ngAudioGlobals', {
+    muting: false,
+    songmuting: false,
+    performance: 25,
+    unlock: true
+})
+&nbsp;
+.factory('NgAudioObject', ['cleverAudioFindingService', '$rootScope', '$interval', '$timeout', 'ngAudioGlobals', <span class="fstat-no" title="function not covered" >function(cleverAudioFindingService, $rootScope, $interval, $timeout, ngAudioGlobals) {</span>
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >function(id) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (ngAudioGlobals.unlock) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            window.addEventListener("click",<span class="fstat-no" title="function not covered" >function twiddle(){</span></span>
+<span class="cstat-no" title="statement not covered" >                audio.play();</span>
+<span class="cstat-no" title="statement not covered" >                audio.pause();</span>
+<span class="cstat-no" title="statement not covered" >                window.removeEventListener("click",twiddle);</span>
+            });
+&nbsp;
+        }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var $audioWatch,</span>
+            $willPlay = false,
+            $willPause = false,
+            $willRestart = false,
+            $willChangePlaybackRate = false,
+            $newPlaybackRate = false,
+            $volumeToSet,
+            $looping,
+            $isMuting = false,
+            $observeProperties = true,
+            audio,
+            audioObject = this;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.id = id;</span>
+<span class="cstat-no" title="statement not covered" >        this.safeId = id.replace('/', '|');</span>
+<span class="cstat-no" title="statement not covered" >        this.loop = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.unbind = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            $observeProperties = false;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.play = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            $willPlay = true;</span>
+<span class="cstat-no" title="statement not covered" >            return this;</span>
+        };
+        
+<span class="cstat-no" title="statement not covered" >        var completeListeners = [];</span>
+<span class="cstat-no" title="statement not covered" >        this.complete = <span class="fstat-no" title="function not covered" >function(callback){</span></span>
+<span class="cstat-no" title="statement not covered" >            completeListeners.push(callback);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.pause = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            $willPause = true;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.restart = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            $willRestart = true;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.stop = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.restart();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.setVolume = <span class="fstat-no" title="function not covered" >function(volume) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $volumeToSet = volume;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.setPlaybackRate = <span class="fstat-no" title="function not covered" >function(rate) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $newPlaybackRate = rate;</span>
+<span class="cstat-no" title="statement not covered" >            $willChangePlaybackRate = true;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.setMuting = <span class="fstat-no" title="function not covered" >function(muting) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $isMuting = muting;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.setProgress = <span class="fstat-no" title="function not covered" >function(progress) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (audio &amp;&amp; audio.duration &amp;&amp; isFinite(progress)) {</span>
+<span class="cstat-no" title="statement not covered" >                audio.currentTime = audio.duration * progress;</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.setCurrentTime = <span class="fstat-no" title="function not covered" >function(currentTime) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (audio &amp;&amp; audio.duration) {</span>
+<span class="cstat-no" title="statement not covered" >                audio.currentTime = currentTime;</span>
+            }
+        };
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function $setWatch() {</span>
+<span class="cstat-no" title="statement not covered" >            $audioWatch = $rootScope.$watch(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                return {</span>
+                    volume: audioObject.volume,
+                    currentTime: audioObject.currentTime,
+                    progress: audioObject.progress,
+                    muting: audioObject.muting,
+                    loop: audioObject.loop,
+                    playbackRate: audioObject.playbackRate
+                };
+            }, <span class="fstat-no" title="function not covered" >function(newValue, oldValue) {</span>
+<span class="cstat-no" title="statement not covered" >                if (newValue.currentTime !== oldValue.currentTime) {</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.setCurrentTime(newValue.currentTime);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (newValue.progress !== oldValue.progress) {</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.setProgress(newValue.progress);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (newValue.volume !== oldValue.volume) {</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.setVolume(newValue.volume);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (newValue.playbackRate !== oldValue.playbackRate) {</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.setPlaybackRate(newValue.playbackRate);</span>
+                }
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $looping = newValue.loop;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (newValue.muting !== oldValue.muting) {</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.setMuting(newValue.muting);</span>
+                }
+            }, true);
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        cleverAudioFindingService.find(id)</span>
+            .then(<span class="fstat-no" title="function not covered" >function(nativeAudio) {</span>
+<span class="cstat-no" title="statement not covered" >                audio = nativeAudio;</span>
+<span class="cstat-no" title="statement not covered" >                audio.addEventListener('canplay', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.canPlay = true;</span>
+                });
+&nbsp;
+&nbsp;
+            }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >                audioObject.error = true;</span>
+<span class="cstat-no" title="statement not covered" >                console.warn(error);</span>
+            });
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var interval = $interval(checkWatchers, ngAudioGlobals.performance);</span>
+<span class="cstat-no" title="statement not covered" >        $rootScope.$watch(<span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >            return ngAudioGlobals.performance;</span>
+        },<span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >            $interval.cancel(interval);</span>
+<span class="cstat-no" title="statement not covered" >            interval = $interval(checkWatchers, ngAudioGlobals.performance);</span>
+        })
+        
+<span class="fstat-no" title="function not covered" >        function checkWatchers() {</span>
+<span class="cstat-no" title="statement not covered" >            if ($audioWatch) {</span>
+<span class="cstat-no" title="statement not covered" >                $audioWatch();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (audio) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ($isMuting || ngAudioGlobals.isMuting) {</span>
+<span class="cstat-no" title="statement not covered" >                    audio.volume = 0;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    audio.volume = audioObject.volume !== undefined ? audioObject.volume : 1;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ($willPlay) {</span>
+<span class="cstat-no" title="statement not covered" >                    audio.play();</span>
+<span class="cstat-no" title="statement not covered" >                    $willPlay = false;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ($willRestart) {</span>
+<span class="cstat-no" title="statement not covered" >                    audio.pause();</span>
+<span class="cstat-no" title="statement not covered" >                    audio.currentTime = 0;</span>
+<span class="cstat-no" title="statement not covered" >                    $willRestart = false;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ($willPause) {</span>
+<span class="cstat-no" title="statement not covered" >                    audio.pause();</span>
+<span class="cstat-no" title="statement not covered" >                    $willPause = false;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ($willChangePlaybackRate) {</span>
+<span class="cstat-no" title="statement not covered" >                    audio.playbackRate = $newPlaybackRate;</span>
+<span class="cstat-no" title="statement not covered" >                    $willChangePlaybackRate = false;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ($volumeToSet) {</span>
+<span class="cstat-no" title="statement not covered" >                    audio.volume = $volumeToSet;</span>
+<span class="cstat-no" title="statement not covered" >                    $volumeToSet = undefined;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ($observeProperties) {</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.currentTime = audio.currentTime;</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.duration = audio.duration;</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.remaining = audio.duration - audio.currentTime;</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.progress = audio.currentTime / audio.duration;</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.paused = audio.paused;</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.src = audio.src;</span>
+                    
+<span class="cstat-no" title="statement not covered" >                    if (audioObject.currentTime &gt;= audioObject.duration) {</span>
+<span class="cstat-no" title="statement not covered" >                        completeListeners.forEach(<span class="fstat-no" title="function not covered" >function(listener){</span></span>
+<span class="cstat-no" title="statement not covered" >                            listener(audioObject);</span>
+                        })
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if ($looping &amp;&amp; audioObject.currentTime &gt;= audioObject.duration) {</span>
+<span class="cstat-no" title="statement not covered" >                        if ($looping !== true) {</span>
+<span class="cstat-no" title="statement not covered" >                            $looping--;</span>
+<span class="cstat-no" title="statement not covered" >                            audioObject.loop--;</span>
+                            // if (!$looping) return;
+                        }
+<span class="cstat-no" title="statement not covered" >                        audioObject.setCurrentTime(0);</span>
+<span class="cstat-no" title="statement not covered" >                        audioObject.play();</span>
+&nbsp;
+                    }
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (!$isMuting &amp;&amp; !ngAudioGlobals.isMuting) {</span>
+<span class="cstat-no" title="statement not covered" >                    audioObject.volume = audio.volume;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                audioObject.audio = audio;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $setWatch();</span>
+        }
+    };
+}])
+.service('ngAudio', ['NgAudioObject', 'ngAudioGlobals', <span class="fstat-no" title="function not covered" >function(NgAudioObject, ngAudioGlobals) {</span>
+<span class="cstat-no" title="statement not covered" >    this.play = <span class="fstat-no" title="function not covered" >function(id) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var audio = new NgAudioObject(id);</span>
+<span class="cstat-no" title="statement not covered" >        audio.play();</span>
+<span class="cstat-no" title="statement not covered" >        return audio;</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.load = <span class="fstat-no" title="function not covered" >function(id) {</span></span>
+<span class="cstat-no" title="statement not covered" >        return new NgAudioObject(id);</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.mute = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        ngAudioGlobals.muting = true;</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.unmute = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        ngAudioGlobals.muting = false;</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.toggleMute = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        ngAudioGlobals.muting = !ngAudioGlobals.muting;</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.setUnlock = <span class="fstat-no" title="function not covered" >function(unlock) {</span></span>
+<span class="cstat-no" title="statement not covered" >      ngAudioGlobals.unlock = unlock;</span>
+    };
+}])
+.filter("trackTime", <span class="fstat-no" title="function not covered" >function(){</span>
+    /* Conveniently takes a number and returns the track time */
+    
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >function(input){</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var totalSec = Math.floor(input | 0);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var output = "";</span>
+<span class="cstat-no" title="statement not covered" >        var hours = 0;</span>
+<span class="cstat-no" title="statement not covered" >        var minutes = 0;</span>
+<span class="cstat-no" title="statement not covered" >        var seconds = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (totalSec &gt; 3599) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            hours = Math.floor(totalSec / 3600);</span>
+<span class="cstat-no" title="statement not covered" >            minutes = Math.floor((totalSec - (hours * 3600)) / 60);</span>
+<span class="cstat-no" title="statement not covered" >            seconds = (totalSec - ((minutes * 60) + (hours * 3600))); </span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (hours.toString().length == 1) {</span>
+<span class="cstat-no" title="statement not covered" >                hours = "0" + (Math.floor(totalSec / 3600)).toString();</span>
+            } 
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (minutes.toString().length == 1) {</span>
+<span class="cstat-no" title="statement not covered" >                minutes = "0" + (Math.floor((totalSec - (hours * 3600)) / 60)).toString();</span>
+            } 
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (seconds.toString().length == 1) {</span>
+<span class="cstat-no" title="statement not covered" >                seconds = "0" + (totalSec - ((minutes * 60) + (hours * 3600))).toString(); </span>
+            } 
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            output = hours + ":" + minutes + ":" + seconds;</span>
+&nbsp;
+        } else <span class="cstat-no" title="statement not covered" >if (totalSec &gt; 59) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            minutes = Math.floor(totalSec / 60);</span>
+<span class="cstat-no" title="statement not covered" >            seconds = totalSec - (minutes * 60);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (minutes.toString().length == 1) {</span>
+<span class="cstat-no" title="statement not covered" >                 minutes = "0" + (Math.floor(totalSec / 60)).toString();</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (seconds.toString().length == 1) {</span>
+<span class="cstat-no" title="statement not covered" >                 seconds = "0" + (totalSec - (minutes * 60)).toString();</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            output = minutes + ":" + seconds;</span>
+&nbsp;
+        } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            seconds = totalSec;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (seconds.toString().length == 1) {</span>
+<span class="cstat-no" title="statement not covered" >                seconds = "0" + (totalSec).toString();</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            output = totalSec + "s";</span>
+&nbsp;
+        }
+        
+<span class="cstat-no" title="statement not covered" >        if (Number.isNaN(output)){</span>
+<span class="cstat-no" title="statement not covered" >            debugger;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return output; </span>
+    }
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 06 2015 16:36:02 GMT+0200 (GTB Standard Time)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

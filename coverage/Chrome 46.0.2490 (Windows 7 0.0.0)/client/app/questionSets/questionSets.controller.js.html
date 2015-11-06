@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client\app\questionSets\questionSets.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">client/app/questionSets/</a> questionSets.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">24.49% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/49</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">24.49% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>12/49</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+    'use strict';
+&nbsp;
+    angular
+        .module('wakeupApp')
+        .controller('QuestionSetsCtrl', QuestionSetsCtrl);
+&nbsp;
+    QuestionSetsCtrl.$inject = ['cached', 'QuestionSetService', '$uibModal'];
+&nbsp;
+    /* @ngInject */
+<span class="fstat-no" title="function not covered" >    function QuestionSetsCtrl(cached, QuestionSetService, $uibModal) {</span>
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+<span class="cstat-no" title="statement not covered" >        vm.title = 'Question Sets List';</span>
+<span class="cstat-no" title="statement not covered" >        vm.saveQuestionSet = saveQuestionSet;</span>
+<span class="cstat-no" title="statement not covered" >        vm.cancelAddQuestionSet = cancelAddQuestionSet;</span>
+<span class="cstat-no" title="statement not covered" >        vm.hasErrorAddForm = hasErrorAddForm;</span>
+<span class="cstat-no" title="statement not covered" >        vm.questionSetService = QuestionSetService;</span>
+<span class="cstat-no" title="statement not covered" >        vm.deleteQuestionSet = deleteQuestionSet;</span>
+<span class="cstat-no" title="statement not covered" >        vm.openModal = openModal;</span>
+<span class="cstat-no" title="statement not covered" >        vm.questionSets = [];</span>
+<span class="cstat-no" title="statement not covered" >        vm.addQuestionSetBool = false;</span>
+<span class="cstat-no" title="statement not covered" >        activate();</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function activate() {</span>
+<span class="cstat-no" title="statement not covered" >            cached.getQuestionSets().then(<span class="fstat-no" title="function not covered" >function(questionSets) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                vm.questionSets = questionSets;</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function hasErrorAddForm() {</span>
+<span class="cstat-no" title="statement not covered" >            return !vm.addQuestionSet.questionSetText.$valid &amp;&amp; vm.addQuestionSet.questionSetText.$dirty;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function saveQuestionSet() {</span>
+<span class="cstat-no" title="statement not covered" >            var questionSetText = vm.questionSetText;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (questionSetText.trim() !== "" &amp;&amp; questionSetText !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >                var today = new Date().getTime();</span>
+<span class="cstat-no" title="statement not covered" >                var questionSet = {</span>
+                    name: questionSetText,
+                    createDate: today
+                };
+<span class="cstat-no" title="statement not covered" >                QuestionSetService.addQuestionSet(questionSet).then(<span class="fstat-no" title="function not covered" >function(questionSet) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    vm.questionSets.push(questionSet);</span>
+&nbsp;
+                });
+<span class="cstat-no" title="statement not covered" >                vm.questionSetText = undefined;</span>
+<span class="cstat-no" title="statement not covered" >                vm.addQuestionSet.$setPristine();</span>
+<span class="cstat-no" title="statement not covered" >                vm.addQuestionSetBool = false;</span>
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function cancelAddQuestionSet() {</span>
+<span class="cstat-no" title="statement not covered" >            vm.questionSetText = undefined;</span>
+<span class="cstat-no" title="statement not covered" >            vm.addQuestionSetBool = !vm.addQuestionSetBool;</span>
+<span class="cstat-no" title="statement not covered" >            vm.addQuestionSet.$setPristine();</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function deleteQuestionSet(questionSet) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            QuestionSetService.deleteQuestionSet(questionSet).then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                var index = vm.questionSets.indexOf(questionSet);</span>
+<span class="cstat-no" title="statement not covered" >                vm.questionSets.splice(index, 1);</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function openModal(size, questionSetId) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var questionSet = findQuestionSetById(questionSetId);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var modalInstance = $uibModal.open({</span>
+                animation: true,
+                templateUrl: 'app/questionSets/editQuestionSetModal.html',
+                size: size,
+                controller: 'ModalInstanceCtrl as modalCtrl',
+                resolve: {
+                    data: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                        return {</span>
+                            name: questionSet.name,
+                            impact: questionSet.impact
+                        };
+                    }
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            modalInstance.result.then(<span class="fstat-no" title="function not covered" >function(data) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var updatedObj = angular.extend(questionSet, data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                updateQuestionSet(updatedObj);</span>
+&nbsp;
+            }, <span class="fstat-no" title="function not covered" >function() {</span>
+                // $log.info('Modal dismissed at: ' + new Date());
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function updateQuestionSet(updatedObj) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.questionSetService.editQuestionSet(updatedObj);</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function findQuestionSetById(id) {</span>
+<span class="cstat-no" title="statement not covered" >            return _.find(vm.questionSets, {</span>
+                '_id': id
+            });
+        }
+&nbsp;
+    }
+})();</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 06 2015 16:36:02 GMT+0200 (GTB Standard Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

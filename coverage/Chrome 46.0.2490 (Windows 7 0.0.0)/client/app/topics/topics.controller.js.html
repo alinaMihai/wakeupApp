@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client\app\topics\topics.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">client/app/topics/</a> topics.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.31% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/61</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.26% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.31% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/61</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+    'use strict';
+&nbsp;
+    angular
+        .module('wakeupApp')
+        .controller('TopicCtrl', TopicCtrl);
+&nbsp;
+    TopicCtrl.$inject = ['cached', '$uibModal', 'TopicService'];
+&nbsp;
+    /* @ngInject */
+<span class="fstat-no" title="function not covered" >    function TopicCtrl(cached, $uibModal, TopicService) {</span>
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+<span class="cstat-no" title="statement not covered" >        vm.topics = [];</span>
+<span class="cstat-no" title="statement not covered" >        vm.openAddTopicModal = openAddTopicModal;</span>
+<span class="cstat-no" title="statement not covered" >        vm.deleteTopic = deleteTopic;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        activate();</span>
+&nbsp;
+        ////////////////
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function activate() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            cached.getTopics().then(<span class="fstat-no" title="function not covered" >function(topics) {</span></span>
+<span class="cstat-no" title="statement not covered" >                vm.topics = topics;</span>
+            });
+&nbsp;
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function openAddTopicModal(size, topicId) {</span>
+<span class="cstat-no" title="statement not covered" >            var topic = findTopicById(topicId);</span>
+<span class="cstat-no" title="statement not covered" >            var emptyObj = {</span>
+                title: "",
+                description: "",
+                questionSetList: []
+            };
+<span class="cstat-no" title="statement not covered" >            var data = topic ? angular.copy(topic, emptyObj) : emptyObj;</span>
+<span class="cstat-no" title="statement not covered" >            var title = topic ? "Update" : "Add";</span>
+<span class="cstat-no" title="statement not covered" >            var modalInstance = $uibModal.open({</span>
+                animation: true,
+                templateUrl: 'app/topics/addTopicModal.html',
+                size: size,
+                controller: 'ModalInstanceCtrl as modalCtrl',
+                resolve: {
+                    data: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                        return cached.getQuestionSets().then(<span class="fstat-no" title="function not covered" >function(questionSets) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            data.heading = title;</span>
+<span class="cstat-no" title="statement not covered" >                            data.allQuestionSets = questionSets;</span>
+<span class="cstat-no" title="statement not covered" >                            data.getQuestionSetName = getQuestionSetName;</span>
+<span class="cstat-no" title="statement not covered" >                            data.addQsToTopic = addQsToTopic;</span>
+<span class="cstat-no" title="statement not covered" >                            data.removeQsFromTopic = removeQsFromTopic;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            return data;</span>
+                        });
+&nbsp;
+                    }
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            modalInstance.result.then(<span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var topicObj = {};</span>
+<span class="cstat-no" title="statement not covered" >                topicObj._id = data._id;</span>
+<span class="cstat-no" title="statement not covered" >                topicObj.title = data.title;</span>
+<span class="cstat-no" title="statement not covered" >                topicObj.description = data.description;</span>
+<span class="cstat-no" title="statement not covered" >                topicObj.createDate = new Date().getTime();</span>
+<span class="cstat-no" title="statement not covered" >                topicObj.questionSetList = data.questionSetList;</span>
+<span class="cstat-no" title="statement not covered" >                console.log(topicObj);</span>
+<span class="cstat-no" title="statement not covered" >                return topic ? updateTopic(topicObj) : createTopic(topicObj);</span>
+&nbsp;
+            }, <span class="fstat-no" title="function not covered" >function() {</span>
+                // $log.info('Modal dismissed at: ' + new Date());
+            });
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function getQuestionSetName(questionSetId) {</span>
+<span class="cstat-no" title="statement not covered" >                return _.find(data.allQuestionSets, {</span>
+                    _id: parseInt(questionSetId)
+                }).name;
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function addQsToTopic(event, qsId) {</span>
+<span class="cstat-no" title="statement not covered" >                if (event) {</span>
+<span class="cstat-no" title="statement not covered" >                    event.stopPropagation();</span>
+<span class="cstat-no" title="statement not covered" >                    event.preventDefault();</span>
+                }
+<span class="cstat-no" title="statement not covered" >                var questionSetId = parseInt(qsId);</span>
+<span class="cstat-no" title="statement not covered" >                var isPresent = data.questionSetList.indexOf(questionSetId);</span>
+<span class="cstat-no" title="statement not covered" >                if (isPresent === -1) {</span>
+<span class="cstat-no" title="statement not covered" >                    data.questionSetList.push(questionSetId);</span>
+                }
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function removeQsFromTopic(qsId) {</span>
+<span class="cstat-no" title="statement not covered" >                var questionSetId = parseInt(qsId);</span>
+<span class="cstat-no" title="statement not covered" >                var index = data.questionSetList.indexOf(questionSetId);</span>
+<span class="cstat-no" title="statement not covered" >                data.questionSetList.splice(index, 1);</span>
+            }
+        }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function createTopic(createObj) {</span>
+<span class="cstat-no" title="statement not covered" >            TopicService.createTopic(createObj).then(<span class="fstat-no" title="function not covered" >function(topic) {</span></span>
+<span class="cstat-no" title="statement not covered" >                vm.topics.push(topic);</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function deleteTopic(topic) {</span>
+<span class="cstat-no" title="statement not covered" >            TopicService.deleteTopic(topic).then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                var index = vm.topics.indexOf(topic);</span>
+<span class="cstat-no" title="statement not covered" >                vm.topics.splice(index, 1);</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function updateTopic(updatedObj) {</span>
+<span class="cstat-no" title="statement not covered" >            var updateTopic = findTopicById(updatedObj._id);</span>
+<span class="cstat-no" title="statement not covered" >            TopicService.updateTopic(updatedObj).then(<span class="fstat-no" title="function not covered" >function(updatedTopic) {</span></span>
+<span class="cstat-no" title="statement not covered" >                _.merge(updateTopic, updatedTopic, updateTopic);</span>
+&nbsp;
+            });
+        }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function findTopicById(id) {</span>
+<span class="cstat-no" title="statement not covered" >            return _.find(vm.topics, {</span>
+                '_id': id
+            });
+        }
+&nbsp;
+&nbsp;
+    }
+})();</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 06 2015 16:36:02 GMT+0200 (GTB Standard Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

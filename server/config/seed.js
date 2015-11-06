@@ -1,54 +1,199 @@
 /**
- * Populate DB with sample data on server start
+ * Populate DB with default data on user sign up
  * to disable, edit config/environment/index.js, and set `seedDB: false`
  */
 
 'use strict';
 
-var Thing = require('../api/thing/thing.model');
-var User = require('../api/user/user.model');
+var Question = require('../api/question/question.model');
+var QuestionController = require('../api/question/question.controller');
+var QuestionSet = require('../api/questionSet/questionSet.model');
+var DefaultQuestionSet = require('../api/questionSet/defaultQuestionSet.model');
+var QuestionSetController = require('../api/questionSet/questionSet.controller');
+var Topic = require('../api/topic/topic.model');
+var TopicController = require('../api/topic/topic.controller');
 
-Thing.find({}).remove(function() {
-    Thing.create({
-        name: 'Development Tools',
-        info: 'Integration with popular tools such as Bower, Grunt, Karma, Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, Stylus, Sass, CoffeeScript, and Less.'
-    }, {
-        name: 'Server and Client integration',
-        info: 'Built with a powerful and fun stack: MongoDB, Express, AngularJS, and Node.'
-    }, {
-        name: 'Smart Build System',
-        info: 'Build system ignores `spec` files, allowing you to keep tests alongside code. Automatic injection of scripts and styles into your index.html'
-    }, {
-        name: 'Modular Structure',
-        info: 'Best practice client and server structures allow for more code reusability and maximum scalability'
-    }, {
-        name: 'Optimized Build',
-        info: 'Build process packs up your templates as a single JavaScript payload, minifies your scripts/css/images, and rewrites asset names for caching.'
-    }, {
-        name: 'Deployment Ready',
-        info: 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
-    });
-});
+var questionSetId;
 
-User.find({}).remove(function() {
-    User.create({
-        provider: 'local',
-        name: 'Test User',
-        email: 'test@test.com',
-        password: 'test'
-    }, {
-        provider: 'local',
-        role: 'admin',
-        name: 'Admin',
-        email: 'admin@admin.com',
-        password: 'admin'
-    }, {
-        provider: 'local',
-        role: 'admin',
-        name: 'Alina Mihai',
-        email: 'alina.mihai90@gmail.com',
-        password: 'alina'
-    }, function() {
-        console.log('finished populating users');
+var defaultQuestionSet = {
+    "name": "The Work of Byron Katie",
+    "createDate": "2015-11-03T06:53:00.516Z",
+    "practiceTimes": 0,
+    "impact": 0,
+    "isDefault": true
+};
+var defaultQuestions = [{
+    "text": "Is it true?",
+    "date": "2015-11-03T06:54:13.072Z",
+    "answers": []
+}, {
+    "text": "Can you absolutely know that it's true?",
+    "date": "2015-11-03T06:54:27.108Z",
+    "answers": []
+}, {
+    "text": "How do you react, what happens, when you believe that thought?",
+    "date": "2015-11-03T06:54:42.209Z",
+    "answers": []
+}, {
+    "text": "Who would you be without the thought?",
+    "date": "2015-11-03T06:54:55.102Z",
+    "answers": []
+}];
+
+var defaultTopic = {
+    "title": "Do The Work",
+    "description": "The Work is a simple yet powerful process of inquiry that teaches you to identify and question the thoughts that cause all the suffering in the world. It’s a way to understand what’s hurting you, and to address the cause of your problems with clarity. In its most basic form, The Work consists of fours questions and the turnarounds.\nThe Work is meditation. It’s about opening to your heart, not about trying to change your thoughts. Ask the questions, then go inside and wait for the deeper answers to surface.",
+    "createDate": "2015-11-03T06:56:51.024Z",
+    "quoteList": [],
+    'isDefault': true
+};
+
+
+createQuestionSet(defaultQuestionSet);
+
+function createQuestionSet(defaultQuestionSet) {
+    QuestionSet.findOne({}, {}, {
+        sort: {
+            '_id': 'descending'
+        }
+    }, function(err, questionSet) {
+
+        var latestQuestionSetId = questionSet ? questionSet._id : 0; // in the db is one based
+        var questionSetId = latestQuestionSetId + 1;
+
+        defaultQuestionSet._id = questionSetId;
+
+        QuestionSet.create(defaultQuestionSet, function(err, questionSet) {
+            if (err) {
+                console.log(err);
+            }
+            console.log(questionSet._id);
+            addQuestions(defaultQuestions, questionSet._id);
+            defaultTopic.questionSetList = [questionSet._id];
+            createTopic(defaultTopic);
+        });
     });
+}
+
+
+function addQuestions(defaultQuestions, questionSetId) {
+    defaultQuestions = defaultQuestions.map(function(question) {
+        question.questionSet = questionSetId;
+        return question;
+    });
+    createQuestion(defaultQuestions[0]).then(function() {
+        createQuestion(defaultQuestions[1]).then(function() {
+            createQuestion(defaultQuestions[2]).then(function() {
+                createQuestion(defaultQuestions[3]);
+            });
+        });
+    })
+}
+
+function createQuestion(questionObj) {
+
+    return Question.findOne({}, {}, {
+        sort: {
+            '_id': 'descending'
+        }
+    }, function(err, question) {
+        var latestQuestionId = question ? question._id : 0; // in the db is one based
+        var questionId = latestQuestionId + 1;
+
+        questionObj._id = questionId;
+        console.log('createQuestion, questionId', questionObj._id, questionObj.questionSet);
+        return Question.create(questionObj, function(err, question) {
+            if (err) {
+                console.log(err);
+            }
+            QuestionSet.update({
+                _id: questionObj.questionSet
+            }, {
+                $addToSet: {
+                    questions: questionObj._id
+                }
+            }).exec();;
+        });
+
+    });
+
+}
+
+function createTopic(topicObj) {
+
+    Topic.findOne({}, {}, {
+        sort: {
+            '_id': 'descending'
+        }
+    }, function(err, topic) {
+
+        var latestTopicId = topic ? topic._id : 0;
+        var topicId = latestTopicId + 1;
+        topicObj._id = topicId;
+
+        Topic.create(topicObj, function(err, topic) {
+            if (err) {
+                console.log(err);
+            }
+
+        });
+    });
+}
+
+
+/*DefaultQuestionSet.create({
+    QuestionSetId: 13,
+    user: 'alina.mihai90@gmail.com',
+    isDeleted: true
+}, function(err, obj) {
+
 });
+DefaultQuestionSet.create({
+    QuestionSetId: 14,
+    user: 'alina.mihai90@gmail.com',
+    isDeleted: true
+}, function(err, obj) {
+
+});
+DefaultQuestionSet.create({
+    QuestionSetId: 15,
+    user: 'alina.mihai90@gmail.com',
+    isDeleted: true
+}, function(err, obj) {
+
+});
+DefaultQuestionSet.create({
+    QuestionSetId: 16,
+    user: 'alina.mihai90@gmail.com',
+    isDeleted: true
+}, function(err, obj) {
+
+});
+DefaultQuestionSet.create({
+    QuestionSetId: 17,
+    user: 'alina.mihai90@gmail.com',
+    isDeleted: true
+}, function(err, obj) {
+
+});
+DefaultQuestionSet.create({
+    QuestionSetId: 18,
+    user: 'alina.mihai90@gmail.com',
+    isDeleted: true
+}, function(err, obj) {
+
+});
+DefaultQuestionSet.create({
+    QuestionSetId: 19,
+    user: 'alina.mihai90@gmail.com',
+    isDeleted: true
+}, function(err, obj) {
+
+});
+DefaultQuestionSet.create({
+    QuestionSetId: 20,
+    user: 'alina.mihai90@gmail.com',
+    isDeleted: true
+}, function(err, obj) {
+
+});*/

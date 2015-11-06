@@ -1,0 +1,43 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+	
+	<div class="row">
+		<div class="col-xs-8">
+			<ol class="breadcrumb">
+				<li><a ui-sref="topicsList">Topics</a></li>
+				<li><a ui-sref="topic({topicId:QuotesCtrl.topic._id})">{{QuotesCtrl.topic.title}}</a></li>
+				<li class="active">Inspiration Page</li>
+			</ol>
+		</div>
+		<div class="col-xs-4" ng-if="!QuotesCtrl.topic.isDefault">
+			<a id="addQuote" class="btn btn-info btn-lg" ng-click="QuotesCtrl.openQuoteModal('lg')">
+				<span class="glyphicon glyphicon-plus"></span> Add Quote
+			</a>
+		</div>
+	</div>
+	
+	
+	<div class="container" id="quotes">
+		<div class="row">
+			<div class="item" bindonce ng-repeat="quote in QuotesCtrl.quotes">
+				
+				<div class="well">
+					
+					<div class="options">
+						<a class="trash" confirm-click="Are you sure you want to delete this quote?" ng-click="QuotesCtrl.deleteQuote(quote)"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+						<a  class="edit" ng-click='QuotesCtrl.openQuoteModal("lg", quote._id)'><i class="fa fa-pencil-square-o"></i></a>
+					</div>
+					<div class="row">
+						<span>&ldquo;</span><a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text}}  </a><span>&rdquo;</span>
+						{{quote.author}}
+					</div>
+					
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+	
+</div>

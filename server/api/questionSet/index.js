@@ -10,11 +10,13 @@
     router.get('/', auth.isAuthenticated(), controller.index);
 
     router.get('/:id', auth.isAuthenticated(), controller.getQuestionList);
-    /*router.get('/:id', controller.show);
-    router.post('/', controller.create);
-    router.put('/:id', controller.update);
-    router.patch('/:id', controller.update);
-    router.delete('/:id', controller.destroy);*/
+    router.get('/:questionSetId', auth.isAuthenticated(), controller.show);
+    router.post('/', auth.isAuthenticated(), controller.create);
+    router.put('/:id', auth.isAuthenticated(), controller.update);
+    router.put('/session/:id', auth.isAuthenticated(), controller.registerSession);
+    //router.patch('/:id', auth.isAuthenticated(), controller.update);
+
+    router.delete('/:id', auth.isAuthenticated(), controller.destroy);
 
     module.exports = router;
 })();

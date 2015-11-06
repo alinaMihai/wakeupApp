@@ -1,0 +1,41 @@
+<div class="modal-header">
+	<h3 class="modal-title">{{modalCtrl.data.heading}} Topic</h3>
+</div>
+<div class="modal-body">
+	
+	<form name="addTopicForm" >
+		<div class="form-group control-group" ng-class="{'has-error':addTopicForm.topicName.$invalid && addTopicForm.topicName.$dirty}">
+			<label for="topicName">Topic Title</label>
+			<input type="text" name="topicName" ng-model="modalCtrl.data.title" class="form-control" required>
+		</div>
+		<div class="form-group">
+			<label for="description">Description</label>
+			<textarea  ng-model='modalCtrl.data.description' name="description" class="form-control" ></textarea>
+		</div>
+		<div class="form-group">
+			<label for="questionSet">Question Set</label>
+			<div class="row">
+				<div class="col-xs-8"><select name="questionSets" id="questionSets" ng-model="modalCtrl.questionSet" class="form-control">
+					<option value='{{qs._id}}' ng-repeat="qs in modalCtrl.data.allQuestionSets" >{{qs.name}}</option>
+				</select></div>
+				<div class="col-xs-4"><button class="btn btn-success btn-block" ng-click="modalCtrl.data.addQsToTopic($event,modalCtrl.questionSet);modalCtrl.questionSet='';" ng-disabled="!modalCtrl.questionSet">Add</button></div>
+			</div>
+			
+		</div>
+		
+		<ul class="list-group questionSets">
+			<li  ng-repeat="qs in modalCtrl.data.questionSetList">
+				<a class="list-group-item">
+					{{modalCtrl.data.getQuestionSetName(qs)}}
+					<span class="glyphicon glyphicon-remove" ng-click='modalCtrl.data.removeQsFromTopic(qs)'></span>
+				</a>
+			</li>
+			</ul>
+			
+		</form>
+		
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary btn-lg" type="button" ng-click="modalCtrl.ok()" ng-disabled="addTopicForm.$invalid">{{modalCtrl.data.heading}}</button>
+		<button class="btn btn-warning btn-lg" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
+	</div>

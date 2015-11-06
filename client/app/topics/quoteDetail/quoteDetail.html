@@ -1,0 +1,29 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+	<div class="row">
+		
+		<ol class="breadcrumb">
+			<li><a ui-sref="topicsList">Topics</a></li>
+			<li><a ui-sref="topic({topicId:QuoteDetailCtrl.topic._id})">{{QuoteDetailCtrl.topic.title}}</a></li>
+			<li><a ui-sref="inspiration({topicId:QuoteDetailCtrl.topic._id})">Inspiration Page</a></li>
+			<li class="active">Quote Details</li>
+		</ol>
+		
+	</div>
+	<div class="row text-center"><h1>Quote Details</h1></div>
+		
+	
+	<div class="row center">
+	<p>Added on: {{QuoteDetailCtrl.quote.date | date:'dd/MM/yyyy hh:mm'}}</p>
+
+	<p class="quoteText"><span>&ldquo;</span>{{QuoteDetailCtrl.quote.text}}<span>&rdquo;</span></p>
+	{{QuoteDetailCtrl.quote.author}} <p>Source: {{QuoteDetailCtrl.quote.source||'N/A'}}</p>
+	
+	</div>
+	<div class="row center">
+		Comments:
+		<p> {{QuoteDetailCtrl.quote.comment||'N/A'}}</p>
+	</div>
+	
+</div>

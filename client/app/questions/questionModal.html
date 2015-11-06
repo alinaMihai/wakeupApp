@@ -1,8 +1,8 @@
 <div  style="display:none" id="myQuestionModal">
 	<div  class="questionModal">
-	<form ng-submit="processQuestion()">	
+	<form name="answerForm" ng-submit="processQuestion(); answerForm.$setPristine();">	
 		<ng-transclude></ng-transclude>
-		<button type="submit" class="btn btn-primary" >OK</button>
+		<button type="submit" class="btn btn-block btn-primary" >OK</button>
 	</form>
 </div>
 <!-- <div  id="fade" class="black_overlay"></div> -->	

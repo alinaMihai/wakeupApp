@@ -1,0 +1,95 @@
+form[name='addTopicForm']{
+
+ul.questionSets{
+    max-height:200px;
+    overflow-y:scroll;
+
+li a{
+	display:block;
+
+}
+ li a span{
+ 	float:right;
+ 	cursor:pointer;
+ }
+    
+}
+
+}
+
+.center{
+    margin: auto;
+    width: 60%;
+    margin-top: 50px;
+}
+.quoteText{
+  font-size:1.5em;
+  font-style:italic;
+}
+
+
+#addTopic, #addQuote,#inspirationPage{
+  float: right;
+  margin-top: 15px;
+} 
+
+#addQuote{
+   margin-bottom: 10px;
+}
+
+#inspirationPage{
+	cursor:pointer;
+	text-decoration:none;
+	font-size:1.5em;
+}
+
+#quotes,#topics{
+ *, *:before, *:after {box-sizing:  border-box !important;}
+
+
+.row {
+ -moz-column-width: 18em;
+ -webkit-column-width: 18em;
+ -moz-column-gap: 1em;
+ -webkit-column-gap:1em; 
+  
+}
+
+.item {
+ display: inline-block;
+ padding:  .25rem;
+ width:  100%; 
+}
+
+.well {
+ position:relative;
+ display: block;
+  
+  .options{
+  	position:absolute;
+  	top:5px;
+  	right:10px;
+
+    .trash{
+    	font-size:1.2em;
+    	cursor:pointer;
+    }
+    .edit{
+    	font-size:1.2em;
+    	margin-right:5px;
+    	cursor:pointer;
+    }  
+
+  }
+  .row{
+  	padding:15px 20px 0 20px;
+
+  	a:hover{
+  		text-decoration:none;
+  	}
+
+  }
+  
+}
+
+}

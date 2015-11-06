@@ -1,0 +1,23 @@
+#createQuestionSetBtn{
+	float:right;
+	margin-top:15px;
+}
+
+/* #questionSets a{
+	display:block;
+} */
+#questionSets div.list-group-item:hover{
+  background-color:#E7E7E7;
+  
+  
+}
+
+#questionSets a{
+	display:block;
+	cursor:pointer;
+}
+#questionSets a:hover{
+font-weight:bold;
+text-decoration:none;	
+}
+

@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client\app\questions\question.service.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">client/app/questions/</a> question.service.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">17.46% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>11/63</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.26% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">17.46% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/63</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+    'use strict';
+&nbsp;
+    angular
+        .module('wakeupApp')
+        .service('QuestionService', QuestionService);
+&nbsp;
+    QuestionService.$inject = ['$http', '$q', 'logger'];
+&nbsp;
+    /* @ngInject */
+<span class="fstat-no" title="function not covered" >    function QuestionService($http, $q, logger) {</span>
+<span class="cstat-no" title="statement not covered" >        this.getQuestions = getQuestions;</span>
+<span class="cstat-no" title="statement not covered" >        this.saveAnswer = saveAnswer;</span>
+<span class="cstat-no" title="statement not covered" >        this.getQuestionById = getQuestionById;</span>
+<span class="cstat-no" title="statement not covered" >        this.currentQuestionIndex;</span>
+<span class="cstat-no" title="statement not covered" >        this.repeatQS;</span>
+<span class="cstat-no" title="statement not covered" >        this.questionSetSession = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.addQuestion = addQuestion;</span>
+<span class="cstat-no" title="statement not covered" >        this.deleteQuestion = deleteQuestion;</span>
+<span class="cstat-no" title="statement not covered" >        this.editQuestion = editQuestion;</span>
+<span class="cstat-no" title="statement not covered" >        this.registerSession = registerSession;</span>
+<span class="cstat-no" title="statement not covered" >        this.endSessionOnBackBtn = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.isUpdated = false;</span>
+&nbsp;
+        ////////////////
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function getQuestions(questionSetId) {</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            $http.get('/api/questionSet/' + questionSetId).then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var questionSet = response.data[0];</span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(questionSet);</span>
+            });
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function getQuestionById(questionId) {</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            $http.get('/api/questions/question/' + questionId).success(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var question = response[0];</span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(question);</span>
+            }).error(<span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >                deferred.reject(error);</span>
+            });
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function saveAnswer(answerJson) {</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            $http.post('/api/answers/', answerJson).then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    logger.success("Your answer was saved", response.data, "Success");</span>
+                },
+<span class="fstat-no" title="function not covered" >                function(response) {</span>
+                    //error handling
+<span class="cstat-no" title="statement not covered" >                    console.log("error", response);</span>
+                });
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function addQuestion(questionJson) {</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            $http.post('/api/questions/',</span>
+                questionJson).then(<span class="fstat-no" title="function not covered" >function(response) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(response.data);</span>
+<span class="cstat-no" title="statement not covered" >                logger.success("The question was saved", response.data, "Success");</span>
+            }, <span class="fstat-no" title="function not covered" >function(response) {</span>
+<span class="cstat-no" title="statement not covered" >                console.log("error", response);</span>
+            });
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function deleteQuestion(question) {</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            $http.delete('/api/questions/' + question._id).then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var question = response.data;</span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve();</span>
+<span class="cstat-no" title="statement not covered" >                logger.success("Question successfully deleted", question, "Question Deleted");</span>
+            });
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function editQuestion(questionObj) {</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            var self = this;</span>
+<span class="cstat-no" title="statement not covered" >            $http.put('/api/questions/' + questionObj._id, questionObj).then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve();</span>
+<span class="cstat-no" title="statement not covered" >                self.isUpdated = true;</span>
+<span class="cstat-no" title="statement not covered" >                logger.success("Question successfully updated", response.data, "Question Updated");</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function registerSession(questionSetId) {</span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >            var self = this;</span>
+<span class="cstat-no" title="statement not covered" >            $http.put('/api/questionSet/session/' + questionSetId).then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(response.data);</span>
+                //console.log("QuestionSet Session Registered", response.data, "QuestionSet Session");
+            });
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        }
+&nbsp;
+    }
+})();;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 06 2015 16:36:02 GMT+0200 (GTB Standard Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client\app\topics\quotes\quotes.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">client/app/topics/quotes/</a> quotes.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">23.81% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>10/42</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">23.81% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>10/42</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+    'use strict';
+&nbsp;
+    angular
+        .module('wakeupApp')
+        .controller('QuotesCtrl', QuotesCtrl);
+&nbsp;
+    QuotesCtrl.$inject = ['topic', 'QuoteService', '$uibModal'];
+&nbsp;
+    /* @ngInject */
+<span class="fstat-no" title="function not covered" >    function QuotesCtrl(topic, QuoteService, $uibModal) {</span>
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+<span class="cstat-no" title="statement not covered" >        vm.quotes = [];</span>
+<span class="cstat-no" title="statement not covered" >        vm.topic = topic;</span>
+<span class="cstat-no" title="statement not covered" >        vm.openQuoteModal = openQuoteModal;</span>
+<span class="cstat-no" title="statement not covered" >        vm.deleteQuote = deleteQuote;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        activate();</span>
+&nbsp;
+        ////////////////
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function activate() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            QuoteService.getQuotes(topic._id).then(<span class="fstat-no" title="function not covered" >function(quotes) {</span></span>
+<span class="cstat-no" title="statement not covered" >                vm.quotes = quotes;</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function openQuoteModal(size, quoteId) {</span>
+<span class="cstat-no" title="statement not covered" >            var quote = findQuoteById(quoteId);</span>
+<span class="cstat-no" title="statement not covered" >            var emptyObj = {</span>
+                author: '',
+                text: '',
+                source: '',
+                comment: ''
+            };
+<span class="cstat-no" title="statement not covered" >            var data = quote ? angular.copy(quote) : emptyObj;</span>
+<span class="cstat-no" title="statement not covered" >            data.heading = quote ? 'Edit' : 'Add';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var modalInstance = $uibModal.open({</span>
+                animation: true,
+                templateUrl: 'app/topics/quotes/addQuoteModal.html',
+                size: size,
+                controller: 'ModalInstanceCtrl as modalCtrl',
+                resolve: {
+                    data: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                        return data;</span>
+                    }
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            modalInstance.result.then(<span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var quoteObj = {};</span>
+<span class="cstat-no" title="statement not covered" >                quoteObj._id = data._id;</span>
+<span class="cstat-no" title="statement not covered" >                quoteObj.author = data.author;</span>
+<span class="cstat-no" title="statement not covered" >                quoteObj.text = data.text;</span>
+<span class="cstat-no" title="statement not covered" >                quoteObj.source = data.source;</span>
+<span class="cstat-no" title="statement not covered" >                quoteObj.date = new Date().getTime();</span>
+<span class="cstat-no" title="statement not covered" >                quoteObj.comment = data.comment;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return quote ? updateQuote(quoteObj) : createQuote(quoteObj);</span>
+&nbsp;
+            }, <span class="fstat-no" title="function not covered" >function() {</span>
+                // $log.info('Modal dismissed at: ' + new Date());
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function findQuoteById(id) {</span>
+<span class="cstat-no" title="statement not covered" >            return _.find(vm.quotes, {</span>
+                '_id': id
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function createQuote(createObj) {</span>
+<span class="cstat-no" title="statement not covered" >            QuoteService.createQuote(vm.topic._id, createObj).then(<span class="fstat-no" title="function not covered" >function(quote) {</span></span>
+<span class="cstat-no" title="statement not covered" >                vm.quotes.push(quote);</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function deleteQuote(quote) {</span>
+<span class="cstat-no" title="statement not covered" >            QuoteService.deleteQuote(quote).then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                var index = vm.quotes.indexOf(quote);</span>
+<span class="cstat-no" title="statement not covered" >                vm.quotes.splice(index, 1);</span>
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function updateQuote(updatedObj) {</span>
+<span class="cstat-no" title="statement not covered" >            var updateQuote = findQuoteById(updatedObj._id);</span>
+<span class="cstat-no" title="statement not covered" >            QuoteService.updateQuote(updatedObj).then(<span class="fstat-no" title="function not covered" >function(updatedQuote) {</span></span>
+<span class="cstat-no" title="statement not covered" >                _.merge(updateQuote, updatedQuote, updateQuote);</span>
+&nbsp;
+            });
+&nbsp;
+        }
+    }
+})();</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 06 2015 16:36:02 GMT+0200 (GTB Standard Time)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

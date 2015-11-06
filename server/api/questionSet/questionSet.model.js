@@ -14,7 +14,8 @@
         questions: [{
             type: Number,
             ref: 'Question'
-        }]
+        }],
+        isDefault: Boolean
     }, {
         collection: 'questionSets'
     });

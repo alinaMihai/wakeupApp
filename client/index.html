@@ -43,6 +43,7 @@
       ga('send', 'pageview');
     </script>
 
+     
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -60,10 +61,13 @@
       <script src="bower_components/ngstorage/ngStorage.js"></script>
       <script src="bower_components/angular-audio/app/angular.audio.js"></script>
       <script src="bower_components/toastr/toastr.js"></script>
+      <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+      <script src="bower_components/angular-bindonce/bindonce.js"></script>
+      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
-        
+     <script src="assets/bootstrap.min.js"></script>   
         <!-- build:js({.tmp,client}) app/app.js -->
         
         <script src="app/app.js"></script>
@@ -87,9 +91,22 @@
           <script src="app/questions/question.service.js"></script>
           <script src="app/questions/questionModal.directive.js"></script>
           <script src="app/questions/refresh.directive.js"></script>
+          <script src="app/topics/quoteDetail/quote.js"></script>
+          <script src="app/topics/quoteDetail/quoteDetail.controller.js"></script>
+          <script src="app/topics/quotes/quotes.controller.js"></script>
+          <script src="app/topics/quotes/quotes.js"></script>
+          <script src="app/topics/quotes/quotes.service.js"></script>
+          <script src="app/topics/topic/topic.controller.js"></script>
+          <script src="app/topics/topic/topic.js"></script>
+          <script src="app/topics/topics.controller.js"></script>
+          <script src="app/topics/topics.js"></script>
+          <script src="app/topics/topics.service.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
           <script src="components/caching/cached.factory.js"></script>
+          <script src="components/core/confirm.directive.js"></script>
+          <script src="components/core/core.service.js"></script>
+          <script src="components/core/modal.controller.js"></script>
           <script src="components/logger/logger.js"></script>
           <script src="components/mongoose-error/mongoose-error.directive.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>

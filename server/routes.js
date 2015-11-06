@@ -15,6 +15,8 @@ module.exports = function(app) {
     app.use('/api/questionSet', require('./api/questionSet'));
     app.use('/api/questions', require('./api/question'));
     app.use('/api/answers', require('./api/answer'));
+    app.use('/api/topics', require('./api/topic'));
+    app.use('/api/quotes', require('./api/quote'));
 
     app.use('/auth', require('./auth'));
 

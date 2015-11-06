@@ -1,0 +1,1040 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client\bower_components\angular-bindonce\bindonce.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">client/bower_components/angular-bindonce/</a> bindonce.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.65% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>6/129</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/117</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/25</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.8% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>6/125</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function () {
+	"use strict";
+	/**
+	 * Bindonce - Zero watches binding for AngularJs
+	 * @version v0.3.3
+	 * @link https://github.com/Pasvaz/bindonce
+	 * @author Pasquale Vazzana &lt;pasqualevazzana@gmail.com&gt;
+	 * @license MIT License, http://www.opensource.org/licenses/MIT
+	 */
+&nbsp;
+	var bindonceModule = angular.module('pasvaz.bindonce', []);
+&nbsp;
+	bindonceModule.directive('bindonce', <span class="fstat-no" title="function not covered" >function ()</span>
+	{
+<span class="cstat-no" title="statement not covered" >		var toBoolean = <span class="fstat-no" title="function not covered" >function (value)</span></span>
+		{
+<span class="cstat-no" title="statement not covered" >			if (value &amp;&amp; value.length !== 0)</span>
+			{
+<span class="cstat-no" title="statement not covered" >				var v = angular.lowercase("" + value);</span>
+<span class="cstat-no" title="statement not covered" >				value = !(v === 'f' || v === '0' || v === 'false' || v === 'no' || v === 'n' || v === '[]');</span>
+			}
+			else
+			{
+<span class="cstat-no" title="statement not covered" >				value = false;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			return value;</span>
+		};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var msie = parseInt((/msie (\d+)/.exec(angular.lowercase(navigator.userAgent)) || [])[1], 10);</span>
+<span class="cstat-no" title="statement not covered" >		if (isNaN(msie))</span>
+		{
+<span class="cstat-no" title="statement not covered" >			msie = parseInt((/trident\/.*; rv:(\d+)/.exec(angular.lowercase(navigator.userAgent)) || [])[1], 10);</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var bindonceDirective =</span>
+		{
+			restrict: "AM",
+			controller: ['$scope', '$element', '$attrs', '$interpolate', <span class="fstat-no" title="function not covered" >function ($scope, $element, $attrs, $interpolate)</span>
+			{
+<span class="cstat-no" title="statement not covered" >				var showHideBinder = <span class="fstat-no" title="function not covered" >function (elm, attr, value)</span></span>
+				{
+<span class="cstat-no" title="statement not covered" >					var show = (attr === 'show') ? '' : 'none';</span>
+<span class="cstat-no" title="statement not covered" >					var hide = (attr === 'hide') ? '' : 'none';</span>
+<span class="cstat-no" title="statement not covered" >					elm.css('display', toBoolean(value) ? show : hide);</span>
+				};
+<span class="cstat-no" title="statement not covered" >				var classBinder = <span class="fstat-no" title="function not covered" >function (elm, value)</span></span>
+				{
+<span class="cstat-no" title="statement not covered" >					if (angular.isObject(value) &amp;&amp; !angular.isArray(value))</span>
+					{
+<span class="cstat-no" title="statement not covered" >						var results = [];</span>
+<span class="cstat-no" title="statement not covered" >						angular.forEach(value, <span class="fstat-no" title="function not covered" >function (value, index)</span></span>
+						{
+<span class="cstat-no" title="statement not covered" >							if (value) <span class="cstat-no" title="statement not covered" >results.push(index);</span></span>
+						});
+<span class="cstat-no" title="statement not covered" >						value = results;</span>
+					}
+<span class="cstat-no" title="statement not covered" >					if (value)</span>
+					{
+<span class="cstat-no" title="statement not covered" >						elm.addClass(angular.isArray(value) ? value.join(' ') : value);</span>
+					}
+				};
+<span class="cstat-no" title="statement not covered" >				var transclude = <span class="fstat-no" title="function not covered" >function (transcluder, scope)</span></span>
+				{
+<span class="cstat-no" title="statement not covered" >					transcluder.transclude(scope, <span class="fstat-no" title="function not covered" >function (clone)</span></span>
+					{
+<span class="cstat-no" title="statement not covered" >						var parent = transcluder.element.parent();</span>
+<span class="cstat-no" title="statement not covered" >						var afterNode = transcluder.element &amp;&amp; transcluder.element[transcluder.element.length - 1];</span>
+<span class="cstat-no" title="statement not covered" >						var parentNode = parent &amp;&amp; parent[0] || afterNode &amp;&amp; afterNode.parentNode;</span>
+<span class="cstat-no" title="statement not covered" >						var afterNextSibling = (afterNode &amp;&amp; afterNode.nextSibling) || null;</span>
+<span class="cstat-no" title="statement not covered" >						angular.forEach(clone, <span class="fstat-no" title="function not covered" >function (node)</span></span>
+						{
+<span class="cstat-no" title="statement not covered" >							parentNode.insertBefore(node, afterNextSibling);</span>
+						});
+					});
+				};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				var ctrl =</span>
+				{
+					watcherRemover: undefined,
+					binders: [],
+					group: $attrs.boName,
+					element: $element,
+					ran: false,
+&nbsp;
+					addBinder: <span class="fstat-no" title="function not covered" >function (binder)</span>
+					{
+<span class="cstat-no" title="statement not covered" >						this.binders.push(binder);</span>
+&nbsp;
+						// In case of late binding (when using the directive bo-name/bo-parent)
+						// it happens only when you use nested bindonce, if the bo-children
+						// are not dom children the linking can follow another order
+<span class="cstat-no" title="statement not covered" >						if (this.ran)</span>
+						{
+<span class="cstat-no" title="statement not covered" >							this.runBinders();</span>
+						}
+					},
+&nbsp;
+					setupWatcher: <span class="fstat-no" title="function not covered" >function (bindonceValue)</span>
+					{
+<span class="cstat-no" title="statement not covered" >						var that = this;</span>
+<span class="cstat-no" title="statement not covered" >						this.watcherRemover = $scope.$watch(bindonceValue, <span class="fstat-no" title="function not covered" >function (newValue)</span></span>
+						{
+<span class="cstat-no" title="statement not covered" >							if (newValue === undefined) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >							that.removeWatcher();</span>
+<span class="cstat-no" title="statement not covered" >							that.checkBindonce(newValue);</span>
+						}, true);
+					},
+&nbsp;
+					checkBindonce: <span class="fstat-no" title="function not covered" >function (value)</span>
+					{
+<span class="cstat-no" title="statement not covered" >						var that = this, promise = (value.$promise) ? value.$promise.then : value.then;</span>
+						// since Angular 1.2 promises are no longer
+						// undefined until they don't get resolved
+<span class="cstat-no" title="statement not covered" >						if (typeof promise === 'function')</span>
+						{
+<span class="cstat-no" title="statement not covered" >							promise(<span class="fstat-no" title="function not covered" >function ()</span></span>
+							{
+<span class="cstat-no" title="statement not covered" >								that.runBinders();</span>
+							});
+						}
+						else
+						{
+<span class="cstat-no" title="statement not covered" >							that.runBinders();</span>
+						}
+					},
+&nbsp;
+					removeWatcher: <span class="fstat-no" title="function not covered" >function ()</span>
+					{
+<span class="cstat-no" title="statement not covered" >						if (this.watcherRemover !== undefined)</span>
+						{
+<span class="cstat-no" title="statement not covered" >							this.watcherRemover();</span>
+<span class="cstat-no" title="statement not covered" >							this.watcherRemover = undefined;</span>
+						}
+					},
+&nbsp;
+					runBinders: <span class="fstat-no" title="function not covered" >function ()</span>
+					{
+<span class="cstat-no" title="statement not covered" >						while (this.binders.length &gt; 0)</span>
+						{
+<span class="cstat-no" title="statement not covered" >							var binder = this.binders.shift();</span>
+<span class="cstat-no" title="statement not covered" >							if (this.group &amp;&amp; this.group != binder.group) <span class="cstat-no" title="statement not covered" >continue;</span></span>
+<span class="cstat-no" title="statement not covered" >							var value = binder.scope.$eval((binder.interpolate) ? $interpolate(binder.value) : binder.value);</span>
+<span class="cstat-no" title="statement not covered" >							switch (binder.attr)</span>
+							{
+								case 'boIf':
+<span class="cstat-no" title="statement not covered" >									if (toBoolean(value))</span>
+									{
+<span class="cstat-no" title="statement not covered" >										transclude(binder, binder.scope.$new());</span>
+									}
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'boSwitch':
+<span class="cstat-no" title="statement not covered" >									var selectedTranscludes, switchCtrl = binder.controller[0];</span>
+<span class="cstat-no" title="statement not covered" >									if ((selectedTranscludes = switchCtrl.cases['!' + value] || switchCtrl.cases['?']))</span>
+									{
+<span class="cstat-no" title="statement not covered" >										binder.scope.$eval(binder.attrs.change);</span>
+<span class="cstat-no" title="statement not covered" >										angular.forEach(selectedTranscludes, <span class="fstat-no" title="function not covered" >function (selectedTransclude)</span></span>
+										{
+<span class="cstat-no" title="statement not covered" >											transclude(selectedTransclude, binder.scope.$new());</span>
+										});
+									}
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'boSwitchWhen':
+<span class="cstat-no" title="statement not covered" >									var ctrl = binder.controller[0];</span>
+<span class="cstat-no" title="statement not covered" >									ctrl.cases['!' + binder.attrs.boSwitchWhen] = (ctrl.cases['!' + binder.attrs.boSwitchWhen] || []);</span>
+<span class="cstat-no" title="statement not covered" >									ctrl.cases['!' + binder.attrs.boSwitchWhen].push({ transclude: binder.transclude, element: binder.element });</span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'boSwitchDefault':
+<span class="cstat-no" title="statement not covered" >									var ctrl = binder.controller[0];</span>
+<span class="cstat-no" title="statement not covered" >									ctrl.cases['?'] = (ctrl.cases['?'] || []);</span>
+<span class="cstat-no" title="statement not covered" >									ctrl.cases['?'].push({ transclude: binder.transclude, element: binder.element });</span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'hide':
+								case 'show':
+<span class="cstat-no" title="statement not covered" >									showHideBinder(binder.element, binder.attr, value);</span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'class':
+<span class="cstat-no" title="statement not covered" >									classBinder(binder.element, value);</span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'text':
+<span class="cstat-no" title="statement not covered" >									binder.element.text(value);</span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'html':
+<span class="cstat-no" title="statement not covered" >									binder.element.html(value);</span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'style':
+<span class="cstat-no" title="statement not covered" >									binder.element.css(value);</span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'disabled':
+<span class="cstat-no" title="statement not covered" >									binder.element.prop('disabled', value);</span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'src':
+<span class="cstat-no" title="statement not covered" >									binder.element.attr(binder.attr, value);</span>
+<span class="cstat-no" title="statement not covered" >									if (msie) <span class="cstat-no" title="statement not covered" >binder.element.prop('src', value);</span></span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'attr':
+<span class="cstat-no" title="statement not covered" >									angular.forEach(binder.attrs, <span class="fstat-no" title="function not covered" >function (attrValue, attrKey)</span></span>
+									{
+<span class="cstat-no" title="statement not covered" >										var newAttr, newValue;</span>
+<span class="cstat-no" title="statement not covered" >										if (attrKey.match(/^boAttr./) &amp;&amp; binder.attrs[attrKey])</span>
+										{
+<span class="cstat-no" title="statement not covered" >											newAttr = attrKey.replace(/^boAttr/, '').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >											newValue = binder.scope.$eval(binder.attrs[attrKey]);</span>
+<span class="cstat-no" title="statement not covered" >											binder.element.attr(newAttr, newValue);</span>
+										}
+									});
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								case 'href':
+								case 'alt':
+								case 'title':
+								case 'id':
+								case 'value':
+<span class="cstat-no" title="statement not covered" >									binder.element.attr(binder.attr, value);</span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+							}
+						}
+<span class="cstat-no" title="statement not covered" >						this.ran = true;</span>
+					}
+				};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				angular.extend(this, ctrl);</span>
+			}],
+&nbsp;
+			link: <span class="fstat-no" title="function not covered" >function (scope, elm, attrs, bindonceController)</span>
+			{
+<span class="cstat-no" title="statement not covered" >				var value = attrs.bindonce &amp;&amp; scope.$eval(attrs.bindonce);</span>
+<span class="cstat-no" title="statement not covered" >				if (value !== undefined)</span>
+				{
+<span class="cstat-no" title="statement not covered" >					bindonceController.checkBindonce(value);</span>
+				}
+				else
+				{
+<span class="cstat-no" title="statement not covered" >					bindonceController.setupWatcher(attrs.bindonce);</span>
+<span class="cstat-no" title="statement not covered" >					elm.bind("$destroy", bindonceController.removeWatcher);</span>
+				}
+			}
+		};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		return bindonceDirective;</span>
+	});
+&nbsp;
+	angular.forEach(
+	[
+		{ directiveName: 'boShow', attribute: 'show' },
+		{ directiveName: 'boHide', attribute: 'hide' },
+		{ directiveName: 'boClass', attribute: 'class' },
+		{ directiveName: 'boText', attribute: 'text' },
+		{ directiveName: 'boBind', attribute: 'text' },
+		{ directiveName: 'boHtml', attribute: 'html' },
+		{ directiveName: 'boSrcI', attribute: 'src', interpolate: true },
+		{ directiveName: 'boSrc', attribute: 'src' },
+		{ directiveName: 'boHrefI', attribute: 'href', interpolate: true },
+		{ directiveName: 'boHref', attribute: 'href' },
+		{ directiveName: 'boAlt', attribute: 'alt' },
+		{ directiveName: 'boTitle', attribute: 'title' },
+		{ directiveName: 'boId', attribute: 'id' },
+		{ directiveName: 'boStyle', attribute: 'style' },
+		{ directiveName: 'boDisabled', attribute: 'disabled' },
+		{ directiveName: 'boValue', attribute: 'value' },
+		{ directiveName: 'boAttr', attribute: 'attr' },
+&nbsp;
+		{ directiveName: 'boIf', transclude: 'element', terminal: true, priority: 1000 },
+		{ directiveName: 'boSwitch', require: 'boSwitch', controller: <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >this.cases = {}; </span>} },
+		{ directiveName: 'boSwitchWhen', transclude: 'element', priority: 800, require: '^boSwitch' },
+		{ directiveName: 'boSwitchDefault', transclude: 'element', priority: 800, require: '^boSwitch' }
+	],
+	function (boDirective)
+	{
+		var childPriority = 200;
+		return bindonceModule.directive(boDirective.directiveName, <span class="fstat-no" title="function not covered" >function ()</span>
+		{
+<span class="cstat-no" title="statement not covered" >			var bindonceDirective =</span>
+			{
+				priority: boDirective.priority || childPriority,
+				transclude: boDirective.transclude || false,
+				terminal: boDirective.terminal || false,
+				require: ['^bindonce'].concat(boDirective.require || []),
+				controller: boDirective.controller,
+				compile: <span class="fstat-no" title="function not covered" >function (tElement, tAttrs, transclude)</span>
+				{
+<span class="cstat-no" title="statement not covered" >					return <span class="fstat-no" title="function not covered" >function (scope, elm, attrs, controllers)</span></span>
+					{
+<span class="cstat-no" title="statement not covered" >						var bindonceController = controllers[0];</span>
+<span class="cstat-no" title="statement not covered" >						var name = attrs.boParent;</span>
+<span class="cstat-no" title="statement not covered" >						if (name &amp;&amp; bindonceController.group !== name)</span>
+						{
+<span class="cstat-no" title="statement not covered" >							var element = bindonceController.element.parent();</span>
+<span class="cstat-no" title="statement not covered" >							bindonceController = undefined;</span>
+<span class="cstat-no" title="statement not covered" >							var parentValue;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >							while (element[0].nodeType !== 9 &amp;&amp; element.length)</span>
+							{
+<span class="cstat-no" title="statement not covered" >								if ((parentValue = element.data('$bindonceController'))</span>
+									&amp;&amp; parentValue.group === name)
+								{
+<span class="cstat-no" title="statement not covered" >									bindonceController = parentValue;</span>
+<span class="cstat-no" title="statement not covered" >									break;</span>
+								}
+<span class="cstat-no" title="statement not covered" >								element = element.parent();</span>
+							}
+<span class="cstat-no" title="statement not covered" >							if (!bindonceController)</span>
+							{
+<span class="cstat-no" title="statement not covered" >								throw new Error("No bindonce controller: " + name);</span>
+							}
+						}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >						bindonceController.addBinder(</span>
+						{
+							element: elm,
+							attr: boDirective.attribute || boDirective.directiveName,
+							attrs: attrs,
+							value: attrs[boDirective.directiveName],
+							interpolate: boDirective.interpolate,
+							group: name,
+							transclude: transclude,
+							controller: controllers.slice(1),
+							scope: scope
+						});
+					};
+				}
+			};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			return bindonceDirective;</span>
+		});
+	})
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 06 2015 16:36:02 GMT+0200 (GTB Standard Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

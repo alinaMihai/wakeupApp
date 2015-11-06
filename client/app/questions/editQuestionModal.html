@@ -1,0 +1,17 @@
+<div class="modal-header">
+	<h3 class="modal-title">Edit Question</h3>
+</div>
+<div class="modal-body">
+	
+	<form name="editQuestionForm" ng-class="{'has-error':editQuestionForm.$invalid}">
+		<div class="form-group">
+			<label for="questionName">Question Name</label>
+			<input type="text" name="questionName" ng-model="modalCtrl.data.text" class="form-control" required>
+		</div>
+	</form>
+	
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" type="button" ng-click="modalCtrl.ok()" ng-disabled="editQuestionForm.$invalid">Update</button>
+	<button class="btn btn-warning" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
+</div>

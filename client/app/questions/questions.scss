@@ -1,0 +1,96 @@
+// popup overlay
+.black_overlay{
+	display: block;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:1001;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);
+}
+
+.white_content, .questionModal {
+	display: block;
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+	width: inherit;
+	height: inherit;	
+	z-index:1002;
+	overflow: auto;
+	border-radius: 1em;
+    background-color: #9FAECF;
+    // background-image:url('../assets/images/leavesbg.jpg');
+}
+.white_content{
+	padding: 2%;
+}
+
+.questionModal{
+	padding: 3%;	
+}
+
+#sessionMode{
+	display: block;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 150%;
+	background-image:url(../../assets/images/pathToHeart.jpg);
+	background-position: center;
+    background-repeat:no-repeat;
+	
+	z-index:1001;
+	/* -moz-opacity: 0.8;
+	opacity:.80; */
+	/* filter: alpha(opacity=80); */
+}
+#practiceSessionBtn,#addQuestionBtn,#createQuestionSetBtn{
+	margin-bottom:1em;
+}
+#endQsSessionBtn{
+	margin: 2%;
+    border-radius: 1em;
+    background-color: #5652B1;
+}
+#endQsSessionBtn:hover{
+   background-color: #5652A1;	
+}
+
+//question list css
+#questionList div.list-group-item:hover{
+  background-color:#E7E7E7;
+}
+
+#questionList a{
+	display:block;
+	cursor:pointer;
+}
+#questionList a:hover{
+font-weight:bold;
+text-decoration:none;	
+}
+
+#addQuestionBtn{
+	margin-top:25px;
+	float:right;
+}
+#cancelBtn{
+	float:right;
+}
+#answerTextArea{
+	height:200px;
+	width:600px;
+}
+
+.noQuestionsBadge{
+	padding:5px;
+	margin-bottom:5px;
+	background-color: plum;
+}

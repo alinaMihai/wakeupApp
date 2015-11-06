@@ -13,7 +13,8 @@
             },
             text: String,
             date: Date,
-            mood: String
+            mood: String,
+            user: String
         }, {
             collection: 'answers'
         });

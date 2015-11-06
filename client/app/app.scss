@@ -16,6 +16,10 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
+.breadcrumb{
+	background-color:white;
+}
+
 
 // Component styles are injected through grunt
 // injector
@@ -23,5 +27,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'admin/admin.scss';
 @import 'main/main.scss';
 @import 'questionSets/questionSets.scss';
-@import 'questions/popup.scss';
+@import 'questions/questions.scss';
+@import 'topics/topics.scss';
+@import 'navbar/navbar.scss';
 // endinjector

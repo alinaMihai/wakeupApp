@@ -12,13 +12,16 @@
         var vm = this;
         vm.menu = [{
             'title': 'Home',
-            'state': 'main'
+            'state': 'main',
+            'link': '/'
         }, {
             'title': 'Question Sets',
-            'state': 'questionSetList'
+            'state': 'questionSetList',
+            'link': '/questionSetList'
         }, {
             'title': 'Topics',
-            'state': 'topicsList'
+            'state': 'topicsList',
+            'link': '/topicsList'
         }];
 
         vm.isCollapsed = true;

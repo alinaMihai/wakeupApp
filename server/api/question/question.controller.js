@@ -12,6 +12,8 @@
 
     var _ = require('lodash');
     var Question = require('./question.model');
+    var Answer = require('../answer/answer.model');
+    var QuestionSet = require('../questionSet/questionSet.model');
 
     exports.index = function(req, res) {
 
@@ -27,30 +29,131 @@
 
     };
 
-    //get answer list
-    exports.getAnswerList = function(req, res) {
 
+    // Get a single question 
+    exports.show = function(req, res) {
         var query = Question.find({});
-        query.select(
-            'text answers'
-        );
-
-        query.populate('answers');
-
-        query.where('_id', req.params.questionId);
-
-
-
-        query.exec(function(err, answers) {
-
+        query.populate('questionSet');
+        query.where('_id', req.params.id);
+        query.exec(function(err, question) {
             if (err) {
                 return handleError(res, err);
             }
-            return res.status(200).json(answers);
+            return res.status(200).json(question);
+        });
+    };
+
+    // Creates a new question in the DB.
+    exports.create = function(req, res) {
+        findLatestQuestionId(function(question) {
+
+            var latestQuestionId = question ? question._id : 0; // in the db is one based
+
+            var questionId = latestQuestionId + 1;
+
+            req.body._id = questionId;
+            Question.create(req.body, function(err, question) {
+
+                if (err) {
+                    console.log(err);
+                    return handleError(res, err);
+                }
+                updateQuestionInQuestionSetList(req.body.questionSet, questionId);
+                return res.status(201).json(question);
+            });
+
         })
-    }
+
+    };
+
+
+    // Updates an existing question in the DB.
+    exports.update = function(req, res) {
+        if (req.body._id) {
+            delete req.body._id;
+        }
+        Question.findById(req.params.id, function(err, question) {
+            if (err) {
+                return handleError(res, err);
+            }
+            if (!question) {
+                return res.status(404).send('Not Found');
+            }
+            var updated = _.merge(question, req.body);
+            updated.save(function(err) {
+                if (err) {
+                    return handleError(res, err);
+                }
+                return res.status(200).json(question);
+            });
+        });
+    };
+
+    // Deletes a question from the DB.
+    exports.destroy = function(req, res) {
+        Question.findById(req.params.id, function(err, question) {
+            if (err) {
+                return handleError(res, err);
+            }
+            if (!question) {
+                return res.status(404).send('Not Found');
+            }
+            Answer.find({
+                question: question._id
+            }).remove(function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+            QuestionSet.findByIdAndUpdate(question.questionSet, {
+                $pull: {
+                    'questions': question._id
+                }
+            }, function(err, model) {
+                if (err) {
+                    console.log(err);
+                    return res.send(err);
+                }
+            });
+
+
+            question.remove(function(err) {
+                if (err) {
+                    return handleError(res, err);
+                }
+                return res.status(204).send('No Content');
+            });
+        });
+    };
 
     function handleError(res, err) {
         return res.status(500).send(err);
+    }
+
+    function findLatestQuestionId(callback) {
+
+        Question.findOne({}, {}, {
+            sort: {
+                '_id': 'descending'
+            }
+        }, function(err, question) {
+
+
+
+
+            callback.call(null, question);
+        });
+
+    }
+
+    function updateQuestionInQuestionSetList(questionSetId, questionId) {
+        //console.log(questionId, answerId);
+        QuestionSet.update({
+            _id: questionSetId
+        }, {
+            $addToSet: {
+                questions: questionId
+            }
+        }).exec();
     }
 })();

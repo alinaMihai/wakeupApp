@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Unit Tests - Wakeup Call App tests</title>
+    <style type="text/css">html,body{font-family:Arial,sans-serif;margin:0;padding:0;}body{padding:10px 40px;}h1{margin-bottom:0;}h2{margin-top:0;color:#999;}table{width:100%;margin-top:20px;margin-bottom:20px;table-layout:fixed;}tr.header{background:#ddd;font-weight:bold;border-bottom:none;}td{padding:7px;border-top:none;border-left:1px black solid;border-bottom:1px black solid;border-right:none;word-break:break-all;word-wrap:break-word;}tr.pass td{color:#003b07;background:#86e191;}tr.skip td{color:#7d3a00;background:#ffd24a;}tr.fail td{color:#5e0e00;background:#ff9c8a;}tr:first-child td{border-top:1px black solid;}td:last-child{border-right:1px black solid;}tr.overview{font-weight:bold;color:#777;}tr.overview td{padding-bottom:0px;border-bottom:none;}tr.system-out td{color:#777;}hr{height:2px;margin:30px 0;background:#000;border:none;}</style>
+  </head>
+  <body>
+    <h1>Unit Tests</h1>
+    <h2>Wakeup Call App tests</h2>
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr class="overview">
+        <td colspan="3" title="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36">Browser: Chrome 46.0.2490 (Windows 7 0.0.0)</td>
+      </tr>
+      <tr class="overview">
+        <td colspan="3">Timestamp: 11/6/2015, 4:42:58 PM</td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          27 tests / 
+          0 errors / 
+          0 failures / 
+          0 skipped / 
+          runtime: 0.921s
+        </td>
+      </tr>
+      <tr class="header">
+        <td>Status</td>
+        <td>Spec</td>
+        <td>Suite / Results</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.134s</td>
+        <td>should exist</td>
+        <td>QuestionCtrl as questionCtrl</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>should define a questionService property</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>should define a currentQuestion property used to hold the current question in the session</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.041s</td>
+        <td>should expose a startQuestionSet method</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.026s</td>
+        <td>should expose an endQuestionSet</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.023s</td>
+        <td>should expose a processQuestion method used during a session to advance to next question</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.014s</td>
+        <td>should expose a saveQuestion method, used to create a question in the question set</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.019s</td>
+        <td>should expose a cancelAddQuestion used when the user cancels the creation of a question</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.024s</td>
+        <td>should expose a hasErrorAddForm, used for addQuestion form styling </td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>should expose an addQuestionBool property, used for displaying the addQuestion form</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.054s</td>
+        <td>should expose a deleteQuestion method</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.026s</td>
+        <td>should expose an openEditQuestionModal</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.039s</td>
+        <td>should make a call to the cached service, getQuestions method</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.038s</td>
+        <td>should attach on the scope the questionSetQuestions object returned from the service</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when created, it,</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.027s</td>
+        <td>should set the questionSetSession property of the questionService to true</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when startQuestionSet method is called, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.023s</td>
+        <td>should set currentQuestionIndex property of the questionService to 0</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when startQuestionSet method is called, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.027s</td>
+        <td>should set the currentQuestion property of the controller to the first question in the set</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when startQuestionSet method is called, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.085s</td>
+        <td>should set the questionSetSession property of the questionService to false</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when endQuestionSet method is called, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.031s</td>
+        <td>should reset the repeatQS property of the questionService to false</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when endQuestionSet method is called, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.024s</td>
+        <td>should reset the currentQuestionIndex of the QuestionService to undefined</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when endQuestionSet method is called, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>should reset the questionInterval of the controller to undefined</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when endQuestionSet method is called, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.02s</td>
+        <td>should increment currentQuestionIndex and change currentQuestion from the first to the second question</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when processQuestion method is called, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.022s</td>
+        <td>should make a call to the saveAnswer method of the QuestionService</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when processQuestion method is called, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.022s</td>
+        <td>should end the question set</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when processQuestion method is called, it &raquo; when the last question is passed, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.018s</td>
+        <td>should start the question set from index zero again</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when processQuestion method is called, it &raquo; when the last question is passed and the repeatQS is set, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.022s</td>
+        <td>should call addQuestion method of the QuestionService</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when saveQuestion is called, it</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.026s</td>
+        <td>should call deleteQuestion method of the QuestionService</td>
+        <td>QuestionCtrl as questionCtrl &raquo; when deleteQuestion is called, it</td>
+      </tr>
+      <tr class="system-out">
+        <td colspan="3"><strong>System output:</strong><br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully ended'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully ended'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully ended'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully ended'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully ended'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: 'Question Set Session successfully started'
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+<br />Chrome 46.0.2490 (Windows 7 0.0.0) LOG: undefined, undefined
+</td>
+      </tr>
+    </table>
+    <hr/>
+  </body>
+</html>

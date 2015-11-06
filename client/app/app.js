@@ -8,11 +8,14 @@
         'ngSanitize',
         'ui.router',
         'ngStorage',
-        'ngAudio'
+        'ngAudio',
+        'angular.filter',
+        'pasvaz.bindonce',
+        'ui.bootstrap'
     ]);
 
     app.constant('toastr', toastr);
-
+    app.constant('_', window._);
     app.config(toastrConfig);
     toastrConfig.$inject = ['toastr'];
     /* @ngInject */
@@ -56,13 +59,14 @@
         };
     });
 
-    app.run(function($rootScope, $location, Auth) {
+    app.run(function($rootScope, $location, Auth, cached) {
         // Redirect to login if route requires auth and you're not logged in
         $rootScope.$on('$stateChangeStart', function(event, next) {
             Auth.isLoggedInAsync(function(loggedIn) {
                 if (next.authenticate && !loggedIn) {
                     event.preventDefault();
                     $location.path('/login');
+                    cached.clear();
                 }
             });
         });

@@ -1,0 +1,35 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  
+  <div class="row">
+    <div class="col-xs-8"><h1>Your Topics are:</h1></div>
+    <div class="col-xs-4">
+      <a id="addTopic" class="btn btn-info btn-lg" ng-click="topicCtrl.openAddTopicModal('lg')">
+        <span class="glyphicon glyphicon-plus"></span> Add Topic
+      </a>
+    </div>
+  </div>
+  
+  <div class="container text-center" id="topics">
+    <div class="row">
+      <div class="item" bindonce ng-repeat="topic in topicCtrl.topics">
+        
+        <div class="well">
+          
+          <div class="options">
+            <a class="trash" confirm-click="Are you sure you want to delete this topic?" ng-click="topicCtrl.deleteTopic(topic)"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+            <a  ng-if="!topic.isDefault" ng-click='topicCtrl.openAddTopicModal("lg", topic._id)'><i class="fa fa-pencil-square-o"></i></a>
+          </div>
+          <div class="row">
+            <strong><a ui-sref="topic({topicId:topic._id})">  {{topic.title}}</a></strong>
+          </div>
+          
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+  
+</div>

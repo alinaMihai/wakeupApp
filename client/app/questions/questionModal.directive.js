@@ -22,7 +22,7 @@
             templateUrl: 'app/questions/questionModal.html',
             transclude: true,
             scope: {
-
+                repeatQs: "=",
                 cindex: '=',
                 processQuestion: '&'
             }
@@ -34,9 +34,9 @@
 
             scope.$watch('cindex', function(newValue, oldValue) {
                 if (newValue >= 0 && newValue != oldValue) {
-                    $(element).children().first().css('display', 'block');
-                    var sound = ngAudio.load("assets/sounds/awareness.mp3");
-                    sound.play();
+                    showQuestion(element);
+                } else if (newValue == oldValue && scope.repeatQs) {
+                    showQuestion(element);
                 }
 
             });
@@ -46,6 +46,12 @@
 
             });
 
+        }
+
+        function showQuestion(element) {
+            $(element).children().first().css('display', 'block');
+            var sound = ngAudio.load("assets/sounds/awareness.mp3");
+            sound.play();
         }
     }
 
