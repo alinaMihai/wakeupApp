@@ -9,14 +9,8 @@
 
     /* @ngInject */
     function questionModal(ngAudio) {
-        // Usage:
-        //
-        // Creates:
-        //
         var directive = {
-            // bindToController: true,
-            // controller: Controller,
-            // controllerAs: 'vm',
+
             link: link,
             restrict: 'AE',
             templateUrl: 'app/questions/questionModal.html',
@@ -55,9 +49,4 @@
         }
     }
 
-    /* @ngInject */
-    /*
-    function Controller() {
-
-    }*/
 })();

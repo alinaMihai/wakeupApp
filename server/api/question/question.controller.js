@@ -39,7 +39,7 @@
             if (err) {
                 return handleError(res, err);
             }
-            return res.status(200).json(question);
+            return res.status(200).json(question[0]);
         });
     };
 

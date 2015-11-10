@@ -79,19 +79,20 @@
             if (err) {
                 return handleError(res, err);
             }
-            return res.status(200).json(questions);
+            return res.status(200).json(questions[0]);
         });
     }
 
     // Get a single question set
     exports.show = function(req, res) {
-        QuestionSet.findById(req.params.id, function(err, questionSet) {
+        QuestionSet.findById(req.params.questionSetId, function(err, questionSet) {
             if (err) {
                 return handleError(res, err);
             }
             if (!questionSet) {
                 return res.status(404).send('Not Found');
             }
+            //console.log(questionSet);
             return res.json(questionSet);
         });
     };

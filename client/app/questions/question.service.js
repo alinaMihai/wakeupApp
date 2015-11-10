@@ -12,13 +12,13 @@
         this.getQuestions = getQuestions;
         this.saveAnswer = saveAnswer;
         this.getQuestionById = getQuestionById;
-        this.currentQuestionIndex;
-        this.repeatQS;
-        this.questionSetSession = false;
         this.addQuestion = addQuestion;
         this.deleteQuestion = deleteQuestion;
         this.editQuestion = editQuestion;
         this.registerSession = registerSession;
+        this.currentQuestionIndex;
+        this.repeatQS;
+        this.questionSetSession = false;
         this.endSessionOnBackBtn = false;
         this.isUpdated = false;
 
@@ -26,21 +26,26 @@
 
         function getQuestions(questionSetId) {
             var deferred = $q.defer();
-            $http.get('/api/questionSet/' + questionSetId).then(function(response) {
-                var questionSet = response.data[0];
-                deferred.resolve(questionSet);
-            });
+            $http.get('/api/questionSet/' + questionSetId)
+                .success(function(questionSet) {
+
+                    deferred.resolve(questionSet);
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
             return deferred.promise;
         }
 
         function getQuestionById(questionId) {
             var deferred = $q.defer();
-            $http.get('/api/questions/question/' + questionId).success(function(response) {
-                var question = response[0];
-                deferred.resolve(question);
-            }).error(function(error) {
-                deferred.reject(error);
-            });
+            $http.get('/api/questions/question/' + questionId)
+                .success(function(question) {
+
+                    deferred.resolve(question);
+                }).error(function(error) {
+                    deferred.reject(error);
+                });
             return deferred.promise;
         }
 
@@ -48,6 +53,7 @@
             var deferred = $q.defer();
             $http.post('/api/answers/', answerJson).then(function(response) {
                     logger.success("Your answer was saved", response.data, "Success");
+                    deferred.resolve(response.data);
                 },
                 function(response) {
                     //error handling
@@ -72,22 +78,29 @@
 
         function deleteQuestion(question) {
             var deferred = $q.defer();
-            $http.delete('/api/questions/' + question._id).then(function(response) {
-                var question = response.data;
-                deferred.resolve();
-                logger.success("Question successfully deleted", question, "Question Deleted");
-            });
+            $http.delete('/api/questions/' + question._id)
+                .success(function(response) {
+
+                    logger.success("Question successfully deleted", response, "Question Deleted");
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
             return deferred.promise;
         }
 
         function editQuestion(questionObj) {
             var deferred = $q.defer();
             var self = this;
-            $http.put('/api/questions/' + questionObj._id, questionObj).then(function(response) {
-                deferred.resolve();
-                self.isUpdated = true;
-                logger.success("Question successfully updated", response.data, "Question Updated");
-            });
+            $http.put('/api/questions/' + questionObj._id, questionObj)
+                .success(function(response) {
+                    deferred.resolve(response);
+                    self.isUpdated = true;
+                    logger.success("Question successfully updated", response, "Question Updated");
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
 
             return deferred.promise;
         }
@@ -95,10 +108,14 @@
         function registerSession(questionSetId) {
             var deferred = $q.defer();
             var self = this;
-            $http.put('/api/questionSet/session/' + questionSetId).then(function(response) {
-                deferred.resolve(response.data);
-                //console.log("QuestionSet Session Registered", response.data, "QuestionSet Session");
-            });
+            $http.put('/api/questionSet/session/' + questionSetId)
+                .success(function(response) {
+                    deferred.resolve(response);
+                    //console.log("QuestionSet Session Registered", response.data, "QuestionSet Session");
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
             return deferred.promise;
         }
 

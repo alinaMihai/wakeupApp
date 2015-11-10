@@ -5,16 +5,12 @@
         .module('wakeupApp')
         .directive('refreshDir', refreshDir);
 
-    refreshDir.$inject = ['$window', 'QuestionService', 'logger'];
+    refreshDir.$inject = ['$window', 'QuestionService'];
 
     /* @ngInject */
-    function refreshDir($window, QuestionService, logger) {
-        // Usage:
-        //
-        // Creates:
-        //
-        var directive = {
+    function refreshDir($window, QuestionService) {
 
+        var directive = {
             link: link,
             restrict: 'A',
         };
@@ -24,22 +20,18 @@
             $(window).on("beforeunload", function(e) {
 
                 if (QuestionService.questionSetSession) {
-                    return "Are you sure you want to refresh? Your Question Set Session will be lost";
+                    QuestionService.questionSetSession = false;
+                    return "Are you sure you want to refresh? Your Question Set Session will end";
 
                 }
             });
-            window.onpopstate = function() {
+            $(window).on('popstate', function() {
                 if (QuestionService.questionSetSession) {
                     QuestionService.endSessionOnBackBtn = true;
                     scope.$apply();
                 }
 
-            };
+            });
         }
-    }
-
-    /* @ngInject */
-    function Controller() {
-
     }
 })();

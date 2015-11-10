@@ -1,0 +1,25 @@
+<button id="practiceSessionBtn" ng-click="displayPopup=true" class="btn btn-block btn-lg btn-success" value="">Practice Question Set</button>
+
+<div ng-show="displayPopup" class="white_content">
+	<form name="popupForm" novalidate>
+		
+		<div class="control-group" >
+			<h3 class="text-center">Session Settings</h3>
+			<h4>Please specify the time interval to be prompted with a question</h4>
+			<div class="form-group" ng-class="{'has-error': popupForm.hours.$invalid && popupForm.hours.$dirty}">
+				<label for="hours">Question Interval in minutes: </label>
+				<input id="hours" name="hours" type="number" class="input input-lg form-control" step="any" min="0" ng-model='questionCtrl.questionInterval' required>
+			</div>
+			<div class="form-group">
+				<label>Loop Question Set?
+					<input type="checkbox" name="repeat" ng-model="questionCtrl.questionService.repeatQS" class="checkbox-inline">
+				</label>
+				
+			</div>
+			<button type="submit" class="btn btn-lg btn-success" ng-disabled="!popupForm.$valid" ng-click="displayPopup=false; questionCtrl.startQuestionSet()">OK</button>
+			<button ng-click="displayPopup=!displayPopup" class="btn btn-lg btn-danger" id="cancelBtn">Cancel</button>
+		</div>
+		
+	</form>
+</div>
+<div ng-if='displayPopup' id="fade" class="black_overlay"></div>

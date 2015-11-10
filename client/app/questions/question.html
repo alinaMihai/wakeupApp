@@ -4,20 +4,9 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
  
- <my-popup ng-if="questionCtrl.questionSetQuestions.questions.length>0">
-        <h3 class="text-center">Session Settings</h3>
-        <h4>Please specify the time interval to be prompted with a question</h4>
-        <div class="form-group">
-          <label for="hours">Question Interval in minutes: </label>
-           <input id="hours"  type="number" class="input input-lg form-control" step="any" min="0" ng-model='questionCtrl.questionInterval' required>
-         </div>
-         <div class="form-group">
-            <label>Loop Question Set?
-               <input type="checkbox" name="repeat" ng-model="questionCtrl.questionService.repeatQS" class="checkbox-inline"> 
-            </label>  
-               
-         </div>  
-  </my-popup>
+ <session-dir ng-if="questionCtrl.questionSetQuestions.questions.length>0">
+          
+  </session-dir>
   <div class="row">
     <ol class="breadcrumb">
         <li><a ui-sref="questionSetList">Question Sets</a></li>
