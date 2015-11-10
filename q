@@ -1,0 +1,74 @@
+add procfile for heroku deploy
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	deleted:    client/test/index.specs.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/account/account.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/account/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/account/login/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/account/login/login.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/account/settings/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/account/settings/settings.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/account/signup/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/account/signup/signup.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/admin/admin.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/admin/admin.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/admin/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/answers/answer.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/answers/answer.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/answers/answer.service.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/answers/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/app.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/main/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/main/main.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questionSets/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questionSets/questionSets.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questionSets/questionSets.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questionSets/questionSets.service.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questions/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questions/question.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questions/question.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questions/question.service.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questions/questionModal.directive.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questions/refresh.directive.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/questions/session.directive.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/quoteDetail/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/quoteDetail/quote.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/quoteDetail/quoteDetail.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/quotes/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/quotes/quotes.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/quotes/quotes.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/quotes/quotes.service.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/topic/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/topic/topic.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/topic/topic.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/topics.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/topics.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/app/topics/topics.service.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/auth/auth.service.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/auth/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/auth/user.service.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/caching/cached.factory.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/caching/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/core/confirm.directive.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/core/core.service.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/core/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/core/modal.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/logger/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/logger/logger.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/mongoose-error/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/mongoose-error/mongoose-error.directive.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/navbar/index.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/components/navbar/navbar.controller.js.html
+#	modified:   coverage/Chrome 46.0.2490 (Windows 7 0.0.0)/index.html
+#	modified:   tests/units.html
+#
+# Untracked files:
+#	Procfile.txt
+#	"\357\200\272q"
+#
