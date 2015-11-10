@@ -40,7 +40,8 @@ module.exports = function(config) {
 
         preprocessors: {
             '**/*.html': ['ng-html2js'],
-            //'**/*.js': ['coverage']
+            'client/app/**/*.js': ['coverage'],
+            'client/components/**/*.js': ['coverage']
         },
 
         ngHtml2JsPreprocessor: {
@@ -68,7 +69,12 @@ module.exports = function(config) {
         },
         coverageReporter: {
             type: 'html',
-            dir: 'coverage/'
+            dir: 'coverage/',
+            instrumenterOptions: {
+                istanbul: {
+                    noCompact: true
+                }
+            }
         },
 
         // list of files / patterns to exclude
@@ -79,7 +85,7 @@ module.exports = function(config) {
 
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-        logLevel: config.LOG_DEBUG,
+        logLevel: config.LOG_INFO,
 
 
         // enable / disable watching file and executing tests whenever any file changes
