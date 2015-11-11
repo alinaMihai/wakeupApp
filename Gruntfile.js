@@ -227,7 +227,7 @@ module.exports = function(grunt) {
             target: {
                 src: '<%= yeoman.client %>/index.html',
                 ignorePath: '<%= yeoman.client %>/',
-                exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/]
+                exclude: [/bootstrap-sass-official/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/]
             }
         },
 
@@ -238,7 +238,7 @@ module.exports = function(grunt) {
                     src: [
                         '<%= yeoman.dist %>/public/{,*/}*.js',
                         '<%= yeoman.dist %>/public/{,*/}*.css',
-                        '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+                        // '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
                         '<%= yeoman.dist %>/public/assets/fonts/*'
                     ]
                 }
@@ -359,6 +359,8 @@ module.exports = function(grunt) {
                         'bower_components/**/*',
                         'assets/images/{,*/}*.{webp}',
                         'assets/fonts/**/*',
+                        'assets/sounds/*',
+                        'assets/images/*',
                         'index.html'
                     ]
                 }, {
@@ -424,8 +426,8 @@ module.exports = function(grunt) {
             },
             dist: [
                 'sass',
-                'imagemin',
-                'svgmin'
+                //'imagemin',
+                // 'svgmin'
             ]
         },
 
@@ -645,7 +647,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'injector:sass',
-
+        'concurrent:dist',
         'injector',
         'wiredep',
         'useminPrepare',
@@ -654,8 +656,9 @@ module.exports = function(grunt) {
         'concat',
         'ngAnnotate',
         'copy:dist',
-
+        // 'cdnify',
         'cssmin',
+        'uglify',
         'rev',
         'usemin'
     ]);
