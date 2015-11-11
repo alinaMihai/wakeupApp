@@ -1,4 +1,8 @@
 # wakeupApp
+
+The application can be found at: https://wakeupcall-app.herokuapp.com. 
+You will need to create an account. Currently the connect with google option is not functional.
+
 This application serves as a means for personal inquiring, to find clarity on different topics of interest. 
 
 Its purpose is to enrich one's life by living more mindfully and with purpose. 
