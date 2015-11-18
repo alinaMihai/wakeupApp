@@ -28,7 +28,7 @@
         vm.openEditQuestionModal = openEditQuestionModal;
 
         var questionSetId = $stateParams.questionSetId;
-        var questionInterval;
+        var questionInterval = 0;
         var questionsNo;
         var questions = [];
         var timer;

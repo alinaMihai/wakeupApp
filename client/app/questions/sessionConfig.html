@@ -8,7 +8,7 @@
 			<h4>Please specify the time interval to be prompted with a question</h4>
 			<div class="form-group" ng-class="{'has-error': popupForm.hours.$invalid && popupForm.hours.$dirty}">
 				<label for="hours">Question Interval in minutes: </label>
-				<input id="hours" name="hours" type="number" class="input input-lg form-control" step="any" min="0" ng-model='questionCtrl.questionInterval' required>
+				<input placeholder="defaults to zero" id="hours" name="hours" type="number" class="input input-lg form-control" step="any" min="0" ng-model='questionCtrl.questionInterval'>
 			</div>
 			<div class="form-group">
 				<label>Loop Question Set?
@@ -16,7 +16,7 @@
 				</label>
 				
 			</div>
-			<button type="submit" class="btn btn-lg btn-success" ng-disabled="!popupForm.$valid" ng-click="displayPopup=false; questionCtrl.startQuestionSet()">OK</button>
+			<button type="submit" class="btn btn-lg btn-success"  ng-click="displayPopup=false; questionCtrl.startQuestionSet()">OK</button>
 			<button ng-click="displayPopup=!displayPopup" class="btn btn-lg btn-danger" id="cancelBtn">Cancel</button>
 		</div>
 		

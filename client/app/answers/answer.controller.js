@@ -12,6 +12,7 @@
         var vm = this;
         vm.title = 'Answer  List';
         vm.question = question;
+        vm.nextQuestionId = findNextQuestionId(question.questionSet, question._id);
         vm.timeConverter = timeConverter;
         vm.deleteAnswer = deleteAnswer;
         vm.openEditAnswerModal = openEditAnswerModal;
@@ -94,6 +95,12 @@
             return _.find(vm.questionAnswers, {
                 '_id': id
             });
+        }
+
+        function findNextQuestionId(questionSet, currentQuestionId) {
+            var indexCurrentQuestion = questionSet.questions.indexOf(currentQuestionId);
+            var nextQuestionId = questionSet.questions[indexCurrentQuestion + 1];
+            return nextQuestionId;
         }
 
     }

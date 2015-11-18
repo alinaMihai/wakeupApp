@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .factory('cached', cached);
 
-    cached.$inject = ['QuestionSetService', 'QuestionService', 'AnswerService', 'TopicService'];
+    cached.$inject = ['QuestionSetService', 'QuestionService', 'AnswerService', 'TopicService', 'User', '$location'];
 
     /* @ngInject */
-    function cached(QuestionSetService, QuestionService, AnswerService, TopicService) {
+    function cached(QuestionSetService, QuestionService, AnswerService, TopicService, User, $location) {
         var questionsSets = [],
             questions = [],
             answers = [],
@@ -25,11 +25,22 @@
         return service;
 
         ////////////////
+        function redirect() {
+            var currentUser = User.get().$promise.then(function(currentUser) {
+                if (!currentUser) {
+                    $location.path('/login');
+                }
+            });
+
+        }
 
         function getQuestionSets() {
             if (questionsSets.length === 0) {
                 questionsSets = QuestionSetService.getQuestionSets();
+            } else {
+                redirect();
             }
+
             return questionsSets;
         }
 
@@ -51,6 +62,8 @@
         function getTopics() {
             if (topics.length === 0) {
                 topics = TopicService.getTopics();
+            } else {
+                redirect();
             }
             return topics;
         }
