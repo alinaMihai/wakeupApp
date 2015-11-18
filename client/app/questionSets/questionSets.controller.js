@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .controller('QuestionSetsCtrl', QuestionSetsCtrl);
 
-    QuestionSetsCtrl.$inject = ['cached', 'QuestionSetService', '$uibModal'];
+    QuestionSetsCtrl.$inject = ['cached', 'QuestionSetService', '$uibModal', '$location'];
 
     /* @ngInject */
-    function QuestionSetsCtrl(cached, QuestionSetService, $uibModal) {
+    function QuestionSetsCtrl(cached, QuestionSetService, $uibModal, $location) {
         var vm = this;
         vm.title = 'Question Sets List';
         vm.saveQuestionSet = saveQuestionSet;
@@ -43,6 +43,8 @@
                 };
                 QuestionSetService.addQuestionSet(questionSet).then(function(questionSet) {
                     vm.questionSets.push(questionSet);
+                    //go to the questionList page
+                    $location.path('/questionList/' + questionSet._id);
 
                 });
                 vm.questionSetText = undefined;

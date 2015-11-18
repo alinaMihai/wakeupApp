@@ -8,3 +8,4 @@ dist
 /server/config/local.env.js
 /server/config/local.env.sample.js
 npm-debug.log
+/server/config/seed.js

@@ -15,13 +15,13 @@
             'state': 'main',
             'link': '/'
         }, {
-            'title': 'Question Sets',
-            'state': 'questionSetList',
-            'link': '/questionSetList'
-        }, {
             'title': 'Topics',
             'state': 'topicsList',
             'link': '/topicsList'
+        }, {
+            'title': 'Question Sets',
+            'state': 'questionSetList',
+            'link': '/questionSetList'
         }];
 
         vm.isCollapsed = true;
