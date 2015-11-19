@@ -80,7 +80,8 @@
                     data: function() {
                         return {
                             name: questionSet.name,
-                            impact: questionSet.impact
+                            impact: questionSet.impact,
+                            description: questionSet.description
                         };
                     }
                 }

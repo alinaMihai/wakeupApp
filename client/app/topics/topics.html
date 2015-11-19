@@ -13,7 +13,7 @@
   
   <div class="container text-center" id="topics">
     <div class="row">
-      <div class="item" bindonce ng-repeat="topic in topicCtrl.topics">
+      <div class="item" bindonce ng-repeat="topic in topicCtrl.topics | orderBy:'isDefault'">
         
         <div class="well">
           

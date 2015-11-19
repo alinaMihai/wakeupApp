@@ -1,9 +1,11 @@
 <div  style="display:none" id="myQuestionModal">
-	<div  class="questionModal">
-		<form name="answerForm" ng-submit="processQuestion(); answerForm.$setPristine();">
-			<ng-transclude></ng-transclude>
-			<button type="submit" class="btn btn-block btn-primary" >OK</button>
-		</form>
+	<div  class="questionModal row">
+		<div class="col-lg-12">
+			<form name="answerForm" ng-submit="processQuestion(); answerForm.$setPristine();">
+				<ng-transclude></ng-transclude>
+				<button type="submit" class="btn btn-block btn-primary" >OK</button>
+			</form>
+		</div>
 	</div>
 	
 </div>

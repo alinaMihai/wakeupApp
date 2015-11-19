@@ -20,7 +20,7 @@
             $(window).on("beforeunload", function(e) {
 
                 if (QuestionService.questionSetSession) {
-                    QuestionService.questionSetSession = false;
+
                     return "Are you sure you want to refresh? Your Question Set Session will end";
 
                 }

@@ -68,7 +68,7 @@
         var userEmail = req.user.email;
         var query = QuestionSet.find({});
         query.select(
-            'name impact createDate practiceTimes questions isDefault'
+            'name description impact createDate practiceTimes questions isDefault'
         );
 
         query.populate('questions');

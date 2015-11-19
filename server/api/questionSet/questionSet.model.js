@@ -7,6 +7,7 @@
     var QuestionSetSchema = new Schema({
         _id: Number,
         name: String,
+        description: String,
         user: String,
         createDate: Date,
         practiceTimes: Number,

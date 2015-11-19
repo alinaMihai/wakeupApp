@@ -1,3 +1,7 @@
+body{
+	position:relative;
+	height:700px;
+}
 // popup overlay
 .black_overlay{
 	display: block;
@@ -28,11 +32,11 @@
     // background-image:url('../assets/images/leavesbg.jpg');
 }
 .white_content{
-	padding: 2%;
+	padding: 10px;;
 }
 
 .questionModal{
-	padding: 3%;	
+	padding: 1.5%;	
 }
 
 #sessionMode{
@@ -41,7 +45,7 @@
 	top: 0%;
 	left: 0%;
 	width: 100%;
-	height: 150%;
+	height: 100%;
 	background-image:url(../../assets/images/pathToHeart.jpg);
 	background-position: center;
     background-repeat:no-repeat;
@@ -76,6 +80,16 @@
 font-weight:bold;
 text-decoration:none;	
 }
+#questionList{
+   height: 14.5em;
+   overflow: auto;
+}
+#questionList div.list-group-item{
+   // height:50px;
+   // width: 100%;
+   margin-left:0px ;
+   margin-right:0px
+}
 
 #addQuestionBtn{
 	margin-top:25px;
@@ -85,8 +99,10 @@ text-decoration:none;
 	float:right;
 }
 #answerTextArea{
-	height:200px;
-	width:600px;
+	width:400px;
+	
+	//  height:200px;
+	// width:600px; 
 }
 
 .noQuestionsBadge{
@@ -94,3 +110,48 @@ text-decoration:none;
 	margin-bottom:5px;
 	background-color: plum;
 }
+
+.note {
+    position: relative;
+    // width: 30%;
+    padding: 1em 1.5em;
+    // margin: 2em auto;
+    color: #fff;
+    background-color: #97C02F;
+    overflow: hidden;
+    list-style: none;
+}
+.note li{
+	padding: 4px;
+	border-bottom: 1px solid;
+}
+
+.note:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 16px 16px 0;
+  border-style: solid;
+  border-color: #fff #fff #658E15 #658E15;
+  background: #658E15;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  /* Firefox 3.0 damage limitation */
+  display: block; width: 0;
+}
+
+.note.rounded {
+  -moz-border-radius: 5px 0 5px 5px;
+  border-radius: 5px 0 5px 5px;
+}
+
+.note.rounded:before {
+  border-width: 8px;
+  border-color: #fff #fff transparent transparent;
+  -moz-border-radius: 0 0 0 5px;
+  border-radius: 0 0 0 5px;
+}
+
+
