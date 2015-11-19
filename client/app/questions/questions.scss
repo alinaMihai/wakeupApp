@@ -28,14 +28,24 @@ body{
 	overflow: auto;
 	border-radius: 1em;
     background-color: #9FAECF;
-    // background-image:url('../assets/images/leavesbg.jpg');
 }
+
+@media only screen and (max-width: 700px) {
+.questionModal{
+	width:80%;
+}
+
+}
+
 .white_content{
 	padding: 10px;;
 }
 
 .questionModal{
 	padding: 1.5%;	
+}
+.questionModal p{
+	wrap-word:word-break;
 }
 
 #sessionMode{
@@ -48,11 +58,7 @@ body{
 	background-image:url(../../assets/images/pathToHeart.jpg);
 	background-position: center;
     background-repeat:no-repeat;
-	
 	z-index:1001;
-	/* -moz-opacity: 0.8;
-	opacity:.80; */
-	/* filter: alpha(opacity=80); */
 }
 #practiceSessionBtn,#addQuestionBtn,#createQuestionSetBtn{
 	margin-bottom:1em;
@@ -84,10 +90,8 @@ text-decoration:none;
    overflow: auto;
 }
 #questionList div.list-group-item{
-   // height:50px;
-   // width: 100%;
-   margin-left:0px ;
-   margin-right:0px
+   margin-left:0px;
+   margin-right:0px;
 }
 
 #addQuestionBtn{
@@ -98,10 +102,7 @@ text-decoration:none;
 	float:right;
 }
 #answerTextArea{
-	width:400px;
-	
-	//  height:200px;
-	// width:600px; 
+	width:100%; 
 }
 
 .noQuestionsBadge{
@@ -112,9 +113,7 @@ text-decoration:none;
 
 .note {
     position: relative;
-    // width: 30%;
     padding: 1em 1.5em;
-    // margin: 2em auto;
     color: #fff;
     background-color: #97C02F;
     overflow: hidden;
