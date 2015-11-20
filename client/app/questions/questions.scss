@@ -1,5 +1,5 @@
 body{
-	position:relative;
+	position:relative; 
 }
 // popup overlay
 .black_overlay{
@@ -8,7 +8,7 @@ body{
 	top: 0%;
 	left: 0%;
 	width: 100%;
-	height: 100%;
+	height: 102%;
 	background-color: black;
 	z-index:1001;
 	-moz-opacity: 0.8;
@@ -38,7 +38,7 @@ body{
 }
 
 .white_content{
-	padding: 10px;;
+	padding: 10px;
 }
 
 .questionModal{
@@ -115,7 +115,7 @@ text-decoration:none;
     position: relative;
     padding: 1em 1.5em;
     color: #fff;
-    background-color: #97C02F;
+    background-color: #5CB85C;
     overflow: hidden;
     list-style: none;
 }
@@ -131,8 +131,8 @@ text-decoration:none;
   right: 0;
   border-width: 0 16px 16px 0;
   border-style: solid;
-  border-color: #fff #fff #658E15 #658E15;
-  background: #658E15;
+  border-color: #fff #fff #449D44 #449D44;
+  background: #449D44;
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
   box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);

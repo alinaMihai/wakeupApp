@@ -2,14 +2,14 @@
 
 <div class="container">
 	<div class="row">
-    <div class="col-lg-10">
+    <div class="col-md-10">
       <ol class="breadcrumb">
         <li><a ui-sref="questionSetList">Question Sets</a></li>
         <li><a ui-sref="questionList({questionSetId:answerCtrl.question.questionSet._id})">{{answerCtrl.question.questionSet.name}}</a></li>
         <li class="active">Question Details</li>
     </ol>  
     </div>
-   <div class="col-lg-2" ng-if="answerCtrl.nextQuestionId"><a ui-sref="answerList({questionId:answerCtrl.nextQuestionId})" >See Next Question</a></div>    
+   <div class="col-md-2" ng-if="answerCtrl.nextQuestionId"><a  class="btn btn-success btn-block" ui-sref="answerList({questionId:answerCtrl.nextQuestionId})" >See Next Question</a></div>    
   </div>
   <h1 class="text-center">{{answerCtrl.question.text}} </h1>
 
