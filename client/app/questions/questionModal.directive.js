@@ -45,38 +45,11 @@
 
         function showQuestion(element) {
             $(element).children().first().css('display', 'block');
-            if (mediaPlaybackRequiresUserGesture()) {
-                window.addEventListener('keydown', removeBehaviorsRestrictions);
-                window.addEventListener('mousedown', removeBehaviorsRestrictions);
-                window.addEventListener('touchstart', removeBehaviorsRestrictions);
-            } else {
-                setSource();
-            }
+            var sound = ngAudio.load("assets/sounds/awareness.mp3");
+            sound.play();
 
         }
 
-        function setSource() {
-
-            var audio = document.querySelector('audio');
-            audio.src = 'assets/sounds/awareness.mp3';
-        }
-
-        function mediaPlaybackRequiresUserGesture() {
-            // test if play() is ignored when not called from an input event handler
-            var audio = document.createElement('audio');
-            audio.play();
-            return audio.paused;
-        }
-
-        function removeBehaviorsRestrictions() {
-            var audio = document.querySelector('audio');
-
-            audio.load();
-            window.removeEventListener('keydown', removeBehaviorsRestrictions);
-            window.removeEventListener('mousedown', removeBehaviorsRestrictions);
-            window.removeEventListener('touchstart', removeBehaviorsRestrictions);
-            setTimeout(setSource, 1000);
-        }
 
 
     }

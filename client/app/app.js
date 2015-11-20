@@ -53,7 +53,7 @@
                     $cookieStore.remove('token');
                     return $q.reject(response);
                 } else {
-                    $location.path('/login');
+                    // $location.path('/login');
                     return $q.reject(response);
                 }
             }

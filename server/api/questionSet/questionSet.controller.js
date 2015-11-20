@@ -192,6 +192,7 @@
         QuestionSet.findOne({
             _id: questionSetId
         }, function(err, questionSet) {
+
             var timesPracticed = questionSet.practiceTimes;
             if (!isNaN(timesPracticed)) {
                 timesPracticed++;

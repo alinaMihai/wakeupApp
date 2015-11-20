@@ -52,18 +52,22 @@
             var questionId = latestQuestionId + 1;
 
             req.body._id = questionId;
-            Question.create(req.body, function(err, question) {
+            findQuestionSet(req.body.questionSet).then(function(questionSet) {
+                if (questionSet[0].isDefault) {
+                    return res.status(404).send('Cannot create question in a default questionSet');
+                } else {
+                    Question.create(req.body, function(err, question) {
 
-                if (err) {
-                    console.log(err);
-                    return handleError(res, err);
+                        if (err) {
+                            console.log(err);
+                            return handleError(res, err);
+                        }
+                        updateQuestionInQuestionSetList(req.body.questionSet, questionId);
+                        return res.status(201).json(question);
+                    });
                 }
-                updateQuestionInQuestionSetList(req.body.questionSet, questionId);
-                return res.status(201).json(question);
             });
-
         })
-
     };
 
 
@@ -79,13 +83,21 @@
             if (!question) {
                 return res.status(404).send('Not Found');
             }
-            var updated = _.merge(question, req.body);
-            updated.save(function(err) {
-                if (err) {
-                    return handleError(res, err);
+            findQuestionSet(question.questionSet).then(function(questionSet) {
+
+                if (questionSet[0].isDefault) {
+                    return res.status(404).send('Cannot update question of default questionSet');
+                } else {
+                    var updated = _.merge(question, req.body);
+                    updated.save(function(err) {
+                        if (err) {
+                            return handleError(res, err);
+                        }
+                        return res.status(200).json(question);
+                    });
                 }
-                return res.status(200).json(question);
             });
+
         });
     };
 
@@ -98,31 +110,38 @@
             if (!question) {
                 return res.status(404).send('Not Found');
             }
-            Answer.find({
-                question: question._id
-            }).remove(function(err) {
-                if (err) {
-                    console.log(err);
-                }
-            });
-            QuestionSet.findByIdAndUpdate(question.questionSet, {
-                $pull: {
-                    'questions': question._id
-                }
-            }, function(err, model) {
-                if (err) {
-                    console.log(err);
-                    return res.send(err);
+            findQuestionSet(question.questionSet).then(function(questionSet) {
+                if (questionSet[0].isDefault) {
+                    return res.status(404).send('Cannot delete question of default questionSet');
+                } else {
+                    Answer.find({
+                        question: question._id
+                    }).remove(function(err) {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    QuestionSet.findByIdAndUpdate(question.questionSet, {
+                        $pull: {
+                            'questions': question._id
+                        }
+                    }, function(err, model) {
+                        if (err) {
+                            console.log(err);
+                            return res.send(err);
+                        }
+                    });
+
+
+                    question.remove(function(err) {
+                        if (err) {
+                            return handleError(res, err);
+                        }
+                        return res.status(204).send('No Content');
+                    });
                 }
             });
 
-
-            question.remove(function(err) {
-                if (err) {
-                    return handleError(res, err);
-                }
-                return res.status(204).send('No Content');
-            });
         });
     };
 
@@ -144,6 +163,12 @@
             callback.call(null, question);
         });
 
+    }
+
+    function findQuestionSet(questionSetId) {
+        return QuestionSet.findById(questionSetId, function(err, questionSet) {
+            return questionSet;
+        });
     }
 
     function updateQuestionInQuestionSetList(questionSetId, questionId) {

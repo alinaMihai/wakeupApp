@@ -22,13 +22,24 @@ li a{
     width: 60%;
     margin-top: 50px;
 }
-.quoteText{
-  font-size:1.5em;
-  font-style:italic;
+
+#topicDescription{
+      background-color: white;
+    font-size: 1.5em;
+    padding: 10px;
+    margin-left: 5px;
+    font-style: italic;
+    font-family: serif;
 }
 
+.topicDescription.preview {
+    overflow: hidden;
+    line-height: 18px;
+    height: 70px;
+    text-align: left;
+}
 
-#addTopic, #addQuote,#inspirationPage{
+#addTopic, #addQuote{
   float: right;
   margin-top: 15px;
 } 
@@ -37,15 +48,8 @@ li a{
    margin-bottom: 10px;
 }
 
-#inspirationPage{
-	cursor:pointer;
-	text-decoration:none;
-	font-size:1.5em;
-}
 
-#quotes,#topics{
- *, *:before, *:after {box-sizing:  border-box !important;}
-
+#quotes,#topics,#associatedQuestionSets{
 
 .row {
  -moz-column-width: 18em;
@@ -59,37 +63,107 @@ li a{
  display: inline-block;
  padding:  .25rem;
  width:  100%; 
+  a:hover{
+      text-decoration:none;
+  }
+
 }
 
+.fixedHeight{
+   height:200px;
+}
 .well {
  position:relative;
  display: block;
-  
+
   .options{
   	position:absolute;
   	top:5px;
   	right:10px;
-
-    .trash{
-    	font-size:1.2em;
-    	cursor:pointer;
-    }
+    cursor:pointer;
+    font-size:1.2em;
+  
     .edit{
-    	font-size:1.2em;
-    	margin-right:5px;
-    	cursor:pointer;
+    	margin-right:10px;
     }  
 
   }
   .row{
   	padding:15px 20px 0 20px;
-
+   }
   	a:hover{
   		text-decoration:none;
   	}
 
-  }
-  
+}
+.well:hover{
+  box-shadow: 10px 10px 5px #888888;
 }
 
+}
+
+//quote details
+.mb-wrap blockquote {
+    background: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 0 rgba(188, 147, 200, 0.7), -5px -4px 25px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.mb-wrap blockquote p {
+    font-family: 'Alegreya', serif;
+    font-size: 24px;
+    color: #b4b4b4;
+    font-weight: 400;
+    line-height: 40px;
+    font-style: italic;
+    text-indent: 56px;
+    position: relative;
+    padding:15px;
+}
+
+.mb-wrap blockquote:after, .mb-style-3 blockquote:before {
+    border: solid transparent;
+    position: absolute;
+}
+.mb-wrap blockquote p:before {
+    content: '\201C';
+    font-family: serif;
+    font-style: normal;
+    font-weight: 700;
+    position: absolute;
+    font-size: 175px;
+    top: 0px;
+    left: -105px;
+    color: rgba(188, 147, 200, 1);
+    text-shadow: 7px 14px 10px rgba(0, 0, 0, 0.1);
+}
+.mb-wrap blockquote:after {
+    border-top-color: #ffffff;
+    border-width: 10px;
+    left: 65%;
+    margin-left: -10px;
+}
+
+.mb-wrap .mb-attribution {
+    text-align: right;
+    padding: 20px 100px 20px 20px;
+    position: relative;
+}
+.mb-wrap .mb-author {
+    font-family: 'Alegreya SC', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: rgba(188, 147, 200, 1);
+    text-shadow: 0 1px 1px rgba(255,255,255,0.7);
+}
+.mb-wrap p {
+    margin: 0;
+    padding: 0;
+}
+.mb-wrap cite {
+    font-style: normal;
 }

@@ -166,7 +166,7 @@
 
         function openEditQuestionModal(size, questionId) {
 
-            var question = findQuestionById(questionId);
+            var question = angular.copy(findQuestionById(questionId));
 
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -194,7 +194,9 @@
         }
 
         function updateQuestion(updatedObj) {
-            vm.questionService.editQuestion(updatedObj);
+            vm.questionService.editQuestion(updatedObj).then(function(updatedQuestion) {
+                angular.extend(findQuestionById(updatedQuestion._id), updatedQuestion);
+            });
         }
 
         function findQuestionById(id) {

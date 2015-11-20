@@ -4,49 +4,33 @@
 	
 	<div class="row">
 		<ol class="breadcrumb">
-				<li><a ui-sref="topicsList">Topics</a></li>
-				<li class="active">{{TopicDetailCtrl.topic.title}}</li>
+			<li><a ui-sref="topicsList">Topics</a></li>
+			<li class="active">{{TopicDetailCtrl.topic.title}}</li>
 		</ol>
 	</div>
-	<div class="row">
-		<div class="col-xs-8 text-center">
-			<h1>{{TopicDetailCtrl.topic.title}}</h1>
-		</div>
-		<div class="col-xs-4">
-			<a id="inspirationPage" ui-sref="inspiration({topicId:TopicDetailCtrl.topic._id})">
-				Inspiration Page <span class="glyphicon glyphicon-new-window">
+	
+	<div class="page-header">
+		<h1 ng-bind="TopicDetailCtrl.topic.title">
+		</h1>
+	</div>
+	<div id="topicDescription">
+		<p ng-bind="TopicDetailCtrl.topic.description"></p>
+		<p><a class="btn btn-primary btn-lg" id="inspirationPage"  ui-sref="inspiration({topicId:TopicDetailCtrl.topic._id})" role="button">
+			Inspiration Page 
+		</a></p>
+	</div>
+	
+	<div class="text-center" id="associatedQuestionSets">
+		<h4>Associated Question Sets</h4>
+		<div class="item col-lg-4" bindonce ng-repeat="qs in TopicDetailCtrl.topic.questionSetList | orderBy:'-practiceTimes'">
+			<a ui-sref="questionList({questionSetId:qs._id})">
+				<div class="well">				
+					<strong> <p> {{qs.name}}</p></strong>
+				</div>
 			</a>
 		</div>
-	</div>
-	<div class="row">
-		<p>Creation Date: {{TopicDetailCtrl.topic.createDate | date:'dd/MM/yyyy hh:mm'}}</p>
-		<p>{{TopicDetailCtrl.topic.description}}</p>
 		
 	</div>
-
-	<!-- <div class="row">
-		<div class="list-group" id="questionSets">
-			<div class="row list-group-item" bindonce ng-repeat="qs in TopicDetailCtrl.topic.questionSetList | orderBy:'-practiceTimes'">
-				<div class="col-lg-11"><strong><a ui-sref="questionList({questionSetId:qs._id})">  {{qs.name}}</a></strong></div>
-			</div>
-		</div>
-	</div> -->
-
-	<div class="container text-center" id="associatedQuestionSets">
-		<h4>Associated Question Sets</h4>
-    <div class="row">
-      <div class="item" bindonce ng-repeat="qs in TopicDetailCtrl.topic.questionSetList | orderBy:'-practiceTimes'">
-        <a ui-sref="questionList({questionSetId:qs._id})">
-        <div class="well">
-          
-         <strong> <p> {{qs.name}}</p></strong>
-          
-        </div>
-        </a>
-        
-      </div>
-    </div>
-  </div>
 	
 	
 </div>
