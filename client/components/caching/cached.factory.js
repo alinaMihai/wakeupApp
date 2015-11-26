@@ -82,7 +82,7 @@
             questions = [];
             answers = [];
             topics = [];
-            questionList = {};
+            questionsList = {};
         }
     }
 })();
