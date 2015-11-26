@@ -13,6 +13,7 @@
         vm.title = 'Answer  List';
         vm.question = question;
         vm.nextQuestionId = findNextQuestionId(question.questionSet, question._id);
+        vm.prevQuestionId = findPreviousQuestionId(question.questionSet, question._id);
         vm.timeConverter = timeConverter;
         vm.deleteAnswer = deleteAnswer;
         vm.openEditAnswerModal = openEditAnswerModal;
@@ -101,6 +102,12 @@
             var indexCurrentQuestion = questionSet.questions.indexOf(currentQuestionId);
             var nextQuestionId = questionSet.questions[indexCurrentQuestion + 1];
             return nextQuestionId;
+        }
+
+        function findPreviousQuestionId(questionSet, currentQuestionId) {
+            var indexCurrentQuestion = questionSet.questions.indexOf(currentQuestionId);
+            var prevQuestionId = questionSet.questions[indexCurrentQuestion - 1];
+            return prevQuestionId;
         }
 
     }

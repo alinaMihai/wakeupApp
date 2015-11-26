@@ -67,7 +67,7 @@
                     });
                 }
             });
-        })
+        });
     };
 
 
@@ -156,10 +156,6 @@
                 '_id': 'descending'
             }
         }, function(err, question) {
-
-
-
-
             callback.call(null, question);
         });
 

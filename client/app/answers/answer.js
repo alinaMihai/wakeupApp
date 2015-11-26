@@ -9,9 +9,9 @@
                     templateUrl: 'app/answers/answers.html',
                     controller: 'AnswerCtrl as answerCtrl',
                     resolve: {
-                        'question': ['$stateParams', 'QuestionService',
-                            function($stateParams, QuestionService) {
-                                return QuestionService.getQuestionById($stateParams.questionId).then(function(question) {
+                        'question': ['$stateParams', 'cached',
+                            function($stateParams, cached) {
+                                return cached.getQuestion($stateParams.questionId).then(function(question) {
                                     return question;
                                 });
                             }

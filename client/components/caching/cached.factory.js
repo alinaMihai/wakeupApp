@@ -12,11 +12,13 @@
         var questionsSets = [],
             questions = [],
             answers = [],
-            topics = [];
+            topics = [],
+            questionsList = {};
 
         var service = {
             getQuestionSets: getQuestionSets,
             getQuestions: getQuestions,
+            getQuestion: getQuestion,
             getAnswers: getAnswers,
             getTopics: getTopics,
             clear: clear
@@ -32,6 +34,13 @@
                 }
             });
 
+        }
+
+        function getQuestion(questionId) {
+            if (!questionsList[questionId] || QuestionSetService.isUpdated) {
+                questionsList[questionId] = QuestionService.getQuestionById(questionId);
+            }
+            return questionsList[questionId];
         }
 
         function getQuestionSets() {
@@ -73,6 +82,7 @@
             questions = [];
             answers = [];
             topics = [];
+            questionList = {};
         }
     }
 })();

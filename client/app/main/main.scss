@@ -36,3 +36,22 @@
 .navbar-text {
   margin-left: 15px;
 }
+.features div{
+    padding: 20px;
+    text-align: center;
+    color: rgba(0,0,0,0.6);
+    font-size: 1.4em;
+    font-family: initial;
+    text-shadow: 0.1px .1px #31708f;
+    display:table;
+}
+.features div span {
+    background-color: #F8F8F8;
+    height: 129px;
+    display: table-cell;
+    vertical-align:middle;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+ 
+}

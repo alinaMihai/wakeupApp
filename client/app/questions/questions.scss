@@ -8,7 +8,7 @@ body{
 	top: 0%;
 	left: 0%;
 	width: 100%;
-	height: 102%;
+	height: 135%;
 	background-color: black;
 	z-index:1001;
 	-moz-opacity: 0.8;
@@ -54,7 +54,7 @@ body{
 	top: 0%;
 	left: 0%;
 	width: 100%;
-	height: 100%;
+	height: 135%;
 	background-image:url(../../assets/images/pathToHeart.jpg);
 	background-position: center;
     background-repeat:no-repeat;
@@ -131,11 +131,11 @@ text-decoration:none;
   right: 0;
   border-width: 0 16px 16px 0;
   border-style: solid;
-  border-color: #fff #fff #449D44 #449D44;
-  background: #449D44;
-  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
-  box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  border-color: white white green white;
+    background: rgba(68, 157, 68, 0.29);
+  -webkit-box-shadow:  0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 0px rgba(0, 0, 0, 0.2);
   /* Firefox 3.0 damage limitation */
   display: block; width: 0;
 }
