@@ -29,7 +29,7 @@
 						<a  class="edit" ng-if="!QuotesCtrl.topic.isDefault" ng-click='QuotesCtrl.openQuoteModal("lg", quote._id)'><i class="fa fa-pencil-square-o"></i></a>
 					</div>
 					<div class="row">
-						<span>&ldquo;</span><a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text}}  </a><span>&rdquo;</span>
+						<span>&ldquo;</span><a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text.length>250?quote.text.slice(0,300):quote.text}}<span ng-if="quote.text.length>250">...</span>  </a><span>&rdquo;</span>
 						{{quote.author}}
 					</div>
 					

@@ -123,6 +123,8 @@ li a{
     text-indent: 56px;
     position: relative;
     padding:15px;
+    white-space: pre-wrap;
+    margin-left: 10px;
 }
 
 .mb-wrap blockquote:after, .mb-style-3 blockquote:before {
