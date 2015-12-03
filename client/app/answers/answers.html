@@ -4,13 +4,14 @@
   <div class="row">
     <div class="col-xs-8 col-md-8">
       <ol class="breadcrumb">
+
         <li><a ui-sref="questionSetList">Question Sets</a></li>
         <li><a ui-sref="questionList({questionSetId:answerCtrl.question.questionSet._id})">{{answerCtrl.question.questionSet.name}}</a></li>
         <li class="active">Question Details</li>
       </ol>
     </div>
     
-      <div class="col-xs-2 col-md-2" ><a  class="btn btn-success btn-block" ui-sref="answerList({questionId:answerCtrl.prevQuestionId})" ng-disabled="!answerCtrl.prevQuestionId"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+      <div id="0" class="col-xs-2 col-md-2" ><a  class="btn btn-success btn-block" ui-sref="answerList({questionId:answerCtrl.prevQuestionId})" ng-disabled="!answerCtrl.prevQuestionId"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
       <div class="col-xs-2 col-md-2" ><a  class="btn btn-success btn-block" ui-sref="answerList({questionId:answerCtrl.nextQuestionId})" ng-disabled="!answerCtrl.nextQuestionId"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
     
   </div>
@@ -31,8 +32,10 @@
   
 </div>
 <div>
+
   <footer class="footer">
   <div class="container">
+    <a href="#0" class="cd-top" scrollup>Top</a>
     <p>Wakeup App | 2015
     </p>
   </div>
