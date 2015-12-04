@@ -80,7 +80,7 @@
             var deferred = $q.defer();
             $http.delete('/api/questions/' + question._id)
                 .success(function(response) {
-
+                    deferred.resolve();
                     logger.success("Question successfully deleted", response, "Question Deleted");
                 })
                 .error(function(err) {

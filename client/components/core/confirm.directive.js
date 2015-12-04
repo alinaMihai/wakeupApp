@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .directive('confirmClick', confirmClick);
 
-    confirmClick.$inject = [];
+    confirmClick.$inject = ['$uibModal'];
 
     /* @ngInject */
-    function confirmClick() {
+    function confirmClick($uibModal) {
         // Usage:
         //
         // Creates:
@@ -24,11 +24,21 @@
 
 
             element.bind('click', function(e) {
-                var msg = attrs.confirmClick || "Are you sure";
                 var clickAction = attrs.ngClick;
-                if (window.confirm(msg)) {
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'components/core/confirmDelete.html',
+                    size: 'lg',
+                    controller: 'ModalInstanceCtrl as modalCtrl',
+                    resolve: {
+                        data: {}
+                    }
+                });
+
+                modalInstance.result.then(function() {
                     scope.$eval(clickAction);
-                }
+                });
+
                 e.stopImmediatePropagation();
                 e.preventDefault();
             });
