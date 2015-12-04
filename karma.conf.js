@@ -8,7 +8,6 @@ module.exports = function(config) {
 
         // testing framework to use (jasmine/mocha/qunit/...)
         frameworks: ['jasmine'],
-
         // list of files / patterns to load in the browser
         files: [
             'client/bower_components/jquery/dist/jquery.js',
@@ -25,6 +24,8 @@ module.exports = function(config) {
             'client/bower_components/angular-bindonce/bindonce.js',
             'client/bower_components/angular-ui-router/release/angular-ui-router.js',
             'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+            'client/bower_components/spin.js/spin.js',
+            'client/bower_components/angular-spinner/angular-spinner.js',
             'client/app/app.js',
 
             'client/app/**/*.js',

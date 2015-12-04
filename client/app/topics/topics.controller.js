@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .controller('TopicCtrl', TopicCtrl);
 
-    TopicCtrl.$inject = ['cached', '$uibModal', 'TopicService'];
+    TopicCtrl.$inject = ['cached', '$uibModal', 'TopicService', 'usSpinnerService'];
 
     /* @ngInject */
-    function TopicCtrl(cached, $uibModal, TopicService) {
+    function TopicCtrl(cached, $uibModal, TopicService, usSpinnerService) {
         var vm = this;
         vm.topics = [];
         vm.openAddTopicModal = openAddTopicModal;
@@ -22,6 +22,7 @@
 
             cached.getTopics().then(function(topics) {
                 vm.topics = topics;
+                usSpinnerService.stop('spinner-1');
             });
 
         }

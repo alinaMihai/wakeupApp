@@ -11,7 +11,8 @@
         'ngAudio',
         'angular.filter',
         'pasvaz.bindonce',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'angularSpinner'
     ]);
 
     app.constant('toastr', toastr);

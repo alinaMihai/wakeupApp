@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .controller('QuestionSetsCtrl', QuestionSetsCtrl);
 
-    QuestionSetsCtrl.$inject = ['cached', 'QuestionSetService', '$uibModal', '$location'];
+    QuestionSetsCtrl.$inject = ['cached', 'QuestionSetService', '$uibModal', '$location', 'usSpinnerService'];
 
     /* @ngInject */
-    function QuestionSetsCtrl(cached, QuestionSetService, $uibModal, $location) {
+    function QuestionSetsCtrl(cached, QuestionSetService, $uibModal, $location, usSpinnerService) {
         var vm = this;
         vm.title = 'Question Sets List';
         vm.saveQuestionSet = saveQuestionSet;
@@ -22,9 +22,10 @@
         activate();
 
         function activate() {
+            usSpinnerService.spin('spinner-1');
             cached.getQuestionSets().then(function(questionSets) {
-
                 vm.questionSets = questionSets;
+                usSpinnerService.stop('spinner-1');
             });
         }
 

@@ -13,8 +13,8 @@
   <hr>
   <div class="container text-center" id="topics">
     <div class="row">
+         <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
       <div class="item" bindonce ng-repeat="topic in topicCtrl.topics | orderBy:'isDefault'">
-        
         <div class="well fixedHeight">
           
           <div class="options">

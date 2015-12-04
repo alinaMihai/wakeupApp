@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .controller('AnswerCtrl', AnswerCtrl);
 
-    AnswerCtrl.$inject = ['cached', 'question', 'AnswerService', '$uibModal'];
+    AnswerCtrl.$inject = ['cached', 'question', 'AnswerService', '$uibModal', 'usSpinnerService'];
 
     /* @ngInject */
-    function AnswerCtrl(cached, question, AnswerService, $uibModal) {
+    function AnswerCtrl(cached, question, AnswerService, $uibModal, usSpinnerService) {
         var vm = this;
         vm.title = 'Answer  List';
         vm.question = question;
@@ -24,6 +24,7 @@
         function activate() {
             cached.getAnswers(questionId).then(function(questionAnswers) {
                 vm.questionAnswers = groupAnswersByDate(questionAnswers);
+                usSpinnerService.stop('spinner-1');
             });
         }
 

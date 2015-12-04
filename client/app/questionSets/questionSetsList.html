@@ -21,6 +21,7 @@
   </div>
   
   <ol class="rounded-list" id="qsList">
+    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
     <li bindonce ng-repeat="qs in questionSets.questionSets| orderBy:['isDefault','-practiceTimes']">
       <div class="col-xs-10 col-md-11 col-lg-11"><strong><a ui-sref="questionList({questionSetId:qs._id})">  {{qs.name}}</a></strong></div>
       <div class="col-xs-2 col-md-1 col-lg-1 options">

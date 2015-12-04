@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .controller('QuestionCtrl', QuestionCtrl);
 
-    QuestionCtrl.$inject = ['cached', '$stateParams', '$timeout', 'QuestionService', 'logger', '$scope', '$uibModal'];
+    QuestionCtrl.$inject = ['cached', '$stateParams', '$timeout', 'QuestionService', 'logger', '$scope', '$uibModal', 'usSpinnerService'];
 
     /* @ngInject */
-    function QuestionCtrl(cached, $stateParams, $timeout, QuestionService, logger, $scope, $uibModal) {
+    function QuestionCtrl(cached, $stateParams, $timeout, QuestionService, logger, $scope, $uibModal, usSpinnerService) {
         var vm = this;
         vm.title = 'Question  List';
         vm.currentQuestion = null;
@@ -41,6 +41,7 @@
                 vm.questionSetQuestions = questionSet;
                 questions = questionSet.questions;
                 questionsNo = questions.length;
+                usSpinnerService.stop('spinner-1');
 
             });
             $scope.$watch(function() {
