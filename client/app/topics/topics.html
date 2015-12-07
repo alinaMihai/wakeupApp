@@ -24,7 +24,7 @@
           <div class="row">
             <strong><a ui-sref="topic({topicId:topic._id})">  {{topic.title}} </a></strong>
             <hr>
-             <p class="topicDescription preview">{{topic.description.length>50?topic.description.slice(0,100):topic.description}}<span ng-if="topic.description.length>50">...</span></p>
+             <p class="topicDescription preview">{{topic.description | trimFilter}}</p>
           </div>
           
         </div>

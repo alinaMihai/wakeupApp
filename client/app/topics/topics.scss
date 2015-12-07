@@ -32,10 +32,13 @@ li a{
     font-family: serif;
 }
 
+#topics hr{
+  margin-top:10px;
+}
 .topicDescription.preview {
     overflow: hidden;
     line-height: 18px;
-    height: 70px;
+    height: inherit;
     text-align: left;
 }
 
@@ -70,7 +73,7 @@ li a{
 }
 
 .fixedHeight{
-   height:200px;
+   height:250px;
 }
 .well {
  position:relative;
