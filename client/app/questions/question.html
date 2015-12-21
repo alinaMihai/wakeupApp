@@ -30,7 +30,7 @@
     <form name="questionCtrl.addQuestion" novalidate>
       <div class="group-control" ng-class="{'has-error': questionCtrl.hasErrorAddForm()}" >
         <label for="questionText">Question Text:
-          <input name="questionText" type="text" class="input input-lg form-control" required ng-model="questionCtrl.questionText"></label>
+          <textarea id="addQuestionTextArea" name="questionText" type="text" cols="1000" rows="5" class="input input-lg form-control" required ng-model="questionCtrl.questionText"></textarea></label>
           <button type="submit" class="btn btn-lg btn-success" ng-disabled="!questionCtrl.addQuestion.$valid" ng-click="questionCtrl.saveQuestion()">Save</button>
           <button class="btn btn-lg btn-danger" ng-click="questionCtrl.cancelAddQuestion()">Cancel</button>
         </div>
