@@ -1,6 +1,3 @@
-<div ng-if="questionCtrl.questionService.questionSetSession" id="sessionMode">
-  <button id="endQsSessionBtn" ng-click="questionCtrl.endQuestionSet()" class="btn btn-lg btn-primary">End Question Set Session</button>
-</div>
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
   
@@ -64,15 +61,6 @@
           </div>
         </div>
       </div>
-    
-    
-    
-    <question-modal ng-show="questionCtrl.questionService.questionSetSession" repeat-qs="questionCtrl.questionService.repeatQS" cindex="questionCtrl.
-    questionService.currentQuestionIndex" process-question='questionCtrl.processQuestion()'>
-    <label for="currentAnswer">
-      <p>{{questionCtrl.currentQuestion.text}}</p>
-    <textarea id="answerTextArea" type="text"  id="currentAnswer" ng-model=questionCtrl.currentAnswer rows="7" cols="60"></textarea></label>
-    </question-modal>
   </div>
   <footer class="footer">
   <div class="container">

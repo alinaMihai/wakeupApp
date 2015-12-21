@@ -16,10 +16,6 @@
         this.deleteQuestion = deleteQuestion;
         this.editQuestion = editQuestion;
         this.registerSession = registerSession;
-        this.currentQuestionIndex;
-        this.repeatQS;
-        this.questionSetSession = false;
-        this.endSessionOnBackBtn = false;
         this.isUpdated = false;
 
         ////////////////
