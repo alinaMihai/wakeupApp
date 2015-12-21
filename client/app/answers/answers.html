@@ -17,10 +17,10 @@
   </div>
   <h1 class="text-center">{{answerCtrl.question.text}} </h1>
   <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
-  <div class="list-group" bindonce class="list-group" ng-repeat="(key, value) in  answerCtrl.questionAnswers | groupBy: 'theDay'">
+  <div class="list-group" bindonce class="list-group" ng-repeat="group in  answerCtrl.questionAnswers | groupBy: 'theDay' | toArray:true |orderBy:'theDay':true">
     
-    <strong bo-bind="key">Date</strong>
-    <div class="row list-group-item" bindonce ng-repeat="answer in value">
+    <strong bo-bind="group.$key">Date</strong>
+    <div class="row list-group-item" bindonce ng-repeat="answer in group | orderBy:'_id'">
       <div class="col-xs-10 col-md-11 col-lg-11 answerText">
         <span ng-bind = "answer.text" ></span>
       </div>

@@ -17,12 +17,19 @@
 		</div>
 	</div>
 	
-	
+		<div class="row" >
+			<div class="col-lg-6">	<input type="text" class="form-control" required ng-keypress="vm.typeAhead" ng-model="vm.typeAhead" placeholder="search in quotes"></div>
+			<div class="col-lg-6">	Order by <button class="btn" ng-click="vm.orderBy='source'">Source</button>
+				<button class="btn" ng-click="vm.orderBy='author'">Author</button>
+			<button class="btn" ng-click="vm.orderBy='date'">Date</button></div>
+		</div>
+		<br>
 	<div class="container" id="quotes">
+	
 		<div class="row">
-				 <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
-			<div class="item" bindonce ng-repeat="quote in QuotesCtrl.quotes">
-		
+			<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+			<div class="item" bindonce ng-repeat="quote in QuotesCtrl.quotes | filter:vm.typeAhead | orderBy:vm.orderBy">
+				
 				<div class="well">
 					
 					<div class="options">
@@ -43,8 +50,8 @@
 	
 </div>
 <footer class="footer">
-  <div class="container">
-    <p>Wakeup App | 2015
-    </p>
-  </div>
+	<div class="container">
+		<p>Wakeup App | 2015
+		</p>
+	</div>
 </footer>
