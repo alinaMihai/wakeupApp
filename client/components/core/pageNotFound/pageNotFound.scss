@@ -1,0 +1,21 @@
+.container-table {
+    height: 100%;
+    margin-top: 12%;
+    margin-left: 8%;
+    background-image: radial-gradient(circle at top right, rgba(255, 255, 0, 0.88), rgba(240, 109, 6, 0.86) 25%);
+    color: white;
+    font-weight: bold;
+    font-family: serif;
+    font-size: 1.5em;
+    border-radius:30px;
+}
+
+.container-table {
+    display: table;
+}
+
+.vertical-center-row {
+    height: 280px;
+    display: table-cell;
+    vertical-align: middle;
+}
