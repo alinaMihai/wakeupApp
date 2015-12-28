@@ -9,10 +9,13 @@
                     templateUrl: 'app/topics/topic/topicDetail.html',
                     controller: 'TopicDetailCtrl as TopicDetailCtrl',
                     resolve: {
-                        topic: ['$stateParams', 'TopicService',
-                            function($stateParams, TopicService) {
+                        topic: ['$stateParams', 'TopicService','$state',
+                            function($stateParams, TopicService,$state) {
                                 return TopicService.getTopic($stateParams.topicId).then(function(topic) {
                                     return topic;
+                                },function(err){
+                                    console.log(err);
+                                    $state.go('pageNotFound');
                                 });
                             }
                         ]

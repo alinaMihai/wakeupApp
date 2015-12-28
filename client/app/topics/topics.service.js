@@ -28,9 +28,13 @@
 
         function getTopic(id) {
             var deferred = $q.defer();
-            $http.get('/api/topics/' + id).then(function(response) {
-                deferred.resolve(response.data);
-            });
+            $http.get('/api/topics/' + id)
+                .success(function(response) {
+                    deferred.resolve(response);
+                })
+                .error(function(err) {
+                    deferred.reject(err);
+                });
             return deferred.promise;
         }
 

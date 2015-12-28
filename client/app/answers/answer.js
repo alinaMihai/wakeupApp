@@ -9,10 +9,13 @@
                     templateUrl: 'app/answers/answers.html',
                     controller: 'AnswerCtrl as answerCtrl',
                     resolve: {
-                        'question': ['$stateParams', 'cached',
-                            function($stateParams, cached) {
+                        'question': ['$stateParams', 'cached','$state',
+                            function($stateParams, cached,$state) {
                                 return cached.getQuestion($stateParams.questionId).then(function(question) {
                                     return question;
+                                },function(err){
+                                    console.log(err);
+                                    $state.go('pageNotFound');
                                 });
                             }
                         ]

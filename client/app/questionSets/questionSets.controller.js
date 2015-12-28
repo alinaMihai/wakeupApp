@@ -26,6 +26,8 @@
             cached.getQuestionSets().then(function(questionSets) {
                 vm.questionSets = questionSets;
                 usSpinnerService.stop('spinner-1');
+            },function(err){
+                usSpinnerService.stop('spinner-1');
             });
         }
 

@@ -23,6 +23,8 @@
             cached.getTopics().then(function(topics) {
                 vm.topics = topics;
                 usSpinnerService.stop('spinner-1');
+            },function(err){
+                usSpinnerService.stop('spinner-1');
             });
 
         }

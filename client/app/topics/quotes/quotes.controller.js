@@ -24,6 +24,8 @@
             QuoteService.getQuotes(topic._id).then(function(quotes) {
                 vm.quotes = quotes;
                 usSpinnerService.stop('spinner-1');
+            },function(err){
+                usSpinnerService.stop('spinner-1');
             });
         }
 

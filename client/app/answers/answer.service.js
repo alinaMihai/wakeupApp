@@ -43,7 +43,6 @@
             var self = this;
             $http.put('/api/answers/' + answerObj._id, answerObj).then(function(response) {
                 deferred.resolve();
-
                 logger.success("Answer successfully updated", response.data, "Answer Updated");
             });
 

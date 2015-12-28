@@ -34,6 +34,8 @@
             cached.getQuestions(questionSetId).then(function(questionSet) {
                 vm.questionSetQuestions = questionSet;
                 usSpinnerService.stop('spinner-1');
+            },function(err){
+                $state.go('pageNotFound');
             });
         }
 

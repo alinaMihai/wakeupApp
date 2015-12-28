@@ -32,14 +32,17 @@
 
     // Get a single question 
     exports.show = function(req, res) {
-        var query = Question.find({});
+        var query = Question.findOne({});
         query.populate('questionSet');
         query.where('_id', req.params.id);
         query.exec(function(err, question) {
             if (err) {
                 return handleError(res, err);
             }
-            return res.status(200).json(question[0]);
+            if (!question) {
+                return res.status(404).json('Not Found');
+            }
+            return res.status(200).json(question);
         });
     };
 

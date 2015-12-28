@@ -21,11 +21,11 @@
             var deferred = $q.defer();
             $http.post('/api/quotes/' + topicId,
                 quoteObj).then(function(response) {
-
                 deferred.resolve(response.data);
                 logger.success("The quote was successfully created", response.data, "Success");
-            }, function(response) {
-                console.log("error", response);
+            }, function(err) {
+                deferred.reject(err);
+                console.log("error", err);
             });
             return deferred.promise;
         }
@@ -33,11 +33,10 @@
         function getQuotes(topicId) {
             var deferred = $q.defer();
             $http.get('/api/quotes/' + topicId).then(function(response) {
-
                 deferred.resolve(response.data);
-
-            }, function(response) {
-                console.log("error", response);
+            }, function(err) {
+                deferred.reject(err);
+                console.log("error", err);
             });
             return deferred.promise;
         }
@@ -45,11 +44,10 @@
         function getQuote(quoteId) {
             var deferred = $q.defer();
             $http.get('/api/quotes/quote/' + quoteId).then(function(response) {
-
                 deferred.resolve(response.data);
-
-            }, function(response) {
-                console.log("error", response);
+            }, function(err) {
+                deferred.reject(err);
+                console.log("error", err);
             });
             return deferred.promise;
         }
@@ -68,11 +66,11 @@
             var deferred = $q.defer();
             $http.put('/api/quotes/' + quoteObj._id,
                 quoteObj).then(function(response) {
-
                 deferred.resolve(response.data);
                 logger.success("The quote was successfully updated", response.data, "Success");
-            }, function(response) {
-                console.log("error", response);
+            }, function(err) {
+                deferred.reject(err);
+                console.log("error", err);
             });
             return deferred.promise;
         }

@@ -22,6 +22,7 @@
         function link(scope, element, attrs) {
             $('html').keydown(function(e) {
                 switch (e.which) {
+                    //right arrow
                     case 39:
                         {
                             if (scope.nextId) {
@@ -32,6 +33,7 @@
 
                             break;
                         }
+                    //left arrow    
                     case 37:
                         {
                             if (scope.prevId) {

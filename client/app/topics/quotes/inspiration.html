@@ -9,12 +9,12 @@
             </ol>
         </div>
         <div class="col-xs-4" ng-if="!QuotesCtrl.topic.isDefault">
-            <a id="addQuote" class="btn btn-info btn-lg" ng-click="QuotesCtrl.openQuoteModal('lg')">
+            <a id="addQuote" class="btn btn-info btn-block" ng-click="QuotesCtrl.openQuoteModal('lg')">
                 <span class="glyphicon glyphicon-plus"></span> Add Quote
             </a>
         </div>
     </div>
-    <div class="row">
+    <div class="row searchQuotes">
         <div class="col-lg-6">
             <input type="text" class="form-control" required ng-keypress="vm.typeAhead" ng-model="vm.typeAhead" placeholder="search in quotes">
         </div>

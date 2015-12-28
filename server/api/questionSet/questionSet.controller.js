@@ -66,20 +66,28 @@
     //get question list
     exports.getQuestionList = function(req, res) {
         var userEmail = req.user.email;
-        var query = QuestionSet.find({});
+        var query = QuestionSet.findOne({});
         query.select(
-            'name description impact createDate practiceTimes questions isDefault'
+            'name description user impact createDate practiceTimes questions isDefault'
         );
 
         query.populate('questions');
         query.where('_id', req.params.id);
         // query.where('user', userEmail);
-        query.exec(function(err, questions) {
+        query.exec(function(err, questionSet) {
 
             if (err) {
                 return handleError(res, err);
             }
-            return res.status(200).json(questions[0]);
+            if (!questionSet) {
+                return res.status(404).send('Not Found');
+            }
+            if (questionSet && !questionSet.isDefault) {
+                if (questionSet.user !== userEmail) {
+                    return res.status(404).send('Not Found');
+                }
+            }
+            return res.status(200).json(questionSet);
         });
     }
 

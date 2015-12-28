@@ -58,7 +58,7 @@
     //get topic by id
     exports.show = function(req, res) {
         var userEmail = req.user.email;
-        var query = Topic.find({});
+        var query = Topic.findOne({});
 
         query.populate('quoteList');
         query.populate('questionSetList');
@@ -69,7 +69,15 @@
             if (err) {
                 return handleError(res, err);
             }
-            return res.status(200).json(topic[0]);
+            if (!topic) {
+                return res.status(404).json('Not found');
+            }
+            if (topic && !topic.isDefault) {
+                if (topic.user !== userEmail) {
+                    return res.status(404).json('Not found');
+                }
+            }
+            return res.status(200).json(topic);
         });
 
     };

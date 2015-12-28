@@ -48,15 +48,23 @@
 
     //get quote by id
     exports.show = function(req, res) {
-
-        var query = Quote.find({});
-
+        var userEmail = req.user.email;
+        var query = Quote.findOne({});
         query.where('_id', req.params.id);
+        query.populate('topic');
         query.exec(function(err, quote) {
             if (err) {
                 return handleError(res, err);
             }
-            return res.status(200).json(quote[0]);
+            if (!quote) {
+                return res.status(404).json('Not found');
+            }
+            if (quote && !quote.topic.isDefault) {
+                if (quote.topic.user !== userEmail) {
+                    return res.status(404).json('Not found');
+                }
+            }
+            return res.status(200).json(quote);
         });
 
     };
