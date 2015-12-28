@@ -1,30 +1,27 @@
 <div class="modal-header">
-	<h3 class="modal-title">{{modalCtrl.data.heading}} Quote</h3>
+    <h3 class="modal-title">{{modalCtrl.data.heading}} Quote</h3>
 </div>
 <div class="modal-body">
-	
-	<form name="addQuoteForm" >
-		<div class="form-group" ng-class="{'has-error':addQuoteForm.author.$invalid && addQuoteForm.author.$dirty}">
-			<label for="author">Author</label>
-			<input type="text" name="author" ng-model="modalCtrl.data.author" class="form-control" required>
-		</div>
-		<div class="form-group" ng-class="{'has-error':addQuoteForm.theText.$invalid && addQuoteForm.theText.$dirty}">
-			<label for="theText">Text</label>
-			<textarea  ng-model='modalCtrl.data.text' name="theText" class="form-control" required></textarea>
-		</div>
-		<div class="form-group">
-			<label for="source">Source</label>
-			<input type="text" name="source" ng-model="modalCtrl.data.source" class="form-control" >
-		</div>
-		<div class="form-group">
-			<label for="comment">Comment</label>
-			<textarea  ng-model='modalCtrl.data.comment' name="text" class="form-control" ></textarea>
-		</div>
-		
-	</form>
-	
+    <form name="addQuoteForm">
+        <div class="form-group" ng-class="{'has-error':addQuoteForm.author.$invalid && addQuoteForm.author.$dirty}">
+            <label for="author">Author</label>
+            <input type="text" name="author" ng-model="modalCtrl.data.author" class="form-control" required>
+        </div>
+        <div class="form-group" ng-class="{'has-error':addQuoteForm.theText.$invalid && addQuoteForm.theText.$dirty}">
+            <label for="theText">Text</label>
+            <textarea ng-model='modalCtrl.data.text' name="theText" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="source">Source</label>
+            <input type="text" name="source" ng-model="modalCtrl.data.source" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea ng-model='modalCtrl.data.comment' name="text" class="form-control"></textarea>
+        </div>
+    </form>
 </div>
 <div class="modal-footer">
-	<button class="btn btn-primary btn-lg" type="button" ng-click="modalCtrl.ok()" ng-disabled="addTopicForm.$invalid">{{modalCtrl.data.heading}}</button>
-	<button class="btn btn-warning btn-lg" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
+    <button class="btn btn-primary btn-lg" type="button" ng-click="modalCtrl.ok()" ng-disabled="addTopicForm.$invalid">{{modalCtrl.data.heading}}</button>
+    <button class="btn btn-warning btn-lg" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
 </div>

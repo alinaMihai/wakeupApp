@@ -1,0 +1,13 @@
+<div refresh-dir>
+    <div class="backgroundOverlay">
+        <div ng-if="vm.practiceSessionService.questionSetSession" id="sessionMode">
+            <button id="endQsSessionBtn" ng-click="vm.endQuestionSet()" class="btn btn-lg btn-primary">End Question Set Session</button>
+        </div>
+    </div>
+    <question-modal ng-show="vm.practiceSessionService.questionSetSession" repeat-qs="vm.practiceSessionService.repeatQS" cindex="vm.practiceSessionService.currentQuestionIndex" process-question='vm.processQuestion()'>
+        <label for="currentAnswer">
+            <p>{{vm.currentQuestion.text}}</p>
+            <textarea id="answerTextArea" type="text" id="currentAnswer" ng-model=vm.currentAnswer rows="7" cols="60"></textarea>
+        </label>
+    </question-modal>
+</div>

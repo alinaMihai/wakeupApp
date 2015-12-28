@@ -1,26 +1,23 @@
 <div class="modal-header">
-	<h3 class="modal-title">Edit Question Set</h3>
+    <h3 class="modal-title">Edit Question Set</h3>
 </div>
 <div class="modal-body">
-	
-	<form name="editQuestionSetForm" >
-		<div class="form-group" ng-class="{'has-error':editQuestionSetForm.questionSetName.$invalid}">
-			<label for="questionSetName">Question Set Name</label>
-			<input type="text" name="questionSetName" ng-model="modalCtrl.data.name" class="form-control" required>
-		</div>
-		<div class="form-group">
-			<label for="impact">Impact</label>
-			<input type="number" ng-model='modalCtrl.data.impact' name="impact" class="form-control" min=0 max=10>
-		</div>
-		<div class="form-group">
-			<label for="description">Description</label>
-			<textarea  ng-model='modalCtrl.data.description' name="description" class="form-control"></textarea>
-		</div>
-		
-	</form>
-	
+    <form name="editQuestionSetForm">
+        <div class="form-group" ng-class="{'has-error':editQuestionSetForm.questionSetName.$invalid}">
+            <label for="questionSetName">Question Set Name</label>
+            <input type="text" name="questionSetName" ng-model="modalCtrl.data.name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="impact">Impact</label>
+            <input type="number" ng-model='modalCtrl.data.impact' name="impact" class="form-control" min=0 max=10>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea ng-model='modalCtrl.data.description' name="description" class="form-control"></textarea>
+        </div>
+    </form>
 </div>
 <div class="modal-footer">
-	<button class="btn btn-primary" type="button" ng-click="modalCtrl.ok()" ng-disabled="editQuestionSetForm.$invalid">Update</button>
-	<button class="btn btn-warning" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
+    <button class="btn btn-primary" type="button" ng-click="modalCtrl.ok()" ng-disabled="editQuestionSetForm.$invalid">Update</button>
+    <button class="btn btn-warning" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
 </div>

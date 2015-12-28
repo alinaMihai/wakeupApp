@@ -1,0 +1,10 @@
+<div style="display:none" id="myQuestionModal">
+    <div class="questionModal">
+        <form name="answerForm" ng-submit="processQuestion(); answerForm.$setPristine();">
+            <div class="form-group">
+                <ng-transclude></ng-transclude>
+            </div>
+            <button type="submit" class="btn btn-block btn-primary">OK</button>
+        </form>
+    </div>
+</div>

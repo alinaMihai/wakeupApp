@@ -1,6 +1,5 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 $fa-font-path: "/bower_components/font-awesome/fonts";
-
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import '../bower_components/toastr/toastr.scss';
 @import 'font-awesome/scss/font-awesome';
@@ -16,10 +15,9 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
-.breadcrumb{
-	background-color:white;
+.breadcrumb {
+    background-color: white;
 }
-
 
 // Component styles are injected through grunt
 // injector

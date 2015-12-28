@@ -1,42 +1,38 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
 <div class="container">
-  
-  <div class="row">
-    <div class="col-lg-8"><h1>Your Question Sets are:</h1></div>
-    <div class="col-lg-4"><button id="createQuestionSetBtn" class="btn btn-lg btn-primary" ng-click="questionSets.addQuestionSetBool=true"><span class="glyphicon glyphicon-plus" aria-hidden="true" ></span> Create Set</button></div>
-  </div>
-  
-  
-  <div ng-if="questionSets.addQuestionSetBool">
-    <form name="questionSets.addQuestionSet"  novalidate>
-      <div class="group-control" ng-class="{'has-error':questionSets.hasErrorAddForm()}">
-        <label for="questionSetText">Question Set Name:<input id="questionSetText" type="text" name="questionSetText" class="input input-lg form-control" required ng-model="questionSets.questionSetText"></label>
-        <button type="submit" class="btn btn-lg btn-success" ng-disabled="!questionSets.addQuestionSet.$valid" ng-click="questionSets.saveQuestionSet()">Save</button>
-        <button class="btn btn-lg btn-danger" ng-click="questionSets.cancelAddQuestionSet()">Cancel</button>
-      </div>
-      
-    </form>
-    
-  </div>
-  
-  <ol class="rounded-list" id="qsList">
-    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
-    <li bindonce ng-repeat="qs in questionSets.questionSets| orderBy:['isDefault','-practiceTimes']">
-      <div class="col-xs-10 col-md-11 col-lg-11"><strong><a ui-sref="questionList({questionSetId:qs._id})">  {{qs.name}}</a></strong></div>
-      <div class="col-xs-2 col-md-1 col-lg-1 options">
-        <a class="trash" confirm-click="Are you sure you want to delete this question set?" ng-click="questionSets.deleteQuestionSet(qs)"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-        <a  ng-click='questionSets.openModal("lg",qs._id)' ng-if="!qs.isDefault"><span class="fa fa-pencil-square-o"></span></a>
-      </div>
-    </li>
-  </ol>
-  
-  
+    <div class="row">
+        <div class="col-lg-8">
+            <h1>Your Question Sets are:</h1></div>
+        <div class="col-lg-4">
+            <button id="createQuestionSetBtn" class="btn btn-lg btn-primary" ng-click="questionSets.addQuestionSetBool=true"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Set</button>
+        </div>
+    </div>
+    <div ng-if="questionSets.addQuestionSetBool">
+        <form name="questionSets.addQuestionSet" novalidate>
+            <div class="group-control" ng-class="{'has-error':questionSets.hasErrorAddForm()}">
+                <label for="questionSetText">Question Set Name:
+                    <input id="questionSetText" type="text" name="questionSetText" class="input input-lg form-control" required ng-model="questionSets.questionSetText">
+                </label>
+                <button type="submit" class="btn btn-lg btn-success" ng-disabled="!questionSets.addQuestionSet.$valid" ng-click="questionSets.saveQuestionSet()">Save</button>
+                <button class="btn btn-lg btn-danger" ng-click="questionSets.cancelAddQuestionSet()">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <ol class="rounded-list" id="qsList">
+        <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+        <li bindonce ng-repeat="qs in questionSets.questionSets| orderBy:['isDefault','-practiceTimes']">
+            <div class="col-xs-10 col-md-11 col-lg-11"><strong><a ui-sref="questionList({questionSetId:qs._id})">  {{qs.name}}</a></strong></div>
+            <div class="col-xs-2 col-md-1 col-lg-1 options">
+                <a class="trash" confirm-click="Are you sure you want to delete this question set?" ng-click="questionSets.deleteQuestionSet(qs)"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+                <a ng-click='questionSets.openModal("lg",qs._id)' ng-if="!qs.isDefault"><span class="fa fa-pencil-square-o"></span></a>
+            </div>
+        </li>
+    </ol>
 </div>
 <div>
-  <footer class="footer">
-  <div class="container">
-    <p>Wakeup App | 2015
-    </p>
-  </div>
-</footer>
+    <footer class="footer">
+        <div class="container">
+            <p>Wakeup App | 2015
+            </p>
+        </div>
+    </footer>

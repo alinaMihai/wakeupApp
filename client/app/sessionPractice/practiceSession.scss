@@ -1,0 +1,27 @@
+.backgroundOverlay {
+    position: relative;
+    height: 504px;
+}
+
+#sessionMode {
+    display: block;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 135%;
+    background-image: url(../../assets/images/pathToHeart.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1001;
+}
+
+#endQsSessionBtn {
+    margin: 2%;
+    border-radius: 1em;
+    background-color: #5652B1;
+}
+
+#endQsSessionBtn:hover {
+    background-color: #5652A1;
+}
