@@ -44,6 +44,12 @@
                         }
                 }
             });
+            scope.$on(
+                "$destroy",
+                function handleDestroyEvent() {
+                    $('html').off('keydown');
+                }
+            );
         }
     }
 
