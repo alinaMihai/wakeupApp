@@ -45,7 +45,7 @@
 
         function showQuestion(element) {
             $(element).children().first().css('display', 'block');
-            var sound = ngAudio.load("assets/sounds/awareness.mp3");
+            var sound = ngAudio.load("assets/sounds/Bell-ding.mp3");
             sound.play();
 
         }

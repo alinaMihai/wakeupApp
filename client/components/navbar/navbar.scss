@@ -1,4 +1,21 @@
-#navbar-main ul li a:hover{
-  /*  background-color:#898E95; */
-    border-bottom: solid;
+#navbar-main ul li a:hover {
+    background-color: #768FD1;
+    color: white;
+}
+
+.navbar-blue {
+    background-color: #BED5EB;
+    border: 0px;
+    ul li a,
+    a.navbar-brand {
+        font-weight: bold;
+        color: rgba(58, 51, 82, 0.64);
+    }
+    ul li.active a {
+        background-color: rgba(78, 86, 144, 0.63);
+        color: white;
+    }
+    .icon-bar {
+        background-color: white;
+    }
 }
