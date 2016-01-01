@@ -53,7 +53,8 @@
                 },
                 function(response) {
                     //error handling
-                    console.log("error", response);
+                    logger.log("error", response);
+                    logger.error("The answer couldn't be saved", response.data, "Error");
                 });
             return deferred.promise;
         }
@@ -66,7 +67,8 @@
                 deferred.resolve(response.data);
                 logger.success("The question was saved", response.data, "Success");
             }, function(response) {
-                console.log("error", response);
+                logger.error("The question could not be saved", response.data, "Error");
+                logger.log("error", response);
             });
             return deferred.promise;
         }

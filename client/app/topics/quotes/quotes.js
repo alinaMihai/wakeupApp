@@ -9,10 +9,18 @@
                     templateUrl: 'app/topics/quotes/inspiration.html',
                     controller: 'QuotesCtrl as QuotesCtrl',
                     resolve: {
-                        topic: ['$stateParams', 'TopicService',
-                            function($stateParams, TopicService) {
+                        topic: ['$stateParams', 'TopicService','$state',
+                            function($stateParams, TopicService,$state) {
                                 return TopicService.getTopic($stateParams.topicId).then(function(topic) {
                                     return topic;
+                                },function(err){
+                                    if(typeof err==="string" && err.toLocaleLowerCase().replace(" ",'')==="notfound"){
+                                        $state.go('pageNotFound');    
+                                    }else{
+                                        $state.go('login');
+                                    }
+                                    console.log(err);
+                                    
                                 });
 
                             }

@@ -25,6 +25,11 @@
             cached.getAnswers(questionId).then(function(questionAnswers) {
                 vm.questionAnswers = groupAnswersByDate(questionAnswers);
                 usSpinnerService.stop('spinner-1');
+            },function(err){
+                usSpinnerService.stop('spinner-1');
+                if (err.toLocaleLowerCase().replace(" ", '') === "notfound") {
+                    $state.go('pageNotFound');
+                }
             });
         }
 

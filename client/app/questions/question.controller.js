@@ -5,13 +5,13 @@
         .module('wakeupApp')
         .controller('QuestionCtrl', QuestionCtrl);
 
-    QuestionCtrl.$inject = ['cached', '$stateParams', 'QuestionService', '$uibModal', 'usSpinnerService','PracticeSessionService','$state'];
+    QuestionCtrl.$inject = ['cached', '$stateParams', 'QuestionService', '$uibModal', 'usSpinnerService', 'PracticeSessionService', '$state'];
 
     /* @ngInject */
-    function QuestionCtrl(cached, $stateParams, QuestionService, $uibModal, usSpinnerService,PracticeSessionService,$state) {
+    function QuestionCtrl(cached, $stateParams, QuestionService, $uibModal, usSpinnerService, PracticeSessionService, $state) {
         var vm = this;
         vm.title = 'Question  List';
-       
+
         vm.addQuestionBool = false;
 
         vm.questionService = QuestionService;
@@ -26,7 +26,7 @@
         vm.openEditQuestionModal = openEditQuestionModal;
 
         var questionSetId = $stateParams.questionSetId;
-       
+
         activate();
 
 
@@ -34,8 +34,13 @@
             cached.getQuestions(questionSetId).then(function(questionSet) {
                 vm.questionSetQuestions = questionSet;
                 usSpinnerService.stop('spinner-1');
-            },function(err){
-                $state.go('pageNotFound');
+            }, function(err) {
+                if (typeof err === "string" && err.toLocaleLowerCase().replace(" ", '') === "notfound") {
+                    $state.go('pageNotFound');
+                } else {
+                    $state.go('login');
+                }
+
             });
         }
 
@@ -44,9 +49,11 @@
         }
 
         function startQuestionSet() {
-            PracticeSessionService.questionInterval=vm.questionInterval;
-            PracticeSessionService.repeatQS=vm.repeatQS;
-            $state.go('practiceSession',{'questionSetId':questionSetId});
+            PracticeSessionService.questionInterval = vm.questionInterval;
+            PracticeSessionService.repeatQS = vm.repeatQS;
+            $state.go('practiceSession', {
+                'questionSetId': questionSetId
+            });
         }
 
         function saveQuestion() {

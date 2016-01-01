@@ -14,8 +14,13 @@
                                 return TopicService.getTopic($stateParams.topicId).then(function(topic) {
                                     return topic;
                                 },function(err){
+                                    if(typeof err==="string" && err.toLocaleLowerCase().replace(" ",'')==="notfound"){
+                                        $state.go('pageNotFound');    
+                                    }else{
+                                        $state.go('login');
+                                    }
                                     console.log(err);
-                                    $state.go('pageNotFound');
+                                    
                                 });
                             }
                         ]
