@@ -8,6 +8,14 @@
 .options a{
     cursor:pointer;
 }
+.arrowBtn{
+   background-color:#768FD1;
+   color:white;
+}
+.arrowBtn:hover{
+   background-color:#4E5690;
+   color:white;
+}
 
 // source https://codyhouse.co/gem/back-to-top/
 .cd-top.cd-is-visible {

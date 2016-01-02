@@ -1,141 +1,182 @@
-body{
-	position:relative; 
-}
-// popup overlay
-.black_overlay{
-	display: block;
-	position: absolute;
-	top: 0%;
-	left: 0%;
-	width: 100%;
-	height: 100%;
-	background-color: black;
-	z-index:1001;
-	-moz-opacity: 0.8;
-	opacity:.80;
-	filter: alpha(opacity=80);
+body {
+    position: relative;
 }
 
-.white_content, .questionModal {
-	display: block;
-	position: absolute;
+// popup overlay
+.black_overlay {
+    display: block;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=80);
+}
+
+.white_content,
+.questionModal {
+    display: block;
+    position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-	width: inherit;
-	height: inherit;	
-	z-index:1002;
-	overflow: auto;
-	border-radius: 1em;
+    width: inherit;
+    height: inherit;
+    z-index: 1002;
+    overflow: auto;
+    border-radius: 1em;
     background-color: #9FAECF;
 }
 
 @media only screen and (max-width: 700px) {
-.questionModal{
-	width:80%;
+    .questionModal {
+        width: 80%;
+    }
 }
 
+.white_content {
+    padding: 10px;
 }
 
-.white_content{
-	padding: 10px;
+.questionModal {
+    padding: 1.5%;
 }
 
-.questionModal{
-	padding: 1.5%;	
-}
-.questionModal p{
-	wrap-word:word-break;
+.questionModal p {
+    wrap-word: word-break;
 }
 
-#addQuestionTextArea{
-	 resize: vertical; 
+#addQuestionTextArea {
+    resize: vertical;
 }
 
-
-#practiceSessionBtn,#addQuestionBtn,#createQuestionSetBtn{
-	margin-bottom:1em;
+#practiceSessionBtn {
+    background: #768FD1;
+    color: white;
 }
-
+#practiceSessionBtn:hover{
+	background:#4E5690;
+}
+#practiceSessionBtn,
+#addQuestionBtn,
+#createQuestionSetBtn {
+    margin-bottom: 1em;
+}
 
 //question list css
-#questionList div.list-group-item:hover{
-  background-color:#E7E7E7;
+#questionList div.list-group-item:hover {
+    background-color: #AC9AD2;
+    color: white;
+    transition: all .3s ease-out;
 }
 
-#questionList a{
-	display:block;
-	cursor:pointer;
-}
-#questionList a:hover{
-font-weight:bold;
-text-decoration:none;	
-}
-#questionList{
-   height: 14.5em;
-   overflow: auto;
-}
-#questionList div.list-group-item{
-   margin-left:0px;
-   margin-right:0px;
+#questionList div.list-group-item:hover a {
+    color: white;
+    font-size: 1.1em;
 }
 
-#addQuestionBtn{
-	margin-top:25px;
-	float:right;
-}
-#cancelBtn{
-	float:right;
-}
-#answerTextArea{
-	width:100%; 
+#questionList a.questionTextLink {
+    color: rgba(58, 51, 82, 0.80);
 }
 
-.noQuestionsBadge{
-	padding:5px;
-	margin-bottom:5px;
-	background-color: plum;
+#questionList a span.numberItem {
+    margin-right: 25px;
+    border-radius: 35px;
+    background: white;
+    padding: 10px;
+    color: black;
+    font-size: 0.9em;
+}
+
+#questionList div.list-group-item:hover span.numberItem {
+    background: rgba(58, 51, 82, 0.80);
+    color: white;
+    font-size: 1em;
+}
+
+#questionList a {
+    display: block;
+    cursor: pointer;
+}
+
+#questionList a:hover {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#questionList {
+    height: 14.5em;
+    overflow: auto;
+}
+
+#questionList div.list-group-item {
+    margin-left: 0px;
+    margin-right: 0px;
+    background-color: rgba(219, 206, 241, 0.53);
+}
+
+#addQuestionBtn {
+    margin-top: 25px;
+    float: right;
+}
+
+#cancelBtn {
+    float: right;
+}
+
+#answerTextArea {
+    width: 100%;
+}
+
+.noQuestionsBadge {
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: plum;
 }
 
 .note {
     position: relative;
     padding: 1em 1.5em;
     color: #fff;
-    background-color: #5CB85C;
+    background-color: #AC9AD2;
     overflow: hidden;
     list-style: none;
 }
-.note li{
-	padding: 4px;
-	border-bottom: 1px solid;
+
+.note li {
+    padding: 4px;
+    border-bottom: 1px solid;
 }
 
 .note:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-width: 0 16px 16px 0;
-  border-style: solid;
-  border-color: white white green white;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 16px 16px 0;
+    border-style: solid;
+    border-color: white white #3A3352 white;
     background: rgba(68, 157, 68, 0.29);
-  -webkit-box-shadow:  0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 0px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 0px rgba(0, 0, 0, 0.2);
-  /* Firefox 3.0 damage limitation */
-  display: block; width: 0;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 0px rgba(0, 0, 0, 0.2);
+    /* Firefox 3.0 damage limitation */
+    display: block;
+    width: 0;
 }
 
 .note.rounded {
-  -moz-border-radius: 5px 0 5px 5px;
-  border-radius: 5px 0 5px 5px;
+    -moz-border-radius: 5px 0 5px 5px;
+    border-radius: 5px 0 5px 5px;
 }
 
 .note.rounded:before {
-  border-width: 8px;
-  border-color: #fff #fff transparent transparent;
-  -moz-border-radius: 0 0 0 5px;
-  border-radius: 0 0 0 5px;
+    border-width: 8px;
+    border-color: #fff #fff transparent transparent;
+    -moz-border-radius: 0 0 0 5px;
+    border-radius: 0 0 0 5px;
 }
-
-

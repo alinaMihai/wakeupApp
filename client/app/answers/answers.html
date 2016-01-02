@@ -11,8 +11,8 @@
       </ol>
     </div>
     <navigate-arrows prev-id="answerCtrl.prevQuestionId" next-id="answerCtrl.nextQuestionId"></navigate-arrows>
-    <div id="0" class="col-xs-2 col-md-2" ><a  class="btn btn-success btn-block" ui-sref="answerList({questionId:answerCtrl.prevQuestionId})" ng-disabled="!answerCtrl.prevQuestionId"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
-    <div class="col-xs-2 col-md-2" ><a  class="btn btn-success btn-block" ui-sref="answerList({questionId:answerCtrl.nextQuestionId})" ng-disabled="!answerCtrl.nextQuestionId"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
+    <div id="0" class="col-xs-2 col-md-2" ><a  class="arrowBtn btn btn-block" ui-sref="answerList({questionId:answerCtrl.prevQuestionId})" ng-disabled="!answerCtrl.prevQuestionId"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+    <div class="col-xs-2 col-md-2" ><a  class="arrowBtn btn btn-block" ui-sref="answerList({questionId:answerCtrl.nextQuestionId})" ng-disabled="!answerCtrl.nextQuestionId"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
     
   </div>
   <h1 class="text-center">{{answerCtrl.question.text}} </h1>

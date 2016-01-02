@@ -15,7 +15,7 @@
 
 .rounded-list li {
     height: 43px;
-    background: #F8F8F8;
+    background: rgba(219, 206, 241, 0.53);
     color: #444;
     margin: 0.5em 0;
     padding-top: 0.2em;
@@ -38,8 +38,12 @@
     margin-top: 10px;
 }
 
-.rounded-list li:hover {
-    background: #E7E7E7;
+.rounded-list li:hover{
+    background: #AC9AD2;
+}
+
+.rounded-list li:hover div a{
+  color:white;
 }
 
 .rounded-list li:hover:before {
