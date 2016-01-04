@@ -7,10 +7,12 @@
 
     var router = express.Router();
 
+     router.get('/authors', auth.isAuthenticated(), controller.getAuthors);
     router.get('/:topicId', auth.isAuthenticated(), controller.index);
     router.get('/quote/:id', auth.isAuthenticated(), controller.show);
     router.post('/:topicId', auth.isAuthenticated(), controller.create);
     router.put('/:id', auth.isAuthenticated(), controller.update);
     router.delete('/:id', auth.isAuthenticated(), controller.destroy);
+
     module.exports = router;
 })();

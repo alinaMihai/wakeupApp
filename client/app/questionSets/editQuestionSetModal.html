@@ -1,9 +1,9 @@
 <div class="modal-header">
-    <h3 class="modal-title">Edit Question Set</h3>
+    <h3 class="modal-title">{{modalCtrl.data.questionSetHeading}} Question Set</h3>
 </div>
 <div class="modal-body">
     <form name="editQuestionSetForm">
-        <div class="form-group" ng-class="{'has-error':editQuestionSetForm.questionSetName.$invalid}">
+        <div class="form-group" ng-class="{'has-error':editQuestionSetForm.questionSetName.$invalid &&editQuestionSetForm.questionSetName.$dirty}">
             <label for="questionSetName">Question Set Name</label>
             <input type="text" name="questionSetName" ng-model="modalCtrl.data.name" class="form-control" required>
         </div>
@@ -18,6 +18,6 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="modalCtrl.ok()" ng-disabled="editQuestionSetForm.$invalid">Update</button>
+    <button class="btn btn-primary" type="button" ng-click="modalCtrl.ok()" ng-disabled="editQuestionSetForm.$invalid">{{modalCtrl.data.questionSetHeading}}</button>
     <button class="btn btn-warning" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
 </div>

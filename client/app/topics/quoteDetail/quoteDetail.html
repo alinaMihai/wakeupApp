@@ -30,7 +30,7 @@
 	<div class="row center">
 		<p>Added on: {{QuoteDetailCtrl.quote.date | date:'dd/MM/yyyy hh:mm'}}</p>
 		<hr>
-		Source <cite ng-bind="QuoteDetailCtrl.quote.source||'N/A'"></cite>
+		Source <cite ng-bind-html="(QuoteDetailCtrl.quote.source||'N/A')|linkSource"></cite>
 		<hr>
 		Comments:
 		<p> {{QuoteDetailCtrl.quote.comment||'N/A'}}</p>

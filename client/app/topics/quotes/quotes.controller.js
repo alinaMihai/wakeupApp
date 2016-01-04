@@ -24,7 +24,7 @@
             QuoteService.getQuotes(topic._id).then(function(quotes) {
                 vm.quotes = quotes;
                 usSpinnerService.stop('spinner-1');
-            },function(err){
+            }, function(err) {
                 usSpinnerService.stop('spinner-1');
             });
         }
@@ -37,9 +37,12 @@
                 source: '',
                 comment: ''
             };
+
             var data = quote ? angular.copy(quote) : emptyObj;
             data.heading = quote ? 'Edit' : 'Add';
-
+            QuoteService.getAuthors().then(function(response) {
+                data.authors = response.data;
+            });
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/topics/quotes/addQuoteModal.html',
@@ -51,6 +54,7 @@
                     }
                 }
             });
+
 
             modalInstance.result.then(function(data) {
                 var quoteObj = {};

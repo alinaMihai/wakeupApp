@@ -4,21 +4,11 @@
         <div class="col-lg-8">
             <h1>Question Sets</h1></div>
         <div class="col-lg-4">
-            <button id="createQuestionSetBtn" class="btn btn-info btn-block" ng-click="questionSets.addQuestionSetBool=true"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Set</button>
+            <button id="createQuestionSetBtn" class="btn btn-info btn-block" ng-click="questionSets.openModal('lg')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Set</button>
         </div>
     </div>
     <hr>
-    <div ng-if="questionSets.addQuestionSetBool">
-        <form name="questionSets.addQuestionSet" novalidate>
-            <div class="group-control" ng-class="{'has-error':questionSets.hasErrorAddForm()}">
-                <label for="questionSetText">Question Set Name:
-                    <input id="questionSetText" type="text" name="questionSetText" class="input input-lg form-control" required ng-model="questionSets.questionSetText">
-                </label>
-                <button type="submit" class="btn btn-lg btn-success" ng-disabled="!questionSets.addQuestionSet.$valid" ng-click="questionSets.saveQuestionSet()">Save</button>
-                <button class="btn btn-lg btn-danger" ng-click="questionSets.cancelAddQuestionSet()">Cancel</button>
-            </div>
-        </form>
-    </div>
+    
     <ol class="rounded-list" id="qsList">
         <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
         <li bindonce ng-repeat="qs in questionSets.questionSets| orderBy:['isDefault','-practiceTimes']">

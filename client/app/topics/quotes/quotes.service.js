@@ -14,6 +14,7 @@
         this.getQuote = getQuote;
         this.deleteQuote = deleteQuote;
         this.updateQuote = updateQuote;
+        this.getAuthors=getAuthors;
 
         ////////////////
 
@@ -25,7 +26,7 @@
                 logger.success("The quote was successfully created", response.data, "Success");
             }, function(err) {
                 deferred.reject(err);
-                console.log("error", err);
+                logger.error("Could not create quote",err,"Error");
             });
             return deferred.promise;
         }
@@ -36,7 +37,7 @@
                 deferred.resolve(response.data);
             }, function(err) {
                 deferred.reject(err);
-                console.log("error", err);
+                logger.error("Could not get quotes",err,"Error");
             });
             return deferred.promise;
         }
@@ -47,7 +48,7 @@
                 deferred.resolve(response.data);
             }, function(err) {
                 deferred.reject(err);
-                console.log("error", err);
+                logger.error("Could not get quote",err,"Error");
             });
             return deferred.promise;
         }
@@ -58,6 +59,9 @@
                 var quote = response.data;
                 deferred.resolve();
                 logger.success("Quote successfully deleted", quote, "Quote Deleted");
+            },function(err){
+                deferred.reject(err);
+                logger.error("Quote could not be deleted",err,"Error");
             });
             return deferred.promise;
         }
@@ -70,7 +74,17 @@
                 logger.success("The quote was successfully updated", response.data, "Success");
             }, function(err) {
                 deferred.reject(err);
-                console.log("error", err);
+                logger.error("Quote could not be updated",err,"Error");
+            });
+            return deferred.promise;
+        }
+
+        function getAuthors(){
+            var deferred=$q.defer();
+            $http.get('/api/quotes/authors').then(function(authors){
+                deferred.resolve(authors);
+            },function(err){
+                deferred.reject(err);
             });
             return deferred.promise;
         }

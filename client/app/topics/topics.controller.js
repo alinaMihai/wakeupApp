@@ -66,7 +66,7 @@
                 topicObj.description = data.description;
                 topicObj.createDate = new Date().getTime();
                 topicObj.questionSetList = data.questionSetList;
-                console.log(topicObj);
+                
                 return topic ? updateTopic(topicObj) : createTopic(topicObj);
 
             }, function() {

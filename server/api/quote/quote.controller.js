@@ -41,6 +41,13 @@
                 if (err) {
                     return handleError(res, err);
                 }
+                Topic.update({
+                    _id: quote.topic
+                }, {
+                    $addToSet: {
+                        'quoteList': quote._id
+                    }
+                }).exec();
                 return res.status(201).json(quote);
             });
         });
@@ -129,5 +136,34 @@
                 return res.status(204).send('No Content');
             });
         });
+    }
+
+    //get available authors in user quotes
+    exports.getAuthors = function(req, res) {
+        var userEmail = req.user.email;
+        var query = Topic.find({});
+        query.where("user", userEmail);
+        query.populate("quoteList");
+        query.exec(function(err, topics) {
+            var uniqueAuthors = [];
+            if (err) {
+                return handleError(res, err);
+            }
+            topics.forEach(function(topic) {
+              
+                topic.quoteList.forEach(function(quote){
+                   if(quote.author && uniqueAuthors.indexOf(quote.author)===-1){
+                       uniqueAuthors.push(quote.author);
+                   }
+                });
+            });
+    
+            return res.status(200).json(uniqueAuthors);
+
+        });
+    }
+
+    function getUniqueAuthors(topics){
+
     }
 })();

@@ -11,7 +11,6 @@
     function QuestionSetsCtrl(cached, QuestionSetService, $uibModal, $location, usSpinnerService) {
         var vm = this;
         vm.title = 'Question Sets List';
-        vm.saveQuestionSet = saveQuestionSet;
         vm.cancelAddQuestionSet = cancelAddQuestionSet;
         vm.hasErrorAddForm = hasErrorAddForm;
         vm.questionSetService = QuestionSetService;
@@ -26,7 +25,7 @@
             cached.getQuestionSets().then(function(questionSets) {
                 vm.questionSets = questionSets;
                 usSpinnerService.stop('spinner-1');
-            },function(err){
+            }, function(err) {
                 usSpinnerService.stop('spinner-1');
             });
         }
@@ -35,25 +34,13 @@
             return !vm.addQuestionSet.questionSetText.$valid && vm.addQuestionSet.questionSetText.$dirty;
         }
 
-        function saveQuestionSet() {
-            var questionSetText = vm.questionSetText;
+        function createQuestionSet(questionSet) {
+            QuestionSetService.addQuestionSet(questionSet).then(function(questionSet) {
+                vm.questionSets.push(questionSet);
+                //go to the questionList page
+                $location.path('/questionList/' + questionSet._id);
 
-            if (questionSetText.trim() !== "" && questionSetText !== undefined) {
-                var today = new Date().getTime();
-                var questionSet = {
-                    name: questionSetText,
-                    createDate: today
-                };
-                QuestionSetService.addQuestionSet(questionSet).then(function(questionSet) {
-                    vm.questionSets.push(questionSet);
-                    //go to the questionList page
-                    $location.path('/questionList/' + questionSet._id);
-
-                });
-                vm.questionSetText = undefined;
-                vm.addQuestionSet.$setPristine();
-                vm.addQuestionSetBool = false;
-            }
+            });
         }
 
         function cancelAddQuestionSet() {
@@ -71,9 +58,13 @@
         }
 
         function openModal(size, questionSetId) {
-
-            var questionSet = findQuestionSetById(questionSetId);
-
+            var emptyQuestionSet = {
+                name: "",
+                impact: 0,
+                description: ""
+            };
+            var questionSet = findQuestionSetById(questionSetId) || emptyQuestionSet;
+            var questionSetHeading = questionSetId ? "Edit" : "Create";
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/questionSets/editQuestionSetModal.html',
@@ -84,17 +75,27 @@
                         return {
                             name: questionSet.name,
                             impact: questionSet.impact,
-                            description: questionSet.description
+                            description: questionSet.description,
+                            questionSetHeading: questionSetHeading
                         };
                     }
                 }
             });
 
             modalInstance.result.then(function(data) {
-
-                var updatedObj = angular.extend(questionSet, data);
-
-                updateQuestionSet(updatedObj);
+                if (!questionSetId) {
+                    var today = new Date().getTime();
+                    var createQuestionSetObj = {
+                        name: data.name,
+                        impact: data.impact,
+                        description: data.description,
+                        createDate: today
+                    };
+                    createQuestionSet(createQuestionSetObj);
+                } else {
+                    var updatedObj = angular.extend(questionSet, data);
+                    updateQuestionSet(updatedObj);
+                }
 
             }, function() {
                 // $log.info('Modal dismissed at: ' + new Date());
