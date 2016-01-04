@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .directive('navigateArrows', directive);
 
-    directive.$inject = ['$state'];
+    directive.$inject = ['$state', 'AnswerService'];
 
     /* @ngInject */
-    function directive($state) {
+    function directive($state, AnswerService) {
         var directive = {
             link: link,
             restrict: 'E',
@@ -20,7 +20,27 @@
         return directive;
 
         function link(scope, element, attrs) {
-            $('html').keydown(function(e) {
+            $('html').keydown(handleArrowNavigation);
+
+            scope.$watch(function() {
+                return AnswerService.isModalOpened;
+            }, function(newVal, oldVal) {
+                if (newVal !== oldVal && newVal === true) {
+                    $('html').off('keydown');
+                } else if (newVal !== oldVal && newVal === false) {
+                    $('html').keydown(handleArrowNavigation);
+                }
+
+            });
+
+            scope.$on(
+                "$destroy",
+                function handleDestroyEvent() {
+                    $('html').off('keydown');
+                }
+            );
+
+            function handleArrowNavigation(e) {
                 switch (e.which) {
                     //right arrow
                     case 39:
@@ -33,7 +53,7 @@
 
                             break;
                         }
-                    //left arrow    
+                        //left arrow    
                     case 37:
                         {
                             if (scope.prevId) {
@@ -45,18 +65,14 @@
                             break;
                         }
                 }
-            });
-            scope.$on(
-                "$destroy",
-                function handleDestroyEvent() {
-                    $('html').off('keydown');
-                }
-            );
+            }
+
+
         }
-    }
 
-    /* @ngInject */
-    function Controller() {
 
     }
+
+
+
 })();

@@ -25,7 +25,7 @@
             cached.getAnswers(questionId).then(function(questionAnswers) {
                 vm.questionAnswers = groupAnswersByDate(questionAnswers);
                 usSpinnerService.stop('spinner-1');
-            },function(err){
+            }, function(err) {
                 usSpinnerService.stop('spinner-1');
                 if (err.toLocaleLowerCase().replace(" ", '') === "notfound") {
                     $state.go('pageNotFound');
@@ -78,14 +78,14 @@
                     }
                 }
             });
+            AnswerService.isModalOpened=true;
 
             modalInstance.result.then(function(data) {
-                debugger;
                 var updatedObj = angular.extend(answer, data);
-
                 updateAnswer(updatedObj);
-
+                AnswerService.isModalOpened=false;
             }, function() {
+                AnswerService.isModalOpened=false;
                 // $log.info('Modal dismissed at: ' + new Date());
             });
         }

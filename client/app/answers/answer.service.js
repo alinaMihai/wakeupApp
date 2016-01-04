@@ -12,6 +12,7 @@
         this.getAnswers = getAnswers;
         this.deleteAnswer = deleteAnswer;
         this.editAnswer = editAnswer;
+        this.isModalOpened=false;
 
         ////////////////
 
