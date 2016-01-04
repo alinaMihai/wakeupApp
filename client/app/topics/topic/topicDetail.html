@@ -22,6 +22,9 @@
 	
 	<div class="text-center" id="associatedQuestionSets">
 		<h4>Associated Question Sets</h4>
+		<div ng-if="TopicDetailCtrl.topic.questionSetList.length===0">
+			<h5>No associated question sets; Edit this topic to associate a question set</h5>
+		</div>
 		<div class="item col-lg-4" bindonce ng-repeat="qs in TopicDetailCtrl.topic.questionSetList | orderBy:'-practiceTimes'">
 			<a ui-sref="questionList({questionSetId:qs._id})">
 				<div class="well">				
