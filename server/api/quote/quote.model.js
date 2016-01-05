@@ -3,6 +3,7 @@
 
     var mongoose = require('mongoose'),
         Schema = mongoose.Schema;
+    var ObjectIdSchema = Schema.ObjectId;
 
     var QuoteSchema = new Schema({
         _id: Number,
@@ -10,11 +11,14 @@
         text: String,
         source: String,
         date: Date,
-        comment: String,
         topic: {
             type: Number,
             ref: "Topic"
-        }
+        },
+        commentList:[{
+            type:ObjectIdSchema,
+            ref:"Comment"
+        }]
 
     }, {
         collection: 'quotes'

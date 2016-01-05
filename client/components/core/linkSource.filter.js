@@ -7,7 +7,7 @@
 
     function linkSource() {
         return function(text) {
-            return (text && text.contains("http")) ? "<a href='"+text+"'>"+text + "</a>" : text;
+            return (text && text.contains("http")) ? "<a href='"+text+"' target='_blank'>"+text + "</a>" : text;
         };
     }
 })();

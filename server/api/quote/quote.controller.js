@@ -1,11 +1,15 @@
 (function() {
     /**
      * Using Rails-like standard naming convention for endpoints.
-     * GET     /quotes                 ->  index
-     * POST    /quotes                 ->  create
-     * GET     /quotes/:id             ->  show
-     * PUT     /quotes/:id             ->  update
-     * DELETE  /quotes/:id             ->  destroy
+     * GET     /quotes                                      ->  index
+     * GET     /quotes/authors                              ->  getAuthors
+     * GET     /quotes/comments/:id                         ->  getComments           
+     * POST    /quotes                                      ->  create
+     * GET     /quotes/:id                                  ->  show
+     * PUT     /quotes/:id                                  ->  update
+     * PUT     /quotes/addComment/:id/:isDefault            ->  addComment
+     * DELETE  /quotes/:id                                  ->  destroy
+     * DELETE  /quotes/deleteComment/:quoteId/:commentId    -> deleteComment
      */
 
     'use strict';
@@ -13,6 +17,7 @@
     var _ = require('lodash');
     var Quote = require('./quote.model');
     var Topic = require('../topic/topic.model');
+    var Comment = require('./comment.model');
 
     //get all quotes for a topic
     exports.index = function(req, res) {
@@ -31,9 +36,8 @@
     // Creates a new quote in the DB.
     exports.create = function(req, res) {
 
-        findLatestQuoteId(function(quote) {
-
-            var latestQuoteId = quote ? quote._id : 0;
+        findLatestQuoteId(function(latestQuote) {
+            var latestQuoteId = latestQuote ? latestQuote._id : 0;
             var quoteId = latestQuoteId + 1;
             req.body._id = quoteId;
             req.body.topic = req.params.topicId;
@@ -47,7 +51,30 @@
                     $addToSet: {
                         'quoteList': quote._id
                     }
-                }).exec();
+                }).exec(function(err,topic){
+                    console.log(err);
+                    console.log(topic);
+                });
+
+                var commentObj = {
+                    createDate: quote.date,
+                    text: req.body.comment
+                };
+                delete req.body.comment;
+                Comment.create(commentObj, function(err, comment) {
+                    if (err) {
+                        return handleError(res, err);
+                    }
+                    Quote.update({
+                        _id: quoteId
+                    }, {
+                        $addToSet: {
+                            'commentList': comment._id
+                        }
+                    }).exec();
+
+                });
+
                 return res.status(201).json(quote);
             });
         });
@@ -59,6 +86,7 @@
         var query = Quote.findOne({});
         query.where('_id', req.params.id);
         query.populate('topic');
+
         query.exec(function(err, quote) {
             if (err) {
                 return handleError(res, err);
@@ -71,6 +99,7 @@
                     return res.status(404).json('Not found');
                 }
             }
+            quote.commentList=[];
             return res.status(200).json(quote);
         });
 
@@ -150,20 +179,104 @@
                 return handleError(res, err);
             }
             topics.forEach(function(topic) {
-              
-                topic.quoteList.forEach(function(quote){
-                   if(quote.author && uniqueAuthors.indexOf(quote.author)===-1){
-                       uniqueAuthors.push(quote.author);
-                   }
+                topic.quoteList.forEach(function(quote) {
+                    if (quote.author && uniqueAuthors.indexOf(quote.author) === -1) {
+                        uniqueAuthors.push(quote.author);
+                    }
                 });
             });
-    
+
             return res.status(200).json(uniqueAuthors);
 
         });
     }
 
-    function getUniqueAuthors(topics){
+    //add Comment for a quote
+    exports.addComment = function(req, res) {
+        var userEmail = req.user.email;
+        var isDefaultTopic = req.params.isDefault;
+        if (isDefaultTopic) {
+            req.body.user = userEmail;
+        }
+        var query = Quote.findOne({});
+        query.where("_id", req.params.id);
+        query.exec(function(err, quote) {
+            if (err) {
+                return handleError(res, err);
+            }
+            addAComment(req.body, req.params.id, res);
 
+        });
+    }
+
+    function addAComment(commentObj, quoteId, res) {
+        Comment.create(commentObj, function(err, comment) {
+            if (err) {
+                return handleError(res, err);
+            }
+            Quote.update({
+                _id: quoteId
+            }, {
+                $addToSet: {
+                    'commentList': comment._id
+                }
+            }).exec();
+
+            return res.status(200).json(comment);
+        });
+    }
+
+    //retrieve comment for a quote
+    exports.getComments = function(req, res) {
+        var userEmail = req.user.email;
+        var quoteId = req.params.id;
+        var query = Quote.findOne({});
+        query.where("_id", quoteId);
+        query.populate('commentList');
+        query.exec(function(err, quote) {
+            var comments = [];
+            if (err) {
+                return handleError(res, err);
+            }
+            if (quote.commentList.length > 0 && quote.commentList[0].user) {
+                comments = quote.commentList.filter(function(comment) {
+                    return comment.user === userEmail;
+                });
+            } else {
+                comments = quote.commentList;
+            }
+            return res.status(200).json(comments);
+        });
+    }
+
+    exports.deleteComment = function(req, res) {
+        var userEmail = req.user.email;
+        var commentId = req.params.commentId;
+        var quoteId = req.params.quoteId;
+        var query = Comment.findOne({});
+        query.where("_id", commentId);
+        query.exec(function(err, comment) {
+
+            Quote.findByIdAndUpdate(quoteId, {
+                $pull: {
+                    'commentList': comment._id
+                }
+            }, function(err, model) {
+                if (err) {
+                    return res.send(err);
+                }
+            });
+            comment.remove(function(err) {
+                if (err) {
+                    return handleError(res, err);
+                }
+                return res.status(204).send('No Content');
+            });
+        });
+    }
+
+    function handleError(res, err) {
+        console.log(err);
+        return res.status(500).send(err);
     }
 })();
