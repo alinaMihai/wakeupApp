@@ -1,34 +1,36 @@
 <button id="practiceSessionBtn" ng-click="displayPopup=true" class="btn btn-block btn-lg" value="">Practice Question Set</button>
-
-<div ng-show="displayPopup" class="white_content">
-	<form name="popupForm" novalidate>
-		
-		<div class="control-group" >
-			<h3 class="text-center">Session Settings</h3>
-			<h4>Please specify the time interval to be prompted with a question</h4>
-			<div class="form-group" ng-class="{'has-error': popupForm.hours.$invalid && popupForm.hours.$dirty}">
-				<label for="hours">Question Interval in minutes: </label>
-				<input placeholder="defaults to zero" id="hours" name="hours" type="number" class="input input-lg form-control" step="any" min="0" ng-model='questionCtrl.questionInterval'>
-			</div>
-			<div class="form-group">
-				<label>Loop Question Set?
-					<!-- <input type="checkbox" name="repeat" ng-model="questionCtrl.questionService.repeatQS" class="checkbox-inline"> -->
-					<input type="checkbox" name="repeat" ng-model="questionCtrl.repeatQS" class="checkbox-inline">
-				</label>
-				
-			</div>
-			
-			<div class="col-xs-12 col-md-6">
-				<button type="submit" class="btn btn-block btn-success"  ng-click="displayPopup=false; questionCtrl.startQuestionSet()">OK</button>
-			</div>
-			<div class="col-xs-12 col-md-6">
-				<button ng-click="displayPopup=!displayPopup" class="btn btn-block btn-danger" id="cancelBtn">Cancel</button>
-			</div>
-			
-			
-			
-		</div>
-		
-	</form>
+<div ng-show="displayPopup" class="white_content container-fluid">
+    <form name="popupForm" novalidate>
+        <div class="control-group">
+            <h3 class="text-center">Session Settings</h3>
+            <h4>Please specify the time interval to be prompted with a question</h4>
+            <div class="form-group" ng-class="{'has-error': popupForm.hours.$invalid && popupForm.hours.$dirty}">
+                <label for="hours">Question Interval in minutes: </label>
+                <input placeholder="defaults to zero" id="hours" name="hours" type="number" class="input input-lg form-control" step="any" min="0" ng-model='questionCtrl.questionInterval'>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label" for="repeat">Loop Question Set?
+                        </label>
+                        <input type="checkbox" id="repeat" ng-model="questionCtrl.repeatQS" class="checkbox checkbox-inline">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label" for="shuffleQuestions">Shuffle Questions?
+                        </label>
+                        <input type="checkbox" id="shuffleQuestions" ng-model="questionCtrl.shuffleQuestions" class="checkbox checkbox-inline">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <button type="submit" class="btn btn-block btn-success" ng-click="displayPopup=false; questionCtrl.startQuestionSet()">OK</button>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <button ng-click="displayPopup=!displayPopup" class="btn btn-block btn-danger" id="cancelBtn">Cancel</button>
+            </div>
+        </div>
+    </form>
 </div>
 <div ng-if='displayPopup' id="fade" class="black_overlay"></div>

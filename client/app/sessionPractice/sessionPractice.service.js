@@ -10,5 +10,6 @@
         this.questionInterval;
         this.questionSetSession;
         this.currentQuestionIndex;
+        this.shuffleQuestions;
     }
 })();

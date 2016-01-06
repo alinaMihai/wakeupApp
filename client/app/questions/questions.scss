@@ -2,6 +2,11 @@ body {
     position: relative;
 }
 
+.checkbox {
+    width: 20px;
+    height: 29px;
+}
+
 // popup overlay
 .black_overlay {
     display: block;
@@ -39,7 +44,8 @@ body {
 }
 
 .white_content {
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom:10px;
 }
 
 .questionModal {
@@ -58,9 +64,11 @@ body {
     background: #768FD1;
     color: white;
 }
-#practiceSessionBtn:hover{
-	background:#4E5690;
+
+#practiceSessionBtn:hover {
+    background: #4E5690;
 }
+
 #practiceSessionBtn,
 #addQuestionBtn,
 #createQuestionSetBtn {

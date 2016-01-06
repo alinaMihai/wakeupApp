@@ -20,17 +20,14 @@
             $(window).on("beforeunload", function(e) {
 
                 if (PracticeSessionService.questionSetSession) {
-                    //store in localstorage the session configuration
-                    $sessionStorage.repeatQS = PracticeSessionService.repeatQS;
-                    $sessionStorage.questionInterval = PracticeSessionService.questionInterval;
-
-
+                    return "Your configurations for this session will be lost";       
                 }
             });
             $(window).on('popstate', function(e) {
                 if (PracticeSessionService.questionSetSession) {
                     $sessionStorage.repeatQS = PracticeSessionService.repeatQS;
                     $sessionStorage.questionInterval = PracticeSessionService.questionInterval;
+                    $sessionStorage.shuffleQuestions = PracticeSessionService.shuffleQuestions;
                 }
             });
         }
