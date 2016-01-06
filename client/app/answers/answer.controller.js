@@ -5,16 +5,15 @@
         .module('wakeupApp')
         .controller('AnswerCtrl', AnswerCtrl);
 
-    AnswerCtrl.$inject = ['cached', 'question', 'AnswerService', '$uibModal', 'usSpinnerService'];
+    AnswerCtrl.$inject = ['cached', 'question', 'AnswerService', '$uibModal', 'usSpinnerService','CoreService'];
 
     /* @ngInject */
-    function AnswerCtrl(cached, question, AnswerService, $uibModal, usSpinnerService) {
+    function AnswerCtrl(cached, question, AnswerService, $uibModal, usSpinnerService,CoreService) {
         var vm = this;
         vm.title = 'Answer  List';
         vm.question = question;
         vm.nextQuestionId = findNextQuestionId(question.questionSet, question._id);
         vm.prevQuestionId = findPreviousQuestionId(question.questionSet, question._id);
-        vm.timeConverter = timeConverter;
         vm.deleteAnswer = deleteAnswer;
         vm.openEditAnswerModal = openEditAnswerModal;
         var questionId = question._id;
@@ -23,7 +22,7 @@
 
         function activate() {
             cached.getAnswers(questionId).then(function(questionAnswers) {
-                vm.questionAnswers = groupAnswersByDate(questionAnswers);
+                vm.questionAnswers = CoreService.groupArrayObjectsByDate(questionAnswers);
                 usSpinnerService.stop('spinner-1');
             }, function(err) {
                 usSpinnerService.stop('spinner-1');
@@ -38,27 +37,6 @@
             var index = vm.questionAnswers.indexOf(answer);
             vm.questionAnswers.splice(index, 1);
             AnswerService.deleteAnswer(answer);
-        }
-
-        function groupAnswersByDate(answers) {
-            var grouped_answers = answers.map(function(answer) {
-                var theDay = timeConverter(answer.date);
-                answer.theDay = theDay;
-                return answer;
-
-            });
-            return grouped_answers;
-        }
-
-        function timeConverter(UNIX_timestamp) {
-            var a = new Date(UNIX_timestamp);
-            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            var year = a.getFullYear();
-            var month = months[a.getMonth()];
-            var date = a.getDate();
-
-            var time = date + ' ' + month + ' ' + year;
-            return time;
         }
 
         function openEditAnswerModal(size, answerId) {

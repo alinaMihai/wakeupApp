@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .controller('QuotesCtrl', QuotesCtrl);
 
-    QuotesCtrl.$inject = ['topic', 'QuoteService', '$uibModal', 'usSpinnerService'];
+    QuotesCtrl.$inject = ['topic', 'QuoteService', '$uibModal', 'usSpinnerService','CoreService'];
 
     /* @ngInject */
-    function QuotesCtrl(topic, QuoteService, $uibModal, usSpinnerService) {
+    function QuotesCtrl(topic, QuoteService, $uibModal, usSpinnerService,CoreService) {
         var vm = this;
         vm.quotes = [];
         vm.topic = topic;
@@ -20,9 +20,9 @@
         ////////////////
 
         function activate() {
-
+             usSpinnerService.spin('spinner-1');
             QuoteService.getQuotes(topic._id).then(function(quotes) {
-                vm.quotes = quotes;
+                vm.quotes = CoreService.groupArrayObjectsByDate(quotes);
                 usSpinnerService.stop('spinner-1');
             }, function(err) {
                 usSpinnerService.stop('spinner-1');
