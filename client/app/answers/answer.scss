@@ -1,32 +1,48 @@
-.answerText{
-	max-height: 250px;
-    overflow-y:auto;
+.associatedQuote {
+    text-align: center;
+    font-size: 1.3em;
+    font-style: italic;
+    width: 50%;
+    margin: auto;
+    margin-bottom:10px;
+    font-weight:500;
 }
-.answerText span{
-	white-space:pre-wrap;
+
+.answerText {
+    max-height: 250px;
+    overflow-y: auto;
 }
-.options a{
-    cursor:pointer;
+
+.answerText span {
+    white-space: pre-wrap;
 }
-.arrowBtn{
-   background-color:#768FD1;
-   color:white;
+
+.options a {
+    cursor: pointer;
 }
-.arrowBtn:hover{
-   background-color:#4E5690;
-   color:white;
+
+.arrowBtn {
+    background-color: #768FD1;
+    color: white;
+}
+
+.arrowBtn:hover {
+    background-color: #4E5690;
+    color: white;
 }
 
 // source https://codyhouse.co/gem/back-to-top/
 .cd-top.cd-is-visible {
-  /* the button becomes visible */
-  visibility: visible;
-  opacity: 1;
+    /* the button becomes visible */
+    visibility: visible;
+    opacity: 1;
 }
+
 .cd-top.cd-fade-out {
-  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
-  opacity: .5;
+    /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+    opacity: .5;
 }
+
 .cd-top {
     display: inline-block;
     height: 40px;
@@ -46,6 +62,7 @@
     -moz-transition: opacity .3s 0s, visibility 0s .3s;
     transition: opacity .3s 0s, visibility 0s .3s;
 }
+
 .cd-top a {
     color: #e86256;
     text-decoration: none;

@@ -330,7 +330,8 @@
                 var questions = questionSet.questions.map(function(question) {
                     return {
                         id: question._id,
-                        text: question.text
+                        text: question.text,
+                        questionSet:questionSet.name
                     };
                 });
                 allQuestions=allQuestions.concat(questions);

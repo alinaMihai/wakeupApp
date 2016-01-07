@@ -34,7 +34,8 @@
             <div>
                 <select ng-model="modalCtrl.data.associatedQuestion" class="form-control" >
                     <option value=""></option>
-                    <option value="{{question.id}}" ng-selected="question.id==modalCtrl.data.question" ng-repeat="question in modalCtrl.data.allQuestions | orderBy:'text'">{{question.text}}</option>
+                    <option value="{{question.id}}" ng-selected="question.id==modalCtrl.data.question" ng-repeat="question in modalCtrl.data.allQuestions | orderBy:'text'">{{question.text}}
+                      ~~ `{{question.questionSet}}`</option>
                 </select>
             </div>
         </div>

@@ -43,7 +43,7 @@
                                 <a class="edit" ng-if="!QuotesCtrl.topic.isDefault" ng-click='QuotesCtrl.openQuoteModal("lg", quote._id)'><i class="fa fa-pencil-square-o"></i></a>
                             </div>
                             <div class="row">
-                                <span>&ldquo;</span><a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text |trimFilter}}</a><span>&rdquo;</span> {{quote.author}}
+                                <a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text |trimFilter |quotesSigns}}</a> {{quote.author}}
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         <a class="edit" ng-if="!QuotesCtrl.topic.isDefault" ng-click='QuotesCtrl.openQuoteModal("lg", quote._id)'><i class="fa fa-pencil-square-o"></i></a>
                     </div>
                     <div class="row">
-                        <span>&ldquo;</span><a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text |trimFilter}}</a><span>&rdquo;</span> {{quote.author}}
+                        <a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text |trimFilter |quotesSigns}}</a> {{quote.author}}
                     </div>
                 </div>
             </div>
