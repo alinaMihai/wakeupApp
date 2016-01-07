@@ -14,8 +14,7 @@
         this.getQuote = getQuote;
         this.deleteQuote = deleteQuote;
         this.updateQuote = updateQuote;
-        this.getAuthors = getAuthors;
-        this.getSources=getSources;
+        this.getSuggestions=getSuggestions;
         this.addComment = addComment;
         this.getComments = getComments;
         this.deleteComment=deleteComment;
@@ -82,26 +81,15 @@
             });
             return deferred.promise;
         }
-
-        function getAuthors() {
+        function getSuggestions(){
             var deferred = $q.defer();
-            $http.get('/api/quotes/authors').then(function(authors) {
-                deferred.resolve(authors);
+            $http.get('/api/quotes/suggestions').then(function(response) {
+                deferred.resolve(response.data);
             }, function(err) {
                 deferred.reject(err);
             });
             return deferred.promise;
         }
-        function getSources() {
-            var deferred = $q.defer();
-            $http.get('/api/quotes/sources').then(function(sources) {
-                deferred.resolve(sources);
-            }, function(err) {
-                deferred.reject(err);
-            });
-            return deferred.promise;
-        }
-
         function getComments(quoteId) {
             var deferred = $q.defer();
             $http.get('/api/quotes/comments/' + quoteId).then(function(response) {

@@ -7,8 +7,7 @@
 
     var router = express.Router();
 
-    router.get('/authors', auth.isAuthenticated(), controller.getAuthors);
-    router.get('/sources', auth.isAuthenticated(), controller.getSources);
+    router.get('/suggestions', auth.isAuthenticated(), controller.getSuggestions);
     router.get('/comments/:id', auth.isAuthenticated(), controller.getComments);
     router.get('/:topicId', auth.isAuthenticated(), controller.index);
     router.get('/quote/:id', auth.isAuthenticated(), controller.show);

@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .controller('QuotesCtrl', QuotesCtrl);
 
-    QuotesCtrl.$inject = ['topic', 'QuoteService', '$uibModal', 'usSpinnerService','CoreService'];
+    QuotesCtrl.$inject = ['topic', 'QuoteService', '$uibModal', 'usSpinnerService', 'CoreService'];
 
     /* @ngInject */
-    function QuotesCtrl(topic, QuoteService, $uibModal, usSpinnerService,CoreService) {
+    function QuotesCtrl(topic, QuoteService, $uibModal, usSpinnerService, CoreService) {
         var vm = this;
         vm.quotes = [];
         vm.topic = topic;
@@ -20,7 +20,7 @@
         ////////////////
 
         function activate() {
-             usSpinnerService.spin('spinner-1');
+            usSpinnerService.spin('spinner-1');
             QuoteService.getQuotes(topic._id).then(function(quotes) {
                 vm.quotes = CoreService.groupArrayObjectsByDate(quotes);
                 usSpinnerService.stop('spinner-1');
@@ -40,11 +40,9 @@
 
             var data = quote ? angular.copy(quote) : emptyObj;
             data.heading = quote ? 'Edit' : 'Add';
-            QuoteService.getAuthors().then(function(response) {
-                data.authors = response.data;
-            });
-            QuoteService.getSources().then(function(response){
-                data.sources=response.data;
+            QuoteService.getSuggestions().then(function(suggestions) {
+                data.authors = suggestions.authors;
+                data.sources = suggestions.sources;
             });
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -83,7 +81,7 @@
 
         function createQuote(createObj) {
             QuoteService.createQuote(vm.topic._id, createObj).then(function(quote) {
-                quote.theDay=CoreService.timeConverter(quote.date);
+                quote.theDay = CoreService.timeConverter(quote.date);
                 vm.quotes.push(quote);
             });
         }
@@ -98,7 +96,7 @@
         function updateQuote(updatedObj) {
             var updateQuote = findQuoteById(updatedObj._id);
             QuoteService.updateQuote(updatedObj).then(function(updatedQuote) {
-                 updatedQuote.theDay=CoreService.timeConverter(updatedQuote.date);
+                updatedQuote.theDay = CoreService.timeConverter(updatedQuote.date);
                 _.merge(updateQuote, updatedQuote, updateQuote);
 
             });

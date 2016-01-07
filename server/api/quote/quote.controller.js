@@ -2,7 +2,7 @@
     /**
      * Using Rails-like standard naming convention for endpoints.
      * GET     /quotes                                      ->  index
-     * GET     /quotes/authors                              ->  getAuthors
+     * GET     /quotes/suggestions                          ->  getSuggestions
      * GET     /quotes/comments/:id                         ->  getComments           
      * POST    /quotes                                      ->  create
      * GET     /quotes/:id                                  ->  show
@@ -51,8 +51,7 @@
                     $addToSet: {
                         'quoteList': quote._id
                     }
-                }).exec(function(err,topic){
-                });
+                }).exec(function(err, topic) {});
 
                 var commentObj = {
                     createDate: quote.date,
@@ -97,7 +96,7 @@
                     return res.status(404).json('Not found');
                 }
             }
-            quote.commentList=[];
+            quote.commentList = [];
             return res.status(200).json(quote);
         });
 
@@ -165,8 +164,7 @@
         });
     }
 
-    //get available authors in user quotes
-    exports.getAuthors = function(req, res) {
+    exports.getSuggestions = function(req, res) {
         var userEmail = req.user.email;
         var query = Topic.find({});
         query.where("user", userEmail);
@@ -175,36 +173,26 @@
             if (err) {
                 return handleError(res, err);
             }
-           var uniqueAuthors = getUniqueElements(topics,'author');
-            return res.status(200).json(uniqueAuthors);
+            var uniqueAuthors = getUniqueElements(topics, 'author');
+            var uniqueSources = getUniqueElements(topics, 'source');
+            var suggestions = {
+                authors: uniqueAuthors,
+                sources: uniqueSources
+            };
+            return res.status(200).json(suggestions);
 
         });
     }
-
-    exports.getSources=function(req,res){
-         var userEmail = req.user.email;
-        var query = Topic.find({});
-        query.where("user", userEmail);
-        query.populate("quoteList");
-        query.exec(function(err, topics) {
-            if (err) {
-                return handleError(res, err);
-            }
-           var uniqueSources = getUniqueElements(topics,'source');
-            return res.status(200).json(uniqueSources);
-        });
-    }
-
-    function getUniqueElements(topics,property){
-         var uniqueElements = [];
-            topics.forEach(function(topic) {
-                topic.quoteList.forEach(function(quote) {
-                    if (quote[property] && uniqueElements.indexOf(quote[property]) === -1) {
-                        uniqueElements.push(quote[property]);
-                    }
-                });
+    function getUniqueElements(topics, property) {
+        var uniqueElements = [];
+        topics.forEach(function(topic) {
+            topic.quoteList.forEach(function(quote) {
+                if (quote[property] && uniqueElements.indexOf(quote[property]) === -1) {
+                    uniqueElements.push(quote[property]);
+                }
             });
-            return uniqueElements;
+        });
+        return uniqueElements;
     }
 
     //add Comment for a quote
