@@ -19,17 +19,20 @@
             <input type="text" class="form-control" required ng-keypress="vm.typeAhead" ng-model="vm.typeAhead" placeholder="search in quotes">
         </div>
         <div class="col-lg-6"> Group by
-            <button class="btn" ng-click="vm.groupBy=true; vm.groupBy='source'">Source</button>
-            <button class="btn" ng-click="vm.groupBy=true; vm.groupBy='author'">Author</button>
-            <button class="btn" ng-click="vm.groupBy=true; vm.groupBy='theDay'">Date</button>
-            <button class="btn" ng-click="vm.groupBy=false">None</button>
+            <button class="btn btn-default" ng-click="vm.groupBy=true; vm.groupBy='source'" ng-class="{'activeGroup':vm.groupBy==='source'}">Source</button>
+            <button class="btn btn-default" ng-click="vm.groupBy=true; vm.groupBy='author'" ng-class="{'activeGroup':vm.groupBy==='author'}">Author</button>
+            <button class="btn btn-default" ng-click="vm.groupBy=true; vm.groupBy='theDay'" ng-class="{'activeGroup':vm.groupBy==='theDay'}">Date</button>
+            <button class="btn btn-default" ng-click="vm.groupBy=false" ng-class="{'activeGroup':vm.groupBy===false}">None</button>
         </div>
     </div>
     <br>
-    
     <div class="container" id="quotes" ng-if="vm.groupBy">
-        <div bindonce ng-repeat="group in QuotesCtrl.quotes | groupBy:vm.groupBy | toArray:true | orderBy:'$key':false | filter:vm.typeAhead ">
+        <div bindonce ng-repeat="group in QuotesCtrl.quotes | groupBy:vm.groupBy 
+            | toArray:true
+            | orderBy:[(vm.groupBy!=='theDay')?'$key':'date']:(vm.groupBy==='theDay')?true:false
+            | filter:vm.typeAhead ">
             <div class="group">
+                <hr>
                 <strong class="groupHeading" ng-bind-html="(group.$key|linkSource)||'Not Available'"></strong>
                 <hr>
                 <div class="row">
