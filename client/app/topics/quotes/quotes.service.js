@@ -15,6 +15,7 @@
         this.deleteQuote = deleteQuote;
         this.updateQuote = updateQuote;
         this.getAuthors = getAuthors;
+        this.getSources=getSources;
         this.addComment = addComment;
         this.getComments = getComments;
         this.deleteComment=deleteComment;
@@ -86,6 +87,15 @@
             var deferred = $q.defer();
             $http.get('/api/quotes/authors').then(function(authors) {
                 deferred.resolve(authors);
+            }, function(err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        }
+        function getSources() {
+            var deferred = $q.defer();
+            $http.get('/api/quotes/sources').then(function(sources) {
+                deferred.resolve(sources);
             }, function(err) {
                 deferred.reject(err);
             });

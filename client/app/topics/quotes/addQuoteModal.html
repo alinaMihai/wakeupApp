@@ -18,7 +18,12 @@
         </div>
         <div class="form-group">
             <label for="source">Source</label>
-            <input type="text" name="source" ng-model="modalCtrl.data.source" class="form-control">
+            <input list="sourceSuggestions" type="text" name="source" ng-model="modalCtrl.data.source" class="form-control">
+            <datalist id="sourceSuggestions">
+                <select>
+                    <option ng-repeat="source in modalCtrl.data.sources" class="ng-scope">{{source}}</option>
+                </select>
+            </datalist>
         </div>
         <div class="form-group" ng-if="modalCtrl.data.heading==='Add'">
             <label for="comment">Comment</label>

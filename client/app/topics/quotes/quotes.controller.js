@@ -43,6 +43,9 @@
             QuoteService.getAuthors().then(function(response) {
                 data.authors = response.data;
             });
+            QuoteService.getSources().then(function(response){
+                data.sources=response.data;
+            });
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/topics/quotes/addQuoteModal.html',
@@ -80,6 +83,7 @@
 
         function createQuote(createObj) {
             QuoteService.createQuote(vm.topic._id, createObj).then(function(quote) {
+                quote.theDay=CoreService.timeConverter(quote.date);
                 vm.quotes.push(quote);
             });
         }
@@ -94,6 +98,7 @@
         function updateQuote(updatedObj) {
             var updateQuote = findQuoteById(updatedObj._id);
             QuoteService.updateQuote(updatedObj).then(function(updatedQuote) {
+                 updatedQuote.theDay=CoreService.timeConverter(updatedQuote.date);
                 _.merge(updateQuote, updatedQuote, updateQuote);
 
             });

@@ -11,6 +11,7 @@
     function CoreService() {
         this.isDelete = false;
         this.groupArrayObjectsByDate=groupArrayObjectsByDate;
+        this.timeConverter=timeConverter;
 
         
         function groupArrayObjectsByDate(theArray) {

@@ -52,8 +52,6 @@
                         'quoteList': quote._id
                     }
                 }).exec(function(err,topic){
-                    console.log(err);
-                    console.log(topic);
                 });
 
                 var commentObj = {
@@ -174,21 +172,39 @@
         query.where("user", userEmail);
         query.populate("quoteList");
         query.exec(function(err, topics) {
-            var uniqueAuthors = [];
             if (err) {
                 return handleError(res, err);
             }
-            topics.forEach(function(topic) {
-                topic.quoteList.forEach(function(quote) {
-                    if (quote.author && uniqueAuthors.indexOf(quote.author) === -1) {
-                        uniqueAuthors.push(quote.author);
-                    }
-                });
-            });
-
+           var uniqueAuthors = getUniqueElements(topics,'author');
             return res.status(200).json(uniqueAuthors);
 
         });
+    }
+
+    exports.getSources=function(req,res){
+         var userEmail = req.user.email;
+        var query = Topic.find({});
+        query.where("user", userEmail);
+        query.populate("quoteList");
+        query.exec(function(err, topics) {
+            if (err) {
+                return handleError(res, err);
+            }
+           var uniqueSources = getUniqueElements(topics,'source');
+            return res.status(200).json(uniqueSources);
+        });
+    }
+
+    function getUniqueElements(topics,property){
+         var uniqueElements = [];
+            topics.forEach(function(topic) {
+                topic.quoteList.forEach(function(quote) {
+                    if (quote[property] && uniqueElements.indexOf(quote[property]) === -1) {
+                        uniqueElements.push(quote[property]);
+                    }
+                });
+            });
+            return uniqueElements;
     }
 
     //add Comment for a quote
