@@ -70,7 +70,6 @@
         query.select(
             'name description user impact createDate practiceTimes questions isDefault'
         );
-
         query.populate('questions');
         query.where('_id', req.params.id);
         // query.where('user', userEmail);

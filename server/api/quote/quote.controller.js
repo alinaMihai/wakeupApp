@@ -48,7 +48,7 @@
                     return handleError(res, err);
                 }
                 updateTopic(quote);
-                updateQuestion(quote);
+                updateQuestion(quote._id,quote.question);
                 var commentObj = {
                     createDate: quote.date,
                     text: req.body.comment
@@ -83,9 +83,8 @@
         }).exec(function(err, topic) {});
     }
 
-    function updateQuestion(quote, previousAssociatedQuestion) {
-        console.log(previousAssociatedQuestion)
-        console.log(quote.question);
+    function updateQuestion(quoteId,questionId, previousAssociatedQuestion) {
+   
         if (previousAssociatedQuestion) {
             var query=Question.findOne({});
             query.where("_id",previousAssociatedQuestion);
@@ -95,11 +94,10 @@
             });
         }
         Question.update({
-            _id: quote.question
+            _id: questionId
         }, {
-            quote: quote._id
+            quote: quoteId
         }).exec(function(err, question) {
-
         });
     }
 
@@ -155,7 +153,7 @@
             var currentAssociatedQuestion = quote.question;
             if (questionId !== currentAssociatedQuestion) {
                 //remove quote from previous question and add quote to new question
-                updateQuestion(quote, questionId);
+                updateQuestion(quote.id,questionId, currentAssociatedQuestion);
             }
 
             var updated = _.merge(quote, req.body);

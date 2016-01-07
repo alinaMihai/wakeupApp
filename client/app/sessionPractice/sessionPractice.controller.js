@@ -100,6 +100,11 @@
                 timer = $timeout(function() {
                     PracticeSessionService.currentQuestionIndex++;
                     vm.currentQuestion = questions[PracticeSessionService.currentQuestionIndex];
+                    if (vm.currentQuestion.quote) {
+                        QuoteService.getQuote(vm.currentQuestion.quote).then(function(quote) {
+                            vm.currentQuestion.quote = quote;
+                        });
+                    }
 
                 }, PracticeSessionService.questionInterval * 60 * 1000);
             } else {
