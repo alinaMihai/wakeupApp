@@ -16,6 +16,7 @@
     
   </div>
   <h1 class="text-center">{{answerCtrl.question.text}} </h1>
+  <small>{{answerCtrl.question.quote.text}}</small>
   <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
   <div class="list-group" bindonce class="list-group" ng-repeat="group in  answerCtrl.questionAnswers | groupBy: 'theDay' | toArray:true |orderBy:'theDay':true">
     

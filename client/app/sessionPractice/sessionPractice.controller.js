@@ -5,10 +5,12 @@
         .module('wakeupApp')
         .controller('SessionController', SessionController);
 
-    SessionController.$inject = ['cached', 'QuestionService', '$timeout', 'PracticeSessionService', '$stateParams', '$state', 'logger', '$sessionStorage'];
+    SessionController.$inject = ['cached', 'QuestionService', '$timeout', 'PracticeSessionService',
+        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService'
+    ];
 
     /* @ngInject */
-    function SessionController(cached, QuestionService, $timeout, PracticeSessionService, $stateParams, $state, logger, $sessionStorage) {
+    function SessionController(cached, QuestionService, $timeout, PracticeSessionService, $stateParams, $state, logger, $sessionStorage, QuoteService) {
         var vm = this;
         vm.startQuestionSet = startQuestionSet;
         vm.endQuestionSet = endQuestionSet;
@@ -41,9 +43,11 @@
                 }
                 PracticeSessionService.currentQuestionIndex = 0;
                 vm.currentQuestion = questions[PracticeSessionService.currentQuestionIndex];
-
-
-
+                if (vm.currentQuestion.quote) {
+                    QuoteService.getQuote(vm.currentQuestion.quote).then(function(quote) {
+                        vm.currentQuestion.quote = quote;
+                    });
+                }
             });
 
         }

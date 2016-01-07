@@ -34,6 +34,7 @@
     exports.show = function(req, res) {
         var query = Question.findOne({});
         query.populate('questionSet');
+        query.populate('quote');
         query.where('_id', req.params.id);
         query.exec(function(err, question) {
             if (err) {

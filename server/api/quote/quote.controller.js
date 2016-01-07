@@ -16,6 +16,8 @@
 
     var _ = require('lodash');
     var Quote = require('./quote.model');
+    var Question = require('../question/question.model');
+    var QuestionSet = require('../questionSet/questionSet.model');
     var Topic = require('../topic/topic.model');
     var Comment = require('./comment.model');
 
@@ -45,14 +47,8 @@
                 if (err) {
                     return handleError(res, err);
                 }
-                Topic.update({
-                    _id: quote.topic
-                }, {
-                    $addToSet: {
-                        'quoteList': quote._id
-                    }
-                }).exec(function(err, topic) {});
-
+                updateTopic(quote);
+                updateQuestion(quote);
                 var commentObj = {
                     createDate: quote.date,
                     text: req.body.comment
@@ -76,6 +72,36 @@
             });
         });
     };
+
+    function updateTopic(quote) {
+        Topic.update({
+            _id: quote.topic
+        }, {
+            $addToSet: {
+                'quoteList': quote._id
+            }
+        }).exec(function(err, topic) {});
+    }
+
+    function updateQuestion(quote, previousAssociatedQuestion) {
+        console.log(previousAssociatedQuestion)
+        console.log(quote.question);
+        if (previousAssociatedQuestion) {
+            var query=Question.findOne({});
+            query.where("_id",previousAssociatedQuestion);
+            query.exec(function(err,question){
+                delete question.quote;
+                Question.update(question).exec(function(err,question){});
+            });
+        }
+        Question.update({
+            _id: quote.question
+        }, {
+            quote: quote._id
+        }).exec(function(err, question) {
+
+        });
+    }
 
     //get quote by id
     exports.show = function(req, res) {
@@ -117,6 +143,7 @@
 
     // Updates an existing quote in the DB.
     exports.update = function(req, res) {
+        var questionId = req.body.question;
 
         Quote.findById(req.params.id, function(err, quote) {
             if (err) {
@@ -125,6 +152,12 @@
             if (!quote) {
                 return res.status(404).send('Not Found');
             }
+            var currentAssociatedQuestion = quote.question;
+            if (questionId !== currentAssociatedQuestion) {
+                //remove quote from previous question and add quote to new question
+                updateQuestion(quote, questionId);
+            }
+
             var updated = _.merge(quote, req.body);
             updated.save(function(err) {
                 if (err) {
@@ -183,6 +216,7 @@
 
         });
     }
+
     function getUniqueElements(topics, property) {
         var uniqueElements = [];
         topics.forEach(function(topic) {
@@ -260,14 +294,16 @@
         var query = Comment.findOne({});
         query.where("_id", commentId);
         query.exec(function(err, comment) {
-
+            if (err) {
+                return handleError(res, err);
+            }
             Quote.findByIdAndUpdate(quoteId, {
                 $pull: {
                     'commentList': comment._id
                 }
             }, function(err, model) {
                 if (err) {
-                    return res.send(err);
+                    return handleError(res, err);
                 }
             });
             comment.remove(function(err) {
@@ -276,6 +312,30 @@
                 }
                 return res.status(204).send('No Content');
             });
+        });
+    }
+
+    exports.getAllQuestions = function(req, res) {
+        var allQuestions = [];
+        var userEmail = req.user.email;
+        var query = QuestionSet.find({});
+        query.where('user', userEmail);
+        query.populate('questions');
+
+        query.exec(function(err, questionSets) {
+            if (err) {
+                return handleError(res, err);
+            }
+            questionSets.forEach(function(questionSet) {   
+                var questions = questionSet.questions.map(function(question) {
+                    return {
+                        id: question._id,
+                        text: question.text
+                    };
+                });
+                allQuestions=allQuestions.concat(questions);
+            });
+            return res.status(200).json(allQuestions);
         });
     }
 

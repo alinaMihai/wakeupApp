@@ -15,7 +15,11 @@
         answers: [{
             type: Number,
             ref: 'Answer'
-        }]
+        }],
+        quote:{
+            type:Number,
+            ref:'Quote'
+        }
     }, {
         collection: 'questions'
     });

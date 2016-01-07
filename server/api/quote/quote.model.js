@@ -13,12 +13,16 @@
         date: Date,
         topic: {
             type: Number,
-            ref: "Topic"
+            ref: 'Topic'
         },
         commentList:[{
             type:ObjectIdSchema,
-            ref:"Comment"
-        }]
+            ref:'Comment'
+        }],
+        question:{
+            type:Number,
+            ref:'Question'
+        }
 
     }, {
         collection: 'quotes'

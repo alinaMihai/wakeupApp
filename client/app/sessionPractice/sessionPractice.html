@@ -7,6 +7,7 @@
     <question-modal ng-show="vm.practiceSessionService.questionSetSession" repeat-qs="vm.practiceSessionService.repeatQS" cindex="vm.practiceSessionService.currentQuestionIndex" process-question='vm.processQuestion()'>
         <label for="currentAnswer">
             <p>{{vm.currentQuestion.text}}</p>
+            <small>{{vm.currentQuestion.quote.text}}</small>
             <textarea id="answerTextArea" type="text" id="currentAnswer" ng-model=vm.currentAnswer rows="7" cols="60"></textarea>
         </label>
     </question-modal>

@@ -12,6 +12,7 @@
         var vm = this;
         vm.quotes = [];
         vm.topic = topic;
+
         vm.openQuoteModal = openQuoteModal;
         vm.deleteQuote = deleteQuote;
 
@@ -35,14 +36,20 @@
                 author: '',
                 text: '',
                 source: '',
-                comment: ''
+                comment: '',
+                question: ''
             };
 
             var data = quote ? angular.copy(quote) : emptyObj;
+
             data.heading = quote ? 'Edit' : 'Add';
             QuoteService.getSuggestions().then(function(suggestions) {
                 data.authors = suggestions.authors;
                 data.sources = suggestions.sources;
+            });
+            QuoteService.getAllQuestions().then(function(allQuestions) {
+                data.allQuestions = allQuestions;
+
             });
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -65,7 +72,8 @@
                 quoteObj.source = data.source;
                 quoteObj.date = new Date().getTime();
                 quoteObj.comment = data.comment;
-
+                quoteObj.question = data.associatedQuestion;
+                console.log(data.associatedQuestion);
                 return quote ? updateQuote(quoteObj) : createQuote(quoteObj);
 
             }, function() {
