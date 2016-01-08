@@ -37,7 +37,6 @@
         query.populate('quote');
         query.where('_id', req.params.id);
         query.exec(function(err, question) {
-            console.log(question);
             if (err) {
                 return handleError(res, err);
             }

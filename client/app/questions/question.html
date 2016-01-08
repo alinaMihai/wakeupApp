@@ -38,7 +38,7 @@
                 <li><strong>{{questionCtrl.questionSetQuestions.description}}</strong></li>
                 <li><strong>Questions:</strong> {{questionCtrl.questionSetQuestions.questions.length}} </li>
                 <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Impact:</strong> {{questionCtrl.questionSetQuestions.impact}}</li>
-                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Creation Date:</strong> {{questionCtrl.questionSetQuestions.createDate | date:'dd-MM-yyyy HH:mm'}}</li>
+                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Creation at:</strong> {{questionCtrl.questionSetQuestions.createDate | date:'HH:mm a on dd-MM-yyyy '}}</li>
                 <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Times Practiced:</strong> {{questionCtrl.questionSetQuestions.practiceTimes}}</li>
             </ul>
         </div>
@@ -58,8 +58,8 @@
     </div>
 </div>
 <footer class="footer">
-    <div class="container">
-        <p>Wakeup App | 2015
-        </p>
-    </div>
+  <div class="container">
+    <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
+    </p>
+  </div>
 </footer>

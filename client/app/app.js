@@ -25,13 +25,14 @@
         toastr.options.positionClass = 'toast-top-right';
     }
 
-    app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
-        function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+    app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','$logProvider',
+        function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$logProvider) {
             $urlRouterProvider
                 .otherwise('/');
 
             $locationProvider.html5Mode(true);
             $httpProvider.interceptors.push('authInterceptor');
+            $logProvider.debugEnabled(false);
         }
     ]);
 

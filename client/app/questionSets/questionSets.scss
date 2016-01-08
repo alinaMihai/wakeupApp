@@ -1,3 +1,19 @@
+#search {
+    background: url("../../assets/images/search-white.png") no-repeat 10px 6px #fcfcfc;
+    font: bold 12px Arial, Helvetica, Sans-serif;
+    color: #bebebe;
+    margin-left: 17px;
+    margin-bottom: 15px;
+    width: 199px;
+    padding: 6px 15px 6px 35px;
+    border-radius: 20px;
+    transition: all 0.7s ease 0s;
+}
+
+#search:focus {
+    width: 500px;
+}
+
 #createQuestionSetBtn {
     float: right;
     margin-top: 15px;
@@ -38,12 +54,12 @@
     margin-top: 10px;
 }
 
-.rounded-list li:hover{
+.rounded-list li:hover {
     background: #AC9AD2;
 }
 
-.rounded-list li:hover div a{
-  color:white;
+.rounded-list li:hover div a {
+    color: white;
 }
 
 .rounded-list li:hover:before {
