@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-xs-6">
             <button class="btn btn-lg btn-success" type="button" ng-csv="QuotesCtrl.exportQuotes" csv-header="['author', 'text', 'source']" filename="{{QuotesCtrl.topic.title}} quotes.csv" ng-disabled="QuotesCtrl.exportQuotes.length===0">Export Quotes</button>
-            <button class="btn btn-lg btn-success" ng-click="QuotesCtrl.showImport=true">Import CSV file</button>
+            <button ng-if="!QuotesCtrl.topic.isDefault" class="btn btn-lg btn-success" ng-click="QuotesCtrl.showImport=true">Import CSV file</button>
         </div>
         <div class="col-xs-6" ng-if="QuotesCtrl.showImport">
             <ng-csv-import class="import" content="QuotesCtrl.csv.content" header="QuotesCtrl.csv.header" header-visible="QuotesCtrl.csv.headerVisible" separator="QuotesCtrl.csv.separator"  result="QuotesCtrl.csv.result" encoding="QuotesCtrl.csv.encoding" ></ng-csv-import>

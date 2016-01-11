@@ -341,42 +341,56 @@
         });
     }
 
-    exports.importQuotes=function(req,res){
-        findLatestQuoteId(function(latestQuote) {
-            var latestQuoteId = latestQuote ? latestQuote._id : 0;
-            var counter = latestQuoteId + 1;
-            var quotes=req.body.quotes.map(function(quote,index){
-                if(quote[0]!==""){
-                    return {
-                        _id:counter++,
-                        author:quote.author,
-                        text:quote.text,
-                        source:quote.source,
-                        date:new Date().getTime(),
-                        topic:parseInt(req.params.topic)
-                    };
-                }
-            });
-            quotes=quotes.filter(function(quote){
-                return quote;
-            });
-            if(quotes.length>=1){
-                console.log(quotes);
-                Quote.collection.insert(quotes,{},function(err,result){
-                    if(err){
-                        return handleError(res,res);
-                    }
-                    for (var i = 0; i < result.ops.length; i++) {
-                        updateTopic(result.ops[i]);
-                    }
-                    console.log(result.ops);
-                    return res.status(200).json(result.ops);
-                });
-            }else{
-                return res.status(500).json("Cannot import empty set");
+    exports.importQuotes = function(req, res) {
+        Topic.findOne({
+            _id: req.params.topic
+        }).exec(function(err, topic) {
+            if(err){
+                return handleError(res,err);
             }
+            if (!topic.isDefault) {
 
+                findLatestQuoteId(function(latestQuote) {
+                    var latestQuoteId = latestQuote ? latestQuote._id : 0;
+                    var counter = latestQuoteId + 1;
+                    var quotes = req.body.quotes.map(function(quote, index) {
+                        if (quote[0] !== "") {
+                            return {
+                                _id: counter++,
+                                author: quote.author,
+                                text: quote.text,
+                                source: quote.source,
+                                date: new Date().getTime(),
+                                topic: parseInt(req.params.topic)
+                            };
+                        }
+                    });
+                    quotes = quotes.filter(function(quote) {
+                        return quote;
+                    });
+                    if (quotes.length >= 1) {
+
+                        Quote.collection.insert(quotes, {}, function(err, result) {
+                            if (err) {
+                                return handleError(res, err);
+                            }
+                            for (var i = 0; i < result.ops.length; i++) {
+                                updateTopic(result.ops[i]);
+                            }
+
+                            return res.status(200).json(result.ops);
+                        });
+                    } else {
+                        return res.status(500).json("Cannot import empty set");
+                    }
+
+                });
+            } else {
+                return res.status(500).json("Cannot import quotes on a default topic");
+            }
         });
+
+
     }
 
     function handleError(res, err) {

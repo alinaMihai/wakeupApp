@@ -117,7 +117,7 @@
             return deferred.promise;
         }
 
-        function importQuestions(questionSet, questions) {
+        function importQuestions(questionSet,questions) {
             var deferred = $q.defer();
             $http.post('/api/questions/importQuestions/' + questionSet,{'questions':questions})
                 .success(function(response) {

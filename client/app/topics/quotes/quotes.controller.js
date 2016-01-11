@@ -48,6 +48,7 @@
                             quotes.forEach(function(quote) {
                                 vm.quotes.push(quote);
                             });
+                             vm.exportQuotes=updateQuotesToExport(vm.quotes);
                         });
                         newVal = null;
                         vm.csv.content = null;

@@ -150,41 +150,56 @@
     };
 
     exports.importQuestions = function(req, res) {
-        findLatestQuestionId(function(question) {
-            var latestQuestionId = question ? question._id : 0;
-            var questionIds = [];
-            var counter = latestQuestionId + 1;
-            var questions = req.body.questions.map(function(question, index) {
-                if (question[0] !== "") {
-                    questionIds.push(counter);
-                    return {
-                        _id: counter++,
-                        text: question[0],
-                        questionSet: parseInt(req.params.questionSet),
-                        date: new Date().getTime()
-                    };
-                }
-            });
-            questions = questions.filter(function(question) {
-                return question;
-            });
-            if (questions.length >= 1) {
-                Question.collection.insert(questions, {}, function(err, result) {
-                    if (err) {
-                        return handleError(res, err);
+        QuestionSet.findOne({
+            _id: req.params.questionSet
+        }).exec(function(err, questionSet) {
+            if (err) {
+                return handleError(res, err);
+            }
+            if (!questionSet.isDefault) {
+                findLatestQuestionId(function(question) {
+                    var latestQuestionId = question ? question._id : 0;
+                    var questionIds = [];
+                    var counter = latestQuestionId + 1;
+                    var questions = req.body.questions.map(function(question, index) {
+                        if (question[0] !== "") {
+                            questionIds.push(counter);
+                            return {
+                                _id: counter++,
+                                text: question[0],
+                                questionSet: parseInt(req.params.questionSet),
+                                date: new Date().getTime()
+                            };
+                        }
+                    });
+                    questions = questions.filter(function(question) {
+                        return question;
+                    });
+                    console.log(req.params.isDefault);
+                    if (questions.length >= 1) {
+                        Question.collection.insert(questions, {}, function(err, result) {
+                            if (err) {
+                                return handleError(res, err);
+                            }
+                            for (var i = 0; i < questionIds.length; i++) {
+                                updateQuestionInQuestionSetList(req.params.questionSet, questionIds[i]);
+                            };
+                            return res.status(200).json(result.ops);
+                        });
+                    } else {
+                        return res.status(500).json("Cannot import empty set");
                     }
-                    for (var i = 0; i < questionIds.length; i++) {
-                        updateQuestionInQuestionSetList(req.params.questionSet, questionIds[i]);
-                    };
-                    return res.status(200).json(result.ops);
+
+
                 });
             }else{
-                return res.status(500).json("Cannot import empty set");
+                return res.status(500).json("Cannot import questions on a default question set");
             }
-
-
         });
+
     };
+
+
 
     function handleError(res, err) {
         console.log(err);

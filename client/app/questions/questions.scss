@@ -76,11 +76,12 @@ body {
     color: rgba(58, 51, 82, 0.80);
     max-height: 70px;
     overflow-y: auto;
-    /* padding-top: 10px; */
-    text-decoration:none;
+    word-break: break-all;
+    text-decoration: none;
+    padding-right:20px;         
 }
 
-#questionList  span.numberItem {
+#questionList span.numberItem {
     margin-right: 25px;
     border-radius: 35px;
     background: white;

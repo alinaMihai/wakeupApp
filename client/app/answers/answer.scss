@@ -10,9 +10,12 @@
     overflow-y: auto;
     padding-right: 15px;
 }
-.questionText{
-    max-height: 150px;
+
+.questionText {
+    max-height: 200px;
     overflow-y: auto;
+    font-size: 2.5em;
+    word-wrap: break-word;
 }
 
 .answerText {

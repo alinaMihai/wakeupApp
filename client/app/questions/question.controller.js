@@ -34,7 +34,7 @@
         function activate() {
             cached.getQuestions(questionSetId).then(function(questionSet) {
                 vm.questionSetQuestions = questionSet;
-                vm.exportQuestions = updateQuestionsToExport(questionSet.questions);
+                vm.exportQuestions = updateQuestionsToExport(vm.questionSetQuestions.questions);
                 usSpinnerService.stop('spinner-1');
             }, function(err) {
                 if (typeof err === "string" && err.toLocaleLowerCase().replace(" ", '') === "notfound") {
@@ -53,6 +53,7 @@
                             questions.forEach(function(question) {
                                 vm.questionSetQuestions.questions.push(question);
                             });
+                            vm.exportQuestions=updateQuestionsToExport(vm.questionSetQuestions.questions);
                         });
                         newVal = undefined;
                         vm.csvContent = undefined;
@@ -90,7 +91,7 @@
                 };
                 QuestionService.addQuestion(question).then(function(question) {
                     vm.questionSetQuestions.questions.push(question);
-                    vm.exportQuestions = updateQuestionsToExport(questionSet.questions);
+                    vm.exportQuestions = updateQuestionsToExport(vm.questionSetQuestions.questions);
                 });
                 vm.questionText = undefined;
                 vm.addQuestion.$setPristine();
@@ -108,7 +109,7 @@
             QuestionService.deleteQuestion(question).then(function() {
                 var index = vm.questionSetQuestions.questions.indexOf(question);
                 vm.questionSetQuestions.questions.splice(index, 1);
-                vm.exportQuestions = updateQuestionsToExport(questionSet.questions);
+                vm.exportQuestions = updateQuestionsToExport(vm.questionSetQuestions.questions);
             });
         }
 
