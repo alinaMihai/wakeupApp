@@ -23,6 +23,9 @@
                 if (questionSets.length > 0) {
                     deferred.resolve(questionSets);
                 }
+            },function(err){
+                deferred.reject(err);
+                logger.error("Could not retrieve question sets",err,"Error");
             });
             return deferred.promise;
         }
@@ -35,8 +38,14 @@
 
                 deferred.resolve(response.data);
                 logger.success("The question set was saved", response.data, "Success");
-            }, function(response) {
-                console.log("error", response);
+            }, function(err) {
+                var message="Could not create the question set";
+                deferred.reject(err);
+                if(err.data.code===11000){
+                    message="Duplicate question set name. You already have a question set with this name";
+                }
+                logger.error(message,err,"Error");
+                /*console.log("error", response);*/
             });
             return deferred.promise;
         }
@@ -47,6 +56,9 @@
                 var questionSet = response.data;
                 deferred.resolve();
                 logger.success("QuestionSet successfully deleted", questionSet, "QuestionSet Deleted");
+            },function(err){
+                deferred.reject(err);
+                logger.error("Could not delete question set",err,"Error");
             });
             return deferred.promise;
         }
@@ -58,6 +70,9 @@
                 deferred.resolve();
                 self.isUpdated = true;
                 logger.success("QuestionSet successfully updated", response.data, "QuestionSet Updated");
+            },function(err){
+                deferred.reject(err);
+                logger.error("Could not update question set",err,"Error");
             });
             return deferred.promise;
         }

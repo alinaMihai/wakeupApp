@@ -48,25 +48,29 @@
                     return handleError(res, err);
                 }
                 updateTopic(quote);
-                updateQuestion(quote._id,quote.question);
+                updateQuestion(quote._id, quote.question);
                 var commentObj = {
                     createDate: quote.date,
                     text: req.body.comment
                 };
                 delete req.body.comment;
-                Comment.create(commentObj, function(err, comment) {
-                    if (err) {
-                        return handleError(res, err);
-                    }
-                    Quote.update({
-                        _id: quoteId
-                    }, {
-                        $addToSet: {
-                            'commentList': comment._id
-                        }
-                    }).exec();
+                if (commentObj.text !== "") {
 
-                });
+                    Comment.create(commentObj, function(err, comment) {
+                        if (err) {
+                            return handleError(res, err);
+                        }
+                        Quote.update({
+                            _id: quoteId
+                        }, {
+                            $addToSet: {
+                                'commentList': comment._id
+                            }
+                        }).exec();
+
+                    });
+                }
+
 
                 return res.status(201).json(quote);
             });
@@ -83,22 +87,21 @@
         }).exec(function(err, topic) {});
     }
 
-    function updateQuestion(quoteId,questionId, previousAssociatedQuestion) {
-   
+    function updateQuestion(quoteId, questionId, previousAssociatedQuestion) {
+
         if (previousAssociatedQuestion) {
-            var query=Question.findOne({});
-            query.where("_id",previousAssociatedQuestion);
-            query.exec(function(err,question){
+            var query = Question.findOne({});
+            query.where("_id", previousAssociatedQuestion);
+            query.exec(function(err, question) {
                 delete question.quote;
-                Question.update(question).exec(function(err,question){});
+                Question.update(question).exec(function(err, question) {});
             });
         }
         Question.update({
             _id: questionId
         }, {
             quote: quoteId
-        }).exec(function(err, question) {
-        });
+        }).exec(function(err, question) {});
     }
 
     //get quote by id
@@ -153,7 +156,7 @@
             var currentAssociatedQuestion = quote.question;
             if (questionId !== currentAssociatedQuestion) {
                 //remove quote from previous question and add quote to new question
-                updateQuestion(quote.id,questionId, currentAssociatedQuestion);
+                updateQuestion(quote.id, questionId, currentAssociatedQuestion);
             }
 
             var updated = _.merge(quote, req.body);
@@ -324,15 +327,15 @@
             if (err) {
                 return handleError(res, err);
             }
-            questionSets.forEach(function(questionSet) {   
+            questionSets.forEach(function(questionSet) {
                 var questions = questionSet.questions.map(function(question) {
                     return {
                         id: question._id,
                         text: question.text,
-                        questionSet:questionSet.name
+                        questionSet: questionSet.name
                     };
                 });
-                allQuestions=allQuestions.concat(questions);
+                allQuestions = allQuestions.concat(questions);
             });
             return res.status(200).json(allQuestions);
         });

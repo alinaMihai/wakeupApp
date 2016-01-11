@@ -21,13 +21,11 @@ body {
     opacity: .80;
     filter: alpha(opacity=80);
 }
-
-.white_content,
-.questionModal {
+.white_content{
     display: block;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translate(-50%, -50%);
     width: inherit;
     height: inherit;
@@ -36,24 +34,9 @@ body {
     border-radius: 1em;
     background-color: #9FAECF;
 }
-
-@media only screen and (max-width: 700px) {
-    .questionModal {
-        width: 80%;
-    }
-}
-
 .white_content {
     padding-top: 10px;
     padding-bottom:10px;
-}
-
-.questionModal {
-    padding: 1.5%;
-}
-
-.questionModal p {
-    wrap-word: word-break;
 }
 
 #addQuestionTextArea {

@@ -28,6 +28,8 @@
                     $sessionStorage.repeatQS = PracticeSessionService.repeatQS;
                     $sessionStorage.questionInterval = PracticeSessionService.questionInterval;
                     $sessionStorage.shuffleQuestions = PracticeSessionService.shuffleQuestions;
+                    PracticeSessionService.questionSetSession=false;
+                    location.reload();
                 }
             });
         }

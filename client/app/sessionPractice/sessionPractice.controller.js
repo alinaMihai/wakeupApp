@@ -73,19 +73,13 @@
             PracticeSessionService.questionInterval = undefined;
             if (!vm.questionSetQuestions.isDefault) {
                 QuestionService.registerSession(questionSetId).then(function(questionSet) {
-                    //vm.questionSetQuestions.practiceTimes = questionSet.practiceTimes;
                     QuestionService.isUpdated = true;
                 }, function(err) {
                     console.log(err);
                 });
                 location.href="/questionList/"+questionSetId;
-                /*$state.go('questionList', {
-                    'questionSetId': questionSetId
-                });*/
             } else {
-                $state.go('questionList', {
-                    'questionSetId': questionSetId
-                });
+                location.href="/questionList/"+questionSetId;
             }
 
             if (timer) {

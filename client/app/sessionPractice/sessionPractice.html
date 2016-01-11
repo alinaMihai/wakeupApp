@@ -1,7 +1,7 @@
 <div>
     <div class="backgroundOverlay">
         <div ng-if="vm.practiceSessionService.questionSetSession" id="sessionMode">
-            <button id="endQsSessionBtn" ng-click="vm.endQuestionSet()" class="btn btn-lg btn-primary">End Question Set Session</button>
+            <button id="endQsSessionBtn" ng-click="vm.endQuestionSet()" class="btn btn-lg btn-primary" title="End Question Set Session">End Question Set Session</button>
         </div>
     </div>
     <question-modal ng-show="vm.practiceSessionService.questionSetSession" repeat-qs="vm.practiceSessionService.repeatQS" cindex="vm.practiceSessionService.currentQuestionIndex" process-question='vm.processQuestion()'>
