@@ -52,8 +52,10 @@
 
         function deleteQuestionSet(questionSet) {
             var deferred = $q.defer();
+            var self = this;
             $http.delete('/api/questionSet/' + questionSet._id).then(function(response) {
                 var questionSet = response.data;
+                self.isUpdated = true;
                 deferred.resolve();
                 logger.success("QuestionSet successfully deleted", questionSet, "QuestionSet Deleted");
             },function(err){

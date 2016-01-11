@@ -2,10 +2,17 @@
     text-align: center;
     font-size: 1.3em;
     font-style: italic;
-    width: 50%;
+    width: 75%;
     margin: auto;
-    margin-bottom:10px;
-    font-weight:500;
+    margin-bottom: 10px;
+    font-weight: 500;
+    max-height: 100px;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+.questionText{
+    max-height: 150px;
+    overflow-y: auto;
 }
 
 .answerText {

@@ -5,14 +5,15 @@
         .module('wakeupApp')
         .controller('QuestionCtrl', QuestionCtrl);
 
-    QuestionCtrl.$inject = ['cached', '$stateParams', 'QuestionService', '$uibModal', 'usSpinnerService', 'PracticeSessionService', '$state'];
+    QuestionCtrl.$inject = ['cached', '$stateParams', 'QuestionService', '$uibModal', 'usSpinnerService', 'PracticeSessionService', '$state', '$scope'];
 
     /* @ngInject */
-    function QuestionCtrl(cached, $stateParams, QuestionService, $uibModal, usSpinnerService, PracticeSessionService, $state) {
+    function QuestionCtrl(cached, $stateParams, QuestionService, $uibModal, usSpinnerService, PracticeSessionService, $state, $scope) {
         var vm = this;
         vm.title = 'Question  List';
 
         vm.addQuestionBool = false;
+        vm.exportQuestions = [];
 
         vm.questionService = QuestionService;
 
@@ -33,6 +34,11 @@
         function activate() {
             cached.getQuestions(questionSetId).then(function(questionSet) {
                 vm.questionSetQuestions = questionSet;
+                vm.exportQuestions = questionSet.questions.map(function(question) {
+                    return {
+                        questionName: question.text
+                    };
+                });
                 usSpinnerService.stop('spinner-1');
             }, function(err) {
                 if (typeof err === "string" && err.toLocaleLowerCase().replace(" ", '') === "notfound") {
@@ -41,6 +47,24 @@
                     $state.go('login');
                 }
 
+            });
+
+            $scope.$watch(function() {
+                return vm.csvResult;
+            }, function(newVal, oldVal) {
+                if (newVal !== oldVal && newVal.length >= 1) {
+                    if (newVal[0] != '') {
+                        QuestionService.importQuestions(vm.questionSetQuestions._id, newVal).then(function(questions) {
+                            questions.forEach(function(question) {
+                                vm.questionSetQuestions.questions.push(question);
+                            });
+                        });
+                        newVal = undefined;
+                        vm.csvContent = undefined;
+                        vm.showImport = false;
+                    }
+
+                }
             });
         }
 
@@ -51,7 +75,7 @@
         function startQuestionSet() {
             PracticeSessionService.questionInterval = vm.questionInterval;
             PracticeSessionService.repeatQS = vm.repeatQS;
-            PracticeSessionService.shuffleQuestions=vm.shuffleQuestions;
+            PracticeSessionService.shuffleQuestions = vm.shuffleQuestions;
             $state.go('practiceSession', {
                 'questionSetId': questionSetId
             });

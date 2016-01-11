@@ -12,7 +12,9 @@
         'angular.filter',
         'pasvaz.bindonce',
         'ui.bootstrap',
-        'angularSpinner'
+        'angularSpinner',
+        'ngCsv',
+        'ngCsvImport'
     ]);
 
     app.constant('toastr', toastr);

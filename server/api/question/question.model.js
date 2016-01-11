@@ -23,6 +23,6 @@
     }, {
         collection: 'questions'
     });
-
+    /*QuestionSchema.index({text: 1, questionSet: 1}, {unique: true});*/
     module.exports = mongoose.model('Question', QuestionSchema);
 })();
