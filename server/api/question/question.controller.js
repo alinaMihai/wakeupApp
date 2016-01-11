@@ -160,7 +160,7 @@
                     return {
                         _id: counter++,
                         text: question[0],
-                        questionSet: req.params.questionSet,
+                        questionSet: parseInt(req.params.questionSet),
                         date: new Date().getTime()
                     };
                 }

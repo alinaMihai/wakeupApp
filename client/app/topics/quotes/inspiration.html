@@ -14,23 +14,32 @@
             </a>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <button class="btn btn-lg btn-success" type="button" ng-csv="QuotesCtrl.exportQuotes" csv-header="['author', 'text', 'source']" filename="{{QuotesCtrl.topic.title}} quotes.csv" ng-disabled="QuotesCtrl.exportQuotes.length===0">Export Quotes</button>
+            <button class="btn btn-lg btn-success" ng-click="QuotesCtrl.showImport=true">Import CSV file</button>
+        </div>
+        <div class="col-xs-6" ng-if="QuotesCtrl.showImport">
+            <ng-csv-import class="import" content="QuotesCtrl.csv.content" header="QuotesCtrl.csv.header" header-visible="QuotesCtrl.csv.headerVisible" separator="QuotesCtrl.csv.separator"  result="QuotesCtrl.csv.result" encoding="QuotesCtrl.csv.encoding" ></ng-csv-import>
+        </div>
+    </div>
     <div class="row searchQuotes">
         <div class="col-lg-6">
-            <input type="text" class="form-control" required ng-keypress="vm.typeAhead" ng-model="vm.typeAhead" placeholder="search in quotes">
+            <input type="text" class="form-control" required ng-keypress="QuotesCtrl.typeAhead" ng-model="QuotesCtrl.typeAhead" placeholder="search in quotes">
         </div>
         <div class="col-lg-6"> Group by
-            <button class="btn btn-default" ng-click="vm.groupBy=true; vm.groupBy='source'" ng-class="{'activeGroup':vm.groupBy==='source'}">Source</button>
-            <button class="btn btn-default" ng-click="vm.groupBy=true; vm.groupBy='author'" ng-class="{'activeGroup':vm.groupBy==='author'}">Author</button>
-            <button class="btn btn-default" ng-click="vm.groupBy=true; vm.groupBy='theDay'" ng-class="{'activeGroup':vm.groupBy==='theDay'}">Date</button>
-            <button class="btn btn-default" ng-click="vm.groupBy=false" ng-class="{'activeGroup':vm.groupBy===false}">None</button>
+            <button class="btn btn-default" ng-click="QuotesCtrl.groupBy=true; QuotesCtrl.groupBy='source'" ng-class="{'activeGroup':QuotesCtrl.groupBy==='source'}">Source</button>
+            <button class="btn btn-default" ng-click="QuotesCtrl.groupBy=true; QuotesCtrl.groupBy='author'" ng-class="{'activeGroup':QuotesCtrl.groupBy==='author'}">Author</button>
+            <button class="btn btn-default" ng-click="QuotesCtrl.groupBy=true; QuotesCtrl.groupBy='theDay'" ng-class="{'activeGroup':QuotesCtrl.groupBy==='theDay'}">Date</button>
+            <button class="btn btn-default" ng-click="QuotesCtrl.groupBy=false" ng-class="{'activeGroup':QuotesCtrl.groupBy===false}">None</button>
         </div>
     </div>
     <br>
-    <div class="container" id="quotes" ng-if="vm.groupBy">
-        <div bindonce ng-repeat="group in QuotesCtrl.quotes | groupBy:vm.groupBy 
+    <div class="container" id="quotes" ng-if="QuotesCtrl.groupBy">
+        <div bindonce ng-repeat="group in QuotesCtrl.quotes | groupBy:QuotesCtrl.groupBy 
             | toArray:true
-            | orderBy:[(vm.groupBy!=='theDay')?'$key':'date']:(vm.groupBy==='theDay')?true:false
-            | filter:vm.typeAhead ">
+            | orderBy:[(QuotesCtrl.groupBy!=='theDay')?'$key':'date']:(QuotesCtrl.groupBy==='theDay')?true:false
+            | filter:QuotesCtrl.typeAhead ">
             <div class="group">
                 <hr>
                 <strong class="groupHeading" ng-bind-html="(group.$key|linkSource)||'Not Available'"></strong>
@@ -51,10 +60,10 @@
             </div>
         </div>
     </div>
-    <div class="container" id="quotes" ng-if="!vm.groupBy">
+    <div class="container" id="quotes" ng-if="!QuotesCtrl.groupBy">
         <div class="row">
             <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
-            <div class="item" bindonce ng-repeat="quote in QuotesCtrl.quotes | filter:vm.typeAhead">
+            <div class="item" bindonce ng-repeat="quote in QuotesCtrl.quotes | filter:QuotesCtrl.typeAhead">
                 <div class="well">
                     <div class="options">
                         <a class="trash" ng-if="!QuotesCtrl.topic.isDefault" confirm-click="Are you sure you want to delete this quote?" ng-click="QuotesCtrl.deleteQuote(quote)"><span class="glyphicon glyphicon-trash pull-right"></span></a>
@@ -69,8 +78,8 @@
     </div>
 </div>
 <footer class="footer">
-  <div class="container">
-    <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
-    </p>
-  </div>
+    <div class="container">
+        <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
+        </p>
+    </div>
 </footer>

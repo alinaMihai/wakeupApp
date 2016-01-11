@@ -341,6 +341,44 @@
         });
     }
 
+    exports.importQuotes=function(req,res){
+        findLatestQuoteId(function(latestQuote) {
+            var latestQuoteId = latestQuote ? latestQuote._id : 0;
+            var counter = latestQuoteId + 1;
+            var quotes=req.body.quotes.map(function(quote,index){
+                if(quote[0]!==""){
+                    return {
+                        _id:counter++,
+                        author:quote.author,
+                        text:quote.text,
+                        source:quote.source,
+                        date:new Date().getTime(),
+                        topic:parseInt(req.params.topic)
+                    };
+                }
+            });
+            quotes=quotes.filter(function(quote){
+                return quote;
+            });
+            if(quotes.length>=1){
+                console.log(quotes);
+                Quote.collection.insert(quotes,{},function(err,result){
+                    if(err){
+                        return handleError(res,res);
+                    }
+                    for (var i = 0; i < result.ops.length; i++) {
+                        updateTopic(result.ops[i]);
+                    }
+                    console.log(result.ops);
+                    return res.status(200).json(result.ops);
+                });
+            }else{
+                return res.status(500).json("Cannot import empty set");
+            }
+
+        });
+    }
+
     function handleError(res, err) {
         console.log(err);
         return res.status(500).send(err);

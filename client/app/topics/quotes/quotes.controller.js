@@ -5,16 +5,24 @@
         .module('wakeupApp')
         .controller('QuotesCtrl', QuotesCtrl);
 
-    QuotesCtrl.$inject = ['topic', 'QuoteService', '$uibModal', 'usSpinnerService', 'CoreService'];
+    QuotesCtrl.$inject = ['topic', 'QuoteService', '$uibModal', 'usSpinnerService', 'CoreService', '$scope'];
 
     /* @ngInject */
-    function QuotesCtrl(topic, QuoteService, $uibModal, usSpinnerService, CoreService) {
+    function QuotesCtrl(topic, QuoteService, $uibModal, usSpinnerService, CoreService, $scope) {
         var vm = this;
         vm.quotes = [];
         vm.topic = topic;
-
+        vm.exportQuotes = [];
         vm.openQuoteModal = openQuoteModal;
         vm.deleteQuote = deleteQuote;
+
+        vm.csv = {
+            content: null,
+            header: true,
+            separator: ',',
+            result: null,
+            encoding: 'ISO-8859-1',
+        };
 
         activate();
 
@@ -24,9 +32,29 @@
             usSpinnerService.spin('spinner-1');
             QuoteService.getQuotes(topic._id).then(function(quotes) {
                 vm.quotes = CoreService.groupArrayObjectsByDate(quotes);
+                vm.exportQuotes = updateQuotesToExport(vm.quotes);
                 usSpinnerService.stop('spinner-1');
             }, function(err) {
                 usSpinnerService.stop('spinner-1');
+            });
+
+            $scope.$watch(function() {
+                return vm.csv.result;
+            }, function(newVal, oldVal) {
+                if (newVal !== oldVal && newVal.length >= 1) {
+                    if (newVal[0] != '') {
+                        console.log(newVal);
+                        QuoteService.importQuotes(vm.topic._id, newVal).then(function(quotes) {
+                            quotes.forEach(function(quote) {
+                                vm.quotes.push(quote);
+                            });
+                        });
+                        newVal = null;
+                        vm.csv.content = null;
+                        vm.showImport = false;
+                    }
+
+                }
             });
         }
 
@@ -91,6 +119,7 @@
             QuoteService.createQuote(vm.topic._id, createObj).then(function(quote) {
                 quote.theDay = CoreService.timeConverter(quote.date);
                 vm.quotes.push(quote);
+                vm.exportQuotes = updateQuotesToExport(vm.quotes);
             });
         }
 
@@ -98,6 +127,7 @@
             QuoteService.deleteQuote(quote).then(function() {
                 var index = vm.quotes.indexOf(quote);
                 vm.quotes.splice(index, 1);
+                vm.exportQuotes = updateQuotesToExport(vm.quotes);
             });
         }
 
@@ -108,7 +138,17 @@
                 _.merge(updateQuote, updatedQuote, updateQuote);
 
             });
+        }
 
+        function updateQuotesToExport(quotes) {
+            var exportQuotes = quotes.map(function(quote) {
+                return {
+                    author: quote.author,
+                    text: quote.text,
+                    source: quote.source
+                };
+            });
+            return exportQuotes;
         }
     }
 })();

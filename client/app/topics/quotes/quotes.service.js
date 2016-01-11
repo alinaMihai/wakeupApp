@@ -15,10 +15,11 @@
         this.deleteQuote = deleteQuote;
         this.updateQuote = updateQuote;
         this.getSuggestions = getSuggestions;
-        this.getAllQuestions=getAllQuestions;
+        this.getAllQuestions = getAllQuestions;
         this.addComment = addComment;
         this.getComments = getComments;
         this.deleteComment = deleteComment;
+        this.importQuotes=importQuotes;
 
         ////////////////
 
@@ -134,6 +135,18 @@
             }, function(err) {
                 deferred.reject(err);
                 logger.error("Comment could not be deleted", err, "Error");
+            });
+            return deferred.promise;
+        }
+
+        function importQuotes(topicId, quotes) {
+            var deferred = $q.defer();
+            $http.post('/api/quotes/importQuotes/' + topicId,{'quotes':quotes}).then(function(response) {
+                deferred.resolve(response.data);
+                logger.success("Quotes successfully imported",response.data, "Success");
+            }, function(err) {
+                deferred.reject(err);
+                logger.error("Could not import quotes", err, "Error");
             });
             return deferred.promise;
         }
