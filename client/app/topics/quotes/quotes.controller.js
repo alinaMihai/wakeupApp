@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .controller('QuotesCtrl', QuotesCtrl);
 
-    QuotesCtrl.$inject = ['topic', 'QuoteService', '$uibModal', 'usSpinnerService', 'CoreService', '$scope'];
+    QuotesCtrl.$inject = ['topic', 'QuoteService', '$uibModal', 'usSpinnerService', 'CoreService', '$scope', 'logger'];
 
     /* @ngInject */
-    function QuotesCtrl(topic, QuoteService, $uibModal, usSpinnerService, CoreService, $scope) {
+    function QuotesCtrl(topic, QuoteService, $uibModal, usSpinnerService, CoreService, $scope, logger) {
         var vm = this;
         vm.quotes = [];
         vm.topic = topic;
@@ -41,8 +41,8 @@
             $scope.$watch(function() {
                 return vm.csv.result;
             }, function(newVal, oldVal) {
-                if (newVal !== oldVal && newVal.length >= 1) {
-                    if (newVal[0] != '') {
+                if (newVal !== oldVal) {
+                    if (newVal.length >= 1 && checkImportFormat(newVal) && newVal[0] != '') {
                         console.log(newVal);
                         QuoteService.importQuotes(vm.topic._id, newVal).then(function(quotes) {
                             quotes.forEach(function(quote) {
@@ -52,6 +52,8 @@
                         newVal = null;
                         vm.csv.content = null;
                         vm.showImport = false;
+                    } else {
+                        logger.error("Could not import quotes");
                     }
 
                 }
@@ -149,6 +151,14 @@
                 };
             });
             return exportQuotes;
+        }
+
+        function checkImportFormat(quotes) {
+            var formatOk = quotes.every(function(quote) {
+                return quote.hasOwnProperty('author') && quote.hasOwnProperty('source') && quote.hasOwnProperty('text');
+            });
+
+            return formatOk;
         }
     }
 })();

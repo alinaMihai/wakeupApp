@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .controller('QuestionCtrl', QuestionCtrl);
 
-    QuestionCtrl.$inject = ['cached', '$stateParams', 'QuestionService', '$uibModal', 'usSpinnerService', 'PracticeSessionService', '$state', '$scope'];
+    QuestionCtrl.$inject = ['cached', '$stateParams', 'QuestionService', '$uibModal', 'usSpinnerService', 'PracticeSessionService', '$state', '$scope', 'logger'];
 
     /* @ngInject */
-    function QuestionCtrl(cached, $stateParams, QuestionService, $uibModal, usSpinnerService, PracticeSessionService, $state, $scope) {
+    function QuestionCtrl(cached, $stateParams, QuestionService, $uibModal, usSpinnerService, PracticeSessionService, $state, $scope, logger) {
         var vm = this;
         vm.title = 'Question  List';
 
@@ -44,12 +44,11 @@
                 }
 
             });
-
             $scope.$watch(function() {
                 return vm.csvResult;
             }, function(newVal, oldVal) {
-                if (newVal !== oldVal && newVal.length >= 1) {
-                    if (newVal[0] != '') {
+                if (newVal !== oldVal) {
+                    if (newVal.length >= 1 && newVal[0] != '') {
                         QuestionService.importQuestions(vm.questionSetQuestions._id, newVal).then(function(questions) {
                             questions.forEach(function(question) {
                                 vm.questionSetQuestions.questions.push(question);
@@ -58,6 +57,8 @@
                         newVal = undefined;
                         vm.csvContent = undefined;
                         vm.showImport = false;
+                    } else {
+                        logger.error("Could not import questions");
                     }
 
                 }
@@ -160,7 +161,6 @@
             });
             return exportQuestions;
         }
-
     }
 
 })();
