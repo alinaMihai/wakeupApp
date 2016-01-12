@@ -20,11 +20,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-6">
-            <button class="btn btn-lg btn-success" type="button" ng-csv="questionCtrl.exportQuestions" filename="{{questionCtrl.questionSetQuestions.name}} questions.csv" ng-disabled="questionCtrl.exportQuestions.length===0">Export Questions</button>
-            <button class="btn btn-lg btn-success" ng-click="questionCtrl.showImport=true" ng-if="!questionCtrl.questionSetQuestions.isDefault">Import CSV file</button>
+        <div class="col-xs-7">
+            <div class="row">
+                <div class="col-lg-4 eiButtons">
+                    <button class="btn btn-lg btn-block btn-success" type="button" ng-csv="questionCtrl.exportQuestions" filename="{{questionCtrl.questionSetQuestions.name}} questions.csv" ng-disabled="questionCtrl.exportQuestions.length===0">Export Questions</button>
+                </div>
+                <div class="col-lg-4">
+                    <button class="btn btn-lg btn-block btn-success" ng-click="questionCtrl.showImport=!questionCtrl.showImport" ng-if="!questionCtrl.questionSetQuestions.isDefault">Import CSV file</button>
+                </div>
+            </div>
         </div>
-        <div class="col-xs-6" ng-if="questionCtrl.showImport">
+        <div class="col-xs-5" ng-if="questionCtrl.showImport">
             <ng-csv-import content="questionCtrl.csvContent" result="questionCtrl.csvResult" accept=".csv"></ng-csv-import>
         </div>
     </div>

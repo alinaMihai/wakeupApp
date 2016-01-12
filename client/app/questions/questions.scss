@@ -7,6 +7,10 @@ body {
     height: 29px;
 }
 
+.eiButtons {
+    margin-bottom: 20px;
+}
+
 // popup overlay
 .black_overlay {
     display: block;
@@ -78,7 +82,7 @@ body {
     overflow-y: auto;
     word-break: break-all;
     text-decoration: none;
-    padding-right:20px;         
+    padding-right: 20px;
 }
 
 #questionList span.numberItem {

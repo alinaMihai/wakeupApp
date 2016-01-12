@@ -1,0 +1,49 @@
+<div class="modal-header">
+    <h3 class="modal-title">Export Quotes</h3>
+</div>
+<div class="modal-body">
+    <form name="exportQuotesForm">
+        <label for="">Export quotes by</label>
+        <div class="form-group" ng-class="{'has-error':exportQuotesForm.$invalid && exportQuotesForm.$dirty}">
+            <div class="btn-group">
+                <label class="btn btn-default">
+                    <input type="radio" name="efilter" value="1" ng-model="modalCtrl.fshow" /> Source
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="efilter" value="2" ng-model="modalCtrl.fshow" /> Author
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="efilter" value="3" ng-model="modalCtrl.fshow" ng-click="modalCtrl.allQuotes()" /> All
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <div ng-if="modalCtrl.fshow==1">
+                        <label for="">Source</label>
+                        <select ng-model="modalCtrl.source" class="form-control">
+                            <option value="N/A">Not Available</option>
+                            <option ng-repeat="suggestion in modalCtrl.sources" class="ng-scope">{{suggestion}}</option>
+                        </select>
+                    </div>
+                    <div ng-if="modalCtrl.fshow==2">
+                        <label for="">Author</label>
+                        <select ng-model="modalCtrl.author" class="form-control">
+                            <option ng-repeat="suggestion in modalCtrl.authors" class="ng-scope">{{suggestion}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div ng-if="modalCtrl.noQuotes>=0">
+                    <p class="noQuotes">Export <span>{{modalCtrl.noQuotes}}</span> quote(s)</p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary btn-lg" type="button" ng-click="modalCtrl.ok()" ng-disabled="exportQuotesForm.$invalid" ng-csv="modalCtrl.exportQuotes" csv-header="['author', 'text', 'source']" filename="{{modalCtrl.data.topicName}} quotes.csv">Export</button>
+    <button class="btn btn-warning btn-lg" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
+</div>

@@ -1,30 +1,37 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
     <div class="row">
-        <div class="col-xs-8">
+        <div class="col-sm-8">
             <ol class="breadcrumb">
                 <li><a ui-sref="topicsList">Topics</a></li>
                 <li><a ui-sref="topic({topicId:QuotesCtrl.topic._id})">{{QuotesCtrl.topic.title}}</a></li>
                 <li class="active">Inspiration Page</li>
             </ol>
         </div>
-        <div class="col-xs-4" ng-if="!QuotesCtrl.topic.isDefault">
+        <div class="col-sm-4" ng-if="!QuotesCtrl.topic.isDefault">
             <a id="addQuote" class="btn btn-info btn-block" ng-click="QuotesCtrl.openQuoteModal('lg')">
                 <span class="glyphicon glyphicon-plus"></span> Add Quote
             </a>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-6">
-            <button class="btn btn-lg btn-success" type="button" ng-csv="QuotesCtrl.exportQuotes" csv-header="['author', 'text', 'source']" filename="{{QuotesCtrl.topic.title}} quotes.csv" ng-disabled="QuotesCtrl.exportQuotes.length===0">Export Quotes</button>
-            <button ng-if="!QuotesCtrl.topic.isDefault" class="btn btn-lg btn-success" ng-click="QuotesCtrl.showImport=true">Import CSV file</button>
+        <div class="col-sm-7">
+            <div class="row">
+                <div class="col-md-4 eiButtons">
+                    <button class="btn btn-lg btn-block btn-success" type="button" ng-click="QuotesCtrl.openExportQuotesModal(QuotesCtrl.topic.title)" 
+                     ng-disabled="QuotesCtrl.exportQuotes.length===0">Export Quotes</button>
+                </div>
+                <div class="col-md-4">
+                    <button ng-if="!QuotesCtrl.topic.isDefault" class="btn btn-lg btn-block btn-success" ng-click="QuotesCtrl.showImport=true">Import CSV file</button>
+                </div>
+            </div>
         </div>
         <div class="col-xs-6" ng-if="QuotesCtrl.showImport">
-            <ng-csv-import class="import" content="QuotesCtrl.csv.content" header="QuotesCtrl.csv.header" header-visible="QuotesCtrl.csv.headerVisible" separator="QuotesCtrl.csv.separator"  result="QuotesCtrl.csv.result" encoding="QuotesCtrl.csv.encoding" ></ng-csv-import>
+            <ng-csv-import class="import" content="QuotesCtrl.csv.content" header="QuotesCtrl.csv.header" header-visible="QuotesCtrl.csv.headerVisible" separator="QuotesCtrl.csv.separator" result="QuotesCtrl.csv.result" encoding="QuotesCtrl.csv.encoding"></ng-csv-import>
         </div>
     </div>
     <div class="row searchQuotes">
-        <div class="col-lg-6">
+        <div class="col-lg-6 searchQuoteInput">
             <input type="text" class="form-control" required ng-keypress="QuotesCtrl.typeAhead" ng-model="QuotesCtrl.typeAhead" placeholder="search in quotes">
         </div>
         <div class="col-lg-6"> Group by

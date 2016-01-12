@@ -15,6 +15,7 @@
         vm.exportQuotes = [];
         vm.openQuoteModal = openQuoteModal;
         vm.deleteQuote = deleteQuote;
+        vm.openExportQuotesModal = openExportQuotesModal;
 
         vm.csv = {
             content: null,
@@ -48,7 +49,7 @@
                             quotes.forEach(function(quote) {
                                 vm.quotes.push(quote);
                             });
-                             vm.exportQuotes=updateQuotesToExport(vm.quotes);
+                            vm.exportQuotes = updateQuotesToExport(vm.quotes);
                         });
                         newVal = null;
                         vm.csv.content = null;
@@ -58,6 +59,33 @@
                     }
 
                 }
+            });
+        }
+
+        function openExportQuotesModal(topicName) {
+            var data = {};
+            var modalInstance;
+            data.quotes = vm.exportQuotes;
+            data.topicName = topicName;
+
+            QuoteService.getSuggestions().then(function(suggestions) {
+                data.authors = suggestions.authors;
+                data.sources = suggestions.sources;
+
+                modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/topics/quotes/exportQuotesModal.html',
+                    size: 'lg',
+                    controller: 'ExportQuotesCtrl as modalCtrl',
+                    resolve: {
+                        data: function() {
+                            return data;
+                        }
+                    }
+                });
+                modalInstance.result.then(function(data) {}, function() {
+                    // $log.info('Modal dismissed at: ' + new Date());
+                });
             });
         }
 
@@ -104,7 +132,7 @@
                 quoteObj.date = new Date().getTime();
                 quoteObj.comment = data.comment;
                 quoteObj.question = data.associatedQuestion;
-                console.log(data.associatedQuestion);
+
                 return quote ? updateQuote(quoteObj) : createQuote(quoteObj);
 
             }, function() {
