@@ -46,11 +46,10 @@
             switch (parseInt(vm.fshow)) {
                 case 1:
                     {
-                        if (vm.source = "N/A") {
-                            vm.source = "";
-                        }
+                        
                         vm.exportQuotes = vm.data.quotes.filter(function(quote) {
-                            return quote.source === vm.source;
+                            var source=vm.source==="N/A"?"":vm.source;
+                            return quote.source === source;
                         });
                         vm.noQuotes = vm.exportQuotes.length;
                         break;
@@ -58,7 +57,8 @@
                 case 2:
                     {
                         vm.exportQuotes = vm.data.quotes.filter(function(quote) {
-                            return quote.author === vm.author;
+                            var author=vm.author==="N/A"?"":vm.author;
+                            return quote.author === author;
                         });
                         vm.noQuotes = vm.exportQuotes.length;
                         break;
@@ -74,6 +74,9 @@
 
             for (var i = 0; i < array.length; i++) {
                 for (var j = 0; j < vm.data.quotes.length; j++) {
+                    if(vm.data.quotes[j][property]==="" && displayArray.indexOf("N/A")===-1){
+                        displayArray.push("N/A");
+                    }
                     if (vm.data.quotes[j][property] === array[i]) {
                         displayArray.push(array[i]);
                         break;

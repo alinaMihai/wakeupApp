@@ -23,7 +23,6 @@
                     <div ng-if="modalCtrl.fshow==1">
                         <label for="">Source</label>
                         <select ng-model="modalCtrl.source" class="form-control">
-                            <option value="N/A">Not Available</option>
                             <option ng-repeat="suggestion in modalCtrl.sources" class="ng-scope">{{suggestion}}</option>
                         </select>
                     </div>
