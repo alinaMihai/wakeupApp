@@ -1,0 +1,63 @@
+.sessionList {
+    list-style: none;
+    margin-top: 50px;
+}
+
+.sessionList li {
+    margin-bottom: 50px;
+    line-height: 30px;
+    /* older webkit */
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-justify-content: center;
+    /* older firefox */
+    display: -moz-box;
+    -moz-box-align: center;
+    -moz-box-pack: center;
+    /* IE10*/
+    display: -ms-flexbox;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    /* newer webkit */
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-box-pack: center;
+    /* Standard Form - IE 11+, FF 22+, Chrome 29+, Opera 17+ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: block;
+}
+
+.questionData {
+    font-size: 1.2em;
+}
+
+
+.questionQuote {
+    font-size: 1em;
+    font-style: italic;
+    font-weight: bold;
+    text-indent: 10px;
+    text-align: center;
+    max-height: 200px;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+
+.questionAnswer {
+    font-size: 1.6em;
+    font-family: serif;
+    text-intend: 10px;
+}
+
+.answerBox {
+    border-left: 6px solid #BED5EB;
+    max-height: 250px;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
+.answerDate {
+    font-famility: serif;
+}

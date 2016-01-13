@@ -1,0 +1,35 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-md-8">
+            <ol class="breadcrumb">
+                <li><a ui-sref="questionSetList">Question Sets</a></li>
+                <li><a ui-sref="questionList({questionSetId:SessionDetailsCtrl.questionSetId})">{{SessionDetailsCtrl.questionSetName}}</a></li>
+                <li class="active">Session Details</li>
+            </ol>
+        </div>
+    </div>
+    <h1 class="text-center questionText">Session Details <small>{{SessionDetailsCtrl.questionSetName}}</small></h1>
+    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+    <div>
+        <ul class="sessionList">
+            <li class="row" ng-repeat="question in SessionDetailsCtrl.questions |orderBy:'_id'">
+                <div class="col-lg-5 questionBox">
+                    <p class="questionData">{{$index+1}}. {{question.text}}</p>
+                    <p class="questionQuote">{{question.quote.text |quotesSigns}}</p>
+                </div>
+                <hr>
+                <div class="col-lg-7 answerBox" ng-if="question.answers[0]">
+                    <p class="questionAnswer" >{{question.answers[0].text|quotesSigns}} </p>
+                    <span class="answerDate">at {{question.answers[0].date |date: 'hh:mm a on dd/MM/yyyy'}}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
+        </p>
+    </div>
+</footer>

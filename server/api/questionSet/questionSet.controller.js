@@ -63,6 +63,38 @@
         });
     }
 
+    exports.getRecentQuestionSetSession = function(req, res) {
+        var userEmail = req.user.email;
+        var query = Question.find({});
+        query.where("questionSet", req.params.questionSet);
+        query.populate("answers");
+        query.populate("quote");
+        query.exec(function(err, questions) {
+            if (err) {
+                return handleError(res, err);
+            }
+            if (!questions) {
+                return res.status(404).send('Not Found');
+            }
+            questions.forEach(function(question) {
+                question.answers = filterAnswers(question, userEmail);
+            });
+            
+            return res.status(200).json(questions);
+        });
+    }
+
+    function filterAnswers(question, user) {
+        var answers = [];
+        var sortedAnswers=question.answers.sort(function(a, b) {
+            return new Date(b.date) - new Date(a.date);
+        });
+        answers = sortedAnswers.filter(function(answer) {
+            return answer.user === user;
+        });
+        return answers;
+    }
+
     //get question list
     exports.getQuestionList = function(req, res) {
         var userEmail = req.user.email;

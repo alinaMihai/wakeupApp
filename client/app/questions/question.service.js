@@ -16,7 +16,8 @@
         this.deleteQuestion = deleteQuestion;
         this.editQuestion = editQuestion;
         this.registerSession = registerSession;
-        this.importQuestions=importQuestions;
+        this.importQuestions = importQuestions;
+        this.getLastSessionData=getLastSessionData;
         this.isUpdated = false;
 
         ////////////////
@@ -117,16 +118,29 @@
             return deferred.promise;
         }
 
-        function importQuestions(questionSet,questions) {
+        function getLastSessionData(questionSetId) {
             var deferred = $q.defer();
-            $http.post('/api/questions/importQuestions/' + questionSet,{'questions':questions})
+            $http.get('/api/questionSet/sessionAnswers/' + questionSetId)
+                .success(function(questions) {
+                    deferred.resolve(questions);
+                }).error(function(error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        }
+
+        function importQuestions(questionSet, questions) {
+            var deferred = $q.defer();
+            $http.post('/api/questions/importQuestions/' + questionSet, {
+                    'questions': questions
+                })
                 .success(function(response) {
                     deferred.resolve(response);
-                    logger.success("Questions successfully imported",response,"Successful import");
+                    logger.success("Questions successfully imported", response, "Successful import");
                 })
                 .error(function(err) {
                     deferred.reject(err);
-                    logger.error("Questions could not be successfully imported",err,"Error");
+                    logger.error("Questions could not be successfully imported", err, "Error");
                 });
             return deferred.promise;
         }

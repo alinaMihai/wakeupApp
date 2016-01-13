@@ -8,7 +8,7 @@
     var router = express.Router();
 
     router.get('/', auth.isAuthenticated(), controller.index);
-
+    router.get('/sessionAnswers/:questionSet', auth.isAuthenticated(), controller.getRecentQuestionSetSession);
     router.get('/:id', auth.isAuthenticated(), controller.getQuestionList);
     router.get('/:questionSetId', auth.isAuthenticated(), controller.show);
     router.post('/', auth.isAuthenticated(), controller.create);

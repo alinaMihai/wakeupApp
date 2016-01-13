@@ -57,6 +57,9 @@
                 <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Times Practiced:</strong> {{questionCtrl.questionSetQuestions.practiceTimes}}</li>
             </ul>
         </div>
+        <div class="col-lg-6">
+            <a  class="seeLastSessionBtn btn btn-lg btn-success" ui-sref="sessionDetails({'questionSetId':questionCtrl.questionSetQuestions._id,'questionSetName':questionCtrl.questionSetQuestions.name})">See last session</a>
+        </div>
     </div>
     <h4>Questions</h4>
     <div class="list-group" id="questionList">
