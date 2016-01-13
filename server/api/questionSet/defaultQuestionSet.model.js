@@ -18,7 +18,8 @@
             ref: 'QuestionSet'
         },
         user: String,
-        isDeleted: Boolean
+        isDeleted: Boolean,
+        practiceTimes:Number
     }, {
         collection: 'defaultQuestionSets'
     });

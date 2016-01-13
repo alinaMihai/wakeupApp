@@ -20,7 +20,7 @@
             $(window).on("beforeunload", function(e) {
 
                 if (PracticeSessionService.questionSetSession) {
-                    return "Your configurations for this session will be lost";       
+                   // return "Your configurations for this session will be lost";       
                 }
             });
             $(window).on('popstate', function(e) {
@@ -29,7 +29,7 @@
                     $sessionStorage.questionInterval = PracticeSessionService.questionInterval;
                     $sessionStorage.shuffleQuestions = PracticeSessionService.shuffleQuestions;
                     PracticeSessionService.questionSetSession=false;
-                    location.reload();
+                    /*location.reload();*/
                 }
             });
         }

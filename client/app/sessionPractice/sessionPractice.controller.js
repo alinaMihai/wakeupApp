@@ -6,11 +6,12 @@
         .controller('SessionController', SessionController);
 
     SessionController.$inject = ['cached', 'QuestionService', '$timeout', 'PracticeSessionService',
-        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService'
+        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService','$window'
     ];
 
     /* @ngInject */
-    function SessionController(cached, QuestionService, $timeout, PracticeSessionService, $stateParams, $state, logger, $sessionStorage, QuoteService) {
+    function SessionController(cached, QuestionService, $timeout, PracticeSessionService, $stateParams,
+     $state, logger, $sessionStorage, QuoteService,$window) {
         var vm = this;
         vm.startQuestionSet = startQuestionSet;
         vm.endQuestionSet = endQuestionSet;
@@ -77,9 +78,9 @@
                 }, function(err) {
                     console.log(err);
                 });
-                location.href="/questionList/"+questionSetId;
+                $window.location.href="/questionList/"+questionSetId;
             } else {
-                location.href="/questionList/"+questionSetId;
+                $window.location.href="/questionList/"+questionSetId;
             }
 
             if (timer) {
@@ -96,6 +97,7 @@
                 timer = $timeout(function() {
                     PracticeSessionService.currentQuestionIndex++;
                     vm.currentQuestion = questions[PracticeSessionService.currentQuestionIndex];
+                    
                     if (vm.currentQuestion.quote) {
                         QuoteService.getQuote(vm.currentQuestion.quote).then(function(quote) {
                             vm.currentQuestion.quote = quote;

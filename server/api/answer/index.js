@@ -9,7 +9,7 @@
 
     router.get('/:questionId', auth.isAuthenticated(), controller.index);
 
-    router.get('/:id', controller.show);
+   /* router.get('/:id', controller.show);*/
     router.post('/', auth.isAuthenticated(), controller.create);
     router.put('/:id', controller.update);
     router.patch('/:id', controller.update);

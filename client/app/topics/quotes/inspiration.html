@@ -22,7 +22,7 @@
                      ng-disabled="QuotesCtrl.exportQuotes.length===0">Export Quotes</button>
                 </div>
                 <div class="col-md-4">
-                    <button ng-if="!QuotesCtrl.topic.isDefault" class="btn btn-lg btn-block btn-success" ng-click="QuotesCtrl.showImport=true">Import CSV file</button>
+                    <button ng-if="!QuotesCtrl.topic.isDefault" class="btn btn-lg btn-block btn-success" ng-click="QuotesCtrl.showImport=!QuotesCtrl.showImport">Import CSV file</button>
                 </div>
             </div>
         </div>
