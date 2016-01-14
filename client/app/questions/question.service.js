@@ -69,7 +69,7 @@
                 deferred.resolve(response.data);
                 logger.success("The question was saved", response.data, "Success");
             }, function(response) {
-                logger.error("The question could not be saved", response.data, "Error");
+                logger.error("The question could not be saved", response.data, response.data.message);
                 logger.log("error", response);
             });
             return deferred.promise;

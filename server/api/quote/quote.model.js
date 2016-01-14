@@ -7,21 +7,45 @@
 
     var QuoteSchema = new Schema({
         _id: Number,
-        author: String,
-        text: String,
-        source: String,
+        author: {
+            type: String,
+            validate: {
+                validator: function(v) {
+                    return v.length <= 200;
+                },
+                message: '{VALUE} is is too long!'
+            }
+        },
+        text: {
+            type: String,
+            validate: {
+                validator: function(v) {
+                    return v.length <= 1000;
+                },
+                message: '{VALUE} is is too long!'
+            }
+        },
+        source: {
+            type: String,
+            validate: {
+                validator: function(v) {
+                    return v.length <= 200;
+                },
+                message: '{VALUE} is is too long!'
+            }
+        },
         date: Date,
         topic: {
             type: Number,
             ref: 'Topic'
         },
-        commentList:[{
-            type:ObjectIdSchema,
-            ref:'Comment'
+        commentList: [{
+            type: ObjectIdSchema,
+            ref: 'Comment'
         }],
-        question:{
-            type:Number,
-            ref:'Question'
+        question: {
+            type: Number,
+            ref: 'Question'
         }
 
     }, {

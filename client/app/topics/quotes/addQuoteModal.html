@@ -5,7 +5,7 @@
     <form name="addQuoteForm">
         <div class="form-group" ng-class="{'has-error':addQuoteForm.author.$invalid && addQuoteForm.author.$dirty}">
             <label for="author">Author</label>
-            <input list="suggestions" type="text" name="author" ng-model="modalCtrl.data.author" class="form-control" required>
+            <input maxlength="200" list="suggestions" type="text" name="author" ng-model="modalCtrl.data.author" class="form-control" required>
             <datalist id="suggestions">
                 <select>
                     <option ng-repeat="suggestion in modalCtrl.data.authors" class="ng-scope">{{suggestion}}</option>
@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             <label for="source">Source</label>
-            <input list="sourceSuggestions" type="text" name="source" ng-model="modalCtrl.data.source" class="form-control">
+            <input maxlength="200" list="sourceSuggestions" type="text" name="source" ng-model="modalCtrl.data.source" class="form-control">
             <datalist id="sourceSuggestions">
                 <select>
                     <option ng-repeat="source in modalCtrl.data.sources" class="ng-scope">{{source}}</option>

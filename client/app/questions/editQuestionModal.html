@@ -6,7 +6,7 @@
         <form name="editQuestionForm" ng-class="{'has-error':editQuestionForm.$invalid}">
             <div class="form-group">
                 <label for="questionName">
-                <textarea name="questionName" type="text" cols="1000" rows="5" class="verticalTextArea input input-lg form-control" required ng-model="modalCtrl.data.text"></textarea>
+                <textarea maxlength="200" name="questionName" type="text" cols="1000" rows="5" class="verticalTextArea input input-lg form-control" required ng-model="modalCtrl.data.text"></textarea>
                 </label>
             </div>
         </form>

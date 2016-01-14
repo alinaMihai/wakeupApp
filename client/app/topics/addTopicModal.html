@@ -5,7 +5,7 @@
     <form name="addTopicForm">
         <div class="form-group control-group" ng-class="{'has-error':addTopicForm.topicName.$invalid && addTopicForm.topicName.$dirty}">
             <label for="topicName">Topic Title</label>
-            <input type="text" name="topicName" ng-model="modalCtrl.data.title" class="form-control" required>
+            <input maxlength="200" type="text" name="topicName" ng-model="modalCtrl.data.title" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="description">Description</label>

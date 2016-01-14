@@ -6,7 +6,15 @@
 
     var QuestionSchema = new Schema({
         _id: Number,
-        text: String,
+        text: {
+            type: String,
+            validate: {
+                validator: function(v) {
+                    return v.length<=200;
+                },
+                message: '{VALUE} is is too long!'
+            }
+        },
         date: Date,
         questionSet: {
             type: Number,
@@ -16,9 +24,9 @@
             type: Number,
             ref: 'Answer'
         }],
-        quote:{
-            type:Number,
-            ref:'Quote'
+        quote: {
+            type: Number,
+            ref: 'Quote'
         }
     }, {
         collection: 'questions'

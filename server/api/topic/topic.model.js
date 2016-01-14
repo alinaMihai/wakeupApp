@@ -6,8 +6,24 @@
 
     var TopicSchema = new Schema({
         _id: Number,
-        title: String,
-        description: String,
+        title: {
+            type: String,
+            validate: {
+                validator: function(v) {
+                    return v.length <= 200;
+                },
+                message: '{VALUE} is is too long!'
+            }
+        },
+        description: {
+            type: String,
+            validate: {
+                validator: function(v) {
+                    return v.length <= 500;
+                },
+                message: '{VALUE} is is too long!'
+            }
+        },
         user: String,
         createDate: Date,
         questionSetList: [{

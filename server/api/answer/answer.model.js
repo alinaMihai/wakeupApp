@@ -11,7 +11,15 @@
                 type: Number,
                 ref: 'Question'
             },
-            text: String,
+            text: {
+                type: String,
+                validate: {
+                    validator: function(v) {
+                        return v.length <= 5000;
+                    },
+                    message: '{VALUE} is is too long!'
+                }
+            },
             date: Date,
             mood: String,
             user: String
