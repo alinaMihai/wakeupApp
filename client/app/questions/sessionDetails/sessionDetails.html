@@ -4,12 +4,12 @@
         <div class="col-xs-8 col-md-8">
             <ol class="breadcrumb">
                 <li><a ui-sref="questionSetList">Question Sets</a></li>
-                <li><a ui-sref="questionList({questionSetId:SessionDetailsCtrl.questionSetId})">{{SessionDetailsCtrl.questionSetName}}</a></li>
+                <li><a ui-sref="questionList({questionSetId:SessionDetailsCtrl.questionSetId})">{{SessionDetailsCtrl.questionSetName.length>=100?SessionDetailsCtrl.questionSetName.substring(0,50)+"...":SessionDetailsCtrl.questionSetName}}</a></li>
                 <li class="active">Question Set Details</li>
             </ol>
         </div>
     </div>
-    <h1 class="text-center questionText">Question Set Details <small>{{SessionDetailsCtrl.questionSetName}}</small></h1>
+    <h1 class="text-center questionText">Question Set Details <small>{{SessionDetailsCtrl.questionSetName.length>=100?SessionDetailsCtrl.questionSetName.substring(0,50)+"...":SessionDetailsCtrl.questionSetName}}</small></h1>
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
     <div>
         <ul class="sessionList">

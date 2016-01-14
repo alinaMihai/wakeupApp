@@ -14,7 +14,7 @@
         </div>
         <div class="form-group" ng-class="{'has-error':addQuoteForm.theText.$invalid && addQuoteForm.theText.$dirty}">
             <label for="theText">Text</label>
-            <textarea ng-model='modalCtrl.data.text' name="theText" class="form-control verticalTextArea" required></textarea>
+            <textarea maxlength="1000" ng-model='modalCtrl.data.text' name="theText" class="form-control verticalTextArea" required></textarea>
         </div>
         <div class="form-group">
             <label for="source">Source</label>
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group" ng-if="modalCtrl.data.heading==='Add'">
             <label for="comment">Comment</label>
-            <textarea ng-model='modalCtrl.data.comment' name="text" class="form-control verticalTextArea"></textarea>
+            <textarea maxlength="500" ng-model='modalCtrl.data.comment' name="text" class="form-control verticalTextArea"></textarea>
         </div>
         <div class="form-group">
             <label for="questionSearch">Question</label>

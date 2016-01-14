@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-xs-8">
                     <select name="questionSets" id="questionSets" ng-model="modalCtrl.questionSet" class="form-control">
-                        <option value='{{qs._id}}' ng-repeat="qs in modalCtrl.data.allQuestionSets">{{qs.name}}</option>
+                        <option value='{{qs._id}}' ng-repeat="qs in modalCtrl.data.allQuestionSets">{{qs.name.length>=100?qs.name.substring(0,50)+"...":qs.name}}</option>
                     </select>
                 </div>
                 <div class="col-xs-4">

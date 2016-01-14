@@ -15,7 +15,15 @@
         },
         user: String,
         createDate: Date,
-        text: String
+        text: {
+            type: String,
+            validate: {
+                validator: function(v) {
+                    return v.length <= 500;
+                },
+                message: '{VALUE} is is too long!'
+            }
+        }
     }, {
         collection: 'comments'
     });

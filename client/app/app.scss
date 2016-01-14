@@ -8,6 +8,10 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
  * App-wide Styles
  */
 
+* {
+    word-wrap: break-word;
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -18,8 +22,9 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 .breadcrumb {
     background-color: white;
 }
-.verticalTextArea{
-	resize:vertical;
+
+.verticalTextArea {
+    resize: vertical;
 }
 
 // Component styles are injected through grunt

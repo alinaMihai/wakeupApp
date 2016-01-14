@@ -15,6 +15,12 @@ body {
     float: right;
 }
 
+.questionSetName {
+    max-height: 119px;
+    overflow-y: auto;
+    margin-bottom: 30px;
+}
+
 .questionOptions {
     margin-top: 10px;
     font-size: 1.3em;

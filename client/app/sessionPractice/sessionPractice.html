@@ -8,7 +8,7 @@
         <label for="currentAnswer">
             <p class="currentQuestionText">{{vm.currentQuestion.text}}</p>
             <p class="associatedQuote">{{vm.currentQuestion.quote.text|quotesSigns}}</p>
-            <textarea id="answerTextArea" type="text" class="verticalTextArea" ng-model=vm.currentAnswer rows="7" cols="60"></textarea>
+            <textarea maxlength="5000" id="answerTextArea" type="text" class="verticalTextArea" ng-model=vm.currentAnswer rows="7" cols="60"></textarea>
         </label>
     </question-modal>
 </div>

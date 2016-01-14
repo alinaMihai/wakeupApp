@@ -5,12 +5,12 @@
     <div class="row">
         <ol class="breadcrumb">
             <li><a ui-sref="questionSetList">Question Sets</a></li>
-            <li class="active">{{questionCtrl.questionSetQuestions.name}}</li>
+            <li class="active">{{questionCtrl.questionSetQuestions.name.length>=100?questionCtrl.questionSetQuestions.name.substring(0,50)+"...":questionCtrl.questionSetQuestions.name}}</li>
         </ol>
     </div>
     <div class="row">
         <div class="col-lg-9">
-            <h1>{{questionCtrl.questionSetQuestions.name}}
+            <h1 class="questionSetName">{{questionCtrl.questionSetQuestions.name}}
       </h1>
         </div>
         <div class="col-lg-3" ng-if="!questionCtrl.questionSetQuestions.isDefault">

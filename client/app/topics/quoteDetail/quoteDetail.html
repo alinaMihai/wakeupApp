@@ -3,7 +3,7 @@
     <div class="row">
         <ol class="breadcrumb">
             <li><a ui-sref="topicsList">Topics</a></li>
-            <li><a ui-sref="topic({topicId:QuoteDetailCtrl.topic._id})">{{QuoteDetailCtrl.topic.title}}</a></li>
+            <li><a ui-sref="topic({topicId:QuoteDetailCtrl.topic._id})">{{QuoteDetailCtrl.topic.title.length>=100?QuoteDetailCtrl.topic.title.substring(0,50)+"...":QuoteDetailCtrl.topic.title}}</a></li>
             <li><a ui-sref="inspiration({topicId:QuoteDetailCtrl.topic._id})">Inspiration Page</a></li>
             <li class="active">Quote Details</li>
         </ol>
@@ -37,7 +37,7 @@
             <h4>Add new Comment</h4>
             <form name="addCommentForm" class="form">
                 <div class="control-group">
-                    <textarea ng-model="QuoteDetailCtrl.comment" type="text" required placeholder="type comment" class="form-control verticalTextArea" cols="20" rows="5"></textarea>
+                    <textarea maxlength="500" ng-model="QuoteDetailCtrl.comment" type="text" required placeholder="type comment" class="form-control verticalTextArea" cols="20" rows="5"></textarea>
                 </div>
                 <br>
                 <div class="control-group">
