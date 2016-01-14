@@ -65,7 +65,7 @@
         });
     };
 
-    // Updates an existing question in the DB.
+    // Updates an existing answer in the DB.
     exports.update = function(req, res) {
         if (req.body._id) {
             delete req.body._id;
@@ -87,9 +87,13 @@
         });
     };
 
-    // Deletes a question from the DB.
+    // Deletes an answer from the DB.
     exports.destroy = function(req, res) {
-        Answer.findById(req.params.id, function(err, answer) {
+        var userEmail = req.user.email;
+        var query = Answer.findOne({});
+        query.where('user', userEmail);
+        query.where('_id', req.params.id);
+        query.exec(function(err, answer) {
             if (err) {
                 return handleError(res, err);
             }
@@ -115,7 +119,42 @@
                 return res.status(204).send('No Content');
             });
         });
+
     };
+
+    exports.deleteAllAnswers = function(req, res) {
+        var userEmail = req.user.email;
+        var query = Answer.find({});
+        query.where("user", userEmail);
+        query.where("question", req.params.questionId);
+        query.exec(function(err, answers) {
+            if (err) {
+                return handleError(res, err);
+            }
+            if (!answers) {
+                return res.status(404).send('Not found');
+            }
+            answers.forEach(function(answer) {
+                Question.findByIdAndUpdate(answer.question, {
+                    $pull: {
+                        'answers': answer._id
+                    }
+                }, function(err, model) {
+                    if (err) {
+                        console.log(err);
+                        return res.send(err);
+                    }
+                });
+                answer.remove(function(err) {
+                    if (err) {
+                        return handleError(res, err);
+                    }
+                });
+            });
+            return res.status(204).send('No Content');
+        });
+
+    }
 
 
     function handleError(res, err) {

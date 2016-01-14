@@ -31,6 +31,10 @@
 
 .questionData {
     font-size: 1.2em;
+    max-height: 150px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .questionQuote {
@@ -83,5 +87,4 @@
 .answerDate {
     font-family: serif;
     font-size: 1.1em;
-    margin-left: -16%;
 }

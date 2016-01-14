@@ -15,8 +15,12 @@
     <span class="tooltipWrapper" style="font-size:2em;"><i tooltip-placement="bottom" class="fa fa-info-circle tooltipWrapper" uib-tooltip="Use the keybord left and right arrows for quick navigation between questions"></i></span>
     <h1 class="text-center questionText">{{answerCtrl.question.text}}</h1>
     <p class="associatedQuote">{{answerCtrl.question.quote.text|quotesSigns}}</p>
-    
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+    <div class="row" ng-if="answerCtrl.questionAnswers.length>=1">
+        <button class="btn btn-info btn-lg deleteAllAnswers" 
+        confirm-click="Are you sure you want to delete all the answers?"
+        ng-click="answerCtrl.deleteAllAnswers()">Delete All Answers</button>
+    </div>
     <div class="list-group" bindonce class="list-group" ng-repeat="group in  answerCtrl.questionAnswers | groupBy: 'theDay' | toArray:true |orderBy:'theDay':true">
         <strong bo-bind="group.$key">Date</strong>
         <div class="row list-group-item" bindonce ng-repeat="answer in group | orderBy:'_id'">

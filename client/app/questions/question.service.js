@@ -17,7 +17,7 @@
         this.editQuestion = editQuestion;
         this.registerSession = registerSession;
         this.importQuestions = importQuestions;
-        this.getLastSessionData=getLastSessionData;
+        this.getLastSessionData = getLastSessionData;
         this.isUpdated = false;
 
         ////////////////
@@ -144,6 +144,5 @@
                 });
             return deferred.promise;
         }
-
     }
 })();;

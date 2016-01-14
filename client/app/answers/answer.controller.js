@@ -15,6 +15,7 @@
         vm.nextQuestionId = findNextQuestionId(question.questionSet, question._id);
         vm.prevQuestionId = findPreviousQuestionId(question.questionSet, question._id);
         vm.deleteAnswer = deleteAnswer;
+        vm.deleteAllAnswers=deleteAllAnswers;
         vm.openEditAnswerModal = openEditAnswerModal;
         var questionId = question._id;
 
@@ -33,10 +34,14 @@
         }
 
         function deleteAnswer(answer) {
-
             var index = vm.questionAnswers.indexOf(answer);
             vm.questionAnswers.splice(index, 1);
             AnswerService.deleteAnswer(answer);
+        }
+        function deleteAllAnswers(){
+            AnswerService.deleteAllAnswers(vm.question._id).then(function(response){
+                vm.questionAnswers=[];
+            });
         }
 
         function openEditAnswerModal(size, answerId) {

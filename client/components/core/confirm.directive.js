@@ -24,6 +24,7 @@
 
 
             element.bind('click', function(e) {
+                var data={message:attrs.confirmClick};
                 var clickAction = attrs.ngClick;
                 var modalInstance = $uibModal.open({
                     animation: true,
@@ -31,7 +32,7 @@
                     size: 'lg',
                     controller: 'ModalInstanceCtrl as modalCtrl',
                     resolve: {
-                        data: {}
+                        'data': data
                     }
                 });
 

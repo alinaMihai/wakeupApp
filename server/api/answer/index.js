@@ -11,9 +11,10 @@
 
    /* router.get('/:id', controller.show);*/
     router.post('/', auth.isAuthenticated(), controller.create);
-    router.put('/:id', controller.update);
-    router.patch('/:id', controller.update);
-    router.delete('/:id', controller.destroy);
+    router.put('/:id',auth.isAuthenticated(), controller.update);
+    router.patch('/:id',auth.isAuthenticated(), controller.update);
+    router.delete('/:id',auth.isAuthenticated(), controller.destroy);
+    router.delete('/deleteAllAnswers/:questionId',auth.isAuthenticated(),controller.deleteAllAnswers);
 
     module.exports = router;
 })();
