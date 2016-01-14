@@ -1,43 +1,39 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
 <div class="container">
-  <div class="row">
-    <div class="col-xs-8 col-md-8">
-      <ol class="breadcrumb">
-        
-        <li><a ui-sref="questionSetList">Question Sets</a></li>
-        <li><a ui-sref="questionList({questionSetId:answerCtrl.question.questionSet._id})">{{answerCtrl.question.questionSet.name}}</a></li>
-        <li class="active">Question Details</li>
-      </ol>
+    <div class="row">
+        <div class="col-xs-8 col-md-8">
+            <ol class="breadcrumb">
+                <li><a ui-sref="questionSetList">Question Sets</a></li>
+                <li><a ui-sref="questionList({questionSetId:answerCtrl.question.questionSet._id})">{{answerCtrl.question.questionSet.name}}</a></li>
+                <li class="active">Question Details</li>
+            </ol>
+        </div>
+        <navigate-arrows prev-id="answerCtrl.prevQuestionId" next-id="answerCtrl.nextQuestionId"></navigate-arrows>
+        <div id="0" class="col-xs-2 col-md-2"><a class="arrowBtn btn btn-block" ui-sref="answerList({questionId:answerCtrl.prevQuestionId})" ng-disabled="!answerCtrl.prevQuestionId"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+        <div class="col-xs-2 col-md-2"><a class="arrowBtn btn btn-block" ui-sref="answerList({questionId:answerCtrl.nextQuestionId})" ng-disabled="!answerCtrl.nextQuestionId"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
     </div>
-    <navigate-arrows prev-id="answerCtrl.prevQuestionId" next-id="answerCtrl.nextQuestionId"></navigate-arrows>
-    <div id="0" class="col-xs-2 col-md-2" ><a  class="arrowBtn btn btn-block" ui-sref="answerList({questionId:answerCtrl.prevQuestionId})" ng-disabled="!answerCtrl.prevQuestionId"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
-    <div class="col-xs-2 col-md-2" ><a  class="arrowBtn btn btn-block" ui-sref="answerList({questionId:answerCtrl.nextQuestionId})" ng-disabled="!answerCtrl.nextQuestionId"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
+    <span class="tooltipWrapper" style="font-size:2em;"><i tooltip-placement="bottom" class="fa fa-info-circle tooltipWrapper" uib-tooltip="Use the keybord left and right arrows for quick navigation between questions"></i></span>
+    <h1 class="text-center questionText">{{answerCtrl.question.text}}</h1>
+    <p class="associatedQuote">{{answerCtrl.question.quote.text|quotesSigns}}</p>
     
-  </div>
-  <h1 class="text-center questionText">{{answerCtrl.question.text}} </h1>
-  <p class="associatedQuote">{{answerCtrl.question.quote.text|quotesSigns}}</p>
-  <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
-  <div class="list-group" bindonce class="list-group" ng-repeat="group in  answerCtrl.questionAnswers | groupBy: 'theDay' | toArray:true |orderBy:'theDay':true">
-    
-    <strong bo-bind="group.$key">Date</strong>
-    <div class="row list-group-item" bindonce ng-repeat="answer in group | orderBy:'_id'">
-      <div class="col-xs-10 col-md-11 col-lg-11 answerText">
-        <span ng-bind = "answer.text" ></span>
-      </div>
-      <div class="col-xs-2 col-md-1 col-lg-1 options">
-        <a confirm-click="Are you sure you want to delete this answer?" ng-click="answerCtrl.deleteAnswer(answer)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-        <a ng-click='answerCtrl.openEditAnswerModal("lg",answer._id)'><i class="fa fa-pencil-square-o"></i></a>
-      </div>
+    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+    <div class="list-group" bindonce class="list-group" ng-repeat="group in  answerCtrl.questionAnswers | groupBy: 'theDay' | toArray:true |orderBy:'theDay':true">
+        <strong bo-bind="group.$key">Date</strong>
+        <div class="row list-group-item" bindonce ng-repeat="answer in group | orderBy:'_id'">
+            <div class="col-xs-10 col-md-11 col-lg-11 answerText">
+                <span ng-bind="answer.text"></span>
+            </div>
+            <div class="col-xs-2 col-md-1 col-lg-1 options">
+                <a confirm-click="Are you sure you want to delete this answer?" ng-click="answerCtrl.deleteAnswer(answer)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+                <a ng-click='answerCtrl.openEditAnswerModal("lg",answer._id)'><i class="fa fa-pencil-square-o"></i></a>
+            </div>
+        </div>
     </div>
-  </div>
-  
 </div>
 <div>
-  
-<footer class="footer">
-  <div class="container">
-    <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
-    </p>
-  </div>
-</footer>
+    <footer class="footer">
+        <div class="container">
+            <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
+            </p>
+        </div>
+    </footer>

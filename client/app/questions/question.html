@@ -50,28 +50,28 @@
         <div class="col-lg-6">
             <h4>Question Set Details</h4>
             <ul class="note">
-                <li><strong>{{questionCtrl.questionSetQuestions.description}}</strong></li>
-                <li><strong>Questions:</strong> {{questionCtrl.questionSetQuestions.questions.length}} </li>
-                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Impact:</strong> {{questionCtrl.questionSetQuestions.impact}}</li>
-                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Creation at:</strong> {{questionCtrl.questionSetQuestions.createDate | date:'HH:mm a on dd-MM-yyyy '}}</li>
-                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Times Practiced:</strong> {{questionCtrl.questionSetQuestions.practiceTimes}}</li>
+                <li><strong ng-bind-html="questionCtrl.questionSetQuestions.description"></strong></li>
+                <li><strong>Questions:</strong> <span ng-bind="questionCtrl.questionSetQuestions.questions.length"></span></li>
+                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Impact:</strong><span ng-bind="questionCtrl.questionSetQuestions.impact"></span></li>
+                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Creation at:</strong> <span ng-bind="questionCtrl.questionSetQuestions.createDate | date:'HH:mm a on dd-MM-yyyy'"></span></li>
+                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Times Practiced:</strong> <span ng-bind="questionCtrl.questionSetQuestions.practiceTimes"></span></li>
             </ul>
         </div>
         <div class="col-lg-6">
-            <a  class="seeLastSessionBtn btn btn-lg btn-success" ui-sref="sessionDetails({'questionSetId':questionCtrl.questionSetQuestions._id,'questionSetName':questionCtrl.questionSetQuestions.name})">See last session</a>
+            <a class="seeLastSessionBtn btn btn-lg btn-success" ui-sref="sessionDetails({'questionSetId':questionCtrl.questionSetQuestions._id,'questionSetName':questionCtrl.questionSetQuestions.name})">Question Set Details</a>
         </div>
     </div>
-    <h4>Questions</h4>
+    <h4>Questions <span class="tooltipWrapper"><i class="fa fa-info-circle tooltipWrapper" uib-tooltip="Click on a question from the list to see all your answers"></i></span></h4>
     <div class="list-group" id="questionList">
         <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
         <div class="list-group-item row" bindonce ng-repeat="q in questionCtrl.questionSetQuestions.questions">
-            <div class="col-xs-10 col-md-11 col-lg-11">
+            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-11">
                 <div class="row">
-                    <div class="col-xs-1"><span class="numberItem">{{$index+1}}</span></div>
-                    <div class="col-xs-11"><strong><a class="questionTextLink" ui-sref="answerList({questionId:q._id})"> {{q.text}}</a></strong></div>
+                    <div class="col-xs-2"><span class="numberItem">{{$index+1}}</span></div>
+                    <div class="col-xs-10"><strong><a class="questionTextLink" ui-sref="answerList({questionId:q._id})"> {{q.text}}</a></strong></div>
                 </div>
             </div>
-            <div class="col-xs-2 col-md-1 col-lg-1" ng-if="!questionCtrl.questionSetQuestions.isDefault">
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-1 questionOptions" ng-if="!questionCtrl.questionSetQuestions.isDefault">
                 <a title="delete question" confirm-click="Are you sure you want to delete this question?" ng-click="questionCtrl.deleteQuestion(q)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
                 <a title="edit question" ng-click='questionCtrl.openEditQuestionModal("lg",q._id)'><i class="fa fa-pencil-square-o"></i></a>
             </div>

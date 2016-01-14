@@ -10,8 +10,26 @@ body {
 .eiButtons {
     margin-bottom: 20px;
 }
-.seeLastSessionBtn{
-    float:right;
+
+.seeLastSessionBtn {
+    float: right;
+}
+
+.questionOptions {
+    margin-top: 10px;
+    font-size: 1.3em;
+}
+
+.tooltipWrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+.tooltipWrapper .tooltip-inner {
+    width: 200px;
+    font-size: 1.1em;
 }
 
 // popup overlay
