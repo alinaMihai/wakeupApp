@@ -19,21 +19,6 @@
             </button>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-7">
-            <div class="row">
-                <div class="col-md-4 eiButtons">
-                    <button class="btn btn-lg btn-block btn-success" type="button" ng-csv="questionCtrl.exportQuestions" filename="{{questionCtrl.questionSetQuestions.name}} questions.csv" ng-disabled="questionCtrl.exportQuestions.length===0">Export Questions</button>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-lg btn-block btn-success" ng-click="questionCtrl.showImport=!questionCtrl.showImport" ng-if="!questionCtrl.questionSetQuestions.isDefault">Import CSV file</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6" ng-if="questionCtrl.showImport">
-            <ng-csv-import content="questionCtrl.csvContent" result="questionCtrl.csvResult" accept=".csv"></ng-csv-import>
-        </div>
-    </div>
     <hr>
     <div ng-if="!questionCtrl.questionSetQuestions.isDefault && questionCtrl.addQuestionBool">
         <form name="questionCtrl.addQuestion" novalidate>
@@ -48,20 +33,35 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <h4>Question Set Details</h4>
+            <h4>Question Set Info</h4>
             <ul class="note">
-                <li><strong ng-bind-html="questionCtrl.questionSetQuestions.description"></strong></li>
-                <li><strong>Questions:</strong> <span ng-bind="questionCtrl.questionSetQuestions.questions.length"></span></li>
-                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Impact:</strong><span ng-bind="questionCtrl.questionSetQuestions.impact"></span></li>
-                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Creation at:</strong> <span ng-bind="questionCtrl.questionSetQuestions.createDate | date:'HH:mm a on dd-MM-yyyy'"></span></li>
-                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Times Practiced:</strong> <span ng-bind="questionCtrl.questionSetQuestions.practiceTimes"></span></li>
+                <li>Description: <strong ng-bind-html="questionCtrl.questionSetQuestions.description||'N/A'"></strong></li>
+                <li><strong>Questions: </strong> <span ng-bind="questionCtrl.questionSetQuestions.questions.length"></span></li>
+                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Impact: </strong><span ng-bind="questionCtrl.questionSetQuestions.impact"></span></li>
+                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Creation at: </strong> <span ng-bind="questionCtrl.questionSetQuestions.createDate | date:'HH:mm a on dd-MM-yyyy'"></span></li>
+                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Times Practiced: </strong> <span ng-bind="questionCtrl.questionSetQuestions.practiceTimes"></span></li>
             </ul>
         </div>
-        <div class="col-lg-6">
-            <a class="seeLastSessionBtn btn btn-lg btn-success" ui-sref="sessionDetails({'questionSetId':questionCtrl.questionSetQuestions._id,'questionSetName':questionCtrl.questionSetQuestions.name})">Question Set Details</a>
+        <div class="col-xs-12 col-lg-6">
+            
+            <div class="row" >
+                <div class="col-xs-12 col-lg-6 questionSetMenu">
+                    <h4>Available Options</h4>
+                    <div class="btn-group-vertical btn-block">
+                        <button class="btn btn-lg btn-block btn-success" type="button" ng-csv="questionCtrl.exportQuestions" filename="{{questionCtrl.questionSetQuestions.name}} questions.csv" ng-disabled="questionCtrl.exportQuestions.length===0">Export Questions</button>
+                        <button class="btn btn-lg btn-block btn-success" ng-click="questionCtrl.showImport=!questionCtrl.showImport" ng-if="!questionCtrl.questionSetQuestions.isDefault">Import CSV file</button>
+                        <a class="btn btn-lg btn-block btn-success" ui-sref="sessionDetails({'questionSetId':questionCtrl.questionSetQuestions._id,'questionSetName':questionCtrl.questionSetQuestions.name})">View Question Set Answers</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-6">
+                    <div class="col-xs-6" ng-if="questionCtrl.showImport">
+                        <ng-csv-import content="questionCtrl.csvContent" result="questionCtrl.csvResult" accept=".csv"></ng-csv-import>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <h4>Questions <span class="tooltipWrapper"><i class="fa fa-info-circle tooltipWrapper" uib-tooltip="Click on a question from the list to see all your answers"></i></span></h4>
+    <h4>Questions <span class="tooltipWrapper"><i class="fa fa-info-circle tooltipWrapper" uib-tooltip="Click on a question from the list to read, edit or delete your answers to it"></i></span></h4>
     <div class="list-group" id="questionList">
         <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
         <div class="list-group-item row" bindonce ng-repeat="q in questionCtrl.questionSetQuestions.questions">

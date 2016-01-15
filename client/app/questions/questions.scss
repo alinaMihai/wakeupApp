@@ -7,11 +7,7 @@ body {
     height: 29px;
 }
 
-.eiButtons {
-    margin-bottom: 20px;
-}
-
-.seeLastSessionBtn {
+.questionSetMenu {
     float: right;
 }
 
@@ -19,7 +15,7 @@ body {
     max-height: 119px;
     overflow-y: auto;
     margin-bottom: 30px;
-    font-size:2em;
+    font-size: 2em;
 }
 
 @media (max-width: 700px) {
@@ -79,13 +75,18 @@ body {
     resize: vertical;
 }
 
-#practiceSessionBtn {
+#practiceSessionBtn{
     background: #768FD1;
     color: white;
+    border-bottom: 1px solid #768FD1;
+    border-radius: 14px;
 }
 
-#practiceSessionBtn:hover {
+#practiceSessionBtn:hover{
     background: #4E5690;
+    border-bottom: 3px solid #768FD1;
+    color:white;
+    
 }
 
 #practiceSessionBtn,
