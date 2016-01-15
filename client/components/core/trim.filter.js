@@ -6,8 +6,8 @@
         .filter('trimFilter', trimFilter);
 
     function trimFilter() {
-        return function(text) {
-            return (text && text.length > 250) ? text.slice(0, 250) + "..." : text;
+        return function(text,truncateLength) {
+            return (text && text.length > truncateLength) ? text.slice(0, truncateLength) + "..." : text;
         };
     }
 })();

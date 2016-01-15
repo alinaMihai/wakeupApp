@@ -5,7 +5,7 @@
     <div class="row">
         <ol class="breadcrumb">
             <li><a ui-sref="questionSetList">Question Sets</a></li>
-            <li class="active">{{questionCtrl.questionSetQuestions.name.length>=100?questionCtrl.questionSetQuestions.name.substring(0,50)+"...":questionCtrl.questionSetQuestions.name}}</li>
+            <li class="active">{{questionCtrl.questionSetQuestions.name|trimFilter:50}}</li>
         </ol>
     </div>
     <div class="row">
@@ -67,8 +67,8 @@
         <div class="list-group-item row" bindonce ng-repeat="q in questionCtrl.questionSetQuestions.questions">
             <div class="col-xs-12 col-sm-10 col-md-10 col-lg-11">
                 <div class="row">
-                    <div class="col-xs-2"><span class="numberItem">{{$index+1}}</span></div>
-                    <div class="col-xs-10"><strong><a class="questionTextLink" ui-sref="answerList({questionId:q._id})"> {{q.text}}</a></strong></div>
+                    <div class="col-xs-2 col-sm-1"><span class="numberItem">{{$index+1}}</span></div>
+                    <div class="col-xs-10 col-sm-11"><strong><a class="questionTextLink" ui-sref="answerList({questionId:q._id})"> {{q.text}}</a></strong></div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-2 col-md-2 col-lg-1 questionOptions" ng-if="!questionCtrl.questionSetQuestions.isDefault">

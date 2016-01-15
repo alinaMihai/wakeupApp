@@ -19,11 +19,14 @@ body {
     max-height: 119px;
     overflow-y: auto;
     margin-bottom: 30px;
+    font-size:2em;
 }
 
-.questionOptions {
-    margin-top: 10px;
-    font-size: 1.3em;
+@media (max-width: 700px) {
+    .questionOptions {
+        margin-top: 10px;
+        font-size: 1.3em;
+    }
 }
 
 .tooltipWrapper {

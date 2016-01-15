@@ -4,7 +4,7 @@
         <div class="col-sm-8">
             <ol class="breadcrumb">
                 <li><a ui-sref="topicsList">Topics</a></li>
-                <li><a ui-sref="topic({topicId:QuotesCtrl.topic._id})">{{QuotesCtrl.topic.title.length>=100?QuotesCtrl.topic.title.substring(0,50)+"...":QuotesCtrl.topic.title}}</a></li>
+                <li><a ui-sref="topic({topicId:QuotesCtrl.topic._id})">{{QuotesCtrl.topic.title|trimFilter:50}}</a></li>
                 <li class="active">Inspiration Page</li>
             </ol>
         </div>
@@ -59,7 +59,7 @@
                                 <a class="edit" ng-if="!QuotesCtrl.topic.isDefault" ng-click='QuotesCtrl.openQuoteModal("lg", quote._id)'><i class="fa fa-pencil-square-o"></i></a>
                             </div>
                             <div class="row">
-                                <a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text |trimFilter |quotesSigns}}</a> {{quote.author}}
+                                <a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text |trimFilter:250 |quotesSigns}}</a> {{quote.author}}
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <a class="edit" ng-if="!QuotesCtrl.topic.isDefault" ng-click='QuotesCtrl.openQuoteModal("lg", quote._id)'><i class="fa fa-pencil-square-o"></i></a>
                     </div>
                     <div class="row">
-                        <a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text |trimFilter |quotesSigns}}</a> {{quote.author}}
+                        <a ui-sref="quote({topicId:QuotesCtrl.topic._id,quoteId:quote._id})"> {{quote.text |trimFilter:250 |quotesSigns}}</a> {{quote.author|trimFilter:50}}
                     </div>
                 </div>
             </div>

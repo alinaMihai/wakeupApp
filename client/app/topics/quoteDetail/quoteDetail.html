@@ -3,7 +3,7 @@
     <div class="row">
         <ol class="breadcrumb">
             <li><a ui-sref="topicsList">Topics</a></li>
-            <li><a ui-sref="topic({topicId:QuoteDetailCtrl.topic._id})">{{QuoteDetailCtrl.topic.title.length>=100?QuoteDetailCtrl.topic.title.substring(0,50)+"...":QuoteDetailCtrl.topic.title}}</a></li>
+            <li><a ui-sref="topic({topicId:QuoteDetailCtrl.topic._id})">{{QuoteDetailCtrl.topic.title|trimFilter:50}}</a></li>
             <li><a ui-sref="inspiration({topicId:QuoteDetailCtrl.topic._id})">Inspiration Page</a></li>
             <li class="active">Quote Details</li>
         </ol>

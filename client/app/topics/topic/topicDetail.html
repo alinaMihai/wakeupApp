@@ -5,7 +5,7 @@
 	<div class="row">
 		<ol class="breadcrumb">
 			<li><a ui-sref="topicsList">Topics</a></li>
-			<li class="active">{{TopicDetailCtrl.topic.title.length>=100?TopicDetailCtrl.topic.title.substring(0,50)+"...":TopicDetailCtrl.topic.title}}</li>
+			<li class="active">{{TopicDetailCtrl.topic.title|trimFilter:50}}</li>
 		</ol>
 	</div>
 	
