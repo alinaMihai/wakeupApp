@@ -1,4 +1,4 @@
-describe('Directive:refreshDir', function() {
+xdescribe('Directive:refreshDir', function() {
 
     var directiveElem, compile, scope, $window, message;
 

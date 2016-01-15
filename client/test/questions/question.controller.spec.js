@@ -1,5 +1,5 @@
 describe('QuestionCtrl as questionCtrl', function() {
-    var questionCtrl, scope, cached, $q, questionSetQuestionsMock, $timeout;
+    var questionCtrl, scope, cached, $q, questionSetQuestionsMock, $timeout, PracticeSessionService,$state;
     var saveAnswerSpy, addQuestionSpy, deleteQuestionSpy, editQuestionSpy;
 
     function fakeCallback() {
@@ -13,12 +13,13 @@ describe('QuestionCtrl as questionCtrl', function() {
         //Load the controller's module
         module('wakeupApp');
         module('wakeupApp.mocks');
+        module('ngCsv',
+            'ngCsvImport');
 
         //provide any mocks needed
         module(function($provide) {
 
             $provide.value('QuestionService', {
-                saveAnswer: function() {},
                 addQuestion: function() {},
                 deleteQuestion: function() {},
                 editQuestion: function() {}
@@ -27,18 +28,24 @@ describe('QuestionCtrl as questionCtrl', function() {
                 success: function(message) {
                     console.log(message);
                 }
-            })
+            });
+            $provide.value('PracticeSessionService', {
+                questionInterval: undefined,
+                repeatQS: undefined,
+                shuffleQuestions: undefined
+            });
         });
 
-        inject(function($controller, $rootScope, _cached_, _$q_, QuestionSetQuestions, $stateParams, _$timeout_, QuestionService, logger, $uibModal) {
+        inject(function($controller, $rootScope, _cached_, _$q_, QuestionSetQuestions, $stateParams, _$timeout_, QuestionService, logger, $uibModal, _$state_,_PracticeSessionService_) {
             scope = $rootScope.$new();
             cached = _cached_;
             $timeout = _$timeout_;
             questionSetQuestionsMock = QuestionSetQuestions.QuestionSet1;
+            PracticeSessionService=_PracticeSessionService_;
+            $state=_$state_;
             $q = _$q_;
-
+            spyOn($state, 'go').and.callFake(angular.noop);
             spyOn(cached, "getQuestions").and.callFake(fakeCallback);
-            saveAnswerSpy = spyOn(QuestionService, 'saveAnswer').and.callFake(fakeCallback);
             addQuestionSpy = spyOn(QuestionService, 'addQuestion').and.callFake(fakeCallback);
             deleteQuestionSpy = spyOn(QuestionService, 'deleteQuestion').and.callFake(fakeCallback);
             editQuestionSpy = spyOn(QuestionService, 'editQuestion').and.callFake(fakeCallback);
@@ -50,7 +57,8 @@ describe('QuestionCtrl as questionCtrl', function() {
                 'QuestionService': QuestionService,
                 'logger': logger,
                 '$scope': scope,
-                '$uibModal': $uibModal
+                '$uibModal': $uibModal,
+                'PracticeSessionService':PracticeSessionService
 
             });
             scope.$digest();
@@ -66,17 +74,8 @@ describe('QuestionCtrl as questionCtrl', function() {
             expect(scope.questionCtrl.questionService).toBeDefined();
             expect(scope.questionCtrl.questionService instanceof Object).toBe(true);
         });
-        it('should define a currentQuestion property used to hold the current question in the session', function() {
-            expect(scope.questionCtrl.currentQuestion).toBe(null);
-        });
         it('should expose a startQuestionSet method', function() {
             expect(typeof scope.questionCtrl.startQuestionSet).toBe('function');
-        });
-        it('should expose an endQuestionSet', function() {
-            expect(typeof scope.questionCtrl.endQuestionSet).toBe('function');
-        });
-        it('should expose a processQuestion method used during a session to advance to next question', function() {
-            expect(typeof scope.questionCtrl.processQuestion).toBe('function');
         });
         it('should expose a saveQuestion method, used to create a question in the question set', function() {
             expect(typeof scope.questionCtrl.saveQuestion).toBe('function');
@@ -107,107 +106,32 @@ describe('QuestionCtrl as questionCtrl', function() {
     });
 
     describe('when startQuestionSet method is called, it', function() {
-
-        it('should set the questionSetSession property of the questionService to true', function() {
-            expect(scope.questionCtrl.questionService.questionSetSession).not.toBeDefined();
-            scope.questionCtrl.startQuestionSet();
-            expect(scope.questionCtrl.questionService.questionSetSession).toBe(true);
+        beforeEach(function() {
+            scope.questionCtrl.questionInterval = 0.1;
+            scope.questionCtrl.repeatQS = false;
+            scope.questionCtrl.shuffleQuestions = false;
         });
-        it('should set currentQuestionIndex property of the questionService to 0', function() {
-            expect(scope.questionCtrl.questionService.currentQuestionIndex).not.toBeDefined();
+        it('should set the questionInterval property of the PracticeSessionService to the one provided', function() {
+            expect(PracticeSessionService.questionInterval).not.toBeDefined();
             scope.questionCtrl.startQuestionSet();
-            expect(scope.questionCtrl.questionService.currentQuestionIndex).toEqual(0);
-
+            expect(PracticeSessionService.questionInterval).toEqual(scope.questionCtrl.questionInterval);
         });
-        it('should set the currentQuestion property of the controller to the first question in the set', function() {
-            var expectedQuestion = questionSetQuestionsMock.questions[0];
-            expect(scope.questionCtrl.currentQuestion).toBe(null);
+        it('should set repeatQS property of the PracticeSessionService to the one provided', function() {
+            expect(PracticeSessionService.repeatQS).not.toBeDefined();
             scope.questionCtrl.startQuestionSet();
-            expect(scope.questionCtrl.currentQuestion).toEqual(expectedQuestion);
+            expect(PracticeSessionService.repeatQS).toEqual(scope.questionCtrl.repeatQS);
+        });
+        it('should set the shuffleQuestions property of the PracticeSessionService to the one provided', function() {
+            expect(PracticeSessionService.shuffleQuestions).not.toBeDefined();
+            scope.questionCtrl.startQuestionSet();
+            expect(PracticeSessionService.shuffleQuestions).toEqual(scope.questionCtrl.shuffleQuestions);
+        });
+        it('should redirect to the practiceSession page by calling $state.go', function() {
+            scope.questionCtrl.startQuestionSet();
+            expect($state.go).toHaveBeenCalled();
         });
 
     });
-
-    describe('when endQuestionSet method is called, it', function() {
-        it('should set the questionSetSession property of the questionService to false', function() {
-            scope.questionCtrl.startQuestionSet();
-            expect(scope.questionCtrl.questionService.questionSetSession).toBe(true);
-            scope.questionCtrl.endQuestionSet();
-            expect(scope.questionCtrl.questionService.questionSetSession).toBe(false);
-        });
-        it('should reset the repeatQS property of the questionService to false', function() {
-            scope.questionCtrl.startQuestionSet();
-            scope.questionCtrl.endQuestionSet();
-            expect(scope.questionCtrl.questionService.repeatQS).toBe(false);
-        });
-        it('should reset the currentQuestionIndex of the QuestionService to undefined', function() {
-            scope.questionCtrl.startQuestionSet();
-            expect(scope.questionCtrl.questionService.currentQuestionIndex).toBeDefined();
-            scope.questionCtrl.endQuestionSet();
-            expect(scope.questionCtrl.questionService.currentQuestionIndex).not.toBeDefined();
-        });
-        it('should reset the questionInterval of the controller to undefined', function() {
-            scope.questionCtrl.questionInterval = 0.5;
-            scope.questionCtrl.startQuestionSet();
-            expect(scope.questionCtrl.questionInterval).toBeDefined();
-            scope.questionCtrl.endQuestionSet();
-            expect(scope.questionCtrl.questionInterval).not.toBeDefined();
-        });
-    });
-
-    describe('when processQuestion method is called, it', function() {
-        it('should increment currentQuestionIndex and change currentQuestion from the first to the second question', function() {
-            var expectedQuestion = questionSetQuestionsMock.questions[1];
-            scope.questionCtrl.startQuestionSet();
-            expect(scope.questionCtrl.questionService.currentQuestionIndex).toEqual(0);
-            expect(scope.questionCtrl.currentQuestion).toEqual(questionSetQuestionsMock.questions[0]);
-            scope.questionCtrl.processQuestion();
-            $timeout.flush();
-            expect(scope.questionCtrl.questionService.currentQuestionIndex).toEqual(1);
-            expect(scope.questionCtrl.currentQuestion).toEqual(expectedQuestion);
-        });
-
-        it('should make a call to the saveAnswer method of the QuestionService', function() {
-            scope.questionCtrl.startQuestionSet();
-            scope.questionCtrl.currentAnswer = "test";
-            scope.questionCtrl.processQuestion();
-            $timeout.flush();
-            expect(saveAnswerSpy).toHaveBeenCalled();
-        });
-
-        describe('when the last question is passed, it', function() {
-            it('should end the question set', function() {
-                scope.questionCtrl.startQuestionSet();
-                expect(scope.questionCtrl.questionService.questionSetSession).toEqual(true);
-                scope.questionCtrl.processQuestion();
-
-                scope.questionCtrl.questionService.currentQuestionIndex = questionSetQuestionsMock.questions.length - 1;
-                scope.questionCtrl.processQuestion();
-
-                $timeout.flush();
-                expect(scope.questionCtrl.questionService.questionSetSession).toEqual(false);
-            });
-        });
-        describe('when the last question is passed and the repeatQS is set, it', function() {
-
-            it('should start the question set from index zero again', function() {
-                scope.questionCtrl.startQuestionSet();
-                scope.questionCtrl.processQuestion();
-
-                scope.questionCtrl.questionService.currentQuestionIndex = questionSetQuestionsMock.questions.length - 1;
-                scope.questionCtrl.questionService.repeatQS = true;
-                scope.questionCtrl.processQuestion();
-
-                $timeout.flush();
-
-                expect(scope.questionCtrl.questionService.currentQuestionIndex).toEqual(0);
-
-            });
-
-        });
-
-    });
-
     describe('when saveQuestion is called, it', function() {
         it('should call addQuestion method of the QuestionService', function() {
             var expectedQuestionsNo = scope.questionCtrl.questionSetQuestions.questions.length + 1;

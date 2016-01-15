@@ -49,18 +49,6 @@ describe('QuestionService', function() {
         it('should exist', function() {
             expect(!!myQuestionService).toBe(true);
         });
-        it('should have a currentQuestionIndex property', function() {
-            expect(myQuestionService.currentQuestionIndex).not.toBeDefined();
-        });
-        it('should have a repeatQ property', function() {
-            expect(myQuestionService.repeatQ).not.toBeDefined();
-        });
-        it('should provide a boolean questionSetSession property', function() {
-            expect(typeof myQuestionService.questionSetSession).toBe('boolean');
-        });
-        it('should provide a boolean endSessionOnBackBtn property', function() {
-            expect(typeof myQuestionService.endSessionOnBackBtn).toBe('boolean');
-        });
         it('should provide a boolean isUpdated property', function() {
             expect(typeof myQuestionService.isUpdated).toBe('boolean');
         });
@@ -85,6 +73,12 @@ describe('QuestionService', function() {
         });
         it('should provide a registerSession method', function() {
             expect(typeof myQuestionService.registerSession).toBe('function');
+        });
+        it('should provide a importQuestions method', function() {
+            expect(typeof myQuestionService.importQuestions).toBe('function');
+        });
+        it('should provide a getQuestionSetData method', function() {
+            expect(typeof myQuestionService.getQuestionSetData).toBe('function');
         });
 
     });

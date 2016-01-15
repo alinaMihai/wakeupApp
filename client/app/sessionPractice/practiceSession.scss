@@ -40,9 +40,10 @@
     font-weight: 500;
     max-height: 200px;
     overflow-y: auto;
+    overflow-x:auto;
     padding-right: 15px;
     word-wrap: break-word;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 #answerTextArea {

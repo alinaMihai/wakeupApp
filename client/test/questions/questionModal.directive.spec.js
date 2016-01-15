@@ -25,7 +25,7 @@ describe('Directive: questionModal', function() {
             questionService: {
                 questionSetSession: true,
                 repeatQS: false,
-                currentQuestionIndex: 0
+                currentQuestionIndex: undefined
             },
             processQuestion: function() {},
             currentQuestion: {
@@ -59,10 +59,6 @@ describe('Directive: questionModal', function() {
         it('should have applied template', function() {
             expect(directiveElem.html()).not.toEqual('');
         });
-
-        it('should have cindex property set to zero', function() {
-            expect(isolatedScope.cindex).toEqual(0);
-        });
         it('should have repeatQs property set to false', function() {
             expect(isolatedScope.repeatQs).toBe(false);
         });
@@ -95,7 +91,7 @@ describe('Directive: questionModal', function() {
             it('should change display to block for parent element when cindex property changes', function() {
                 var parentBlock = directiveElem.find('div').first();
                 expect(parentBlock.css('display')).toEqual('none');
-                scope.questionCtrl.questionService.currentQuestionIndex = 1;
+                scope.questionCtrl.questionService.currentQuestionIndex = 0;
                 scope.$digest();
                 expect(parentBlock.css('display')).toEqual('block');
 

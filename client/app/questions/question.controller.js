@@ -71,7 +71,7 @@
         }
 
         function startQuestionSet() {
-            PracticeSessionService.questionInterval = vm.questionInterval;
+            PracticeSessionService.questionInterval = vm.questionInterval||0;
             PracticeSessionService.repeatQS = vm.repeatQS;
             PracticeSessionService.shuffleQuestions = vm.shuffleQuestions;
             $state.go('practiceSession', {

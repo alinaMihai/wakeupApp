@@ -18,7 +18,7 @@
 
 
         function activate() {
-            QuestionService.getLastSessionData(vm.questionSetId).then(function(questions) {
+            QuestionService.getQuestionSetData(vm.questionSetId).then(function(questions) {
                 vm.questions = questions;
                 usSpinnerService.stop('spinner-1');
             }, function(err) {

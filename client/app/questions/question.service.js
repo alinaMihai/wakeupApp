@@ -17,7 +17,7 @@
         this.editQuestion = editQuestion;
         this.registerSession = registerSession;
         this.importQuestions = importQuestions;
-        this.getLastSessionData = getLastSessionData;
+        this.getQuestionSetData = getQuestionSetData;
         this.isUpdated = false;
 
         ////////////////
@@ -118,7 +118,7 @@
             return deferred.promise;
         }
 
-        function getLastSessionData(questionSetId) {
+        function getQuestionSetData(questionSetId) {
             var deferred = $q.defer();
             $http.get('/api/questionSet/sessionAnswers/' + questionSetId)
                 .success(function(questions) {

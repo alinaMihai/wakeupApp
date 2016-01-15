@@ -1,3 +1,3 @@
 (function() {
-    angular.module('wakeupApp.mocks', []);
+    angular.module('wakeupApp.mocks', ['ngCsv','ngCsvImport']);
 })();

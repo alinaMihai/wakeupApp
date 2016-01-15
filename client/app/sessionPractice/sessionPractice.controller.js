@@ -93,12 +93,13 @@
             //save answer 
             saveAnswer();
             //setTimeInterval for next question if any
-            if (PracticeSessionService.currentQuestionIndex < questionsNo - 1) {
+            if (PracticeSessionService.currentQuestionIndex>=0 &&
+                  PracticeSessionService.currentQuestionIndex < questionsNo - 1) {
                 timer = $timeout(function() {
                     PracticeSessionService.currentQuestionIndex++;
                     vm.currentQuestion = questions[PracticeSessionService.currentQuestionIndex];
                     
-                    if (vm.currentQuestion.quote) {
+                    if (vm.currentQuestion && vm.currentQuestion.quote) {
                         QuoteService.getQuote(vm.currentQuestion.quote).then(function(quote) {
                             vm.currentQuestion.quote = quote;
                         });

@@ -26,6 +26,9 @@ module.exports = function(config) {
             'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
             'client/bower_components/spin.js/spin.js',
             'client/bower_components/angular-spinner/angular-spinner.js',
+            'client/bower_components/ng-csv/build/ng-csv.min.js',
+            'client/bower_components/angular-csv-import/dist/angular-csv-import.js',
+
             'client/app/app.js',
 
             'client/app/**/*.js',

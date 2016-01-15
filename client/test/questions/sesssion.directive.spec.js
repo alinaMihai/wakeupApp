@@ -37,7 +37,7 @@ describe('Directive: SessionDir', function() {
             expect(sessionConfigurationBlock.find('form').length).toBe(1);
 
             expect(sessionConfigurationBlock.find('input[type="number"]').length).toBe(1);
-            expect(sessionConfigurationBlock.find('input[type="checkbox"]').length).toBe(1);
+            expect(sessionConfigurationBlock.find('input[type="checkbox"]').length).toBe(2);
 
             expect(sessionConfigurationBlock.find('button').length).toBe(2);
             expect(sessionConfigurationBlock.find('button[type="submit"]').attr('ng-click')).toBeDefined();
