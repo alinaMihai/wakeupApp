@@ -24,7 +24,7 @@
                     <div class="row">
                         <strong><a title="topic details" ui-sref="topic({topicId:topic._id})">  <span ng-bind-html="topic.title"></span></a></strong>
                         <hr>
-                        <p class="topicDescription preview">{{topic.description | trimFilter:220}}</p>
+                        <p class="topicDescription preview" ng-bind-html="topic.description | trimFilter:220"></p>
                     </div>
                 </div>
             </div>

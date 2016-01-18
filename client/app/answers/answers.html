@@ -14,19 +14,21 @@
     </div>
     <span class="tooltipWrapper" style="font-size:2em;"><i tooltip-placement="right" class="fa fa-info-circle tooltipWrapper" uib-tooltip="Use the keybord left and right arrows for quick navigation between questions"></i></span>
     <h1 class="text-center questionText">{{answerCtrl.question.text}}</h1>
-    <p class="associatedQuote"><a ui-sref="quote({topicId:answerCtrl.question.quote.topic,quoteId:answerCtrl.question.quote._id})">
-                    {{answerCtrl.question.quote.text|quotesSigns}}</a><small>{{answerCtrl.question.quote.author|trimFilter:50}}</small></p>
+    <p class="associatedQuote">
+        <a ui-sref="quote({topicId:answerCtrl.question.quote.topic,quoteId:answerCtrl.question.quote._id})">
+                    {{answerCtrl.question.quote.text|quotesSigns}}
+       </a>
+       <small>{{answerCtrl.question.quote.author|trimFilter:50}}</small>
+    </p>
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
     <div class="row" ng-if="answerCtrl.questionAnswers.length>=1">
-        <button class="btn btn-info btn-lg deleteAllAnswers" 
-        confirm-click="Are you sure you want to delete all the answers?"
-        ng-click="answerCtrl.deleteAllAnswers()">Delete All Answers</button>
+        <button class="btn btn-info btn-lg deleteAllAnswers" confirm-click="Are you sure you want to delete all the answers?" ng-click="answerCtrl.deleteAllAnswers()">Delete All Answers</button>
     </div>
     <div class="list-group" bindonce class="list-group" ng-repeat="group in  answerCtrl.questionAnswers | groupBy: 'theDay' | toArray:true |orderBy:'theDay':true">
-        <strong bo-bind="group.$key">Date</strong>
-        <div class="row list-group-item" bindonce ng-repeat="answer in group | orderBy:'_id'">
+        <strong >{{group[0].date|date:'EEEE'}},{{group.$key}}</strong>
+        <div class="row list-group-item" bindonce ng-repeat="answer in group | orderBy:'_id'">           
             <div class="col-xs-10 col-md-11 col-lg-11 answerText">
-                <span ng-bind="answer.text"></span>
+                <span ng-bind="answer.text"></span><small class="answerTheDay">at {{answer.date|date:'hh:mm a'}}</small>
             </div>
             <div class="col-xs-2 col-md-1 col-lg-1 options">
                 <a confirm-click="Are you sure you want to delete this answer?" ng-click="answerCtrl.deleteAnswer(answer)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>

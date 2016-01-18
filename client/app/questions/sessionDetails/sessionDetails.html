@@ -26,7 +26,7 @@
                         <uib-slide ng-repeat="answer in question.answers" index="$index" no-wrap="true">
                             <div>
                                 <p class="questionAnswer">{{answer.text|quotesSigns}} </p>
-                                <span class="answerDate">at {{answer.date |date: 'hh:mm a on dd/MM/yyyy'}}</span></div>
+                                <span class="answerDate">at {{answer.theDay}}</span></div>
                         </uib-slide>
                     </uib-carousel>
                 </div>
