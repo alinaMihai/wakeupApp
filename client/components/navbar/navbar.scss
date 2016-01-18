@@ -11,15 +11,14 @@
     background-image: url("../assets/images/heart.png");
     background-repeat: no-repeat;
     background-size: 65px;
-    padding-left: 48px;
+    padding-left: 53px;
     background-position-y: 5px;
-    float: right;
-    margin-left: -3px !important;
+    height: 44px;
 }
 
 img.brandImage {
-    width: 85px;
-    height: 48px;
+    width: 100px;
+    height: 50px;
     padding: 0px;
 }
 
@@ -43,6 +42,8 @@ img.brandImage {
     }
 }
 
-#navigation {
-    margin-left: 7.35%;
+@media screen and (max-width:1500px) and (min-width:768px) {
+    #navigation {
+        margin-left: 11.3%;
+    }
 }
