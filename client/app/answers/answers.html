@@ -14,7 +14,8 @@
     </div>
     <span class="tooltipWrapper" style="font-size:2em;"><i tooltip-placement="right" class="fa fa-info-circle tooltipWrapper" uib-tooltip="Use the keybord left and right arrows for quick navigation between questions"></i></span>
     <h1 class="text-center questionText">{{answerCtrl.question.text}}</h1>
-    <p class="associatedQuote">{{answerCtrl.question.quote.text|quotesSigns}}</p>
+    <p class="associatedQuote"><a ui-sref="quote({topicId:answerCtrl.question.quote.topic,quoteId:answerCtrl.question.quote._id})">
+                    {{answerCtrl.question.quote.text|quotesSigns}}</a><small>{{answerCtrl.question.quote.author|trimFilter:50}}</small></p>
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
     <div class="row" ng-if="answerCtrl.questionAnswers.length>=1">
         <button class="btn btn-info btn-lg deleteAllAnswers" 

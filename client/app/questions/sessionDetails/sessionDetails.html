@@ -16,12 +16,14 @@
             <li class="row" ng-repeat="question in SessionDetailsCtrl.questions |orderBy:'_id'">
                 <div class="col-lg-5 questionBox">
                     <p class="questionData">{{$index+1}}. {{question.text}}</p>
-                    <p class="questionQuote">{{question.quote.text |quotesSigns}} <span>{{question.quote.author}}</span></p>
+                    <p class="questionQuote"><a ui-sref="quote({topicId:question.quote.topic,quoteId:question.quote._id})">
+                    {{question.quote.text |quotesSigns}}</a> <span>{{question.quote.author}}</span>
+                </p>
                 </div>
                 <hr>
                 <div class="col-lg-7 answerBox" ng-if="question.answers[0]">
                     <uib-carousel>
-                        <uib-slide ng-repeat="answer in question.answers"  index="$index" no-wrap="true">
+                        <uib-slide ng-repeat="answer in question.answers" index="$index" no-wrap="true">
                             <div>
                                 <p class="questionAnswer">{{answer.text|quotesSigns}} </p>
                                 <span class="answerDate">at {{answer.date |date: 'hh:mm a on dd/MM/yyyy'}}</span></div>

@@ -8,7 +8,7 @@
     line-height: 30px;
     align-items: center;
     justify-content: center;
-    display:block;
+    display: block;
 }
 
 .questionData {
@@ -22,18 +22,27 @@
 .questionQuote {
     font-size: 1em;
     font-style: italic;
-    font-weight: bold;
+    /* font-weight: bold; */
     text-indent: 10px;
     text-align: center;
     max-height: 200px;
     overflow-y: auto;
     word-wrap: break-word;
-    color: #723C82;
     padding-right: 15px;
 }
-.questionQuote span{
-    color:black;
-    font-weight:normal;
+
+.questionQuote a {
+    color: #9956AD;
+    text-decoration: none;
+}
+
+.questionQuote a:hover {
+    color: #723C82;
+}
+
+.questionQuote span {
+    color: black;
+    font-weight: normal;
 }
 
 .questionAnswer {
@@ -64,8 +73,10 @@
 .answerBox .carousel-control.right {
     background-image: none;
 }
-.answerBox .carousel-indicators,.carousel-indicators li{
-    display:none;
+
+.answerBox .carousel-indicators,
+.carousel-indicators li {
+    display: none;
 }
 
 .answerBox .glyphicon-chevron-right,

@@ -25,6 +25,10 @@
         <p>Quote added at: {{QuoteDetailCtrl.quote.date | date:'hh:mm a on dd/MM/yyyy'}}</p>
         <hr> Source
         <cite ng-bind-html="(QuoteDetailCtrl.quote.source||'N/A')|linkSource"></cite>
+        <div ng-if="QuoteDetailCtrl.quote.question">
+            <hr>
+            <p>Associated Question: <a class="questionTextLink" ui-sref="answerList({questionId:QuoteDetailCtrl.quote.question._id})"> {{QuoteDetailCtrl.quote.question.text}}</a></p>
+        </div>
         <hr>
         <div class="col-lg-8">
             Comments:
@@ -60,8 +64,8 @@
     </div>
 </div>
 <footer class="footer">
-  <div class="container">
-    <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
-    </p>
-  </div>
+    <div class="container">
+        <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
+        </p>
+    </div>
 </footer>

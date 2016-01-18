@@ -88,13 +88,13 @@
     }
 
     function updateQuestion(quoteId, questionId, previousAssociatedQuestion) {
-
         if (previousAssociatedQuestion) {
             var query = Question.findOne({});
             query.where("_id", previousAssociatedQuestion);
             query.exec(function(err, question) {
-                delete question.quote;
-                Question.update(question).exec(function(err, question) {});
+                question.quote = undefined;
+                console.log(question);
+                question.save(question, function(err, question) {});
             });
         }
         Question.update({
@@ -110,6 +110,7 @@
         var query = Quote.findOne({});
         query.where('_id', req.params.id);
         query.populate('topic');
+        query.populate('question');
 
         query.exec(function(err, quote) {
             if (err) {
@@ -124,6 +125,9 @@
                 }
             }
             quote.commentList = [];
+            if (quote.question) {
+                quote.question.answers = []
+            };
             return res.status(200).json(quote);
         });
 
@@ -153,9 +157,11 @@
             if (!quote) {
                 return res.status(404).send('Not Found');
             }
+            console.log(quote);
             var currentAssociatedQuestion = quote.question;
             if (questionId !== currentAssociatedQuestion) {
                 //remove quote from previous question and add quote to new question
+                console.log(quote.id, questionId, currentAssociatedQuestion);
                 updateQuestion(quote.id, questionId, currentAssociatedQuestion);
             }
 
@@ -345,8 +351,8 @@
         Topic.findOne({
             _id: req.params.topic
         }).exec(function(err, topic) {
-            if(err){
-                return handleError(res,err);
+            if (err) {
+                return handleError(res, err);
             }
             if (!topic.isDefault) {
 

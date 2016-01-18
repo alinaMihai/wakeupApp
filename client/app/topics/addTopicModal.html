@@ -15,21 +15,20 @@
             <label for="questionSet">Question Set</label>
             <div class="row">
                 <div class="col-xs-8">
-                    <select name="questionSets" id="questionSets" ng-model="modalCtrl.questionSet" class="form-control">
+                    <select name="questionSets" id="questionSets" 
+                    ng-change="modalCtrl.data.addQsToTopic($event,modalCtrl.questionSet);modalCtrl.questionSet='';" 
+                    ng-model="modalCtrl.questionSet" class="form-control">
                         <option value='{{qs._id}}' ng-repeat="qs in modalCtrl.data.allQuestionSets">{{qs.name|trimFilter:50}}</option>
                     </select>
-                </div>
-                <div class="col-xs-4">
-                    <button class="btn btn-success btn-block" ng-click="modalCtrl.data.addQsToTopic($event,modalCtrl.questionSet);modalCtrl.questionSet='';" ng-disabled="!modalCtrl.questionSet">Add</button>
                 </div>
             </div>
         </div>
         <ul class="list-group questionSets">
             <li ng-repeat="qs in modalCtrl.data.questionSetList">
                 <a class="list-group-item">
-					{{modalCtrl.data.getQuestionSetName(qs)}}
-					<span class="glyphicon glyphicon-remove" ng-click='modalCtrl.data.removeQsFromTopic(qs)'></span>
-				</a>
+                    {{modalCtrl.data.getQuestionSetName(qs)}}
+                    <span class="glyphicon glyphicon-remove" ng-click='modalCtrl.data.removeQsFromTopic(qs)'></span>
+                </a>
             </li>
         </ul>
     </form>
