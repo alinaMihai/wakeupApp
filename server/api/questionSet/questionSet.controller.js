@@ -252,14 +252,15 @@
                 timesPracticed++;
             } else {
                 timesPracticed = 1;
+                userPractice={
+                    practiceTimes: timesPracticed,
+                    user: userEmail
+                };
+                questionSet.userPractice.push(userPractice);
             }
 
             if (questionSet.isDefault) {
-                questionSet.userPractice = _.merge(questionSet.userPractice, [{
-                    practiceTimes: timesPracticed,
-                    user: userEmail
-                }]);
-
+                userPractice.practiceTimes=timesPracticed;
                 updated = questionSet;
 
             } else {
