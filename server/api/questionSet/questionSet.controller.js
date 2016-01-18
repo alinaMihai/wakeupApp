@@ -30,7 +30,7 @@
                 'user': userEmail
             }).exec().then(function(toDeleteQuestionSets) {
                 //process defaultQuestionSets
-                return spliceDeletedQuestionSets(defaultQuestionSets, toDeleteQuestionSets);
+                return spliceDeletedQuestionSets(defaultQuestionSets, toDeleteQuestionSets, userEmail);
 
             }).then(function(userDefaultSets) {
                 getUserQuestionSets(userDefaultSets, userEmail, res);
@@ -79,14 +79,14 @@
             questions.forEach(function(question) {
                 question.answers = filterAnswers(question, userEmail);
             });
-            
+
             return res.status(200).json(questions);
         });
     }
 
     function filterAnswers(question, user) {
         var answers = [];
-        var sortedAnswers=question.answers.sort(function(a, b) {
+        var sortedAnswers = question.answers.sort(function(a, b) {
             return new Date(b.date) - new Date(a.date);
         });
         answers = sortedAnswers.filter(function(answer) {
@@ -100,7 +100,7 @@
         var userEmail = req.user.email;
         var query = QuestionSet.findOne({});
         query.select(
-            'name description user impact createDate practiceTimes questions isDefault'
+            'name description user impact createDate practiceTimes questions isDefault userPractice'
         );
         query.populate('questions');
         query.where('_id', req.params.id);
@@ -117,6 +117,13 @@
                 if (questionSet.user !== userEmail) {
                     return res.status(404).send('Not Found');
                 }
+            }
+            if (questionSet.isDefault) {
+                var userPractice = _.find(questionSet.userPractice, {
+                    user: userEmail
+                });
+                questionSet.practiceTimes = userPractice ? userPractice.practiceTimes : 0;
+                questionSet.userPractice = [];
             }
             return res.status(200).json(questionSet);
         });
@@ -227,21 +234,40 @@
         });
     };
     exports.registerSession = function(req, res) {
+        var userEmail = req.user.email;
         var questionSetId = req.params.id;
         QuestionSet.findOne({
             _id: questionSetId
         }, function(err, questionSet) {
-
             var timesPracticed = questionSet.practiceTimes;
+            var updated = null;
+            if (questionSet.isDefault) {
+                var userPractice = _.find(questionSet.userPractice, {
+                    user: userEmail
+                });
+                timesPracticed = userPractice ? userPractice.practiceTimes : undefined;
+            }
+
             if (!isNaN(timesPracticed)) {
                 timesPracticed++;
             } else {
                 timesPracticed = 1;
             }
 
-            var updated = _.merge(questionSet, {
-                practiceTimes: timesPracticed
-            });
+            if (questionSet.isDefault) {
+                questionSet.userPractice = _.merge(questionSet.userPractice, [{
+                    practiceTimes: timesPracticed,
+                    user: userEmail
+                }]);
+
+                updated = questionSet;
+
+            } else {
+                updated = _.merge(questionSet, {
+                    practiceTimes: timesPracticed
+                });
+
+            }
 
             updated.save(function(err) {
                 if (err) {
@@ -304,7 +330,7 @@ iterate through it, find the answers associated with each question and delete th
 
     }
 
-    function spliceDeletedQuestionSets(defaultQuestionSets, toDeleteQuestionSets) {
+    function spliceDeletedQuestionSets(defaultQuestionSets, toDeleteQuestionSets, user) {
         _.each(toDeleteQuestionSets, function(questionSet) {
             var toDeleteQS = _.findIndex(defaultQuestionSets, {
                 _id: questionSet.QuestionSetId
@@ -312,6 +338,13 @@ iterate through it, find the answers associated with each question and delete th
             if (toDeleteQS !== -1) {
                 defaultQuestionSets.splice(toDeleteQS, 1);
             }
+        });
+        _.each(defaultQuestionSets, function(questionSet) {
+            var userPractice = _.find(questionSet.userPractice, {
+                user: user
+            });
+            questionSet.practiceTimes = userPractice ? userPractice.practiceTimes : 0;
+            questionSet.userPractice = [];
         });
         return defaultQuestionSets;
     }

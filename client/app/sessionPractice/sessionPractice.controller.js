@@ -6,12 +6,12 @@
         .controller('SessionController', SessionController);
 
     SessionController.$inject = ['cached', 'QuestionService', '$timeout', 'PracticeSessionService',
-        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService','$window'
+        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService', '$window'
     ];
 
     /* @ngInject */
     function SessionController(cached, QuestionService, $timeout, PracticeSessionService, $stateParams,
-     $state, logger, $sessionStorage, QuoteService,$window) {
+        $state, logger, $sessionStorage, QuoteService, $window) {
         var vm = this;
         vm.startQuestionSet = startQuestionSet;
         vm.endQuestionSet = endQuestionSet;
@@ -72,16 +72,16 @@
             PracticeSessionService.currentQuestionIndex = undefined;
             logger.success("Question Set Session successfully ended", {}, "Question Set Session");
             PracticeSessionService.questionInterval = undefined;
-            if (!vm.questionSetQuestions.isDefault) {
-                QuestionService.registerSession(questionSetId).then(function(questionSet) {
-                    QuestionService.isUpdated = true;
-                }, function(err) {
-                    console.log(err);
-                });
+            /* if (!vm.questionSetQuestions.isDefault) {*/
+            QuestionService.registerSession(questionSetId).then(function(questionSet) {
+                QuestionService.isUpdated = true;
+            }, function(err) {
+                console.log(err);
+            });
+            $window.location.href = "/questionList/" + questionSetId;
+            /*} else {
                 $window.location.href="/questionList/"+questionSetId;
-            } else {
-                $window.location.href="/questionList/"+questionSetId;
-            }
+            }*/
 
             if (timer) {
                 $timeout.cancel(timer);
@@ -91,20 +91,20 @@
 
         function processQuestion(skipObj) {
             //save answer 
-            if(!skipObj){
-                saveAnswer();    
+            if (!skipObj) {
+                saveAnswer();
             }
-            if(skipObj){
-                vm.currentAnswer="";
+            if (skipObj) {
+                vm.currentAnswer = "";
             }
-            
+
             //setTimeInterval for next question if any
-            if (PracticeSessionService.currentQuestionIndex>=0 &&
-                  PracticeSessionService.currentQuestionIndex < questionsNo - 1) {
+            if (PracticeSessionService.currentQuestionIndex >= 0 &&
+                PracticeSessionService.currentQuestionIndex < questionsNo - 1) {
                 timer = $timeout(function() {
                     PracticeSessionService.currentQuestionIndex++;
                     vm.currentQuestion = questions[PracticeSessionService.currentQuestionIndex];
-                    
+
                     if (vm.currentQuestion && vm.currentQuestion.quote) {
                         QuoteService.getQuote(vm.currentQuestion.quote).then(function(quote) {
                             vm.currentQuestion.quote = quote;

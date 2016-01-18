@@ -39,7 +39,7 @@
                 <li><strong>Questions: </strong> <span ng-bind="questionCtrl.questionSetQuestions.questions.length"></span></li>
                 <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Impact: </strong><span ng-bind="questionCtrl.questionSetQuestions.impact"></span></li>
                 <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Creation at: </strong> <span ng-bind="questionCtrl.questionSetQuestions.createDate | date:'HH:mm a on dd-MM-yyyy'"></span></li>
-                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Times Practiced: </strong> <span ng-bind="questionCtrl.questionSetQuestions.practiceTimes"></span></li>
+                <li><strong>Times Practiced: </strong> <span ng-bind="questionCtrl.questionSetQuestions.practiceTimes"></span></li>
             </ul>
         </div>
         <div class="col-xs-12 col-lg-6">

@@ -24,7 +24,11 @@
             type: Number,
             ref: 'Question'
         }],
-        isDefault: Boolean
+        isDefault: Boolean,
+        userPractice:[{
+            practiceTimes:Number,
+            user:String
+        }]
     }, {
         collection: 'questionSets'
     });
