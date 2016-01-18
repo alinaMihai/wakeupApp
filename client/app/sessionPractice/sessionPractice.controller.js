@@ -89,9 +89,15 @@
 
         }
 
-        function processQuestion() {
+        function processQuestion(skipObj) {
             //save answer 
-            saveAnswer();
+            if(!skipObj){
+                saveAnswer();    
+            }
+            if(skipObj){
+                vm.currentAnswer="";
+            }
+            
             //setTimeInterval for next question if any
             if (PracticeSessionService.currentQuestionIndex>=0 &&
                   PracticeSessionService.currentQuestionIndex < questionsNo - 1) {

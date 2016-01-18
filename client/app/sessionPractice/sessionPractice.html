@@ -4,10 +4,15 @@
             <button id="endQsSessionBtn" ng-click="vm.endQuestionSet()" class="btn btn-lg btn-primary" title="End Question Set Session">End Question Set Session</button>
         </div>
     </div>
-    <question-modal ng-show="vm.practiceSessionService.questionSetSession" repeat-qs="vm.practiceSessionService.repeatQS" cindex="vm.practiceSessionService.currentQuestionIndex" process-question='vm.processQuestion()'>
+    <question-modal ng-show="vm.practiceSessionService.questionSetSession" repeat-qs="vm.practiceSessionService.repeatQS" cindex="vm.practiceSessionService.currentQuestionIndex" process-question='vm.processQuestion'>
         <label for="currentAnswer">
             <p class="currentQuestionText">{{vm.currentQuestion.text}}</p>
-            <p class="associatedQuote">{{vm.currentQuestion.quote.text|quotesSigns}}</p>
+            <p class="associatedQuote">
+                <a ui-sref="quote({topicId:vm.currentQuestion.quote.topic._id,quoteId:vm.currentQuestion.quote._id})" target="_blank">
+                    {{vm.currentQuestion.quote.text|quotesSigns}}
+                </a>
+                <small ng-bind="vm.currentQuestion.quote.author"></small>
+            </p>
             <textarea maxlength="5000" id="answerTextArea" type="text" class="verticalTextArea" ng-model=vm.currentAnswer rows="7" cols="60"></textarea>
         </label>
     </question-modal>

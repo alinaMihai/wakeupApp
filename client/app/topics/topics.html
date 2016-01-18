@@ -22,7 +22,7 @@
                     <a  class="inspirationLink" title="See inspiration page" ui-sref="inspiration({topicId:topic._id})" role="button">
                       <img class="inspirationButton" src="../../assets/images/a.png" alt=""> </a>
                     <div class="row">
-                        <strong><a title="topic details" ui-sref="topic({topicId:topic._id})">  {{topic.title}} </a></strong>
+                        <strong><a title="topic details" ui-sref="topic({topicId:topic._id})">  <span ng-bind-html="topic.title"></span></a></strong>
                         <hr>
                         <p class="topicDescription preview">{{topic.description | trimFilter:220}}</p>
                     </div>

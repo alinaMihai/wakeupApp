@@ -33,17 +33,40 @@
 }
 
 .currentQuestionText {
-    font-size: 1.3em;
+    font-size: 1.6em;
     text-align: center;
     font-style: normal;
     padding: 5px;
     font-weight: 500;
     max-height: 200px;
     overflow-y: auto;
-    overflow-x:auto;
+    overflow-x: auto;
     padding-right: 15px;
-    word-wrap: break-word;
-    word-break: break-word;
+}
+
+.associatedQuote{
+    text-align: center;
+    font-size: 1.1em;
+    font-style: italic;
+    width: 75%;
+    margin: auto;
+    margin-bottom: 10px;
+    font-weight: 500;
+    max-height: 100px;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+.associatedQuote a{
+    text-decoration:none;
+    color:#723C82;
+    font-weight: bold;
+}
+.associatedQuote a:hover{
+    color:#5E356B;
+}
+.associatedQuote small{
+    color:black;
+    font-weight: normal;
 }
 
 #answerTextArea {

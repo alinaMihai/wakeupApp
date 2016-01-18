@@ -7,7 +7,7 @@
 
     function quotesSigns() {
         return function(text) {
-            return (text && !text.contains('"')) ? '"'+text+'"':text;
+            return (text && !(text.indexOf('"')===0 || text.indexOf("'")===0)) ? '"'+text.replace(/"/mg," ' ")+'"':text;
         };
     }
 })();

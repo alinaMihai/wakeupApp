@@ -3,11 +3,34 @@
     color: white;
 }
 
+.banner {
+    position: absolute;
+}
+
+.navbar-brand {
+    background-image: url("../assets/images/heart.png");
+    background-repeat: no-repeat;
+    background-size: 65px;
+    padding-left: 48px;
+    background-position-y: 5px;
+    float: right;
+    margin-left: -3px !important;
+}
+
+img.brandImage {
+    width: 85px;
+    height: 48px;
+    padding: 0px;
+}
+
+.navbar-header {
+    margin-left: 100px;
+}
+
 .navbar-blue {
     background-color: #BED5EB;
     border: 0px;
-    ul li a,
-    a.navbar-brand {
+    ul li a {
         font-weight: bold;
         color: rgba(58, 51, 82, 0.64);
     }
@@ -18,4 +41,8 @@
     .icon-bar {
         background-color: white;
     }
+}
+
+#navigation {
+    margin-left: 7.35%;
 }

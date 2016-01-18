@@ -22,8 +22,11 @@ form[name='addTopicForm'] {
     display: inline-block;
     border-radius: 40px;
 }
-.inspirationLink{
-    display:inline-block;
+#inspirationPage{
+    float:right;
+}
+.inspirationLink {
+    display: inline-block;
 }
 
 .center {
@@ -60,6 +63,29 @@ form[name='addTopicForm'] {
 
 #addQuote {
     margin-bottom: 10px;
+}
+
+.associatedQuestionSet {
+    background: #AC9AD2;
+    color: white;
+    text-decoration: none;
+    transition: ease .5s;
+}
+
+.associatedQuestionSet p {
+    font-size: 1.4em;
+    font-family: serif;
+    font-weight: 400;
+    color: white;
+}
+
+.associatedQuestionSet:hover {
+    background: rgba(114, 60, 130, 0.75);
+    border-color: rgba(114, 60, 130, 0.25);
+    text-decoration: none;
+}
+.associatedQuestionSet:hover p{
+    font-weight:bold;
 }
 
 #quotes,

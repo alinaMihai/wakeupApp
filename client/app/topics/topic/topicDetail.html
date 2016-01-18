@@ -14,7 +14,7 @@
 		</h1>
 	</div>
 	<div id="topicDescription">
-		<p ng-bind="TopicDetailCtrl.topic.description"></p>
+		<p ng-bind-html="TopicDetailCtrl.topic.description"></p>
 		<p><a class="btn btn-primary btn-lg" id="inspirationPage"  ui-sref="inspiration({topicId:TopicDetailCtrl.topic._id})" role="button">
 			Inspiration Page 
 		</a></p>
@@ -27,7 +27,7 @@
 		</div>
 		<div class="item col-lg-4" bindonce ng-repeat="qs in TopicDetailCtrl.topic.questionSetList | orderBy:'-practiceTimes'">
 			<a ui-sref="questionList({questionSetId:qs._id})">
-				<div class="well">				
+				<div class="well associatedQuestionSet">				
 					<strong> <p> {{qs.name}}</p></strong>
 				</div>
 			</a>

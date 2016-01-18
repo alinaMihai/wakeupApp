@@ -118,7 +118,6 @@ body {
 }
 
 #questionList span.numberItem {
-    margin-right: 25px;
     border-radius: 35px;
     background: white;
     padding: 10px;
@@ -143,7 +142,7 @@ body {
 }
 
 #questionList {
-    height: 14.5em;
+    max-height: 28.8em;
     overflow: auto;
 }
 

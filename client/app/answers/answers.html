@@ -12,7 +12,7 @@
         <div id="0" class="col-xs-2 col-md-2"><a class="arrowBtn btn btn-block" ui-sref="answerList({questionId:answerCtrl.prevQuestionId})" ng-disabled="!answerCtrl.prevQuestionId"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
         <div class="col-xs-2 col-md-2"><a class="arrowBtn btn btn-block" ui-sref="answerList({questionId:answerCtrl.nextQuestionId})" ng-disabled="!answerCtrl.nextQuestionId"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
     </div>
-    <span class="tooltipWrapper" style="font-size:2em;"><i tooltip-placement="bottom" class="fa fa-info-circle tooltipWrapper" uib-tooltip="Use the keybord left and right arrows for quick navigation between questions"></i></span>
+    <span class="tooltipWrapper" style="font-size:2em;"><i tooltip-placement="right" class="fa fa-info-circle tooltipWrapper" uib-tooltip="Use the keybord left and right arrows for quick navigation between questions"></i></span>
     <h1 class="text-center questionText">{{answerCtrl.question.text}}</h1>
     <p class="associatedQuote">{{answerCtrl.question.quote.text|quotesSigns}}</p>
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>

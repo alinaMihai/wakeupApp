@@ -101,7 +101,7 @@
 
             var data = quote ? angular.copy(quote) : emptyObj;
 
-            data.heading = quote ? 'Edit' : 'Add';
+            data.heading = quote ? 'Edit' : 'Create';
             QuoteService.getSuggestions().then(function(suggestions) {
                 data.authors = suggestions.authors;
                 data.sources = suggestions.sources;

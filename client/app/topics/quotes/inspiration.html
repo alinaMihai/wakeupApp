@@ -14,12 +14,15 @@
             </a>
         </div>
     </div>
+    <div class="page-header">
+        <h1>Inspiration page <small ng-bind-html="QuotesCtrl.topic.title|trimFilter:50"></small>
+        </h1>
+    </div>
     <div class="row">
         <div class="col-sm-7">
             <div class="row">
                 <div class="col-md-4 eiButtons">
-                    <button class="btn btn-lg btn-block btn-success" type="button" ng-click="QuotesCtrl.openExportQuotesModal(QuotesCtrl.topic.title)" 
-                     ng-disabled="QuotesCtrl.exportQuotes.length===0">Export Quotes</button>
+                    <button class="btn btn-lg btn-block btn-success" type="button" ng-click="QuotesCtrl.openExportQuotesModal(QuotesCtrl.topic.title)" ng-disabled="QuotesCtrl.exportQuotes.length===0">Export Quotes</button>
                 </div>
                 <div class="col-md-4">
                     <button ng-if="!QuotesCtrl.topic.isDefault" class="btn btn-lg btn-block btn-success" ng-click="QuotesCtrl.showImport=!QuotesCtrl.showImport">Import CSV file</button>

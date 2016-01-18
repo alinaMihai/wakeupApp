@@ -26,6 +26,10 @@
         return directive;
 
         function link(scope, element, attrs) {
+              var callback = scope.processQuestion();
+            scope.processQuestion = function(skip) {
+                callback(skip);
+            }
 
             scope.$watch('cindex', function(newValue, oldValue) {
                 if (newValue >= 0) {

@@ -1,10 +1,17 @@
 <div style="display:none" id="myQuestionModal">
     <div class="questionModal">
-        <form name="answerForm" ng-submit="processQuestion(); answerForm.$setPristine();">
+        <form name="answerForm">
             <div class="form-group">
                 <ng-transclude></ng-transclude>
             </div>
-            <button type="submit" class="btn btn-block btn-primary">OK</button>
+            <div >
+                <div class="col-md-6">
+                    <button ng-click="processQuestion()" class="btn btn-block btn-primary" >Save Answer</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-block btn-warning" ng-click="processQuestion({skip:true})">Skip</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
