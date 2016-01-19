@@ -96,7 +96,7 @@
                 text: '',
                 source: '',
                 comment: '',
-                question: ''
+                questions: []
             };
 
             var data = quote ? angular.copy(quote) : emptyObj;
@@ -108,8 +108,21 @@
             });
             QuoteService.getAllQuestions().then(function(allQuestions) {
                 data.allQuestions = allQuestions;
-
             });
+            data.removeQuestion = function(questionId) {
+                var questionIndex = data.questions.indexOf(questionId);
+                if (questionIndex !== -1) {
+                    data.questions.splice(questionIndex, 1);
+                }
+            };
+            data.findQuestionText = function(questionId) {
+                var question = _.find(data.allQuestions, {
+                    id: questionId
+                });
+                if (question) {
+                    return question.text;
+                }
+            }
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/topics/quotes/addQuoteModal.html',
@@ -131,7 +144,7 @@
                 quoteObj.source = data.source;
                 quoteObj.date = new Date().getTime();
                 quoteObj.comment = data.comment;
-                quoteObj.question = data.associatedQuestion;
+                quoteObj.questions = data.questions;
 
                 return quote ? updateQuote(quoteObj) : createQuote(quoteObj);
 

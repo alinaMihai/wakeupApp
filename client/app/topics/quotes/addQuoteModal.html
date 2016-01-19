@@ -29,16 +29,39 @@
             <label for="comment">Comment</label>
             <textarea maxlength="500" ng-model='modalCtrl.data.comment' name="text" class="form-control verticalTextArea"></textarea>
         </div>
+        <!--  <div class="form-group">
+           <label for="questionSearch">Question</label>
+           <div>
+               <select ng-model="modalCtrl.data.associatedQuestion" class="form-control" >
+                   <option value=""></option>
+                   <option value="{{question.id}}" ng-selected="question.id==modalCtrl.data.question" ng-repeat="question in modalCtrl.data.allQuestions | orderBy:'topic'">`{{question.questionSet|trimFilter:50}}`~~{{question.text|trimFilter:50}}
+                         </option>
+               </select>
+           </div>
+       </div> -->
         <div class="form-group">
-            <label for="questionSearch">Question</label>
-            <div>
-                <select ng-model="modalCtrl.data.associatedQuestion" class="form-control" >
-                    <option value=""></option>
-                    <option value="{{question.id}}" ng-selected="question.id==modalCtrl.data.question" ng-repeat="question in modalCtrl.data.allQuestions | orderBy:'topic'">`{{question.questionSet|trimFilter:50}}`~~{{question.text|trimFilter:50}}
-                          </option>
-                </select>
+            Associate Questions
+            <input type="text" class="form-control" placeholder="search questions" ng-model="modalCtrl.search">
+            <div class="row searchQuestions">
+                <div class="col-sm-4" bindonce ng-repeat="question in modalCtrl.data.allQuestions|orderBy:'questionSet'|filter:modalCtrl.search">
+                    <div class="questionBox">
+                        <p class="questionPrev">{{question.text|trimFilter:40}}</p>
+                        <p class="questionSet">{{question.questionSet|trimFilter:50}}</p>
+                        <div>
+                            <button class="btn btn-success" ng-if="modalCtrl.data.questions.indexOf(question.id)===-1" ng-click="modalCtrl.data.questions.push(question.id)">Add</button>
+                            <button class="btn btn-danger" ng-if="modalCtrl.data.questions.indexOf(question.id)!==-1" 
+                            ng-click="modalCtrl.data.removeQuestion(question.id)">Remove</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <ul class="list-group">
+            <li class="list-group-item" bindonce ng-repeat="question in modalCtrl.data.questions">
+                {{modalCtrl.data.findQuestionText(question)|trimFilter:100}}
+                <button class="btn btn-danger" ng-click="modalCtrl.data.removeQuestion(question)">Remove</button>
+            </li>
+        </ul>
     </form>
 </div>
 <div class="modal-footer">

@@ -1,6 +1,7 @@
 .eiButtons {
     margin-bottom: 20px;
 }
+
 .groupHeading {
     color: #723C82;
     font-size: 1.5em;
@@ -32,7 +33,22 @@
     float: right;
     margin-right: 35px;
 }
-.noQuotes span{
-	color:green;
-	font-weight:bold;
+
+.noQuotes span {
+    color: green;
+    font-weight: bold;
+}
+
+.searchQuestions {
+    max-height: 152px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.searchQuestions div.questionBox {
+    border: 1px solid black;
+    margin: 4px;
+    padding-top: 9px;
+    padding-left: 20px;
+    padding-bottom: 10px;
 }

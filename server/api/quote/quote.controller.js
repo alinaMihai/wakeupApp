@@ -124,23 +124,7 @@
         });
     }
 
-    /*function updateQuestion(quoteId, questionId, previousAssociatedQuestion) {
-        if (previousAssociatedQuestion) {
-            var query = Question.findOne({});
-            query.where("_id", previousAssociatedQuestion);
-            query.exec(function(err, question) {
-                question.quote = undefined;
-                console.log(question);
-                question.save(question, function(err, question) {});
-            });
-        }
-        Question.update({
-            _id: questionId
-        }, {
-            quote: quoteId
-        }).exec(function(err, question) {});
-    }*/
-
+   
     //get quote by id
     exports.show = function(req, res) {
         var userEmail = req.user.email;
@@ -187,7 +171,7 @@
     // Updates an existing quote in the DB.
     exports.update = function(req, res) {
         //var questionId = req.body.question;
-        var currArray = req.body.questions;
+        var currArray = req.body.questions||[];
         Quote.findById(req.params.id, function(err, quote) {
             if (err) {
                 return handleError(res, err);
@@ -195,17 +179,10 @@
             if (!quote) {
                 return res.status(404).send('Not Found');
             }
-            // console.log(quote);
-            //var currentAssociatedQuestion = quote.question;
             var prevArray = quote.questions;
-            /*if (questionId !== currentAssociatedQuestion) {
-                //remove quote from previous question and add quote to new question
-                console.log(quote.id, questionId, currentAssociatedQuestion);
-                updateQuestion(quote.id, questionId, currentAssociatedQuestion);
-            }*/
-
+            quote.questions=req.body.questions;
             var updated = _.merge(quote, req.body);
-            updated.save(function(err) {
+            updated.save(function(err,quote) {
 
                 if (err) {
                     return handleError(res, err);
@@ -218,6 +195,7 @@
 
     function updateQuoteInQuestions(prevArr, currArr, quoteId) {
         for (var i = 0; i < prevArr.length; i++) {
+            console.log(currArr.indexOf(prevArr[i]));
             if (currArr.indexOf(prevArr[i]) === -1) {
                 removeQuoteFromQuestion(prevArr[i]);
             }

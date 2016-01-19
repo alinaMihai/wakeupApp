@@ -12,10 +12,10 @@
             Associate Quote:
             <input type="text" class="form-control" placeholder="search in quotes" ng-model="modalCtrl.search">
             <div class="row searchQuotes">
-                <div class="col-sm-4" bindonce ng-repeat="quote in modalCtrl.data.quotes|filter:modalCtrl.search">
+                <div class="col-sm-4" bindonce ng-repeat="quote in modalCtrl.data.quotes|orderBy:'topic'|filter:modalCtrl.search">
                     <div class="quoteBox">
                         <p class="quotePrev">{{quote.text|trimFilter:40}}</p>
-                        <p class="quoteTopic">{{modalCtrl.data.findTopicName(quote.topic)|trimFilter:20}}</p>
+                        <p class="quoteTopic">{{modalCtrl.data.findTopicName(quote.topic)|trimFilter:50}}</p>
                         <div>
                             <button class="btn btn-success" ng-if="modalCtrl.data.quote!==quote._id" ng-click="modalCtrl.data.quote=quote._id">Add</button>
                             <button class="btn btn-danger" ng-if="modalCtrl.data.quote===quote._id" ng-click="modalCtrl.data.quote=''">Remove</button>

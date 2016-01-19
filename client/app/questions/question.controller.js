@@ -79,26 +79,6 @@
             });
         }
 
-        /*function saveQuestion() {
-            var questionText = vm.questionText;
-            var questionSetId = vm.questionSetQuestions._id;
-            if (questionText.trim() !== "" && questionText !== undefined) {
-                var today = new Date().getTime();
-                var question = {
-                    text: questionText,
-                    questionSet: questionSetId,
-                    date: today
-                };
-                QuestionService.addQuestion(question).then(function(question) {
-                    vm.questionSetQuestions.questions.push(question);
-                    vm.exportQuestions = updateQuestionsToExport(vm.questionSetQuestions.questions);
-                });
-                vm.questionText = undefined;
-                vm.addQuestion.$setPristine();
-                vm.addQuestionBool = false;
-            }
-        }*/
-
         function addQuestion(question) {
             QuestionService.addQuestion(question).then(function(question) {
                 vm.questionSetQuestions.questions.push(question);
