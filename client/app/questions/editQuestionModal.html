@@ -20,8 +20,8 @@
                         </p>
                         <div>
                             <p class="quotePrev associatedQuote">
-                                <a ui-sref="quote({topicId:quote.topic,quoteId:quote._id})" target="_blank">
-                                    {{quote.text|trimFilter:40|quotesSigns}}
+                                <a ui-sref="quote({topicId:quote.topic,quoteId:quote._id})" target="_blank" title="{{quote.text|trimFilter:100}}">
+                                    {{quote.text|trimFilter:50|quotesSigns}}
                              </a>
                             </p>
                         </div>
@@ -35,7 +35,7 @@
         <ul ng-if="modalCtrl.data.quote" class="list-group" style="margin:16px">
             <li class="list-group-item row">
                 <div class="col-xs-10">
-                    <p>{{modalCtrl.data.findQuoteText(modalCtrl.data.quote)|trimFilter:100}}</p>
+                    <p>{{modalCtrl.data.findQuoteText(modalCtrl.data.quote)|quotesSigns|trimFilter:100}}</p>
                 </div>
                 <div class="col-xs-2">
                     <button class="btn btn-danger" ng-click="modalCtrl.data.quote=''"><i class="fa fa-minus-circle"></i> Remove</button>

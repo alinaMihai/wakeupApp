@@ -40,8 +40,8 @@
                             <i class="fa fa-minus-circle" title="Remove Question" ng-if="modalCtrl.data.questions.indexOf(question.id)!==-1" ng-click="modalCtrl.data.removeQuestion(question.id)"></i>
                         </p>
                         <p class="questionPrev">
-                            <a class="questionTextLink" ui-sref="answerList({questionId:question.id})" target="_blank"> 
-                                {{question.text|trimFilter:40}}</a>
+                            <a class="questionTextLink" ui-sref="answerList({questionId:question.id})" title="{{question.text|trimFilter:100}}" target="_blank"> 
+                                {{question.text|trimFilter:50}}</a>
                         </p>
                         <p class="questionSet">{{question.questionSet|trimFilter:50}}</p>
                     </div>
