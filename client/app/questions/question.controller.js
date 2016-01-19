@@ -19,12 +19,12 @@
 
         vm.startQuestionSet = startQuestionSet;
 
-        vm.saveQuestion = saveQuestion;
+        /* vm.saveQuestion = saveQuestion;*/
         vm.cancelAddQuestion = cancelAddQuestion;
         vm.hasErrorAddForm = hasErrorAddForm;
 
         vm.deleteQuestion = deleteQuestion;
-        vm.openEditQuestionModal = openEditQuestionModal;
+        vm.openQuestionModal = openQuestionModal;
 
         var questionSetId = $stateParams.questionSetId;
 
@@ -53,7 +53,7 @@
                             questions.forEach(function(question) {
                                 vm.questionSetQuestions.questions.push(question);
                             });
-                            vm.exportQuestions=updateQuestionsToExport(vm.questionSetQuestions.questions);
+                            vm.exportQuestions = updateQuestionsToExport(vm.questionSetQuestions.questions);
                         });
                         newVal = undefined;
                         vm.csvContent = undefined;
@@ -71,7 +71,7 @@
         }
 
         function startQuestionSet() {
-            PracticeSessionService.questionInterval = vm.questionInterval||0;
+            PracticeSessionService.questionInterval = vm.questionInterval || 0;
             PracticeSessionService.repeatQS = vm.repeatQS;
             PracticeSessionService.shuffleQuestions = vm.shuffleQuestions;
             $state.go('practiceSession', {
@@ -79,7 +79,7 @@
             });
         }
 
-        function saveQuestion() {
+        /*function saveQuestion() {
             var questionText = vm.questionText;
             var questionSetId = vm.questionSetQuestions._id;
             if (questionText.trim() !== "" && questionText !== undefined) {
@@ -97,6 +97,13 @@
                 vm.addQuestion.$setPristine();
                 vm.addQuestionBool = false;
             }
+        }*/
+
+        function addQuestion(question) {
+            QuestionService.addQuestion(question).then(function(question) {
+                vm.questionSetQuestions.questions.push(question);
+                vm.exportQuestions = updateQuestionsToExport(vm.questionSetQuestions.questions);
+            });
         }
 
         function cancelAddQuestion() {
@@ -113,34 +120,92 @@
             });
         }
 
-        function openEditQuestionModal(size, questionId) {
+        function openQuestionModal(size, questionId) {
+            var modalInstance;
+            var emptyQuestion = {
+                text: ""
+            };
+            var quotes;
+            var topics;
+            var questionHeading = questionId ? "Edit" : "Create";
+            var question = angular.copy(findQuestionById(questionId)) || emptyQuestion;
 
-            var question = angular.copy(findQuestionById(questionId));
+            QuestionService.getUserQuotes().then(function(topics) {
+                topics = topics;
+                quotes = getQuotes(topics);
 
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: 'app/questions/editQuestionModal.html',
-                size: size,
-                controller: 'ModalInstanceCtrl as modalCtrl',
-                resolve: {
-                    data: function() {
-                        return {
-                            text: question.text
-                        };
-                    }
+                if (!vm.questionSetQuestions.isDefault) {
+                    modalInstance = $uibModal.open({
+                        animation: true,
+                        templateUrl: 'app/questions/editQuestionModal.html',
+                        size: size,
+                        controller: 'ModalInstanceCtrl as modalCtrl',
+                        resolve: {
+                            data: function() {
+                                return {
+                                    text: question.text,
+                                    quote:question.quote,
+                                    quotes: quotes,
+                                    heading: questionHeading,
+                                    findTopicName: findTopicName,
+                                    findQuoteText: findQuoteText
+                                };
+                            }
+                        }
+                    });
+                    modalInstance.result.then(function(data) {
+                        if (questionId) {
+                            var quoteObj = {
+                                text: data.text,
+                                quote:data.quote,
+                                questionSet: vm.questionSetQuestions._id,
+                            };
+                            var updatedObj = angular.extend(question, quoteObj);
+                            updateQuestion(updatedObj);
+                        } else {
+                            var today = new Date().getTime();
+                            var questionObj = {
+                                text: data.text,
+                                quote:data.quote,
+                                questionSet: vm.questionSetQuestions._id,
+                                date: today
+                            };
+                            addQuestion(questionObj);
+                        }
+                    }, function() {
+                        // $log.info('Modal dismissed at: ' + new Date());
+                    });
                 }
+
+                function getQuotes(topics) {
+                    var quotes = [];
+                    topics.forEach(function(topic) {
+                        quotes = quotes.concat(topic.quoteList);
+                    });
+                    return quotes;
+                }
+
+                function findTopicName(topicId) {
+                    var topic = _.find(topics, {
+                        _id: topicId
+                    });
+
+                    return topic ? topic.title : "";
+                }
+
+                function findQuoteText(quoteId) {
+                    var quote = _.find(quotes, {
+                        _id: quoteId
+                    });
+                    return quote ? quote.text : "";
+                }
+
             });
 
-            modalInstance.result.then(function(data) {
 
-                var updatedObj = angular.extend(question, data);
 
-                updateQuestion(updatedObj);
-
-            }, function() {
-                // $log.info('Modal dismissed at: ' + new Date());
-            });
         }
+
 
         function updateQuestion(updatedObj) {
             vm.questionService.editQuestion(updatedObj).then(function(updatedQuestion) {

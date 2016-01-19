@@ -22,12 +22,18 @@
         </div>
     </div>
     <div class="row center">
-        <p>Quote added at: {{QuoteDetailCtrl.quote.date | date:'hh:mm a on dd/MM/yyyy'}}</p>
+        <p>Quote added at: {{QuoteDetailCtrl.quote.date||'N/A' | date:'hh:mm a on dd/MM/yyyy'}}</p>
         <hr> Source
         <cite ng-bind-html="(QuoteDetailCtrl.quote.source||'N/A')|linkSource"></cite>
-        <div ng-if="QuoteDetailCtrl.quote.question">
+        <div ng-if="QuoteDetailCtrl.quote.question ||QuoteDetailCtrl.quote.questions.length>0">
             <hr>
-            <p>Associated Question: <a class="questionTextLink" ui-sref="answerList({questionId:QuoteDetailCtrl.quote.question._id})"> {{QuoteDetailCtrl.quote.question.text}}</a></p>
+            Associated Questions:
+            <p >
+                <a class="questionTextLink" ui-sref="answerList({questionId:QuoteDetailCtrl.quote.question._id})"> {{QuoteDetailCtrl.quote.question.text}}</a>
+            </p>
+            <p ng-repeat="question in QuoteDetailCtrl.quote.questions">
+                <a class="questionTextLink" ui-sref="answerList({questionId:question._id})"> {{question.text}}</a>
+            </p>
         </div>
         <hr>
         <div class="col-lg-8">

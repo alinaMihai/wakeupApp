@@ -148,6 +148,7 @@
         query.where('_id', req.params.id);
         query.populate('topic');
         query.populate('question');
+        query.populate('questions');
 
         query.exec(function(err, quote) {
             if (err) {

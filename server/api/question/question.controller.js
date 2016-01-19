@@ -14,6 +14,7 @@
     var Question = require('./question.model');
     var Answer = require('../answer/answer.model');
     var QuestionSet = require('../questionSet/questionSet.model');
+    var Quote = require('../quote/quote.model');
 
     exports.index = function(req, res) {
 
@@ -67,6 +68,7 @@
                             return handleError(res, err);
                         }
                         updateQuestionInQuestionSetList(req.body.questionSet, questionId);
+                        addQuestionToQuoteQuestions(questionId, question.quote);
                         return res.status(201).json(question);
                     });
                 }
@@ -74,9 +76,35 @@
         });
     };
 
+    function addQuestionToQuoteQuestions(questionId, quoteId) {
+        if (quoteId !== "") {
+            Quote.update({
+                _id: quoteId
+            }, {
+                $addToSet: {
+                    questions: questionId
+                }
+            }).exec();
+        }
+
+    }
+
+    function removeQuestionFromQuoteQuestions(questionId, quoteId) {
+        if (quoteId !== "") {
+            Quote.update({
+                _id: quoteId
+            }, {
+                $pull: {
+                    questions: questionId
+                }
+            }).exec();
+        }
+
+    }
 
     // Updates an existing question in the DB.
     exports.update = function(req, res) {
+        var currQuote = req.body.quote || "";
         if (req.body._id) {
             delete req.body._id;
         }
@@ -87,15 +115,20 @@
             if (!question) {
                 return res.status(404).send('Not Found');
             }
+            var prevQuote = question.quote || "";
             findQuestionSet(question.questionSet).then(function(questionSet) {
 
                 if (questionSet[0].isDefault) {
                     return res.status(404).send('Cannot update question of default questionSet');
                 } else {
                     var updated = _.merge(question, req.body);
-                    updated.save(function(err) {
+                    updated.save(function(err, question) {
                         if (err) {
                             return handleError(res, err);
+                        }
+                        if (currQuote !== prevQuote) {
+                            addQuestionToQuoteQuestions(question._id, currQuote);
+                            removeQuestionFromQuoteQuestions(question._id, prevQuote);
                         }
                         return res.status(200).json(question);
                     });
@@ -137,10 +170,11 @@
                     });
 
 
-                    question.remove(function(err) {
+                    question.remove(function(err,question) {
                         if (err) {
                             return handleError(res, err);
                         }
+                        removeQuestionFromQuoteQuestions(question._id, question.quote);
                         return res.status(204).send('No Content');
                     });
                 }
@@ -192,7 +226,7 @@
 
 
                 });
-            }else{
+            } else {
                 return res.status(500).json("Cannot import questions on a default question set");
             }
         });

@@ -100,6 +100,7 @@
                     logger.success("Question successfully updated", response, "Question Updated");
                 })
                 .error(function(err) {
+                    logger.error("Question could not be updated",err,"Error");
                     deferred.reject(err);
                 });
 
@@ -149,9 +150,9 @@
 
         function getUserQuotes() {
             var deferred = $q.defer();
-            $http.get('/api/quote/userQuotes/')
-                .success(function(quotes) {
-                    deferred.resolve(quotes);
+            $http.get('/api/quotes/userQuotes/')
+                .success(function(topics) {
+                    deferred.resolve(topics);
                 }).error(function(error) {
                     deferred.reject(error);
                 });

@@ -36,7 +36,7 @@
 
             QuoteService.getComments($stateParams.quoteId).then(function(comments) {
                 vm.comments = comments||[];
-            })
+            });
 
         }
         function cleanAddCommentForm(){

@@ -14,13 +14,13 @@
       </h1>
         </div>
         <div class="col-lg-3" ng-if="!questionCtrl.questionSetQuestions.isDefault">
-            <button id="addQuestionBtn" class="btn btn-info btn-block" ng-click="questionCtrl.addQuestionBool=true">
+            <button id="addQuestionBtn" class="btn btn-info btn-block" ng-click='questionCtrl.openQuestionModal("lg")'>
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Question
             </button>
         </div>
     </div>
     <hr>
-    <div ng-if="!questionCtrl.questionSetQuestions.isDefault && questionCtrl.addQuestionBool">
+    <!-- <div ng-if="!questionCtrl.questionSetQuestions.isDefault && questionCtrl.addQuestionBool">
         <form name="questionCtrl.addQuestion" novalidate>
             <div class="group-control" ng-class="{'has-error': questionCtrl.hasErrorAddForm()}">
                 <label for="questionText">Question Text:
@@ -30,7 +30,7 @@
                 <button class="btn btn-lg btn-danger" ng-click="questionCtrl.cancelAddQuestion()">Cancel</button>
             </div>
         </form>
-    </div>
+    </div> -->
     <div class="row">
         <div class="col-lg-6">
             <h4>Question Set Info</h4>
@@ -73,7 +73,7 @@
             </div>
             <div class="col-xs-12 col-sm-2 col-md-2 col-lg-1 questionOptions" ng-if="!questionCtrl.questionSetQuestions.isDefault">
                 <a title="delete question" confirm-click="Are you sure you want to delete this question?" ng-click="questionCtrl.deleteQuestion(q)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-                <a title="edit question" ng-click='questionCtrl.openEditQuestionModal("lg",q._id)'><i class="fa fa-pencil-square-o"></i></a>
+                <a title="edit question" ng-click='questionCtrl.openQuestionModal("lg",q._id)'><i class="fa fa-pencil-square-o"></i></a>
             </div>
         </div>
     </div>

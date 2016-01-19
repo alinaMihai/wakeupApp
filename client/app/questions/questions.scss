@@ -18,6 +18,25 @@ body {
     font-size: 2em;
 }
 
+.searchQuotes {
+    max-height: 181px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.searchQuotes div.quoteBox {
+    border: 1px solid black;
+    margin: 4px;
+    padding-top: 9px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+
+/* .searchQuotes div.quoteBox button{
+    float:left;
+}  */
+
 @media (max-width: 700px) {
     .questionOptions {
         margin-top: 10px;
@@ -75,18 +94,17 @@ body {
     resize: vertical;
 }
 
-#practiceSessionBtn{
+#practiceSessionBtn {
     background: #768FD1;
     color: white;
     border-bottom: 1px solid #768FD1;
     border-radius: 14px;
 }
 
-#practiceSessionBtn:hover{
+#practiceSessionBtn:hover {
     background: #4E5690;
     border-bottom: 3px solid #768FD1;
-    color:white;
-    
+    color: white;
 }
 
 #practiceSessionBtn,
@@ -111,7 +129,7 @@ body {
     color: rgba(58, 51, 82, 0.80);
     max-height: 70px;
     overflow-y: auto;
-    overflow-x:auto;
+    overflow-x: auto;
     word-break: break-word;
     text-decoration: none;
     padding-right: 20px;
@@ -182,10 +200,11 @@ body {
     white-space: pre-wrap;
 }
 
-li.note-item.description{
-  max-height:150px;
-  overflow-y:auto;  
+li.note-item.description {
+    max-height: 150px;
+    overflow-y: auto;
 }
+
 .note:before {
     content: "";
     position: absolute;

@@ -37,7 +37,7 @@
         }
 
         function getQuestion(questionId) {
-            if (!questionsList[questionId] || QuestionSetService.isUpdated) {
+            if (!questionsList[questionId] || QuestionSetService.isUpdated || QuestionService.isUpdated) {
                 questionsList[questionId] = QuestionService.getQuestionById(questionId);
             }
             return questionsList[questionId];
