@@ -14,15 +14,13 @@
     max-height: 250px;
     overflow-y: auto;
 }
-.answerTheDay{
-    float:right;
-    display:block;
-}
 
 .answerText span {
     white-space: pre-wrap;
 }
-
+.answerText i{
+    font-size:0.8em;
+}
 .options a {
     cursor: pointer;
 }

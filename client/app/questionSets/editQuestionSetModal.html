@@ -18,6 +18,6 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="modalCtrl.ok()" ng-disabled="editQuestionSetForm.$invalid">{{modalCtrl.data.questionSetHeading}}</button>
+    <button class="btn btn-primary" type="button" ng-click="modalCtrl.ok()" ng-disabled="editQuestionSetForm.$invalid">{{modalCtrl.data.questionSetHeading==='Edit'?'Update':'Save'}}</button>
     <button class="btn btn-warning" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
 </div>

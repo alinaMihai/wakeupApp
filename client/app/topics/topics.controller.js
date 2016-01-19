@@ -37,7 +37,7 @@
                 questionSetList: []
             };
             var data = topic ? angular.copy(topic, emptyObj) : emptyObj;
-            var title = topic ? "Update" : "Add";
+            var title = topic ? "Edit" : "Add";
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/topics/addTopicModal.html',

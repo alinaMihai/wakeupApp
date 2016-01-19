@@ -176,11 +176,16 @@ body {
     list-style: none;
 }
 
-.note li {
+.note li.note-item {
     padding: 4px;
     border-bottom: 1px solid;
+    white-space: pre-wrap;
 }
 
+li.note-item.description{
+  max-height:150px;
+  overflow-y:auto;  
+}
 .note:before {
     content: "";
     position: absolute;

@@ -28,7 +28,7 @@
         <strong >{{group[0].date|date:'EEEE'}},{{group.$key}}</strong>
         <div class="row list-group-item" bindonce ng-repeat="answer in group | orderBy:'_id'">           
             <div class="col-xs-10 col-md-11 col-lg-11 answerText">
-                <span ng-bind="answer.text"></span><small class="answerTheDay">at {{answer.date|date:'hh:mm a'}}</small>
+                <span >{{answer.text}}</span>
             </div>
             <div class="col-xs-2 col-md-1 col-lg-1 options">
                 <a confirm-click="Are you sure you want to delete this answer?" ng-click="answerCtrl.deleteAnswer(answer)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>

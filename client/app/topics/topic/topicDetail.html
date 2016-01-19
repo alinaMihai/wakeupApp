@@ -1,45 +1,40 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
 <div class="container">
-	
-	<div class="row">
-		<ol class="breadcrumb">
-			<li><a ui-sref="topicsList">Topics</a></li>
-			<li class="active">{{TopicDetailCtrl.topic.title|trimFilter:50}}</li>
-		</ol>
-	</div>
-	
-	<div class="page-header">
-		<h1 ng-bind-html="TopicDetailCtrl.topic.title">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a ui-sref="topicsList">Topics</a></li>
+            <li class="active">{{TopicDetailCtrl.topic.title|trimFilter:50}}</li>
+        </ol>
+    </div>
+    <div class="page-header">
+        <h1 ng-bind-html="TopicDetailCtrl.topic.title">
 		</h1>
-	</div>
-	<div id="topicDescription">
-		<p ng-bind-html="TopicDetailCtrl.topic.description"></p>
-		<p><a class="btn btn-primary btn-lg" id="inspirationPage"  ui-sref="inspiration({topicId:TopicDetailCtrl.topic._id})" role="button">
+    </div>
+    <div id="topicDescription">
+        <p ng-bind-html="TopicDetailCtrl.topic.description"></p>
+    </div>
+    <p>
+    	<a class="btn btn-primary btn-lg" id="inspirationPage" ui-sref="inspiration({topicId:TopicDetailCtrl.topic._id})" role="button">
 			Inspiration Page 
-		</a></p>
-	</div>
-	
-	<div class="text-center" id="associatedQuestionSets">
-		<h4>Associated Question Sets</h4>
-		<div ng-if="TopicDetailCtrl.topic.questionSetList.length===0">
-			<h5>No associated question sets; Edit this topic to associate a question set</h5>
-		</div>
-		<div class="item col-lg-4" bindonce ng-repeat="qs in TopicDetailCtrl.topic.questionSetList | orderBy:'-practiceTimes'">
-			<a ui-sref="questionList({questionSetId:qs._id})">
-				<div class="well associatedQuestionSet">				
-					<strong> <p> {{qs.name}}</p></strong>
-				</div>
-			</a>
-		</div>
-		
-	</div>
-	
-	
+		</a>
+	</p>
+    <div class="text-center" id="associatedQuestionSets">
+        <h4>Associated Question Sets</h4>
+        <div ng-if="TopicDetailCtrl.topic.questionSetList.length===0">
+            <h5>No associated question sets; Edit this topic to associate a question set</h5>
+        </div>
+        <div class="item col-lg-4" bindonce ng-repeat="qs in TopicDetailCtrl.topic.questionSetList | orderBy:'-practiceTimes'">
+            <a ui-sref="questionList({questionSetId:qs._id})">
+                <div class="well associatedQuestionSet">
+                    <strong> <p> {{qs.name}}</p></strong>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
 <footer class="footer">
-  <div class="container">
-    <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
-    </p>
-  </div>
+    <div class="container">
+        <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
+        </p>
+    </div>
 </footer>

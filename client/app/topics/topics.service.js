@@ -22,6 +22,8 @@
                 if (topics.length > 0) {
                     deferred.resolve(topics);
                 }
+            },function(err){
+                deferred.reject(err);
             });
             return deferred.promise;
         }
@@ -33,6 +35,7 @@
                     deferred.resolve(response);
                 })
                 .error(function(err) {
+                    logger.error("Could not retrieve topic",err,"Error");
                     deferred.reject(err);
                 });
             return deferred.promise;
@@ -46,7 +49,9 @@
                 deferred.resolve(response.data);
                 logger.success("The topic was successfully created", response.data, "Success");
             }, function(response) {
+                logger.error("Could not create topic",response,"Error");
                 console.log("error", response);
+                deferred.reject(response);
             });
             return deferred.promise;
         }
@@ -57,6 +62,9 @@
                 var topic = response.data;
                 deferred.resolve();
                 logger.success("Topic successfully deleted", topic, "Topic Deleted");
+            },function(err){
+                logger.error("Could not delete topic",err,"Error");
+                deferred.reject(err);
             });
             return deferred.promise;
         }
@@ -69,6 +77,8 @@
                 deferred.resolve(response.data);
                 logger.success("The topic was successfully updated", response.data, "Success");
             }, function(response) {
+                logger.error("Could not update topic",response,"Error");
+                deferred.reject(response);
                 console.log("error", response);
             });
             return deferred.promise;

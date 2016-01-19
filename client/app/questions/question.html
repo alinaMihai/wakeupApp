@@ -35,10 +35,10 @@
         <div class="col-lg-6">
             <h4>Question Set Info</h4>
             <ul class="note">
-                <li>Description: <strong ng-bind-html="questionCtrl.questionSetQuestions.description||'N/A'"></strong></li>
-                <li><strong>Questions: </strong> <span ng-bind="questionCtrl.questionSetQuestions.questions.length"></span></li>
-                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Impact: </strong><span ng-bind="questionCtrl.questionSetQuestions.impact"></span></li>
-                <li ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Creation at: </strong> <span ng-bind="questionCtrl.questionSetQuestions.createDate | date:'HH:mm a on dd-MM-yyyy'"></span></li>
+                <li class="note-item description">Description: <strong ng-bind-html="questionCtrl.questionSetQuestions.description||'N/A'"></strong></li>
+                <li class="note-item"><strong>Questions: </strong> <span ng-bind="questionCtrl.questionSetQuestions.questions.length"></span></li>
+                <li class="note-item" ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Impact: </strong><span ng-bind="questionCtrl.questionSetQuestions.impact"></span></li>
+                <li class="note-item" ng-if="!questionCtrl.questionSetQuestions.isDefault"><strong>Creation at: </strong> <span ng-bind="questionCtrl.questionSetQuestions.createDate | date:'HH:mm a on dd-MM-yyyy'"></span></li>
                 <li><strong>Times Practiced: </strong> <span ng-bind="questionCtrl.questionSetQuestions.practiceTimes"></span></li>
             </ul>
         </div>

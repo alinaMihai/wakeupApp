@@ -24,6 +24,7 @@ form[name='addTopicForm'] {
 }
 #inspirationPage{
     float:right;
+    margin-top:15px;
 }
 .inspirationLink {
     display: inline-block;
@@ -42,6 +43,9 @@ form[name='addTopicForm'] {
     margin-left: 5px;
     font-style: italic;
     font-family: serif;
+    white-space:pre;
+    max-height:200px;
+    overflow-y:auto;
 }
 
 #topics hr {
