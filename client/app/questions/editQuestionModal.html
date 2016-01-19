@@ -15,8 +15,8 @@
                 <div class="col-sm-4" bindonce ng-repeat="quote in modalCtrl.data.quotes|orderBy:'topic'|filter:modalCtrl.search">
                     <div class="quoteBox">
                         <p>
-                            <i class="fa fa-plus-circle" ng-if="modalCtrl.data.quote!==quote._id" ng-click="modalCtrl.data.quote=quote._id"></i>
-                            <i class="fa fa-minus-circle"  ng-if="modalCtrl.data.quote===quote._id" ng-click="modalCtrl.data.quote=''"></i>
+                            <i title="Add Quote" class="fa fa-plus-circle" ng-if="modalCtrl.data.quote!==quote._id" ng-click="modalCtrl.data.quote=quote._id"></i>
+                            <i title="Remove Quote" class="fa fa-minus-circle"  ng-if="modalCtrl.data.quote===quote._id" ng-click="modalCtrl.data.quote=''"></i>
                         </p>
                         <div>
                             <p class="quotePrev associatedQuote">

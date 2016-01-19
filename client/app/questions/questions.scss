@@ -25,7 +25,7 @@ body {
     padding: 10px;
 }
 
-.searchQuotesQuestion div.quoteBox {
+.searchQuotesQuestion div.quoteBox,.searchQuestions div.questionBox {
     border: 1px solid rgba(0, 0, 0, 0.32);
     margin: 4px;
     padding-top: 9px;
@@ -43,23 +43,23 @@ body {
     margin:0px;
 }
 
-.searchQuotesQuestion div.quoteBox i {
+.searchQuotesQuestion div.quoteBox i,.searchQuestions div.questionBox i{
     float: right;
     margin-top: -9px;
-    font-size:2em;
+    font-size:2.5em;
     cursor:pointer;
 }
-.searchQuotesQuestion div.quoteBox i.fa-plus-circle{
+.searchQuotesQuestion div.quoteBox i.fa-plus-circle,.searchQuestions div.questionBox i.fa-plus-circle{
     color:#5cb85c;
 }
-.searchQuotesQuestion div.quoteBox i.fa-plus-circle:hover{
+.searchQuotesQuestion div.quoteBox i.fa-plus-circle:hover,.searchQuestions div.questionBox i.fa-plus-circle:hover{
     color:#449d44;
 }
 
-.searchQuotesQuestion div.quoteBox i.fa-minus-circle{
+.searchQuotesQuestion div.quoteBox i.fa-minus-circle,.searchQuestions div.questionBox i.fa-minus-circle{
     color:#d9534f;
 }
-.searchQuotesQuestion div.quoteBox i.fa-minus-circle:hover{
+.searchQuotesQuestion div.quoteBox i.fa-minus-circle:hover,.searchQuestions div.questionBox i.fa-minus-circle{
     color:#c9302c;
 }
 @media (max-width: 700px) {
