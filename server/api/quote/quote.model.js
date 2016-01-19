@@ -43,10 +43,10 @@
             type: ObjectIdSchema,
             ref: 'Comment'
         }],
-        question: {
+        questions: [{
             type: Number,
             ref: 'Question'
-        }
+        }]
 
     }, {
         collection: 'quotes'

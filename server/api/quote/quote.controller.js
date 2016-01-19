@@ -48,7 +48,10 @@
                     return handleError(res, err);
                 }
                 updateTopic(quote);
-                updateQuestion(quote._id, quote.question);
+                // updateQuestion(quote._id, quote.question);
+                for (var i = 0; i < quote.questions; i++) {
+                    addQuoteToQuestion(quote._id, quote.questions[i]);
+                }
                 var commentObj = {
                     createDate: quote.date,
                     text: req.body.comment
@@ -77,6 +80,22 @@
         });
     };
 
+    exports.getUserQuotes = function(req, res) {
+        var userEmail = req.user.email;
+        var query = Topic.find({});
+        query.where('user', userEmail);
+        query.populate('quoteList');
+        query.exec(function(err, quotes) {
+            if (err) {
+                return handleError(res, err);
+            }
+            if (!quotes) {
+                return res.status(404).json("Not found");
+            }
+            return res.status(200).json(quotes);
+        });
+    };
+
     function updateTopic(quote) {
         Topic.update({
             _id: quote.topic
@@ -87,7 +106,25 @@
         }).exec(function(err, topic) {});
     }
 
-    function updateQuestion(quoteId, questionId, previousAssociatedQuestion) {
+    function addQuoteToQuestion(quoteId, questionId) {
+        Question.update({
+            _id: questionId
+        }, {
+            quote: quoteId
+        }).exec(function(err, question) {});
+    }
+
+    function removeQuoteFromQuestion(questionId) {
+        var query = Question.findOne({});
+        query.where("_id", questionId);
+        query.exec(function(err, question) {
+            question.quote = undefined;
+            //console.log(question);
+            question.save(question, function(err, question) {});
+        });
+    }
+
+    /*function updateQuestion(quoteId, questionId, previousAssociatedQuestion) {
         if (previousAssociatedQuestion) {
             var query = Question.findOne({});
             query.where("_id", previousAssociatedQuestion);
@@ -102,7 +139,7 @@
         }, {
             quote: quoteId
         }).exec(function(err, question) {});
-    }
+    }*/
 
     //get quote by id
     exports.show = function(req, res) {
@@ -148,8 +185,8 @@
 
     // Updates an existing quote in the DB.
     exports.update = function(req, res) {
-        var questionId = req.body.question;
-
+        //var questionId = req.body.question;
+        var currArray = req.body.questions;
         Quote.findById(req.params.id, function(err, quote) {
             if (err) {
                 return handleError(res, err);
@@ -157,23 +194,39 @@
             if (!quote) {
                 return res.status(404).send('Not Found');
             }
-            console.log(quote);
-            var currentAssociatedQuestion = quote.question;
-            if (questionId !== currentAssociatedQuestion) {
+            // console.log(quote);
+            //var currentAssociatedQuestion = quote.question;
+            var prevArray = quote.questions;
+            /*if (questionId !== currentAssociatedQuestion) {
                 //remove quote from previous question and add quote to new question
                 console.log(quote.id, questionId, currentAssociatedQuestion);
                 updateQuestion(quote.id, questionId, currentAssociatedQuestion);
-            }
+            }*/
 
             var updated = _.merge(quote, req.body);
             updated.save(function(err) {
+
                 if (err) {
                     return handleError(res, err);
                 }
+                updateQuoteInQuestions(prevArray, currArray, quote._id);
                 return res.status(200).json(quote);
             });
         });
     };
+
+    function updateQuoteInQuestions(prevArr, currArr, quoteId) {
+        for (var i = 0; i < prevArr.length; i++) {
+            if (currArr.indexOf(prevArr[i]) === -1) {
+                removeQuoteFromQuestion(prevArr[i]);
+            }
+        }
+        for (var i = 0; i < currArr.length; i++) {
+            if (prevArr.indexOf(currArr[i]) === -1) {
+                addQuoteToQuestion(quoteId, currArr[i]);
+            }
+        }
+    }
 
     // Deletes a quote from the DB.
     exports.destroy = function(req, res) {

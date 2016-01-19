@@ -18,6 +18,7 @@
         this.registerSession = registerSession;
         this.importQuestions = importQuestions;
         this.getQuestionSetData = getQuestionSetData;
+        this.getUserQuotes=getUserQuotes;
         this.isUpdated = false;
 
         ////////////////
@@ -124,6 +125,7 @@
                 .success(function(questions) {
                     deferred.resolve(questions);
                 }).error(function(error) {
+                    logger.error("Could not get session answers",error,"Error");
                     deferred.reject(error);
                 });
             return deferred.promise;
@@ -141,6 +143,17 @@
                 .error(function(err) {
                     deferred.reject(err);
                     logger.error("Questions could not be successfully imported", err, "Error");
+                });
+            return deferred.promise;
+        }
+
+        function getUserQuotes() {
+            var deferred = $q.defer();
+            $http.get('/api/quote/userQuotes/')
+                .success(function(quotes) {
+                    deferred.resolve(quotes);
+                }).error(function(error) {
+                    deferred.reject(error);
                 });
             return deferred.promise;
         }

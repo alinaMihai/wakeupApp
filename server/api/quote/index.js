@@ -8,6 +8,7 @@
     var router = express.Router();
 
     router.get('/allQuestions',auth.isAuthenticated(),controller.getAllQuestions);
+    router.get('/userQuotes',auth.isAuthenticated(),controller.getUserQuotes);
     router.get('/suggestions', auth.isAuthenticated(), controller.getSuggestions);
     router.get('/comments/:id', auth.isAuthenticated(), controller.getComments);
     router.get('/:topicId', auth.isAuthenticated(), controller.index);
