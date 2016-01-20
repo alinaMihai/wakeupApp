@@ -19,7 +19,7 @@
         this.addComment = addComment;
         this.getComments = getComments;
         this.deleteComment = deleteComment;
-        this.importQuotes=importQuotes;
+        this.importQuotes = importQuotes;
 
         ////////////////
 
@@ -141,9 +141,11 @@
 
         function importQuotes(topicId, quotes) {
             var deferred = $q.defer();
-            $http.post('/api/quotes/importQuotes/' + topicId,{'quotes':quotes}).then(function(response) {
+            $http.post('/api/quotes/importQuotes/' + topicId, {
+                'quotes': quotes
+            }).then(function(response) {
                 deferred.resolve(response.data);
-                logger.success("Quotes successfully imported",response.data, "Success");
+                logger.success("Quotes successfully imported", response.data, "Success");
             }, function(err) {
                 deferred.reject(err);
                 logger.error("Could not import quotes", err, "Error");

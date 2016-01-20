@@ -52,23 +52,23 @@ body {
     cursor: pointer;
 }
 
-.searchQuotesQuestion div.quoteBox i.fa-plus-circle,
-.searchQuestions div.questionBox i.fa-plus-circle {
+.searchQuotesQuestion div.quoteBox i.fa-check,
+.searchQuestions div.questionBox i.fa-check {
     color: #5cb85c;
 }
 
-.searchQuotesQuestion div.quoteBox i.fa-plus-circle:hover,
-.searchQuestions div.questionBox i.fa-plus-circle:hover {
+.searchQuotesQuestion div.quoteBox i.fa-check:hover,
+.searchQuestions div.questionBox i.fa-check:hover {
     color: #449d44;
 }
 
-.searchQuotesQuestion div.quoteBox i.fa-minus-circle,
-.searchQuestions div.questionBox i.fa-minus-circle {
+.searchQuotesQuestion div.quoteBox i.fa-times,
+.searchQuestions div.questionBox i.fa-times {
     color: #d9534f;
 }
 
-.searchQuotesQuestion div.quoteBox i.fa-minus-circle:hover,
-.searchQuestions div.questionBox i.fa-minus-circle {
+.searchQuotesQuestion div.quoteBox i.fa-times:hover,
+.searchQuestions div.questionBox i.fa-times {
     color: #c9302c;
 }
 

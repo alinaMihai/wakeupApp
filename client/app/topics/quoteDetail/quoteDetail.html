@@ -22,25 +22,22 @@
         </div>
     </div>
     <div class="row center">
-        <p>Quote added at: {{QuoteDetailCtrl.quote.date||'N/A' | date:'hh:mm a on dd/MM/yyyy'}}</p>
-        <hr> Source
+        <p ng-if="QuoteDetailCtrl.quote.date"><b>Creation Date:</b> {{QuoteDetailCtrl.quote.date | date:'hh:mm a , dd MMM, yyyy'}}<hr></p>
+        <b>Source</b>
         <cite ng-bind-html="(QuoteDetailCtrl.quote.source||'N/A')|linkSource"></cite>
-        <div ng-if="QuoteDetailCtrl.quote.question ||QuoteDetailCtrl.quote.questions.length>0">
+        <div ng-if="QuoteDetailCtrl.quote.questions.length>0">
             <hr>
-            Associated Questions:
-            <p >
-                <a class="questionTextLink" ui-sref="answerList({questionId:QuoteDetailCtrl.quote.question._id})"> {{QuoteDetailCtrl.quote.question.text}}</a>
-            </p>
+            <b>Associated Questions:</b>
             <p ng-repeat="question in QuoteDetailCtrl.quote.questions">
                 <a class="questionTextLink" ui-sref="answerList({questionId:question._id})"> {{question.text}}</a>
             </p>
         </div>
         <hr>
-        <div class="col-lg-8">
-            Comments:
+        <div class="col-sm-10">
+            <b style="margin-left:-15px">Comments:</b>
             <div ng-if="QuoteDetailCtrl.comments.length===0">Not available</div>
         </div>
-        <div class="col-lg-2">
+        <div class="col-sm-2">
             <button class="btn btn-primary" ng-click="QuoteDetailCtrl.showAddComment=true">Add Comment</button>
         </div>
         <div ng-if="QuoteDetailCtrl.showAddComment" class="col-lg-12">

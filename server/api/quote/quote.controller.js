@@ -124,14 +124,13 @@
         });
     }
 
-   
+
     //get quote by id
     exports.show = function(req, res) {
         var userEmail = req.user.email;
         var query = Quote.findOne({});
         query.where('_id', req.params.id);
         query.populate('topic');
-        query.populate('question');
         query.populate('questions');
 
         query.exec(function(err, quote) {
@@ -171,7 +170,7 @@
     // Updates an existing quote in the DB.
     exports.update = function(req, res) {
         //var questionId = req.body.question;
-        var currArray = req.body.questions||[];
+        var currArray = req.body.questions || [];
         Quote.findById(req.params.id, function(err, quote) {
             if (err) {
                 return handleError(res, err);
@@ -180,9 +179,9 @@
                 return res.status(404).send('Not Found');
             }
             var prevArray = quote.questions;
-            quote.questions=req.body.questions;
+            quote.questions = req.body.questions;
             var updated = _.merge(quote, req.body);
-            updated.save(function(err,quote) {
+            updated.save(function(err, quote) {
 
                 if (err) {
                     return handleError(res, err);
@@ -255,7 +254,6 @@
 
         });
     }
-
     function getUniqueElements(topics, property) {
         var uniqueElements = [];
         topics.forEach(function(topic) {

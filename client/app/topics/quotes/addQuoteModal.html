@@ -36,8 +36,8 @@
                 <div class="col-sm-4" bindonce ng-repeat="question in modalCtrl.data.allQuestions|orderBy:'questionSet'|filter:modalCtrl.search">
                     <div class="questionBox">
                         <p>
-                            <i class="fa fa-plus-circle" title="Add Question" ng-if="modalCtrl.data.questions.indexOf(question.id)===-1" ng-click="modalCtrl.data.questions.push(question.id)"></i>
-                            <i class="fa fa-minus-circle" title="Remove Question" ng-if="modalCtrl.data.questions.indexOf(question.id)!==-1" ng-click="modalCtrl.data.removeQuestion(question.id)"></i>
+                            <i class="fa fa-times" title="Add Question" ng-if="modalCtrl.data.questions.indexOf(question.id)===-1" ng-click="modalCtrl.data.questions.push(question.id)"></i>
+                            <i class="fa fa-check" title="Remove Question" ng-if="modalCtrl.data.questions.indexOf(question.id)!==-1" ng-click="modalCtrl.data.removeQuestion(question.id)"></i>
                         </p>
                         <p class="questionPrev">
                             <a class="questionTextLink" ui-sref="answerList({questionId:question.id})" title="{{question.text|trimFilter:100}}" target="_blank"> 
@@ -48,7 +48,10 @@
                 </div>
             </div>
         </div>
-        <span class="btn btn-default" ng-click="modalCtrl.showAddedQuestions=!modalCtrl.showAddedQuestions">Show Added questions</span>
+        <span class="btn" ng-class="{'btn-info':!modalCtrl.showAddedQuestions,'btn-warning':modalCtrl.showAddedQuestions}" 
+        ng-click="modalCtrl.showAddedQuestions=!modalCtrl.showAddedQuestions">
+            {{!modalCtrl.showAddedQuestions?'Show':'Hide'}} added questions
+        </span>
         <ul class="list-group associatedQuestions" ng-if="modalCtrl.showAddedQuestions">
             <li class="list-group-item row" bindonce ng-repeat="question in modalCtrl.data.questions">
                 <div class="col-xs-10">{{modalCtrl.data.findQuestionText(question)|trimFilter:100}}</div>

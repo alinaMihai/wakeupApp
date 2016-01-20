@@ -65,27 +65,34 @@
         function openExportQuotesModal(topicName) {
             var data = {};
             var modalInstance;
+            var promiseSuggestions;
             data.quotes = vm.exportQuotes;
             data.topicName = topicName;
-
-            QuoteService.getSuggestions().then(function(suggestions) {
-                data.authors = suggestions.authors;
-                data.sources = suggestions.sources;
-
-                modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'app/topics/quotes/exportQuotesModal.html',
-                    size: 'lg',
-                    controller: 'ExportQuotesCtrl as modalCtrl',
-                    resolve: {
-                        data: function() {
-                            return data;
-                        }
+            var uniqueAuthors = [];
+            var uniqueSources = [];
+            vm.exportQuotes.forEach(function(quote) {
+                if (uniqueAuthors.indexOf(quote.author) === -1) {
+                    uniqueAuthors.push(quote.author);
+                }
+                if (uniqueSources.indexOf(quote.source) === -1) {
+                    uniqueSources.push(quote.source);
+                }
+            });
+            data.authors = uniqueAuthors;
+            data.sources = uniqueSources;
+            modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/topics/quotes/exportQuotesModal.html',
+                size: 'lg',
+                controller: 'ExportQuotesCtrl as modalCtrl',
+                resolve: {
+                    data: function() {
+                        return data;
                     }
-                });
-                modalInstance.result.then(function(data) {}, function() {
-                    // $log.info('Modal dismissed at: ' + new Date());
-                });
+                }
+            });
+            modalInstance.result.then(function(data) {}, function() {
+                // $log.info('Modal dismissed at: ' + new Date());
             });
         }
 

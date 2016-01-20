@@ -22,8 +22,8 @@
         activate();
 
         function activate() {
-            vm.sources = display(data.sources, "source");
-            vm.authors = display(data.authors, "author");
+            vm.sources=data.sources;
+            vm.authors=data.authors;
             $scope.$watch(function() {
                 return vm.source;
             }, function(newVal, oldVal) {
@@ -65,27 +65,6 @@
                     }
             }
         }
-
-        function display(array, property) {
-            if (!array) {
-                return [];
-            }
-            var displayArray = [];
-
-            for (var i = 0; i < array.length; i++) {
-                for (var j = 0; j < vm.data.quotes.length; j++) {
-                    if(vm.data.quotes[j][property]==="" && displayArray.indexOf("N/A")===-1){
-                        displayArray.push("N/A");
-                    }
-                    if (vm.data.quotes[j][property] === array[i]) {
-                        displayArray.push(array[i]);
-                        break;
-                    }
-                }
-            }
-            return displayArray;
-        }
-
         function allQuotes() {
             vm.exportQuotes = vm.data.quotes;
             vm.author = "";
