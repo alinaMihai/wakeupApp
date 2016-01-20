@@ -75,17 +75,12 @@
             PracticeSessionService.currentQuestionIndex = undefined;
             logger.success("Question Set Session successfully ended", {}, "Question Set Session");
             PracticeSessionService.questionInterval = undefined;
-            /* if (!vm.questionSetQuestions.isDefault) {*/
             QuestionService.registerSession(questionSetId).then(function(questionSet) {
                 QuestionService.isUpdated = true;
             }, function(err) {
                 console.log(err);
             });
             $window.location.href = "/questionList/" + questionSetId;
-            /*} else {
-                $window.location.href="/questionList/"+questionSetId;
-            }*/
-
             if (timer) {
                 $timeout.cancel(timer);
             }
@@ -108,7 +103,7 @@
                     PracticeSessionService.displayProgress = PracticeSessionService.currentQuestionIndex + 1 + "/" + questionsNo;
                     vm.currentQuestion = questions[PracticeSessionService.currentQuestionIndex];
 
-                    if (vm.currentQuestion && vm.currentQuestion.quote) {
+                    if (vm.currentQuestion.quote && typeof vm.currentQuestion.quote !== 'object') {
                         QuoteService.getQuote(vm.currentQuestion.quote).then(function(quote) {
                             vm.currentQuestion.quote = quote;
                         });

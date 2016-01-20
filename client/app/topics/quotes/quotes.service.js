@@ -48,9 +48,6 @@
         }
 
         function getQuote(quoteId) {
-            if(typeof quoteId==='object'){
-              quoteId=quoteId._id;  
-            }
             var deferred = $q.defer();
             $http.get('/api/quotes/quote/' + quoteId).then(function(response) {
                 deferred.resolve(response.data);
