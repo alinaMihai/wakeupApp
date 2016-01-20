@@ -1,17 +1,19 @@
 <div style="display:none" id="myQuestionModal">
     <div class="questionModal">
         <form name="answerForm">
+            <span class="tooltipWrapper" style="font-size:1em;"><i tooltip-placement="right" class="fa fa-info-circle tooltipWrapper" uib-tooltip="Hover over the sun to see how many minutes have elapsed"></i></span>
             <div class="form-group">
                 <ng-transclude></ng-transclude>
             </div>
-            <div >
+            <div>
                 <div class="col-sm-6">
-                    <button ng-click="processQuestion()" class="btn btn-block btn-success" >Save Answer</button>
+                    <button ng-click="processQuestion()" class="btn btn-block btn-success">Save Answer</button>
                 </div>
                 <div class="col-sm-6">
                     <button class="btn btn-block btn-primary" ng-click="processQuestion({skip:true})">Skip</button>
                 </div>
             </div>
         </form>
+        
     </div>
 </div>

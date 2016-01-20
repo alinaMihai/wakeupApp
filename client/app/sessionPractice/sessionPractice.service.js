@@ -11,5 +11,6 @@
         this.questionSetSession;
         this.currentQuestionIndex;
         this.shuffleQuestions;
+        this.displayProgress="";
     }
 })();

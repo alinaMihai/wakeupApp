@@ -31,6 +31,7 @@
                 questionsNo = questions.length;
                 logger.success("Question Set Session successfully started", {}, "Question Set Session");
                 PracticeSessionService.questionSetSession = true;
+
                 //is configuration in sessionStorage?
                 PracticeSessionService.questionInterval = $sessionStorage.questionInterval ?
                     $sessionStorage.questionInterval : PracticeSessionService.questionInterval;
@@ -43,6 +44,7 @@
                     questions = shuffle(questions);
                 }
                 PracticeSessionService.currentQuestionIndex = 0;
+                PracticeSessionService.displayProgress = PracticeSessionService.currentQuestionIndex + 1 + "/" + questionsNo;
                 vm.currentQuestion = questions[PracticeSessionService.currentQuestionIndex];
                 if (vm.currentQuestion.quote) {
                     QuoteService.getQuote(vm.currentQuestion.quote).then(function(quote) {
@@ -57,6 +59,7 @@
             PracticeSessionService.questionSetSession = true;
             logger.success("Question Set Session successfully started", {}, "Question Set Session");
             PracticeSessionService.currentQuestionIndex = 0;
+            PracticeSessionService.displayProgress = PracticeSessionService.currentQuestionIndex + 1 + "/" + questionsNo;
             vm.currentQuestion = questions[PracticeSessionService.currentQuestionIndex];
         }
 
@@ -97,12 +100,12 @@
             if (skipObj) {
                 vm.currentAnswer = "";
             }
-
             //setTimeInterval for next question if any
             if (PracticeSessionService.currentQuestionIndex >= 0 &&
                 PracticeSessionService.currentQuestionIndex < questionsNo - 1) {
                 timer = $timeout(function() {
                     PracticeSessionService.currentQuestionIndex++;
+                    PracticeSessionService.displayProgress = PracticeSessionService.currentQuestionIndex + 1 + "/" + questionsNo;
                     vm.currentQuestion = questions[PracticeSessionService.currentQuestionIndex];
 
                     if (vm.currentQuestion && vm.currentQuestion.quote) {

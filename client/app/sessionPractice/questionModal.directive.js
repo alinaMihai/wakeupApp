@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .directive('questionModal', questionModal);
 
-    questionModal.$inject = ['ngAudio', 'ngAudioGlobals'];
+    questionModal.$inject = ['ngAudio', 'ngAudioGlobals','PracticeSessionService'];
 
     /* @ngInject */
-    function questionModal(ngAudio, ngAudioGlobals) {
+    function questionModal(ngAudio, ngAudioGlobals,PracticeSessionService) {
         ngAudioGlobals.unlock = false;
         var directive = {
 
@@ -48,6 +48,7 @@
         }
 
         function showQuestion(element) {
+            $(element).find('.currentQuestionText span').html(PracticeSessionService.displayProgress);
             $(element).children().first().css('display', 'block');
             var sound = ngAudio.load("assets/sounds/Bell-ding.mp3");
             sound.play();

@@ -44,7 +44,7 @@
     padding-right: 15px;
 }
 
-.associatedQuote{
+.associatedQuote {
     text-align: center;
     font-size: 1.1em;
     font-style: italic;
@@ -56,16 +56,19 @@
     overflow-y: auto;
     padding-right: 15px;
 }
-.associatedQuote a{
-    text-decoration:none;
-    color:#723C82;
+
+.associatedQuote a {
+    text-decoration: none;
+    color: #723C82;
     /* font-weight: bold; */
 }
-.associatedQuote a:hover{
-    color:#5E356B;
+
+.associatedQuote a:hover {
+    color: #5E356B;
 }
-.associatedQuote small{
-    color:black;
+
+.associatedQuote small {
+    color: black;
     font-weight: normal;
 }
 
@@ -100,5 +103,163 @@
     .questionModal {
         width: 80%;
         left: 59%;
+    }
+}
+
+.timeDisplay {
+    position: absolute;
+    right: 126px;
+    top: 38px;
+    font-size: 16px;
+    width: 15%;
+}
+.displayProgress{
+    font-size:0.55em;
+    margin-left:10px;
+}
+
+//credit due to  Benedikte Vanderweeën, http://codepen.io/Benedikte/pen/bIuGr
+.container-sun {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    text-align: center;
+}
+
+
+/* the svg element */
+
+.svg-sun {
+    width: 33%;
+    height: 33%;
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: 50% 50%;
+    -o-transform-origin: center center;
+    -ms-transform-origin: center center;
+    transform-origin: 50% 50%;
+    -webkit-animation: spin 25s linear infinite, sun-glow 3s 0s linear infinite;
+    -moz-animation: spin 25s linear infinite, sun-glow 3s 0s linear infinite;
+    -o-animation: spin 25s linear infinite, sun-glow 3s 0s linear infinite;
+    -ms-animation: spin 25s linear infinite, sun-glow 3s 0s ease-in-out infinite;
+    animation: spin 25s linear infinite, sun-glow 3s 0s linear infinite;
+}
+
+
+/* the circle element in the svg itself */
+
+#sun {
+    stroke-width: 18;
+    stroke-dasharray: 2;
+    stroke-dashoffset: 2;
+}
+
+
+/* animation for the sun glowing effect */
+
+@-webkit-keyframes sun-glow {
+    0% {
+        fill: #f1c40f;
+        stroke: #f1c40f;
+    }
+    50% {
+        fill: #e67e22;
+        stroke: #e67e22;
+    }
+    100% {
+        fill: #f1c40f;
+        stroke: #f1c40f;
+    }
+}
+
+@-moz-keyframes sun-glow {
+    0% {
+        fill: #f1c40f;
+        stroke: #f1c40f;
+    }
+    50% {
+        fill: #e67e22;
+        stroke: #e67e22;
+    }
+    100% {
+        fill: #f1c40f;
+        stroke: #f1c40f;
+    }
+}
+
+@-o-keyframes sun-glow {
+    0% {
+        fill: #f1c40f;
+        stroke: #f1c40f;
+    }
+    50% {
+        fill: #e67e22;
+        stroke: #e67e22;
+    }
+    100% {
+        fill: #f1c40f;
+        stroke: #f1c40f;
+    }
+}
+
+@-ms-keyframes sun-glow {
+    0% {
+        fill: #f1c40f;
+        stroke: #f1c40f;
+    }
+    50% {
+        fill: #e67e22;
+        stroke: #e67e22;
+    }
+    100% {
+        fill: #f1c40f;
+        stroke: #f1c40f;
+    }
+}
+
+@keyframes sun-glow {
+    0% {
+        fill: #f1c40f;
+        stroke: #f1c40f;
+    }
+    50% {
+        fill: #e67e22;
+        stroke: #e67e22;
+    }
+    100% {
+        fill: #f1c40f;
+        stroke: #f1c40f;
+    }
+}
+
+
+/* start spin animation */
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes spin {
+    100% {
+        -o-transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes spin {
+    100% {
+        -ms-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
     }
 }
