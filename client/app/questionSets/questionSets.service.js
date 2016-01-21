@@ -69,7 +69,7 @@
             var deferred = $q.defer();
             var self = this;
             $http.put('/api/questionSet/' + questionSet._id, questionSet).then(function(response) {
-                deferred.resolve();
+                deferred.resolve(response.data);
                 self.isUpdated = true;
                 logger.success("QuestionSet successfully updated", response.data, "QuestionSet Updated");
             },function(err){

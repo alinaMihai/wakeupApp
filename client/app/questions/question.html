@@ -14,9 +14,13 @@
       </h1>
         </div>
         <div class="col-lg-3" ng-if="!questionCtrl.questionSetQuestions.isDefault">
-            <button id="addQuestionBtn" class="btn btn-info btn-block" ng-click='questionCtrl.openQuestionModal("lg")'>
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Question
-            </button>
+            <div class="btn-group-vertical btn-block">
+                <button class="btn btn-lg btn-block btn-info" ng-if="!questionCtrl.questionSetQuestions.isDefault" ng-click="questionCtrl.editQuestionSet()"><span class="fa fa-pencil-square-o"></span> Edit Question Set</button>
+                <button class="btn btn-lg btn-block btn-info" confirm-click="Are you sure you want to delete this question set?" ng-click="questionCtrl.deleteQuestionSet()"><span class="glyphicon glyphicon-trash"></span> Delete Question Set</button>
+                <button class="btn btn-lg btn-info btn-block" ng-click='questionCtrl.openQuestionModal("lg")'>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Question
+                </button>
+            </div>
         </div>
     </div>
     <hr>
@@ -32,14 +36,13 @@
             </ul>
         </div>
         <div class="col-xs-12 col-lg-6">
-            
-            <div class="row" >
+            <div class="row">
                 <div class="col-xs-12 col-lg-6 questionSetMenu">
                     <h4>Available Options</h4>
                     <div class="btn-group-vertical btn-block">
                         <button class="btn btn-lg btn-block btn-success" type="button" ng-csv="questionCtrl.exportQuestions" filename="{{questionCtrl.questionSetQuestions.name}} questions.csv" ng-disabled="questionCtrl.exportQuestions.length===0">Export Questions</button>
                         <button class="btn btn-lg btn-block btn-success" ng-click="questionCtrl.showImport=!questionCtrl.showImport" ng-if="!questionCtrl.questionSetQuestions.isDefault">Import CSV file</button>
-                        <a class="btn btn-lg btn-block btn-success" ui-sref="sessionDetails({'questionSetId':questionCtrl.questionSetQuestions._id,'questionSetName':questionCtrl.questionSetQuestions.name})">View Question Set Answers</a>
+                        <a class="btn btn-lg btn-block btn-success" ui-sref="sessionDetails({'questionSetId':questionCtrl.questionSetQuestions._id,'questionSetName':questionCtrl.questionSetQuestions.name})">View Pratice Sessions</a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-lg-6">

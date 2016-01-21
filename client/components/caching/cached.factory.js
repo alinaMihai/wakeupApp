@@ -44,7 +44,7 @@
         }
 
         function getQuestionSets() {
-            if (questionsSets.length === 0) {
+            if (questionsSets.length === 0 || QuestionSetService.isUpdated) {
                 questionsSets = QuestionSetService.getQuestionSets();
             } else {
                 redirect();
@@ -56,9 +56,9 @@
         function getQuestions(questionSetId) {
             if (!questions[questionSetId] || QuestionSetService.isUpdated || QuestionService.isUpdated) {
                 questions[questionSetId] = QuestionService.getQuestions(questionSetId);
-                
-                if(QuestionService.isUpdated){
-                    QuestionService.isUpdated=false;
+
+                if (QuestionService.isUpdated) {
+                    QuestionService.isUpdated = false;
                 }
 
             }
