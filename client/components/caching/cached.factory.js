@@ -39,6 +39,12 @@
         function getQuestion(questionId) {
             if (!questionsList[questionId] || QuestionSetService.isUpdated || QuestionService.isUpdated) {
                 questionsList[questionId] = QuestionService.getQuestionById(questionId);
+                if(QuestionSetService.isUpdated){
+                    QuestionSetService.isUpdated=false;
+                }
+                if(QuestionService.isUpdated){
+                    QuestionService.isUpdated=false;
+                }
             }
             return questionsList[questionId];
         }
@@ -46,6 +52,9 @@
         function getQuestionSets() {
             if (questionsSets.length === 0 || QuestionSetService.isUpdated) {
                 questionsSets = QuestionSetService.getQuestionSets();
+                if (QuestionSetService.isUpdated) {
+                    QuestionSetService.isUpdated = false;
+                }
             } else {
                 redirect();
             }
@@ -60,21 +69,36 @@
                 if (QuestionService.isUpdated) {
                     QuestionService.isUpdated = false;
                 }
+                if(QuestionSetService.isUpdated){
+                    QuestionSetService.isUpdated=false;
+                }
 
             }
             return questions[questionSetId];
         }
 
         function getAnswers(questionId) {
-            if (!answers[questionId] || QuestionService.isUpdated) {
+            if (!answers[questionId] || QuestionService.isUpdated || AnswerService.isUpdated) {
                 answers[questionId] = AnswerService.getAnswers(questionId);
+                
+                if(QuestionService.isUpdated){
+                    QuestionService.isUpdated=false;
+                }
+                if(AnswerService.isUpdated){
+                    AnswerService.isUpdated=false;
+                }
+
             }
+
             return answers[questionId];
         }
 
         function getTopics() {
             if (topics.length === 0 || TopicService.isUpdated) {
                 topics = TopicService.getTopics();
+                if (TopicService.isUpdated) {
+                    TopicService.isUpdated = false;
+                }
             } else {
                 redirect();
             }

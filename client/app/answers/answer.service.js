@@ -53,10 +53,11 @@
         }
         function deleteAllAnswers(questionId) {
             var deferred = $q.defer();
+            var that=this;
             $http.delete('/api/answers/deleteAllAnswers/' + questionId)
                 .success(function(response) {
                     deferred.resolve();
-                    QuestionService.isUpdated=true;
+                    that.isUpdated=true;
                     logger.success("All Answers successfully deleted", response, "Answers Deleted");
                 })
                 .error(function(err) {

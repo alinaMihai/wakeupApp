@@ -1,5 +1,6 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
+    <button id="practiceSessionBtn" ng-click="displayPopup=true" class="btn btn-block btn-lg" value="">Practice Question Set</button>
     <session-dir ng-if="questionCtrl.questionSetQuestions.questions.length>0">
     </session-dir>
     <div class="row">

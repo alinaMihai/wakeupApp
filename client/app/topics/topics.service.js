@@ -59,10 +59,8 @@
 
         function deleteTopic(topic) {
             var deferred = $q.defer();
-            var that=this;
             $http.delete('/api/topics/' + topic._id).then(function(response) {
                 var topic = response.data;
-                that.isUpdated=true;
                 deferred.resolve();
                 logger.success("Topic successfully deleted", topic, "Topic Deleted");
             },function(err){
@@ -74,10 +72,8 @@
 
         function updateTopic(topicObj) {
             var deferred = $q.defer();
-            var that=this;
             $http.put('/api/topics/' + topicObj._id,
                 topicObj).then(function(response) {
-                that.isUpdated=true;
                 deferred.resolve(response.data);
                 logger.success("The topic was successfully updated", response.data, "Success");
             }, function(response) {

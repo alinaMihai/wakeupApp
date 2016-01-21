@@ -22,7 +22,11 @@
 .practiceTimesLabel{
     float:right
 }
-
+.practiceIcon{
+    width:38px;
+    cursor:pointer;
+    float:right;
+}
 #qsList {
     counter-reset: li;
     list-style: none;
@@ -34,7 +38,7 @@
 }
 
 .rounded-list li {
-    height: 43px;
+    height: 100%;
     background: rgba(219, 206, 241, 0.53);
     color: #444;
     margin: 0.5em 0;

@@ -5,10 +5,12 @@
         .module('wakeupApp')
         .controller('QuestionSetsCtrl', QuestionSetsCtrl);
 
-    QuestionSetsCtrl.$inject = ['cached', 'QuestionSetService', '$uibModal', '$location', 'usSpinnerService'];
+    QuestionSetsCtrl.$inject = ['cached', 'QuestionSetService', '$uibModal', 
+    '$location', 'usSpinnerService','PracticeSessionService', '$state'];
 
     /* @ngInject */
-    function QuestionSetsCtrl(cached, QuestionSetService, $uibModal, $location, usSpinnerService) {
+    function QuestionSetsCtrl(cached, QuestionSetService, $uibModal, $location, 
+        usSpinnerService,PracticeSessionService,$state) {
         var vm = this;
         vm.title = 'Question Sets List';
         vm.cancelAddQuestionSet = cancelAddQuestionSet;
@@ -18,6 +20,7 @@
         vm.openModal = openModal;
         vm.questionSets = [];
         vm.addQuestionSetBool = false;
+        vm.startQuestionSet=startQuestionSet;
         activate();
 
         function activate() {
@@ -54,6 +57,14 @@
             QuestionSetService.deleteQuestionSet(questionSet).then(function() {
                 var index = vm.questionSets.indexOf(questionSet);
                 vm.questionSets.splice(index, 1);
+            });
+        }
+        function startQuestionSet(questionSetId) {
+            PracticeSessionService.questionInterval = 0;
+            PracticeSessionService.repeatQS =false;
+            PracticeSessionService.shuffleQuestions = false;
+            $state.go('practiceSession', {
+                'questionSetId': questionSetId
             });
         }
 

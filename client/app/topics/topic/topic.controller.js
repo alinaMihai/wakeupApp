@@ -67,12 +67,14 @@
 
         function updateTopic(updatedObj) {
             TopicService.updateTopic(updatedObj).then(function(updatedTopic) {
+                TopicService.isUpdated=true;
                 vm.topic = updatedTopic;
             });
         }
 
         function deleteTopic() {
             TopicService.deleteTopic(vm.topic).then(function() {
+                TopicService.isUpdated=true;
                 $state.go('topicsList');
             });
         }
