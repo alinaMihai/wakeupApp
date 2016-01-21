@@ -73,7 +73,7 @@
         }
 
         function getTopics() {
-            if (topics.length === 0) {
+            if (topics.length === 0 || TopicService.isUpdated) {
                 topics = TopicService.getTopics();
             } else {
                 redirect();

@@ -6,27 +6,39 @@
             <li class="active">{{TopicDetailCtrl.topic.title|trimFilter:50}}</li>
         </ol>
     </div>
-    <div class="page-header">
-        <h1 ng-bind-html="TopicDetailCtrl.topic.title">
-		</h1>
+    <div class="row">
+        <div class="col-xs-8">
+            <div >
+                <h1 ng-bind-html="TopicDetailCtrl.topic.title">
+                </h1>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="btn-group-vertical topicOptions" role="group" >
+               <button ng-if="!TopicDetailCtrl.topic.isDefault" title="edit topic" class="btn btn-lg btn-info" ng-click="TopicDetailCtrl.editTopic()">Edit Topic</button>
+               <button class="btn btn-lg btn-info"
+               title="delete topic" confirm-click="Are you sure you want to delete this topic?" ng-click="TopicDetailCtrl.deleteTopic()">Delete Topic</button>
+            </div>
+        </div>
     </div>
+    <hr>
     <div id="topicDescription">
         <p ng-bind-html="TopicDetailCtrl.topic.description"></p>
     </div>
     <p>
-    	<a class="btn btn-primary btn-lg" id="inspirationPage" ui-sref="inspiration({topicId:TopicDetailCtrl.topic._id})" role="button">
-			Inspiration Page 
-		</a>
-	</p>
+        <a class="btn btn-primary btn-lg" id="inspirationPage" ui-sref="inspiration({topicId:TopicDetailCtrl.topic._id})" role="button">
+            Inspiration Page 
+        </a>
+    </p>
     <div class="text-center" id="associatedQuestionSets">
         <h4>Associated Question Sets</h4>
         <div ng-if="TopicDetailCtrl.topic.questionSetList.length===0">
             <h5>No associated question sets; Edit this topic to associate a question set</h5>
         </div>
         <div class="item col-lg-4" bindonce ng-repeat="qs in TopicDetailCtrl.topic.questionSetList | orderBy:'-practiceTimes'">
-            <a ui-sref="questionList({questionSetId:qs._id})">
+            <a ui-sref="questionList({questionSetId:qs})">
                 <div class="well associatedQuestionSet">
-                    <strong> <p> {{qs.name}}</p></strong>
+                    <strong> <p> {{TopicDetailCtrl.getQuestionSetName(qs)}}</p></strong>
                 </div>
             </a>
         </div>

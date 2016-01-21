@@ -43,7 +43,7 @@ form[name='addTopicForm'] {
     margin-left: 5px;
     font-style: italic;
     font-family: serif;
-    white-space:pre-wrap;
+    /* white-space:pre-wrap; */
     max-height:200px;
     overflow-y:auto;
 }
@@ -71,6 +71,9 @@ form[name='addTopicForm'] {
 #associatedQuestionSets{
     margin-top:50px;
 }
+#associatedQuestionSets h4{
+    text-align:left;
+}
 .associatedQuestionSet {
     background: #AC9AD2;
     color: white;
@@ -81,8 +84,9 @@ form[name='addTopicForm'] {
 .associatedQuestionSet p {
     font-size: 1.4em;
     font-family: serif;
-    font-weight: 400;
+    font-weight: bold;
     color: white;
+    text-transform:uppercase;
 }
 
 .associatedQuestionSet:hover {
@@ -91,7 +95,10 @@ form[name='addTopicForm'] {
     text-decoration: none;
 }
 .associatedQuestionSet:hover p{
-    font-weight:bold;
+    font-size:1.5em;
+}
+.topicOptions{
+    float:right;
 }
 
 #quotes,

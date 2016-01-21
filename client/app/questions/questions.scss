@@ -48,8 +48,9 @@ body {
 .searchQuestions div.questionBox i {
     float: right;
     margin-top: -9px;
-    font-size: 2.5em;
+    font-size: 2em;
     cursor: pointer;
+    padding-right: 3px;
 }
 
 .searchQuotesQuestion div.quoteBox i.fa-check,
