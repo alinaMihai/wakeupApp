@@ -14,7 +14,7 @@
         vm.topic.questionSetList = getQuestionSetIds(vm.topic);
         vm.editTopic = editTopic;
         vm.getQuestionSetName = getQuestionSetName;
-        vm.deleteTopic=deleteTopic;
+        vm.deleteTopic = deleteTopic;
 
         activate();
 
@@ -31,26 +31,8 @@
             data.heading = "Edit";
             data.allQuestionSets = vm.allQuestionSets;
             data.getQuestionSetName = getQuestionSetName;
-            data.addQsToTopic = addQsToTopic;
-            data.removeQsFromTopic = removeQsFromTopic;
-
-            function addQsToTopic(event, qs) {
-                if (event) {
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-                var questionSetId = parseInt(qs);
-                var isPresent = data.questionSetList.indexOf(questionSetId);
-                if (isPresent === -1) {
-                    data.questionSetList.push(questionSetId);
-                }
-            }
-
-            function removeQsFromTopic(qsId) {
-                var questionSetId = parseInt(qsId);
-                var index = data.questionSetList.indexOf(questionSetId);
-                data.questionSetList.splice(index, 1);
-            }
+            data.addQsToTopic = addQsToTopic(data);
+            data.removeQsFromTopic = removeQsFromTopic(data);
 
             var template = "app/topics/addTopicModal.html";
             var callbback = function(data) {
@@ -74,6 +56,30 @@
             }
 
         }
+
+        function addQsToTopic(data) {
+            return function(event, qs) {
+                if (event) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+                var questionSetId = parseInt(qs);
+                var isPresent = data.questionSetList.indexOf(questionSetId);
+                if (isPresent === -1) {
+                    data.questionSetList.push(questionSetId);
+                }
+            }
+
+        }
+
+        function removeQsFromTopic(data) {
+            return function(gsId) {
+                var questionSetId = parseInt(qsId);
+                var index = data.questionSetList.indexOf(questionSetId);
+                data.questionSetList.splice(index, 1);
+            }
+        }
+
         function getQuestionSetIds(topic) {
             var questionSetIds = [];
             topic.questionSetList.forEach(function(questionSet) {
@@ -84,9 +90,10 @@
 
         function updateTopic(updatedObj) {
             TopicService.updateTopic(updatedObj).then(function(updatedTopic) {
-                vm.topic=updatedTopic;
+                vm.topic = updatedTopic;
             });
         }
+
         function deleteTopic() {
             TopicService.deleteTopic(vm.topic).then(function() {
                 $state.go('topicsList');
