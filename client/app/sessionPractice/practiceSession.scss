@@ -106,12 +106,15 @@
     }
 }
 
-.timeDisplay {
+.timeDisplay,.clockDisplay {
     position: absolute;
     right: 126px;
-    top: 38px;
+    top: 30px;
     font-size: 16px;
     width: 15%;
+}
+.clockDisplay{
+    top:55px;
 }
 .displayProgress{
     font-size:0.55em;

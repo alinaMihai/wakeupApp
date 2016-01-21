@@ -35,9 +35,21 @@
 
             $(element).hover(function() {
                 $(this).find('.timeDisplay').html(elapsedMinutes + " m");
+                $(this).find('.clockDisplay').html(displayClock());
             }, function() {
                 $(this).find('.timeDisplay').html('');
+                $(this).find('.clockDisplay').html('');
             });
+        }
+
+        function displayClock() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            if(m<10){
+                m="0"+m;
+            }
+            return h+":"+m;
         }
     }
 

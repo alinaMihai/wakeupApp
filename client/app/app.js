@@ -27,14 +27,36 @@
         toastr.options.positionClass = 'toast-top-right';
     }
 
-    app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','$logProvider',
-        function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$logProvider) {
+    app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$logProvider','$provide',
+        function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $logProvider,$provide) {
             $urlRouterProvider
                 .otherwise('/');
 
             $locationProvider.html5Mode(true);
             $httpProvider.interceptors.push('authInterceptor');
             $logProvider.debugEnabled(false);
+
+            $provide.decorator('$log', function($delegate) {
+                //Original methods
+                var origInfo = $delegate.info;
+                var origLog = $delegate.log;
+
+                //Override the default behavior
+                $delegate.info = function() {
+
+                    if ($logProvider.debugEnabled())
+                        origInfo.apply(null, arguments)
+                };
+
+                //Override the default behavior    
+                $delegate.log = function() {
+
+                    if ($logProvider.debugEnabled())
+                        origLog.apply(null, arguments)
+                };
+
+                return $delegate;
+            });
         }
     ]);
 
