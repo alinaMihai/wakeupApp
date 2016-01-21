@@ -13,6 +13,8 @@
         this.groupArrayObjectsByDate = groupArrayObjectsByDate;
         this.timeConverter = timeConverter;
         this.openModal = openModal;
+        this.addQsToTopic=addQsToTopic;
+        this.removeQsFromTopic=removeQsFromTopic;
 
 
         function groupArrayObjectsByDate(theArray) {
@@ -55,6 +57,31 @@
             modalInstance.result.then(callback, function() {
                 // $log.info('Modal dismissed at: ' + new Date());
             });
+        }
+
+        //utility functions topics
+
+        function addQsToTopic(data) {
+            return function(event, qs) {
+                if (event) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+                var questionSetId = parseInt(qs);
+                var isPresent = data.questionSetList.indexOf(questionSetId);
+                if (isPresent === -1) {
+                    data.questionSetList.push(questionSetId);
+                }
+            }
+
+        }
+
+        function removeQsFromTopic(data) {
+            return function(qsId) {
+                var questionSetId = parseInt(qsId);
+                var index = data.questionSetList.indexOf(questionSetId);
+                data.questionSetList.splice(index, 1);
+            }
         }
     }
 })();

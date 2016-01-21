@@ -31,8 +31,8 @@
             data.heading = "Edit";
             data.allQuestionSets = vm.allQuestionSets;
             data.getQuestionSetName = getQuestionSetName;
-            data.addQsToTopic = addQsToTopic(data);
-            data.removeQsFromTopic = removeQsFromTopic(data);
+            data.addQsToTopic = CoreService.addQsToTopic(data);
+            data.removeQsFromTopic = CoreService.removeQsFromTopic(data);
 
             var template = "app/topics/addTopicModal.html";
             var callbback = function(data) {
@@ -55,29 +55,6 @@
                 }).name;
             }
 
-        }
-
-        function addQsToTopic(data) {
-            return function(event, qs) {
-                if (event) {
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-                var questionSetId = parseInt(qs);
-                var isPresent = data.questionSetList.indexOf(questionSetId);
-                if (isPresent === -1) {
-                    data.questionSetList.push(questionSetId);
-                }
-            }
-
-        }
-
-        function removeQsFromTopic(data) {
-            return function(gsId) {
-                var questionSetId = parseInt(qsId);
-                var index = data.questionSetList.indexOf(questionSetId);
-                data.questionSetList.splice(index, 1);
-            }
         }
 
         function getQuestionSetIds(topic) {

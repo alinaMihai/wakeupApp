@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .controller('TopicCtrl', TopicCtrl);
 
-    TopicCtrl.$inject = ['cached', '$uibModal', 'TopicService', 'usSpinnerService'];
+    TopicCtrl.$inject = ['cached', '$uibModal', 'TopicService', 'usSpinnerService', 'CoreService'];
 
     /* @ngInject */
-    function TopicCtrl(cached, $uibModal, TopicService, usSpinnerService) {
+    function TopicCtrl(cached, $uibModal, TopicService, usSpinnerService, CoreService) {
         var vm = this;
         vm.topics = [];
         vm.openAddTopicModal = openAddTopicModal;
@@ -23,7 +23,7 @@
             cached.getTopics().then(function(topics) {
                 vm.topics = topics;
                 usSpinnerService.stop('spinner-1');
-            },function(err){
+            }, function(err) {
                 usSpinnerService.stop('spinner-1');
             });
 
@@ -38,65 +38,34 @@
             };
             var data = topic ? angular.copy(topic, emptyObj) : emptyObj;
             var title = topic ? "Edit" : "Add";
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: 'app/topics/addTopicModal.html',
-                size: size,
-                controller: 'ModalInstanceCtrl as modalCtrl',
-                resolve: {
-                    data: function() {
-                        return cached.getQuestionSets().then(function(questionSets) {
-                            data.heading = title;
-                            data.allQuestionSets = questionSets;
-                            data.getQuestionSetName = getQuestionSetName;
-                            data.addQsToTopic = addQsToTopic;
-                            data.removeQsFromTopic = removeQsFromTopic;
-
-                            return data;
-                        });
-
-                    }
-                }
+            var dataObj = cached.getQuestionSets().then(function(questionSets) {
+                data.heading = title;
+                data.allQuestionSets = questionSets;
+                data.getQuestionSetName = getQuestionSetName(data);
+                data.addQsToTopic = CoreService.addQsToTopic(data);
+                data.removeQsFromTopic = CoreService.removeQsFromTopic(data);
+                return data;
             });
-
-            modalInstance.result.then(function(data) {
+            var callback = function(data) {
                 var topicObj = {};
                 topicObj._id = data._id;
                 topicObj.title = data.title;
                 topicObj.description = data.description;
                 topicObj.createDate = new Date().getTime();
                 topicObj.questionSetList = data.questionSetList;
-                
+
                 return topic ? updateTopic(topicObj) : createTopic(topicObj);
+            };
+            CoreService.openModal(dataObj, 'app/topics/addTopicModal.html', callback);
+        }
 
-            }, function() {
-                // $log.info('Modal dismissed at: ' + new Date());
-            });
-
-
-            function getQuestionSetName(questionSetId) {
+        function getQuestionSetName(data) {
+            return function(questionSetId) {
                 return _.find(data.allQuestionSets, {
                     _id: parseInt(questionSetId)
                 }).name;
             }
 
-            function addQsToTopic(event, qsId) {
-                if (event) {
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-                var questionSetId = parseInt(qsId);
-                var isPresent = data.questionSetList.indexOf(questionSetId);
-                if (isPresent === -1) {
-                    data.questionSetList.push(questionSetId);
-                }
-            }
-
-            function removeQsFromTopic(qsId) {
-                var questionSetId = parseInt(qsId);
-                var index = data.questionSetList.indexOf(questionSetId);
-                data.questionSetList.splice(index, 1);
-            }
         }
 
 
