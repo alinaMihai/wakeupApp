@@ -80,7 +80,7 @@
             }, function(err) {
                 console.log(err);
             });
-            $window.location.href = "/questionList/" + questionSetId;
+            $window.location.href = "/sessionDetails/" + questionSetId+"/"+vm.questionSetQuestions.name;
             if (timer) {
                 $timeout.cancel(timer);
             }
@@ -141,7 +141,6 @@
                 QuestionService.isUpdated = true;
                 vm.currentAnswer = '';
             }
-
         }
 
         function shuffle(array) {

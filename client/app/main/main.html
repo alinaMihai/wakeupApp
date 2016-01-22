@@ -1,21 +1,19 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
 <header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>Welcome to the Wakeup App!</h1>
-    <p class="lead">Enter the realm of self introspection and discover who you really are and what you really want deep inside your heart
-    </p>
-    <!-- <img src="assets/images/yeoman.png" alt="I'm Yeoman"> -->
-  </div>
+    <div class="container">
+        <h1>Welcome to the Wakeup App!</h1>
+        <p class="lead">Enter the realm of self introspection and discover who you really are and what you really want deep inside your heart
+        </p>
+        <!-- <img src="assets/images/yeoman.png" alt="I'm Yeoman"> -->
+    </div>
 </header>
-
 <div class="container">
-  <h1 class="page-header">Features</h1>
-  <div class="row features">
-    <!-- <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
+    <h1 class="page-header">Features</h1>
+    <div>
+        <!-- <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
       <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
     </ul> -->
-    
+        <!-- 
       <div class="col-xs-12 col-sm-4">
         <span>Create your own question sets or topics</span>
       </div>
@@ -43,13 +41,22 @@
       <div class="col-xs-12 col-sm-4"><span>Associate Quote with Question</span></div>
     
     
-    
-  </div>
+     -->
+    </div>
+    <div class="featuresDisplay">
+        <uib-carousel interval="vm.myInterval" no-wrap="false">
+            <uib-slide ng-repeat="slide in vm.slides" active="slide.active" index="$index">
+                <img ng-src="{{slide.image}}">
+                <div class="carousel-caption">
+                    <p>{{slide.label}}</p>
+                </div>
+            </uib-slide>
+        </uib-carousel>
+    </div>
 </div>
-
 <footer class="footer">
-  <div class="container">
-    <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
-    </p>
-  </div>
+    <div class="container">
+        <p>Wakeup App | 2015 | <a href="https://twitter.com/AlinaMihai90">Twitter</a> | <a href="https://github.com/alinaMihai/wakeupApp/issues">Issues</a>
+        </p>
+    </div>
 </footer>

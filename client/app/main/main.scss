@@ -32,7 +32,7 @@
 .navbar-text {
     margin-left: 15px;
 }
-
+/* 
 .features div {
     padding: 20px;
     text-align: center;
@@ -44,8 +44,8 @@
 }
 
 .features div span {
-   /*  background-image: linear-gradient(to top right, #BED5EB 29%, rgba(125, 129, 209, 0.51));
-   background-color: rgba(168, 219, 168, 0.5); */
+   background-image: linear-gradient(to top right, #BED5EB 29%, rgba(125, 129, 209, 0.51));
+   background-color: rgba(168, 219, 168, 0.5);
     background-color:aliceblue;
     height: 129px;
     display: table-cell;
@@ -53,4 +53,9 @@
     text-align: center;
     padding: 20px;
     border-radius: 20px;
+} */
+
+.featuresDisplay{
+    margin:0 auto;
+    width:50%;
 }

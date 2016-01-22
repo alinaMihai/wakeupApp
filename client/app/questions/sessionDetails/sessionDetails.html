@@ -15,7 +15,7 @@
         <ul class="sessionList">
             <li class="row" ng-repeat="question in SessionDetailsCtrl.questions |orderBy:'_id'">
                 <div class="col-lg-5 questionBox">
-                    <p class="questionData">{{$index+1}}. {{question.text}}</p>
+                    <p class="questionData"><a class="questionTextLink" ui-sref="answerList({questionId:question._id})"> {{$index+1}}. {{question.text}}</a></p>
                     <p class="questionQuote"><a ui-sref="quote({topicId:question.quote.topic,quoteId:question.quote._id})">
                     {{question.quote.text |quotesSigns}}</a> <span>{{question.quote.author}}</span>
                 </p>

@@ -79,7 +79,6 @@
             questions.forEach(function(question) {
                 question.answers = filterAnswers(question, userEmail);
             });
-
             return res.status(200).json(questions);
         });
     }
@@ -252,7 +251,7 @@
                 timesPracticed++;
             } else {
                 timesPracticed = 1;
-                userPractice={
+                userPractice = {
                     practiceTimes: timesPracticed,
                     user: userEmail
                 };
@@ -260,7 +259,7 @@
             }
 
             if (questionSet.isDefault) {
-                userPractice.practiceTimes=timesPracticed;
+                userPractice.practiceTimes = timesPracticed;
                 updated = questionSet;
 
             } else {

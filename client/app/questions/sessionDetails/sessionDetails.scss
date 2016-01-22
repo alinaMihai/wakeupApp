@@ -18,6 +18,13 @@
     word-wrap: break-word;
     word-break: break-word;
 }
+.questionData a{
+    color:black;
+}
+.questionData a:hover{
+    color: #333;
+    text-decoration:none;
+}
 
 .questionQuote {
     font-size: 1em;

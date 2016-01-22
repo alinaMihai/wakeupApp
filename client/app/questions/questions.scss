@@ -10,6 +10,24 @@ body {
 .questionSetMenu {
     float: right;
 }
+.questionSetOptions .btn-group-vertical{
+    float:right;
+    margin-bottom:10px;
+}
+.questionSetOptions button{
+    color:white;
+    background-color:#AC9AD2;
+    border-color:rgba(58, 51, 82, 0.37);
+}
+.questionSetOptions button:hover{
+    color:white;
+    background-color:rgba(58, 51, 82, 0.8);
+    border-color:rgba(58, 51, 82, 1);
+}
+.questionSetOptions span.fa-pencil-square-o{
+    font-size:1.15em;
+}
+
 
 .questionSetName {
     max-height: 119px;
@@ -111,7 +129,7 @@ body {
     display: block;
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 20%;
     transform: translate(-50%, -50%);
     width: inherit;
     height: inherit;
