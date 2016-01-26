@@ -6,12 +6,12 @@
         .controller('SessionController', SessionController);
 
     SessionController.$inject = ['cached', 'QuestionService', '$timeout', 'PracticeSessionService',
-        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService', '$window'
+        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService', '$window', 'AnswersFactory'
     ];
 
     /* @ngInject */
     function SessionController(cached, QuestionService, $timeout, PracticeSessionService, $stateParams,
-        $state, logger, $sessionStorage, QuoteService, $window) {
+        $state, logger, $sessionStorage, QuoteService, $window, AnswersFactory) {
         var vm = this;
         vm.startQuestionSet = startQuestionSet;
         vm.endQuestionSet = endQuestionSet;
@@ -20,6 +20,7 @@
         vm.practiceSessionService = PracticeSessionService;
         var questions, questionsNo, timer;
         var questionSetId = $stateParams.questionSetId;
+        var indexedDbOpened = false;
         activate();
 
         ////////////////
@@ -52,6 +53,9 @@
                     });
                 }
             });
+            AnswersFactory.openIndexedDb().then(function() {
+                indexedDbOpened = true;
+            });
 
         }
 
@@ -80,7 +84,10 @@
             }, function(err) {
                 console.log(err);
             });
-            $window.location.href = "/sessionDetails/" + questionSetId+"/"+vm.questionSetQuestions.name;
+            $timeout(function() {
+                $window.location.href = "/sessionDetails/" + questionSetId + "/" + vm.questionSetQuestions.name;
+            }, 1000);
+
             if (timer) {
                 $timeout.cancel(timer);
             }
@@ -133,13 +140,16 @@
             if (answerText !== undefined && answerText.trim() !== "") {
                 var today = new Date().getTime();
                 var answer = {
-                    question: questionId,
-                    text: answerText,
-                    date: today
+                        questionId: questionId,
+                        text: answerText,
+                        date: today
+                    }
+                    //QuestionService.saveAnswer(answer);
+                    //QuestionService.isUpdated = true;
+                if (indexedDbOpened) {
+                    AnswersFactory.saveAnswer(answer);
+                    vm.currentAnswer = '';
                 }
-                QuestionService.saveAnswer(answer);
-                QuestionService.isUpdated = true;
-                vm.currentAnswer = '';
             }
         }
 

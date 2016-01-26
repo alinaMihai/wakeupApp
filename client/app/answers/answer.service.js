@@ -37,6 +37,9 @@
                 deferred.resolve();
                 QuestionService.isUpdated=true;
                 logger.success("Answer successfully deleted", answer, "Answer Deleted");
+            },function(err){
+                deferred.reject(err);
+                logger.error("Could not successfully delete the answer",err,"Error");
             });
             return deferred.promise;
         }
@@ -47,6 +50,9 @@
             $http.put('/api/answers/' + answerObj._id, answerObj).then(function(response) {
                 deferred.resolve();
                 logger.success("Answer successfully updated", response.data, "Answer Updated");
+            },function(err){
+                deferred.reject(err);
+                logger.error("Answer could not be successfully updated",err,"Error");
             });
 
             return deferred.promise;

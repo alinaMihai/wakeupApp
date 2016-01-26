@@ -194,7 +194,6 @@
 
     function updateQuoteInQuestions(prevArr, currArr, quoteId) {
         for (var i = 0; i < prevArr.length; i++) {
-            console.log(currArr.indexOf(prevArr[i]));
             if (currArr.indexOf(prevArr[i]) === -1) {
                 removeQuoteFromQuestion(prevArr[i]);
             }
@@ -226,6 +225,9 @@
                     return res.send(err);
                 }
             });
+            for (var i = 0; i < quote.questions.length; i++) {
+                removeQuoteFromQuestion(quote.questions[i]);
+            }
             quote.remove(function(err) {
                 if (err) {
                     return handleError(res, err);
@@ -254,6 +256,7 @@
 
         });
     }
+
     function getUniqueElements(topics, property) {
         var uniqueElements = [];
         topics.forEach(function(topic) {

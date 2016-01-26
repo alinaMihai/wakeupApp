@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .service('QuestionSetService', QuestionSetService);
 
-    QuestionSetService.$inject = ['$http', '$q', 'logger'];
+    QuestionSetService.$inject = ['$http', '$q', 'logger','AnswersFactory'];
 
     /* @ngInject */
-    function QuestionSetService($http, $q, logger) {
+    function QuestionSetService($http, $q, logger,AnswersFactory) {
         this.getQuestionSets = getQuestionSets;
         this.addQuestionSet = addQuestionSet;
         this.deleteQuestionSet = deleteQuestionSet;
@@ -54,10 +54,15 @@
             var deferred = $q.defer();
             var self = this;
             $http.delete('/api/questionSet/' + questionSet._id).then(function(response) {
-                var questionSet = response.data;
                 self.isUpdated = true;
                 deferred.resolve();
                 logger.success("QuestionSet successfully deleted", questionSet, "QuestionSet Deleted");
+                AnswersFactory.openIndexedDb().then(function(){
+                    questionSet.questions.forEach(function(question){
+                        AnswersFactory.deleteAllAnswers(question);    
+                    });    
+                })
+                
             },function(err){
                 deferred.reject(err);
                 logger.error("Could not delete question set",err,"Error");

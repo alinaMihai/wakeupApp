@@ -5,10 +5,10 @@
         .module('wakeupApp')
         .service('QuestionService', QuestionService);
 
-    QuestionService.$inject = ['$http', '$q', 'logger'];
+    QuestionService.$inject = ['$http', '$q', 'logger','AnswersFactory'];
 
     /* @ngInject */
-    function QuestionService($http, $q, logger) {
+    function QuestionService($http, $q, logger,AnswersFactory) {
         this.getQuestions = getQuestions;
         this.saveAnswer = saveAnswer;
         this.getQuestionById = getQuestionById;
@@ -83,6 +83,9 @@
                 .success(function(response) {
                     deferred.resolve();
                     logger.success("Question successfully deleted", response, "Question Deleted");
+                    AnswersFactory.openIndexedDb().then(function(){
+                        AnswersFactory.deleteAllAnswers(question._id);
+                    });
                 })
                 .error(function(err) {
                     deferred.reject(err);

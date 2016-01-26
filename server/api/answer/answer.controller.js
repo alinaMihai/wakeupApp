@@ -178,7 +178,6 @@
     }
 
     function updateAnswerInQuestionList(questionId, answerId) {
-        console.log(questionId, answerId);
         Question.update({
             _id: questionId
         }, {
