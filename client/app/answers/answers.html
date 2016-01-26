@@ -13,7 +13,7 @@
         <div class="col-xs-2 col-md-2"><a class="arrowBtn btn btn-block" ui-sref="answerList({questionId:answerCtrl.nextQuestionId})" ng-disabled="!answerCtrl.nextQuestionId"><span class="glyphicon glyphicon-chevron-right"></span></a></div>
     </div>
     <span class="tooltipWrapper" style="font-size:2em;"><i tooltip-placement="right" class="fa fa-info-circle tooltipWrapper" uib-tooltip="Use the keybord left and right arrows for quick navigation between questions"></i></span>
-    <h1 class="text-center questionText">{{answerCtrl.question.text}}</h1>
+    <h1 class="text-center questionText">{{answerCtrl.questionText}}</h1>
     <p class="associatedQuote">
         <a ui-sref="quote({topicId:answerCtrl.question.quote.topic,quoteId:answerCtrl.question.quote._id})">
                     {{answerCtrl.question.quote.text|quotesSigns}}
@@ -21,8 +21,12 @@
        <small>{{answerCtrl.question.quote.author|trimFilter:50}}</small>
     </p>
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
-    <div class="row" ng-if="answerCtrl.questionAnswers.length>=1">
-        <button class="btn btn-info btn-lg deleteAllAnswers" confirm-click="Are you sure you want to delete all the answers?" ng-click="answerCtrl.deleteAllAnswers()">Delete All Answers</button>
+    <div class="row">
+        <div class="answerActions btn-group btn-group-vertical">
+               <button class="btn btn-success btn-lg" ng-click="answerCtrl.openEditAnswerModal('lg')" >Add Answer</button>
+        <button class="btn btn-success btn-lg "  ng-if="answerCtrl.questionAnswers.length>=1" confirm-click="Are you sure you want to delete all the answers?" ng-click="answerCtrl.deleteAllAnswers()">Delete All Answers</button>       
+        </div>
+     
     </div>
     <div class="list-group" bindonce class="list-group" ng-repeat="group in  answerCtrl.questionAnswers | groupBy: 'theDay' | toArray:true |orderBy:'theDay':true">
         <strong >{{group[0].date|date:'EEEE'}},{{group.$key}}</strong>

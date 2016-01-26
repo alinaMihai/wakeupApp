@@ -12,8 +12,8 @@
         var vm = this;
         vm.title = 'Answer  List';
         vm.question = question;
-        vm.nextQuestionId = findNextQuestionId(question.questionSet, question._id);
-        vm.prevQuestionId = findPreviousQuestionId(question.questionSet, question._id);
+        var indexCurrentQuestion;
+
         vm.deleteAnswer = deleteAnswer;
         vm.deleteAllAnswers = deleteAllAnswers;
         vm.openEditAnswerModal = openEditAnswerModal;
@@ -23,8 +23,14 @@
         activate();
 
         function activate() {
-            var mongodbAnswers = cached.getAnswers(questionId);
+            indexCurrentQuestion = question.questionSet.questions.indexOf(question._id);
+            vm.questionText = (indexCurrentQuestion + 1) + ". " + question.text;
+            vm.nextQuestionId = findNextQuestionId(question.questionSet, question._id);
+            vm.prevQuestionId = findPreviousQuestionId(question.questionSet, question._id);
+
             var indexedDbAnswers;
+            var mongodbAnswers = cached.getAnswers(questionId);
+
             AnswersFactory.openIndexedDb().then(function() {
                 indexedDbAnswers = AnswersFactory.getAnswers(questionId);
 
@@ -65,9 +71,11 @@
         }
 
         function openEditAnswerModal(size, answerId) {
-
-            var answer = findAnswerById(answerId);
-
+            var emptyAnswer = {
+                text: ""
+            };
+            var answerHeading = answerId ? "Edit" : "Add";
+            var answer = findAnswerById(answerId) || emptyAnswer;
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/answers/editAnswerModal.html',
@@ -76,7 +84,9 @@
                 resolve: {
                     data: function() {
                         return {
-                            text: answer.text
+                            text: answer.text,
+                            question: vm.question.text,
+                            answerHeading: answerHeading
                         };
                     }
                 }
@@ -84,8 +94,16 @@
             AnswerService.isModalOpened = true;
 
             modalInstance.result.then(function(data) {
-                var updatedObj = angular.copy(angular.extend(answer, data));
-                updateAnswer(updatedObj);
+
+                if (answerId) {
+                    var updatedObj = angular.copy(angular.extend(answer, {
+                        text: data.text
+                    }));
+                    updateAnswer(updatedObj);
+                } else {
+                    saveAnswer(data.text);
+                }
+
                 AnswerService.isModalOpened = false;
             }, function() {
                 AnswerService.isModalOpened = false;
@@ -102,6 +120,19 @@
 
         }
 
+        function saveAnswer(text) {
+            var today = new Date().getTime();
+            var answer = {
+                questionId: vm.question._id,
+                text: text,
+                date: today
+            }
+            AnswersFactory.saveAnswer(answer).then(function(answer) {
+                answer.theDay="now";
+                vm.questionAnswers.push(answer);
+            });
+        }
+
         function findAnswerById(id) {
             return _.find(vm.questionAnswers, {
                 '_id': id
@@ -109,13 +140,13 @@
         }
 
         function findNextQuestionId(questionSet, currentQuestionId) {
-            var indexCurrentQuestion = questionSet.questions.indexOf(currentQuestionId);
+            // var indexCurrentQuestion = questionSet.questions.indexOf(currentQuestionId);
             var nextQuestionId = questionSet.questions[indexCurrentQuestion + 1];
             return nextQuestionId;
         }
 
         function findPreviousQuestionId(questionSet, currentQuestionId) {
-            var indexCurrentQuestion = questionSet.questions.indexOf(currentQuestionId);
+            //var indexCurrentQuestion = questionSet.questions.indexOf(currentQuestionId);
             var prevQuestionId = questionSet.questions[indexCurrentQuestion - 1];
             return prevQuestionId;
         }
