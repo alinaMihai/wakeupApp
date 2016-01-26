@@ -217,8 +217,7 @@
                     _id: quoteId
                 });
                 return quote ? quote.text : "";
-            }
-
+            };
         }
 
     }

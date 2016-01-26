@@ -147,8 +147,8 @@
             }
             quote.commentList = [];
             if (quote.question) {
-                quote.question.answers = []
-            };
+                quote.question.answers = [];
+            }
             return res.status(200).json(quote);
         });
 
@@ -199,7 +199,7 @@
                 removeQuoteFromQuestion(prevArr[i]);
             }
         }
-        for (var i = 0; i < currArr.length; i++) {
+        for (i = 0; i < currArr.length; i++) {
             if (prevArr.indexOf(currArr[i]) === -1) {
                 addQuoteToQuestion(quoteId, currArr[i]);
             }

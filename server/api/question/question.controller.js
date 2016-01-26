@@ -217,7 +217,7 @@
                             }
                             for (var i = 0; i < questionIds.length; i++) {
                                 updateQuestionInQuestionSetList(req.params.questionSet, questionIds[i]);
-                            };
+                            }
                             return res.status(200).json(result.ops);
                         });
                     } else {

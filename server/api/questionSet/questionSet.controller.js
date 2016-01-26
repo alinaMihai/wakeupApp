@@ -235,13 +235,14 @@
     exports.registerSession = function(req, res) {
         var userEmail = req.user.email;
         var questionSetId = req.params.id;
+        var userPractice;
         QuestionSet.findOne({
             _id: questionSetId
         }, function(err, questionSet) {
             var timesPracticed = questionSet.practiceTimes;
             var updated = null;
             if (questionSet.isDefault) {
-                var userPractice = _.find(questionSet.userPractice, {
+                userPractice = _.find(questionSet.userPractice, {
                     user: userEmail
                 });
                 timesPracticed = userPractice ? userPractice.practiceTimes : undefined;
