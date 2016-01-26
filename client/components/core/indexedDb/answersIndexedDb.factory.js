@@ -70,12 +70,13 @@
                 getLastIndex().then(function(lastIndex) {
                     var trans = db.transaction(['answers'], 'readwrite');
                     var store = trans.objectStore('answers');
-                    if (lastIndex === 0) {
-                        lastIndex = 500; //add 500 so that there is no _id conflict with the old mongodb stored answers
+                    if (!lastIndex || lastIndex === 0) {
+                        lastIndex = 800; //add 500 so that there is no _id conflict with the old mongodb stored answers
                     }
                     answer._id = ++lastIndex;
                     answer.local = true;
                     var request = store.put(answer);
+                    
                     request.onsuccess = function(e) {
                         logger.success("Answer successfully saved", answer, "Success");
                         deferred.resolve(answer);
@@ -196,6 +197,8 @@
                 openCursorRequest.onsuccess = function(event) {
                     if (event.target.result) {
                         deferred.resolve(event.target.result.value._id); //the object with max revision
+                    }else{
+                        deferred.resolve(0);
                     }
                 };
                 openCursorRequest.onerror = function(e) {

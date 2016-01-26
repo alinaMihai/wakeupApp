@@ -146,6 +146,7 @@
                     }
                     //QuestionService.saveAnswer(answer);
                     //QuestionService.isUpdated = true;
+               
                 if (indexedDbOpened) {
                     AnswersFactory.saveAnswer(answer);
                     vm.currentAnswer = '';
