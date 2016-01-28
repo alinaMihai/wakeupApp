@@ -23,7 +23,7 @@
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
     <div class="row">
         <div class="answerActions btn-group btn-group-vertical">
-               <button class="btn btn-success btn-lg" ng-click="answerCtrl.openEditAnswerModal('lg')" >Add Answer</button>
+               <button class="btn btn-success btn-lg" ng-click="answerCtrl.openEditAnswerModal('lg')" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Answer</button>
         <button class="btn btn-success btn-lg "  ng-if="answerCtrl.questionAnswers.length>=1" confirm-click="Are you sure you want to delete all the answers?" ng-click="answerCtrl.deleteAllAnswers()">Delete All Answers</button>       
         </div>
      
