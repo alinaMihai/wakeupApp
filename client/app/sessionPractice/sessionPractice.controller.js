@@ -6,16 +6,16 @@
         .controller('SessionController', SessionController);
 
     SessionController.$inject = ['cached', 'QuestionService', '$timeout', 'PracticeSessionService',
-        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService', '$window', 'AnswersFactory'
+        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService', '$window', 'AnswersFactory','CoreService'
     ];
 
     /* @ngInject */
     function SessionController(cached, QuestionService, $timeout, PracticeSessionService, $stateParams,
-        $state, logger, $sessionStorage, QuoteService, $window, AnswersFactory) {
+        $state, logger, $sessionStorage, QuoteService, $window, AnswersFactory,CoreService) {
         var vm = this;
         vm.startQuestionSet = startQuestionSet;
         vm.endQuestionSet = endQuestionSet;
-
+        vm.isIE=CoreService.detectIE();
         vm.processQuestion = processQuestion;
         vm.practiceSessionService = PracticeSessionService;
         var questions, questionsNo, timer;

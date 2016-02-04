@@ -109,6 +109,8 @@ form[name='addTopicForm'] {
         -webkit-column-width: 18em;
         -moz-column-gap: 1em;
         -webkit-column-gap: 1em;
+        column-width:18em;
+        column-gap:1em;
     }
     .item {
         display: inline-block;
