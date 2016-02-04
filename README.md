@@ -10,7 +10,7 @@ It offers the following features:
 - Practice Question Sets, allowing you to specify the time interval for being prompted with questions,
 - Read, Create, Update, Delete own Topics. A Topic has associated a list of question sets and inspiration quotes
 
-The application can be found at: https://wakeupcall-app.herokuapp.com. 
+The application can be found at: https://wakeupcall-app.herokuapp.com. For best experience use Chrome browser. 
 You can create a new account or connect through google+ .
 
 Technologies used: 
