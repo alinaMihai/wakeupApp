@@ -24,5 +24,5 @@ Tools:
 - Grunt, Karma, Sass
 - Karma-Jasmine 2.0 and Istanbul for test coverage
 
-This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License</a>
+This work is licensed under a MIT License
 
