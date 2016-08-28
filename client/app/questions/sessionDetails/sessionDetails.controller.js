@@ -25,8 +25,7 @@
                 AnswersFactory.openIndexedDb().then(function() {
                     questions.forEach(function(question) {
                         AnswersFactory.getAnswers(question._id).then(function(answers) {
-                            var answers = question.answers.concat(filterAnswers(answers));
-                            question.answers = addDateFilterForAnswers(answers);
+                            question.answers = addDateFilterForAnswers(filterAnswers(answers));
                             vm.questions.push(question);
                         });
                     });

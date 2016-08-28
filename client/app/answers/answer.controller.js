@@ -5,12 +5,12 @@
         .module('wakeupApp')
         .controller('AnswerCtrl', AnswerCtrl);
 
-    AnswerCtrl.$inject = ['cached', 'question', 'AnswerService',
+    AnswerCtrl.$inject = ['question', 'AnswerService',
         '$uibModal', 'usSpinnerService', 'CoreService', 'AnswersFactory', '$q', 'Auth'
     ];
 
     /* @ngInject */
-    function AnswerCtrl(cached, question, AnswerService, $uibModal, usSpinnerService, CoreService, AnswersFactory, $q, Auth) {
+    function AnswerCtrl(question, AnswerService, $uibModal, usSpinnerService, CoreService, AnswersFactory, $q, Auth) {
         var vm = this;
         vm.title = 'Answer  List';
         vm.question = question;
@@ -30,22 +30,20 @@
             vm.prevQuestionId = findPreviousQuestionId(question.questionSet, question._id);
 
             var indexedDbAnswers;
-            var mongodbAnswers = cached.getAnswers(questionId);
 
             AnswersFactory.openIndexedDb().then(function() {
-                indexedDbAnswers = AnswersFactory.getAnswers(questionId);
-                $q.all([mongodbAnswers, indexedDbAnswers]).then(function(data) {
-                    usSpinnerService.stop('spinner-1');
-                    var localAnswers = filterAnswers(data[1]);
-                    var answers = data[0].concat(localAnswers);
-                    vm.questionAnswers = CoreService.groupArrayObjectsByDate(answers);
+                indexedDbAnswers = AnswersFactory.getAnswers(questionId)
+                    .then(function(data) {
+                        usSpinnerService.stop('spinner-1');
+                        var localAnswers = filterAnswers(data);
+                        vm.questionAnswers = CoreService.groupArrayObjectsByDate(localAnswers);
 
-                }, function(err) {
-                    if (err.toLowerCase().replace(" ", '') === "notfound") {
-                        $state.go('pageNotFound');
-                    }
-                    usSpinnerService.stop('spinner-1');
-                });
+                    }, function(err) {
+                        if (err.toLowerCase().replace(" ", '') === "notfound") {
+                            $state.go('pageNotFound');
+                        }
+                        usSpinnerService.stop('spinner-1');
+                    });
             });
 
 
