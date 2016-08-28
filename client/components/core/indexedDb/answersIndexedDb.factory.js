@@ -22,7 +22,7 @@
             getAnswers: getAnswers,
             updateAnswer: updateAnswer,
             deleteAnswer: deleteAnswer,
-            deleteAllAnswers:deleteAllAnswers
+            deleteAllAnswers: deleteAllAnswers
         };
         return service;
 
@@ -76,7 +76,7 @@
                     answer._id = ++lastIndex;
                     answer.local = true;
                     var request = store.put(answer);
-                    
+
                     request.onsuccess = function(e) {
                         logger.success("Answer successfully saved", answer, "Success");
                         deferred.resolve(answer);
@@ -197,7 +197,7 @@
                 openCursorRequest.onsuccess = function(event) {
                     if (event.target.result) {
                         deferred.resolve(event.target.result.value._id); //the object with max revision
-                    }else{
+                    } else {
                         deferred.resolve(0);
                     }
                 };

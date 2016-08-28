@@ -6,16 +6,17 @@
         .controller('SessionController', SessionController);
 
     SessionController.$inject = ['cached', 'QuestionService', '$timeout', 'PracticeSessionService',
-        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService', '$window', 'AnswersFactory','CoreService'
+        '$stateParams', '$state', 'logger', '$sessionStorage', 'QuoteService', '$window', 'AnswersFactory', 'CoreService',
+        'Auth'
     ];
 
     /* @ngInject */
     function SessionController(cached, QuestionService, $timeout, PracticeSessionService, $stateParams,
-        $state, logger, $sessionStorage, QuoteService, $window, AnswersFactory,CoreService) {
+        $state, logger, $sessionStorage, QuoteService, $window, AnswersFactory, CoreService, Auth) {
         var vm = this;
         vm.startQuestionSet = startQuestionSet;
         vm.endQuestionSet = endQuestionSet;
-        vm.isIE=CoreService.detectIE();
+        vm.isIE = CoreService.detectIE();
         vm.processQuestion = processQuestion;
         vm.practiceSessionService = PracticeSessionService;
         var questions, questionsNo, timer;
@@ -135,6 +136,7 @@
         }
 
         function saveAnswer() {
+            var user = Auth.getCurrentUser();
             var questionId = vm.currentQuestion._id;
             var answerText = vm.currentAnswer;
             if (answerText !== undefined && answerText.trim() !== "") {
@@ -142,11 +144,12 @@
                 var answer = {
                         questionId: questionId,
                         text: answerText,
-                        date: today
+                        date: today,
+                        userId: user._id
                     }
                     //QuestionService.saveAnswer(answer);
                     //QuestionService.isUpdated = true;
-               
+
                 if (indexedDbOpened) {
                     AnswersFactory.saveAnswer(answer);
                     vm.currentAnswer = '';

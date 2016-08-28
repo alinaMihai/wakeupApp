@@ -5,15 +5,16 @@
         .module('wakeupApp')
         .controller('AnswerCtrl', AnswerCtrl);
 
-    AnswerCtrl.$inject = ['cached', 'question', 'AnswerService', '$uibModal', 'usSpinnerService', 'CoreService', 'AnswersFactory', '$q'];
+    AnswerCtrl.$inject = ['cached', 'question', 'AnswerService',
+        '$uibModal', 'usSpinnerService', 'CoreService', 'AnswersFactory', '$q', 'Auth'
+    ];
 
     /* @ngInject */
-    function AnswerCtrl(cached, question, AnswerService, $uibModal, usSpinnerService, CoreService, AnswersFactory, $q) {
+    function AnswerCtrl(cached, question, AnswerService, $uibModal, usSpinnerService, CoreService, AnswersFactory, $q, Auth) {
         var vm = this;
         vm.title = 'Answer  List';
         vm.question = question;
         var indexCurrentQuestion;
-
         vm.deleteAnswer = deleteAnswer;
         vm.deleteAllAnswers = deleteAllAnswers;
         vm.openEditAnswerModal = openEditAnswerModal;
@@ -33,11 +34,10 @@
 
             AnswersFactory.openIndexedDb().then(function() {
                 indexedDbAnswers = AnswersFactory.getAnswers(questionId);
-
                 $q.all([mongodbAnswers, indexedDbAnswers]).then(function(data) {
-
                     usSpinnerService.stop('spinner-1');
-                    var answers = data[0].concat(data[1]);
+                    var localAnswers = filterAnswers(data[1]);
+                    var answers = data[0].concat(localAnswers);
                     vm.questionAnswers = CoreService.groupArrayObjectsByDate(answers);
 
                 }, function(err) {
@@ -49,6 +49,13 @@
             });
 
 
+        }
+
+        function filterAnswers(answers) {
+            var user = Auth.getCurrentUser();
+            return answers.filter(function(answer) {
+                return answer.userId === user._id;
+            });
         }
 
         function deleteAnswer(answer) {
@@ -121,14 +128,16 @@
         }
 
         function saveAnswer(text) {
+            var user = Auth.getCurrentUser();
             var today = new Date().getTime();
             var answer = {
                 questionId: vm.question._id,
                 text: text,
-                date: today
+                date: today,
+                userId: user._id
             }
             AnswersFactory.saveAnswer(answer).then(function(answer) {
-                answer.theDay="now";
+                answer.theDay = "now";
                 vm.questionAnswers.push(answer);
             });
         }

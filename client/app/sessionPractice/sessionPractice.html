@@ -2,14 +2,14 @@
     <div class="backgroundOverlay">
         <div ng-if="vm.practiceSessionService.questionSetSession" id="sessionMode">
             <button id="endQsSessionBtn" ng-click="vm.endQuestionSet()" class="btn btn-lg btn-primary" title="End Question Set Session">End Question Set Session</button>
-            <div class="container-sun" session-time ng-if="!vm.isIE">
+            <!-- <div class="container-sun" session-time ng-if="!vm.isIE">
                 <svg class="svg-sun" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="xMinYMin meet">
                     <circle cx="50" cy="50" r="35" id="sun">
                     </circle>
                 </svg>
                 <span class="timeDisplay" ></span>
                 <span class="clockDisplay"></span>
-            </div>
+            </div> -->
         </div>
     </div>
     <question-modal ng-show="vm.practiceSessionService.questionSetSession" repeat-qs="vm.practiceSessionService.repeatQS" cindex="vm.practiceSessionService.currentQuestionIndex" process-question='vm.processQuestion'>

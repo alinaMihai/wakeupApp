@@ -5,10 +5,13 @@
         .module('wakeupApp')
         .controller('SessionDetailsCtrl', SessionDetailsCtrl);
 
-    SessionDetailsCtrl.$inject = ['QuestionService', '$stateParams', '$state', 'usSpinnerService', '$filter', 'AnswersFactory'];
+    SessionDetailsCtrl.$inject = ['QuestionService', '$stateParams', '$state', 'usSpinnerService',
+        '$filter', 'AnswersFactory', 'Auth'
+    ];
 
     /* @ngInject */
-    function SessionDetailsCtrl(QuestionService, $stateParams, $state, usSpinnerService, $filter, AnswersFactory) {
+    function SessionDetailsCtrl(QuestionService, $stateParams, $state, usSpinnerService,
+        $filter, AnswersFactory, Auth) {
         var vm = this;
         vm.questionSetId = $stateParams.questionSetId;
         vm.questionSetName = $stateParams.questionSetName;
@@ -22,7 +25,7 @@
                 AnswersFactory.openIndexedDb().then(function() {
                     questions.forEach(function(question) {
                         AnswersFactory.getAnswers(question._id).then(function(answers) {
-                            var answers = question.answers.concat(answers);
+                            var answers = question.answers.concat(filterAnswers(answers));
                             question.answers = addDateFilterForAnswers(answers);
                             vm.questions.push(question);
                         });
@@ -36,6 +39,13 @@
                 } else {
                     $state.go('login');
                 }
+            });
+        }
+
+        function filterAnswers(answers) {
+            var user = Auth.getCurrentUser();
+            return answers.filter(function(answer) {
+                return answer.userId === user._id;
             });
         }
 
