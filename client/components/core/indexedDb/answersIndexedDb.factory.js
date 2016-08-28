@@ -158,7 +158,7 @@
             return deferred.promise;
         }
 
-        function deleteAllAnswers(questionId) {
+        function deleteAllAnswers(questionId, userId) {
             var deferred = $q.defer();
             if (db === null) {
                 deferred.reject('IndexDB is not opened yet');
@@ -174,7 +174,9 @@
                     if (result === null || result === undefined) {
                         deferred.resolve();
                     } else {
-                        store.delete(result.value._id);
+                        if (result.value.userId === userId) {
+                            store.delete(result.value._id);
+                        }
                         result.continue();
                     }
                 };

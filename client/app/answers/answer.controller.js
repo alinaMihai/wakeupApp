@@ -68,8 +68,9 @@
         }
 
         function deleteAllAnswers() {
+            var user = Auth.getCurrentUser();
             var deleteMongoDbAnswers = AnswerService.deleteAllAnswers(vm.question._id);
-            var deleteIndexedDbAnswers = AnswersFactory.deleteAllAnswers(vm.question._id);
+            var deleteIndexedDbAnswers = AnswersFactory.deleteAllAnswers(vm.question._id, user._id);
             $q.all([deleteMongoDbAnswers, deleteIndexedDbAnswers]).then(function(response) {
                 vm.questionAnswers = [];
             });
